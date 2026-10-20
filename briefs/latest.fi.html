@@ -3,7 +3,7 @@
 <p>OpenAI osti Orchestra Bion 20. lokakuuta. Kauppahintaa ei kerrottu, ja yhtiö oli kerännyt rahoitusta noin 20 miljoonaa dollaria. Kiinnostavaa ei ole hinta vaan se, mitä ostettiin: järjestelmä, joka pyörittää lääkekehityksen koordinaatiota - aikatauluja, tutkimusten seurantaa, epäonnistuneen valmistuserän seurauksia - ja tiimi sen takana.</p>
 
 <h3>Signaali</h3>
-<p>S = 4 (P=1, N=1, L=1). Orchestra Bio on alusta, jolla tutkijat ja tekoälyagentit jakavat työn lääkeohjelman edistämisessä: agentit seuraavat tutkimuksia ja kampanjoita, pitävät kirjaa aikatauluista ja selvittävät, kun jotain hajoaa - esimerkiksi valmistuserä epäonnistuu - mitkä työvaiheet ja päivämäärät ovat uhattuina ja mitä vaihtoehtoja on [Mitattu: <a href="https://openai.com/index/openai-to-acquire-orchestra-bio/">OpenAI</a>, 20.10.2026]. OpenAI liittää tiimin ja tuotteen Rosalindiin, joka on sen lääketieteen linja: huhtikuussa julkaistu GPT-Rosalind-malli sekä Rosalind Workbench, joka kytkee mallit tutkimusvälineisiin ja dataan. OpenAI nimeää Rosalindin asiakkaiksi Modernan ja Novo Nordiskin [myyjän väite, ei riippumatonta vahvistusta].</p>
+<p>S = 4/10 (P=1, N=1, L=1). Orchestra Bio on alusta, jolla tutkijat ja tekoälyagentit jakavat työn lääkeohjelman edistämisessä: agentit seuraavat tutkimuksia ja kampanjoita, pitävät kirjaa aikatauluista ja selvittävät, kun jotain hajoaa - esimerkiksi valmistuserä epäonnistuu - mitkä työvaiheet ja päivämäärät ovat uhattuina ja mitä vaihtoehtoja on [Mitattu: <a href="https://openai.com/index/openai-to-acquire-orchestra-bio/">OpenAI</a>, 20.10.2026]. OpenAI liittää tiimin ja tuotteen Rosalindiin, joka on sen lääketieteen linja: huhtikuussa julkaistu GPT-Rosalind-malli sekä Rosalind Workbench, joka kytkee mallit tutkimusvälineisiin ja dataan. OpenAI nimeää Rosalindin asiakkaiksi Modernan ja Novo Nordiskin [myyjän väite, ei riippumatonta vahvistusta].</p>
 <p>Miksi pistemäärä on tämä. Primäärilähde on ostajan oma ilmoitus, jossa tuote ja integraatio kuvataan. Uutiskirjelähettäjiä on yksi: a16z kertoi kaupasta omalle listalleen ja on itse Orchestra Bion sijoittaja, joten kyse on tiedon vahvistamisesta, ei itsenäisestä toimituksellisesta arviosta [<a href="https://www.a16z.news/p/superhuman-hardware-design-is-the">a16z</a>, 20.10.2026]. L=1, koska laboratorion virallinen tili julkaisi ennen uutiskirjeitä. Mediaosumia oli paljon, mutta ne ovat toissijaisia: <a href="https://techcrunch.com/2026/10/20/openai-acquires-startup-orchestra-bio-to-beef-up-its-biotech-business/">TechCrunch</a>, <a href="https://www.axios.com/2026/10/20/exclusive-openai-biotech-startup-drug-development">Axios</a> ja alan lehdistö kirjoittivat samasta ilmoituksesta. Toista riippumatonta uutiskirjelähettäjää ei ollut, joten N=1 ja S=4, ei 5.</p>
 
 <h3>Teesi</h3>
@@ -24,4 +24,15 @@
 <h3>Mitä seurata</h3>
 <p>Vahvistavatko Moderna tai Novo Nordisk käytön omin sanoin. Tuovatko Veeva tai IQVIA markkinoille agenttituotteita vai pelkkiä tiekarttoja. Julkaisevatko FDA tai EMA ohjeistuksen agenttien tuottamasta dokumentaatiosta. Palkkaako OpenAI sääntelyasiantuntijoita, mikä viestisi validoinnista demon sijaan. Ja jääkö Orchestra Bion tuote itsenäiseksi vai sulautuuko se Rosalindiin: jälkimmäinen vahvistaisi värväystulkinnan.</p>
 
+<section class="method" style="margin-top:48px;border-top:1px solid #ddd;padding-top:16px">
+<h3>Miten Signaali lasketaan</h3>
+<p>Joka aamu vertailemme ehdokkaita ja julkaisemme vain korkeimman. Luku kertoo asteikolla 1-10, miten hyvin väite on lähteistetty - ei sitä, miten tärkeältä se tuntuu. S = 2P + N + L.</p>
+<ul>
+<li><strong>P</strong> = 1, kun aiheesta on primäärilähde: paperi, mallikortti, julkaisumuistio, virallinen ilmoitus, viranomaisdokumentti tai tilasto. Arvo kaksi pistettä, koska primäärilähde kestää tarkistuksen.</li>
+<li><strong>N</strong> = kuinka moni eri uutiskirjelähettäjä käsittelee samaa asiaa samana päivänä, yksi piste kullekin, enintään kuusi. Yksi lähettäjä on vahvistus, useampi on kuvio.</li>
+<li><strong>L</strong> = 1, kun tason 1 tili tai laboratorion oma tili julkaisi ennen uutiskirjeitä. Ennakkovaroitus, ei todiste.</li>
+</ul>
+<p>Asteikon tulkinta: 1-2 on yksittäinen vahvistamaton maininta; 3-4 tarkoittaa, että aihe kelpaa - primäärilähde tai vähintään kaksi lähettäjää; 5-6 tarkoittaa primäärilähdettä ja itsenäistä toistoa; 7 tai enemmän on harvinaista ja tarkoittaa molempia vahvoina. Viikon sisällä käsitellyistä aiheista vähennetään piste, jottei sama tarina nouse kahdesti. Sijoittajan ilmoitus omasta portfolioyhtiöstään lasketaan yhdeksi lähettäjäksi, ei itsenäiseksi arvioksi.</p>
+<p>Luku mittaa lähteistystä, ei totuutta eikä seurauksia. Hyvin lähteistetty pieni havainto voi ohittaa huonosti lähteistetyn tärkeän, ja se on tarkoitus.</p>
+</section>
 <p class="kicker" style="margin-top:40px">Compiled by Harri Juntunen &amp; Twin</p>
