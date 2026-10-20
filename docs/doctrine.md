@@ -8,7 +8,7 @@ Purpose: measure the diffusion of machine learning into the institutional layer 
 3. Anti-teesi - the strongest critique of our own thesis, argued seriously, not as a formality.
 4. Ennuste - what follows, with a horizon and a resolution date.
 5. Poliittiset vaikutukset - consequences of thesis and forecast, split by horizon: 0-2 years, 2-5 years, 5-10 years.
-6. Mitä seurata - the next observable that would confirm or kill the thesis.
+6. MitÃ¤ seurata - the next observable that would confirm or kill the thesis.
 
 ## Signal index
 Score every candidate item in the 24-hour window: S = 2P + N, where P = 1 if a primary source exists and 0 otherwise; N = number of distinct newsletter senders mentioning it. With X in the pipeline, S = 2P + N + L, where L = 1 if a tier 1 or tier 2 account, or an official lab account, posted it before the newsletters.
@@ -49,3 +49,13 @@ The daily prints one number, scored out of ten, at the head of the Signal sectio
 Use 1-10, not 1-100. The raw index S = 2P + N + L has a natural ceiling of nine (P at most 1, N capped at six, L at most 1), so a ten-point scale maps directly and invents no precision. A hundred-point scale would suggest a resolution the measurement does not have.
 Reading: 1-2 is a single unconfirmed mention; 3-4 qualifies, with a primary source or at least two senders; 5-6 is primary evidence plus independent pickup; 7 or more is both, in strength.
 Distribution channels carry only the number and the scale, never the parts.
+
+## Finnish language
+The Finnish edition follows Kielitoimiston ohjepankki, the guidance of the Kotimaisten kielten keskus (https://kielitoimistonohjepankki.fi). Before publishing, check the guide's five sections: Merkit, numerot ja lyhenteet; Nimet; Sana; Lause; Teksti.
+Rules applied every day:
+- Ajatusviiva is – with spaces around it in running text. The hyphen is only for compounds and for ranges written without spaces; it is never a thought dash.
+- Numerals: 60 % with a space, 20 miljoonaa euroa, 31.10.2027, decimals with a comma (0,5), ranges with an en dash and no spaces (0–2 vuotta).
+- Month names lowercase: lokakuuta. Headings in sentence case, without a full stop.
+- Quotation marks ”…” and ’…’, never straight quotes in prose.
+- Compounds written together when they form one concept; consult Sana when unsure.
+- Where the guide and habit disagree, the guide wins. Never invent a rule.
