@@ -1,0 +1,45 @@
+:root{--ink:#12161a;--muted:#61707f;--line:#e4e7ea;--accent:#1f4fd8;--bg:#fdfdfb;--panel:#f6f7f8}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.7;text-rendering:optimizeLegibility}
+.wrap{max-width:700px;margin:0 auto;padding:40px 22px 80px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.masthead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:36px}
+.brand{font-family:Georgia,"Iowan Old Style",serif;font-size:19px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+.brand:hover{text-decoration:none;color:var(--accent)}
+.lang{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;gap:12px}
+.lang a{color:var(--muted)}
+.lang a[aria-current="true"]{color:var(--ink);font-weight:700}
+.brief h2{font-family:Georgia,"Iowan Old Style",serif;font-size:34px;line-height:1.16;letter-spacing:-.02em;margin:8px 0 12px;font-weight:700}
+.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.score{display:inline-block;background:var(--ink);color:#fff;font-size:13px;font-weight:600;letter-spacing:.08em;padding:6px 14px;border-radius:999px;margin:0 0 22px}
+.brief h3{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:34px 0 10px;padding-top:14px;border-top:1px solid var(--line);font-weight:700}
+.brief p{margin:0 0 16px}
+.brief ul{margin:0 0 16px;padding-left:20px}
+.brief li{margin-bottom:6px}
+.brief strong{font-weight:600}
+.method{font-size:14px;line-height:1.65;color:#33404d;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-top:46px}
+.method h3{border:0;padding:0;margin:0 0 8px;color:var(--ink)}
+.method p{margin:0 0 10px}
+.method ul{margin:0 0 10px;padding-left:18px}
+.credit{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:40px}
+footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+footer a{color:var(--muted)}
+h1.title{font-family:Georgia,"Iowan Old Style",serif;font-size:38px;line-height:1.12;letter-spacing:-.02em;margin:0 0 10px}
+.sub{color:var(--muted);margin:0 0 22px;font-size:16px;max-width:56ch}
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.toggle button{font:inherit;font-size:12px;letter-spacing:.1em;padding:7px 16px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.card{display:block;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:0 0 38px;background:#fff}
+.card:hover{border-color:#cfd6dd;text-decoration:none}
+.card h2{font-family:Georgia,"Iowan Old Style",serif;font-size:22px;line-height:1.28;margin:4px 0 6px;color:var(--ink)}
+.card .meta{font-size:12px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+ul.archive{list-style:none;padding:0;margin:0}
+ul.archive li{border-top:1px solid var(--line);padding:13px 0}
+ul.archive a{color:var(--ink);font-weight:600}
+ul.archive .date{display:block;color:var(--muted);font-size:12px;letter-spacing:.06em;margin-top:3px}
+h2.section{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:38px 0 12px;font-weight:700}
+html[data-lang="en"] .fi{display:none}
+html[data-lang="fi"] .en{display:none}
+@media (max-width:520px){.brief h2{font-size:28px}h1.title{font-size:30px}.wrap{padding:28px 18px 64px}}
