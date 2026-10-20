@@ -8,7 +8,7 @@ Purpose: measure the diffusion of machine learning into the institutional layer 
 3. Anti-teesi - the strongest critique of our own thesis, argued seriously, not as a formality.
 4. Ennuste - what follows, with a horizon and a resolution date.
 5. Poliittiset vaikutukset - consequences of thesis and forecast, split by horizon: 0-2 years, 2-5 years, 5-10 years.
-6. Mit‰ seurata - the next observable that would confirm or kill the thesis.
+6. Mit√§ seurata - the next observable that would confirm or kill the thesis.
 
 ## Signal index
 Score every candidate item in the 24-hour window: S = 2P + N, where P = 1 if a primary source exists and 0 otherwise; N = number of distinct newsletter senders mentioning it. With X in the pipeline, S = 2P + N + L, where L = 1 if a tier 1 or tier 2 account, or an official lab account, posted it before the newsletters.
@@ -43,3 +43,9 @@ Technology is neither good nor bad, nor neutral. Delegates inherit our paradoxes
 
 ## Citation practice
 Primary sources over commentary: NBER, IEA, EU AI Act texts, Finnish statistical and regulatory sources, model and system documentation, and the ML systems literature for physical bounds. Inline links, publisher name only.
+
+## Signal scale
+The daily prints one number, scored out of ten, at the head of the Signal section: "Signaali 4/10". The derivation (P, N, L) is printed in the article, and the scale itself is explained at the foot of every article under "How the Signal is scored" / "Miten Signaali lasketaan".
+Use 1-10, not 1-100. The raw index S = 2P + N + L has a natural ceiling of nine (P at most 1, N capped at six, L at most 1), so a ten-point scale maps directly and invents no precision. A hundred-point scale would suggest a resolution the measurement does not have.
+Reading: 1-2 is a single unconfirmed mention; 3-4 qualifies, with a primary source or at least two senders; 5-6 is primary evidence plus independent pickup; 7 or more is both, in strength.
+Distribution channels carry only the number and the scale, never the parts.
