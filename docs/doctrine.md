@@ -7,7 +7,7 @@ Purpose: measure the diffusion of machine learning into the institutional layer 
 2. Teesi - a bold claim and interpretation drawn from that signal.
 3. Anti-teesi - the strongest critique of our own thesis, argued seriously, not as a formality.
 4. Ennuste - what follows, with a horizon and a resolution date.
-5. Poliittiset vaikutukset - consequences of thesis and forecast, split by horizon: 0-2 years, 2-5 years, 5-10 years.
+5. Poliittiset vaikutukset - consequences of thesis and forecast, in two horizons only: 1-2 years and 3-4 years.
 6. MitÃÂ¤ seurata - the next observable that would confirm or kill the thesis.
 
 Each edition is monolingual. The English article uses English headings: Signal, Thesis, Antithesis, Forecast, Political consequences, What to watch, How the Signal is scored. The Finnish article uses Finnish headings: Signaali, Teesi, Anti-teesi, Ennuste, Poliittiset vaikutukset, Mitä seurata, Miten Signaali lasketaan. Never print a bilingual heading such as "Signaali / Signal" or "Teesi / Thesis": the FI/EN switch chooses the edition, not the heading.
@@ -71,3 +71,8 @@ Every brief is a complete HTML document, never a fragment. Copy `briefs/_templat
 
 ## Forecast ledger
 `forecasts.json` is the single record of every forecast the brief has published. After publishing an edition, append one entry: id (YYYY-MM-DD-nn), made, claim_en, claim_fi, resolves (YYYY-MM-DD), probability (integer percent), status ("open"), signal, source (path to the article). Never reword a claim after publication; when the resolution date passes, change only status to "hit" or "miss" and leave misses visible. `forecasts.html` renders the file and needs no daily edit.
+
+## Political consequences method
+A consequence is published only when three things can be named: the instrument (a law, a budget line, a procurement rule, a tax, a court decision), the actor who has to move it, and the observable that would show it happened. If one is missing, the claim is cut.
+Two horizons, not three. 1-2 years: the instrument exists and only a decision, money or a signature is missing. 3-4 years: a new instrument is needed (statute, institution, funding line, settled liability rule). Anything beyond four years is a scenario, not a consequence, and is left out.
+Every consequence carries its evidence tier: Measured, Bounded, Estimated.
