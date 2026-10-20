@@ -19,6 +19,10 @@ Use L2 for release detection and benchmark movement. These accounts post first; 
 S = 2P + N + L, where P = 1 if a primary source exists, N = number of distinct newsletter senders, L = 1 if a tier 1 or tier 2 account, or an official lab account, posted the item before it appeared in newsletters.
 Discount aggregator-only stories. X is early warning, newsletters are confirmation, papers and official documents are primacy.
 
+## Engineering reference
+Machine Learning Systems, mlsysbook.ai, Harvard CS249r, two volumes, MIT Press 2026. Principles-first account of how ML systems are built, optimised and deployed: roofline reasoning, memory bandwidth, utilisation, orchestration overhead, fleet-scale infrastructure, with labs, TinyTorch and a simulator.
+Use it to test vendor and consultancy efficiency claims against arithmetic, and to translate capability into compute, bandwidth and energy terms. If a claim implies a utilisation or bandwidth that the hardware cannot deliver, that is a finding, not a footnote.
+
 ## Newsletters
 AI Supremacy, AI as Normal Technology, Claude's Notebook, Linas's Newsletter, AI Frontiers, Cosmos Institute, and any clearly AI-focused sender in the inbox.
 
