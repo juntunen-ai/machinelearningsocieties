@@ -4,52 +4,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Machine Learning Societies</title>
-<style>
-  :root { --ink:#12161c; --muted:#5b6675; --line:#e3e7ec; --accent:#1f5eff; --bg:#fbfbfa; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6; }
-  .wrap { max-width:720px; margin:0 auto; padding:48px 24px 80px; }
-  header { border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:36px; }
-  h1 { font-size:34px; line-height:1.15; margin:0 0 8px; letter-spacing:-0.02em; }
-  .sub { color:var(--muted); margin:0; font-size:16px; }
-  .kicker { font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin:0 0 10px; }
-  .lang { margin-top:18px; display:flex; gap:8px; }
-  .lang button { font:inherit; font-size:13px; letter-spacing:0.08em; padding:6px 14px; border:1px solid var(--line); background:#fff; color:var(--muted); border-radius:999px; cursor:pointer; }
-  .lang button[aria-pressed="true"] { background:var(--ink); border-color:var(--ink); color:#fff; }
-  h2.section { font-size:20px; margin:36px 0 12px; }
-  ul#archive { list-style:none; padding:0; margin:0; }
-  ul#archive li { border-top:1px solid var(--line); padding:14px 0; }
-  ul#archive li:first-child { border-top:0; }
-  ul#archive a { color:var(--ink); text-decoration:none; font-weight:600; }
-  ul#archive a:hover { color:var(--accent); }
-  ul#archive .date { display:block; color:var(--muted); font-size:13px; margin-top:2px; }
-  #latest a { color:var(--accent); text-decoration:none; font-weight:600; }
-  #latest a:hover { text-decoration:underline; }
-  footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
-  footer a { color:var(--muted); }
-  html[data-lang="en"] .fi { display:none; }
-  html[data-lang="fi"] .en { display:none; }
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <p class="kicker">Helsinki</p>
-    <h1>Machine Learning Societies</h1>
-    <p class="sub en">A daily brief on the diffusion of machine learning: its economics, politics and policy. One signal, one thesis, one falsifiable forecast per day.</p>
-    <p class="sub fi">P&auml;ivitt&auml;inen katsaus koneoppimisen levi&auml;miseen: talous, politiikka ja s&auml;&auml;ntely. Yksi signaali, yksi teesi ja yksi koeteltava ennuste p&auml;iv&auml;ss&auml;.</p>
-    <div class="lang" role="group" aria-label="Language">
+  <header class="masthead">
+    <span class="kicker" style="margin:0">Helsinki</span>
+    <div class="toggle" role="group" aria-label="Language">
       <button id="btn-en" type="button" aria-pressed="true">EN</button>
       <button id="btn-fi" type="button" aria-pressed="false">FI</button>
     </div>
   </header>
 
   <main>
-    <h2 class="section" id="latest-h">Latest brief</h2>
-    <p id="latest"><span class="en">The first edition publishes tomorrow at 07:30 Helsinki time.</span><span class="fi">Ensimm&auml;inen painos julkaistaan huomenna klo 7.30.</span></p>
+    <h1 class="title">Machine Learning Societies</h1>
+    <p class="sub en">A daily brief on how machine learning enters the institutional layer: one signal, one thesis, one falsifiable forecast.</p>
+    <p class="sub fi">P&auml;ivitt&auml;inen katsaus siihen, miten koneoppiminen tulee instituutioihin: yksi signaali, yksi teesi ja yksi koeteltava ennuste.</p>
+
+    <a class="card" id="latest" href="#">
+      <span class="meta" id="latest-meta">Latest brief</span>
+      <h2 id="latest-title">The first edition publishes at 07:30 Helsinki time.</h2>
+    </a>
 
     <h2 class="section" id="archive-h">Archive</h2>
-    <ul id="archive"></ul>
+    <ul class="archive" id="archive"></ul>
   </main>
 
   <footer>Compiled by Harri Juntunen &amp; Twin &ndash; <a href="https://github.com/juntunen-ai/Twin">source</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
@@ -62,13 +40,19 @@
   };
   var state = { items: [], lang: "en" };
 
+  function fmt(date, lang) {
+    var p = date.split("-");
+    if (lang === "fi") return p[2] + "." + p[1] + "." + p[0];
+    var m = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    return Number(p[2]) + " " + m[Number(p[1]) - 1] + " " + p[0];
+  }
+
   function apply(lang) {
     state.lang = lang;
     document.documentElement.setAttribute("data-lang", lang);
     document.documentElement.setAttribute("lang", lang);
     document.getElementById("btn-en").setAttribute("aria-pressed", String(lang === "en"));
     document.getElementById("btn-fi").setAttribute("aria-pressed", String(lang === "fi"));
-    document.getElementById("latest-h").textContent = T[lang].latest;
     document.getElementById("archive-h").textContent = T[lang].archive;
     try { localStorage.setItem("mls-lang", lang); } catch (e) {}
     render();
@@ -78,11 +62,13 @@
     var ul = document.getElementById("archive");
     ul.innerHTML = "";
     if (!state.items.length) return;
-    var first = state.items[0];
-    var latest = document.getElementById("latest");
     var suffix = state.lang === "fi" ? ".fi" : "";
-    latest.innerHTML = '<a href="briefs/' + first.date + suffix + '.html">' +
-      (state.lang === "fi" ? (first.title_fi || first.title) : first.title) + "</a>";
+    var first = state.items[0];
+    var card = document.getElementById("latest");
+    card.href = "briefs/" + first.date + suffix + ".html";
+    document.getElementById("latest-meta").textContent = T[state.lang].latest + " · " + fmt(first.date, state.lang);
+    document.getElementById("latest-title").textContent =
+      state.lang === "fi" ? (first.title_fi || first.title) : first.title;
     state.items.forEach(function (it) {
       var li = document.createElement("li");
       var a = document.createElement("a");
@@ -90,7 +76,7 @@
       a.textContent = state.lang === "fi" ? (it.title_fi || it.title) : it.title;
       var d = document.createElement("span");
       d.className = "date";
-      d.textContent = it.date;
+      d.textContent = fmt(it.date, state.lang);
       li.appendChild(a);
       li.appendChild(d);
       ul.appendChild(li);
