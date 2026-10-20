@@ -1,7 +1,7 @@
 <!doctype html>
 <!-- Canonical page shell. Copy this file for every brief: replace LANG (en|fi),
-     TITLE, ALT_FILE, ALT_LABEL, SELF_LABEL and BODY. Keep the stylesheet path,
-     the .score line directly after the <h2>, and the .credit line at the end. -->
+     TITLE, ALT_FILE, ALT_LABEL, SELF_LABEL and BODY. The credit sits once, in the
+     masthead. Keep the stylesheet path and the .score line directly after the <h2>. -->
 <html lang="{{LANG}}" data-lang="{{LANG}}">
 <head>
 <meta charset="utf-8">
@@ -12,13 +12,16 @@
 <body>
 <div class="wrap">
   <header class="masthead">
-    <a class="brand" href="../index.html">Machine Learning Societies</a>
+    <div>
+      <a class="brand" href="../index.html">Machine Learning Societies</a>
+      <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; Twin</span>
+    </div>
     <div class="lang"><a href="{{ALT_FILE}}">{{ALT_LABEL}}</a><a href="#" aria-current="true">{{SELF_LABEL}}</a></div>
   </header>
   <article class="brief">
 {{BODY}}
   </article>
-  <footer>Compiled by Harri Juntunen &amp; Twin &ndash; <a href="https://github.com/juntunen-ai/Twin">source</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
+  <footer><a href="https://github.com/juntunen-ai/Twin">source</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
 </div>
 </body>
 </html>
