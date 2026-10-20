@@ -61,3 +61,10 @@ Rules applied every day:
 - Quotation marks ââ¦â and ââ¦â, never straight quotes in prose.
 - Compounds written together when they form one concept; consult Sana when unsure.
 - Where the guide and habit disagree, the guide wins. Never invent a rule.
+
+## Page shell
+Every brief is a complete HTML document, never a fragment. Copy `briefs/_template.html` and fill LANG (en or fi), TITLE, ALT_FILE (the other language file), ALT_LABEL, SELF_LABEL and BODY. Keep:
+- `<link rel="stylesheet" href="../assets/site.css">` in the head.
+- `<p class="score">Signal 4/10</p>` immediately after the <h2> headline, with no inline styles.
+- `<p class="method">` for the derivation at the end of the article, then `<p class="credit">Compiled by Harri Juntunen &amp; Twin</p>` as the last line.
+`briefs/latest.html` and `briefs/latest.fi.html` are copies of the day's two pages; `index.html` reads `briefs/index.json` and needs no daily edit.
