@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twin - AI Morning Brief</title>
+<style>
+  :root { --ink:#12161c; --muted:#5b6675; --line:#e3e7ec; --accent:#1f5eff; --bg:#fbfbfa; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6; }
+  .wrap { max-width:720px; margin:0 auto; padding:48px 24px 80px; }
+  header { border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:36px; }
+  h1 { font-size:34px; line-height:1.15; margin:0 0 8px; letter-spacing:-0.02em; }
+  .sub { color:var(--muted); margin:0; font-size:16px; }
+  article h2 { font-size:22px; margin:36px 0 12px; }
+  article h3 { font-size:17px; margin:26px 0 8px; }
+  article p { margin:0 0 16px; }
+  article ul { margin:0 0 18px; padding-left:22px; }
+  article li { margin-bottom:8px; }
+  article a { color:var(--accent); text-decoration:none; }
+  article a:hover { text-decoration:underline; }
+  .kicker { font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin-bottom:6px; }
+  h2.section { font-size:13px; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin:52px 0 12px; }
+  #list { list-style:none; padding:0; margin:0; border-top:1px solid var(--line); }
+  #list li { border-bottom:1px solid var(--line); padding:12px 0; display:flex; gap:16px; }
+  #list .d { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; font-size:14px; }
+  #list a { color:var(--ink); text-decoration:none; }
+  #list a:hover { color:var(--accent); }
+  footer { margin-top:64px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+  .loading { color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>AI Morning Brief</h1>
+    <p class="sub">A daily digest of what matters in artificial intelligence, compiled from newsletters and public sources.</p>
+  </header>
+  <main>
+    <section id="latest"><p class="loading">Loading today's brief...</p></section>
+    <h2 class="section">Archive</h2>
+    <ul id="list"><li><span class="d">&nbsp;</span><span>Loading...</span></li></ul>
+  </main>
+  <footer>Compiled by Twin - <a href="https://github.com/juntunen-ai/Twin">source</a></footer>
+</div>
+<script>
+async function load() {
+  try {
+    const res = await fetch('briefs/index.json', { cache: 'no-store' });
+    const items = await res.json();
+    const list = document.getElementById('list');
+    list.innerHTML = items.length ? items.map(function (it) {
+      return '<li><span class="d">' + it.date + '</span><a href="briefs/' + it.date + '.html">' + it.title + '</a></li>';
+    }).join('') : '<li><span class="d">&nbsp;</span><span>No briefs yet.</span></li>';
+  } catch (e) {
+    document.getElementById('list').innerHTML = '<li><span class="d">&nbsp;</span><span>Archive unavailable.</span></li>';
+  }
+  try {
+    const r = await fetch('briefs/latest.html', { cache: 'no-store' });
+    document.getElementById('latest').innerHTML = await r.text();
+  } catch (e) {
+    document.getElementById('latest').innerHTML = '<p class="loading">Today\'s brief is not available yet.</p>';
+  }
+}
+load();
+</script>
+</body>
+</html>
