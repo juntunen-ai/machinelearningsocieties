@@ -10,7 +10,13 @@
 <div class="wrap">
   <header class="masthead">
     <a class="brand" href="index.html">Machine Learning Societies</a>
-    <nav class="lang"><a href="index.html">Briefs</a><a href="#" aria-current="true">Forecasts</a></nav>
+    <div style="display:flex;gap:16px;align-items:baseline">
+      <nav class="lang"><a href="index.html">Briefs</a><a href="#" aria-current="true">Forecasts</a></nav>
+      <div class="toggle" role="group" aria-label="Language">
+        <button id="btn-en" type="button" aria-pressed="true">EN</button>
+        <button id="btn-fi" type="button" aria-pressed="false">FI</button>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -68,9 +74,15 @@
     state.lang = lang;
     document.documentElement.setAttribute("data-lang", lang);
     document.documentElement.setAttribute("lang", lang);
+    var be = document.getElementById("btn-en"), bf = document.getElementById("btn-fi");
+    if (be) be.setAttribute("aria-pressed", String(lang === "en"));
+    if (bf) bf.setAttribute("aria-pressed", String(lang === "fi"));
     try { localStorage.setItem("mls-lang", lang); } catch (e) {}
     render();
   }
+
+  document.getElementById("btn-en").addEventListener("click", function () { apply("en"); });
+  document.getElementById("btn-fi").addEventListener("click", function () { apply("fi"); });
 
   var saved = "en";
   try { saved = localStorage.getItem("mls-lang") || "en"; } catch (e) {}
