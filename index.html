@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,57 +12,103 @@
   header { border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:36px; }
   h1 { font-size:34px; line-height:1.15; margin:0 0 8px; letter-spacing:-0.02em; }
   .sub { color:var(--muted); margin:0; font-size:16px; }
-  article h2 { font-size:22px; margin:36px 0 12px; }
-  article h3 { font-size:17px; margin:26px 0 8px; }
-  article p { margin:0 0 16px; }
-  article ul { margin:0 0 18px; padding-left:22px; }
-  article li { margin-bottom:8px; }
-  article a { color:var(--accent); text-decoration:none; }
-  article a:hover { text-decoration:underline; }
-  .kicker { font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin-bottom:6px; }
-  h2.section { font-size:13px; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin:52px 0 12px; }
-  #list { list-style:none; padding:0; margin:0; border-top:1px solid var(--line); }
-  #list li { border-bottom:1px solid var(--line); padding:12px 0; display:flex; gap:16px; }
-  #list .d { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; font-size:14px; }
-  #list a { color:var(--ink); text-decoration:none; }
-  #list a:hover { color:var(--accent); }
-  footer { margin-top:64px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
-  .loading { color:var(--muted); }
+  .kicker { font-size:12px; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin:0 0 10px; }
+  .lang { margin-top:18px; display:flex; gap:8px; }
+  .lang button { font:inherit; font-size:13px; letter-spacing:0.08em; padding:6px 14px; border:1px solid var(--line); background:#fff; color:var(--muted); border-radius:999px; cursor:pointer; }
+  .lang button[aria-pressed="true"] { background:var(--ink); border-color:var(--ink); color:#fff; }
+  h2.section { font-size:20px; margin:36px 0 12px; }
+  ul#archive { list-style:none; padding:0; margin:0; }
+  ul#archive li { border-top:1px solid var(--line); padding:14px 0; }
+  ul#archive li:first-child { border-top:0; }
+  ul#archive a { color:var(--ink); text-decoration:none; font-weight:600; }
+  ul#archive a:hover { color:var(--accent); }
+  ul#archive .date { display:block; color:var(--muted); font-size:13px; margin-top:2px; }
+  #latest a { color:var(--accent); text-decoration:none; font-weight:600; }
+  #latest a:hover { text-decoration:underline; }
+  footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+  footer a { color:var(--muted); }
+  html[data-lang="en"] .fi { display:none; }
+  html[data-lang="fi"] .en { display:none; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
+    <p class="kicker">Helsinki</p>
     <h1>Machine Learning Societies</h1>
-    <p class="sub">A daily brief on the diffusion of machine learning: its economics, politics and policy. Compiled by Harri Juntunen &amp; Twin, Helsinki.</p>
+    <p class="sub en">A daily brief on the diffusion of machine learning: its economics, politics and policy. One signal, one thesis, one falsifiable forecast per day.</p>
+    <p class="sub fi">P&auml;ivitt&auml;inen katsaus koneoppimisen levi&auml;miseen: talous, politiikka ja s&auml;&auml;ntely. Yksi signaali, yksi teesi ja yksi koeteltava ennuste p&auml;iv&auml;ss&auml;.</p>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="btn-en" type="button" aria-pressed="true">EN</button>
+      <button id="btn-fi" type="button" aria-pressed="false">FI</button>
+    </div>
   </header>
+
   <main>
-    <section id="latest"><p class="loading">Loading today's brief...</p></section>
-    <h2 class="section">Archive</h2>
-    <ul id="list"><li><span class="d">&nbsp;</span><span>Loading...</span></li></ul>
+    <h2 class="section" id="latest-h">Latest brief</h2>
+    <p id="latest"><span class="en">The first edition publishes tomorrow at 07:30 Helsinki time.</span><span class="fi">Ensimm&auml;inen painos julkaistaan huomenna klo 7.30.</span></p>
+
+    <h2 class="section" id="archive-h">Archive</h2>
+    <ul id="archive"></ul>
   </main>
-  <footer>Compiled by Harri Juntunen &amp; Twin - <a href="https://github.com/juntunen-ai/Twin">source</a></footer>
+
+  <footer>Compiled by Harri Juntunen &amp; Twin &ndash; <a href="https://github.com/juntunen-ai/Twin">source</a></footer>
 </div>
 <script>
-async function load() {
-  try {
-    const res = await fetch('briefs/index.json', { cache: 'no-store' });
-    const items = await res.json();
-    const list = document.getElementById('list');
-    list.innerHTML = items.length ? items.map(function (it) {
-      return '<li><span class="d">' + it.date + '</span><a href="briefs/' + it.date + '.html">' + it.title + '</a></li>';
-    }).join('') : '<li><span class="d">&nbsp;</span><span>No briefs yet.</span></li>';
-  } catch (e) {
-    document.getElementById('list').innerHTML = '<li><span class="d">&nbsp;</span><span>Archive unavailable.</span></li>';
+(function () {
+  var T = {
+    en: { latest: "Latest brief", archive: "Archive" },
+    fi: { latest: "Uusin katsaus", archive: "Arkisto" }
+  };
+  var state = { items: [], lang: "en" };
+
+  function apply(lang) {
+    state.lang = lang;
+    document.documentElement.setAttribute("data-lang", lang);
+    document.documentElement.setAttribute("lang", lang);
+    document.getElementById("btn-en").setAttribute("aria-pressed", String(lang === "en"));
+    document.getElementById("btn-fi").setAttribute("aria-pressed", String(lang === "fi"));
+    document.getElementById("latest-h").textContent = T[lang].latest;
+    document.getElementById("archive-h").textContent = T[lang].archive;
+    try { localStorage.setItem("mls-lang", lang); } catch (e) {}
+    render();
   }
-  try {
-    const r = await fetch('briefs/latest.html', { cache: 'no-store' });
-    document.getElementById('latest').innerHTML = await r.text();
-  } catch (e) {
-    document.getElementById('latest').innerHTML = '<p class="loading">Today\'s brief is not available yet.</p>';
+
+  function render() {
+    var ul = document.getElementById("archive");
+    ul.innerHTML = "";
+    if (!state.items.length) return;
+    var first = state.items[0];
+    var latest = document.getElementById("latest");
+    var suffix = state.lang === "fi" ? ".fi" : "";
+    latest.innerHTML = '<a href="briefs/' + first.date + suffix + '.html">' +
+      (state.lang === "fi" ? (first.title_fi || first.title) : first.title) + "</a>";
+    state.items.forEach(function (it) {
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = "briefs/" + it.date + suffix + ".html";
+      a.textContent = state.lang === "fi" ? (it.title_fi || it.title) : it.title;
+      var d = document.createElement("span");
+      d.className = "date";
+      d.textContent = it.date;
+      li.appendChild(a);
+      li.appendChild(d);
+      ul.appendChild(li);
+    });
   }
-}
-load();
+
+  document.getElementById("btn-en").addEventListener("click", function () { apply("en"); });
+  document.getElementById("btn-fi").addEventListener("click", function () { apply("fi"); });
+
+  var saved = "en";
+  try { saved = localStorage.getItem("mls-lang") || "en"; } catch (e) {}
+  apply(saved);
+
+  fetch("briefs/index.json")
+    .then(function (r) { return r.ok ? r.json() : []; })
+    .then(function (data) { state.items = Array.isArray(data) ? data : []; render(); })
+    .catch(function () {});
+})();
 </script>
 </body>
 </html>
