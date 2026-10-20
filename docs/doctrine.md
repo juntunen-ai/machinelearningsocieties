@@ -11,9 +11,16 @@ Purpose: measure the diffusion of machine learning into the institutional layer 
 6. Mitä seurata - the next observable that would confirm or kill the thesis.
 
 ## Signal index
-Score every candidate item in the 24-hour window: S = 2P + N, where P = 1 if a primary source exists (paper, model card, release note, official document, filing, regulator publication, dataset) and 0 otherwise; N = number of distinct newsletter senders mentioning it.
-A candidate qualifies as the Signaali only if N >= 2 or P = 1. Rank by S, then by novelty: penalise anything covered in the past seven days. Report S and its parts in one line, e.g. "S = 5 (primary, 3 senders)".
+Score every candidate item in the 24-hour window: S = 2P + N, where P = 1 if a primary source exists and 0 otherwise; N = number of distinct newsletter senders mentioning it. With X in the pipeline, S = 2P + N + L, where L = 1 if a tier 1 or tier 2 account, or an official lab account, posted it before the newsletters.
+A candidate qualifies as the Signaali only if N >= 2 or P = 1. Rank by S, then by novelty: penalise anything covered in the past seven days. Report S and its parts in one line.
 Reject stories that appear only in commentary, only in marketing, or only in one sender without a primary source.
+
+## Rigor: three tiers of evidence
+Every quantitative claim must be labelled with the tier it comes from.
+1. Measured: a statistic, filing, benchmark result or official document. Cite it.
+2. Bounded: an engineering limit derived from the systems literature - roofline, memory bandwidth, utilisation, orchestration overhead, fleet economics - as in Machine Learning Systems (mlsysbook.ai, Harvard CS249r). This is how we test whether a claim is physically plausible, not merely whether a vendor is honest.
+3. Estimated: our own model or extrapolation. Say so, give the assumption, and give the range.
+If a claim cannot be placed in one of the three, it does not enter the brief. Physics is the cheapest available criticism: a number that requires impossible bandwidth or utilisation is wrong regardless of who said it.
 
 ## Six lenses
 1. Delegation. What human judgement has been handed to a system, and what accountability chain remains.
@@ -35,4 +42,4 @@ Reject stories that appear only in commentary, only in marketing, or only in one
 Technology is neither good nor bad, nor neutral. Delegates inherit our paradoxes. Politics is the arena where new beginnings appear; the job is to keep that arena legitimate when coordination is mediated by learning systems. Possibilist in method, disciplined about power.
 
 ## Citation practice
-Primary sources over commentary: NBER, IEA, EU AI Act texts, Finnish statistical and regulatory sources, model and system documentation. Inline links, publisher name only.
+Primary sources over commentary: NBER, IEA, EU AI Act texts, Finnish statistical and regulatory sources, model and system documentation, and the ML systems literature for physical bounds. Inline links, publisher name only.
