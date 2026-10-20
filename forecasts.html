@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forecast ledger - Machine Learning Societies</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="brand" href="index.html">Machine Learning Societies</a>
+    <nav class="lang"><a href="index.html">Briefs</a><a href="#" aria-current="true">Forecasts</a></nav>
+  </header>
+
+  <main>
+    <h1 class="title">Forecast ledger</h1>
+    <p class="sub en">Every forecast the brief has published, with the date it resolves and the probability it was given. Nothing is rewritten after the fact: misses stay on the page.</p>
+    <p class="sub fi">Kaikki katsauksessa julkaistut ennusteet, ratkaisup&auml;iv&auml; ja niille annettu todenn&auml;koisyys. J&auml;lkik&auml;teen ei muokata: osumattomat j&auml;&auml;v&auml;t sivulle.</p>
+
+    <p class="meta" id="tally"></p>
+    <ul class="archive" id="list"></ul>
+  </main>
+
+  <footer>Compiled by Harri Juntunen &amp; Twin &ndash; <a href="https://github.com/juntunen-ai/Twin">source</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
+</div>
+<script>
+(function () {
+  var state = { items: [], lang: "en" };
+
+  function fmt(date, lang) {
+    var p = date.split("-");
+    if (lang === "fi") return p[2] + "." + p[1] + "." + p[0];
+    var m = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    return Number(p[2]) + " " + m[Number(p[1]) - 1] + " " + p[0];
+  }
+  var LABEL = {
+    en: { resolves: "Resolves", chance: "chance", open: "open", hit: "hit", miss: "miss", tally: "count", made: "Made" },
+    fi: { resolves: "Ratkeaa", chance: "todennäköisyys", open: "avoin", hit: "osui", miss: "ei osunut", tally: "kpl", made: "Tehty" }
+  };
+
+  function render() {
+    var L = LABEL[state.lang];
+    var ul = document.getElementById("list");
+    ul.innerHTML = "";
+    var open = 0, done = 0;
+    state.items.slice().sort(function (a, b) {
+      return a.resolves < b.resolves ? -1 : a.resolves > b.resolves ? 1 : 0;
+    }).forEach(function (f) {
+      if (f.status === "open") open++; else done++;
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = f.source;
+      a.textContent = state.lang === "fi" ? f.claim_fi : f.claim_en;
+      var d = document.createElement("span");
+      d.className = "date";
+      var status = L[f.status] || f.status;
+      d.textContent = L.resolves + " " + fmt(f.resolves, state.lang) + " · " + f.probability + " % " + L.chance + " · " + status;
+      li.appendChild(a);
+      li.appendChild(d);
+      ul.appendChild(li);
+    });
+    document.getElementById("tally").textContent =
+      state.items.length + " " + L.tally + " · " + open + " " + L.open + " · " + done + " " + (state.lang === "fi" ? "ratkennut" : "resolved");
+  }
+
+  function apply(lang) {
+    state.lang = lang;
+    document.documentElement.setAttribute("data-lang", lang);
+    document.documentElement.setAttribute("lang", lang);
+    try { localStorage.setItem("mls-lang", lang); } catch (e) {}
+    render();
+  }
+
+  var saved = "en";
+  try { saved = localStorage.getItem("mls-lang") || "en"; } catch (e) {}
+  apply(saved);
+
+  fetch("forecasts.json")
+    .then(function (r) { return r.ok ? r.json() : { forecasts: [] }; })
+    .then(function (d) { state.items = (d && d.forecasts) || []; render(); })
+    .catch(function () {});
+})();
+</script>
+</body>
+</html>
