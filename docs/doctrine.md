@@ -68,3 +68,6 @@ Every brief is a complete HTML document, never a fragment. Copy `briefs/_templat
 - `<p class="score">Signal 4/10</p>` immediately after the <h2> headline, with no inline styles.
 - `<p class="method">` for the derivation at the end of the article, then `<p class="credit">Compiled by Harri Juntunen &amp; Twin</p>` as the last line.
 `briefs/latest.html` and `briefs/latest.fi.html` are copies of the day's two pages; `index.html` reads `briefs/index.json` and needs no daily edit.
+
+## Forecast ledger
+`forecasts.json` is the single record of every forecast the brief has published. After publishing an edition, append one entry: id (YYYY-MM-DD-nn), made, claim_en, claim_fi, resolves (YYYY-MM-DD), probability (integer percent), status ("open"), signal, source (path to the article). Never reword a claim after publication; when the resolution date passes, change only status to "hit" or "miss" and leave misses visible. `forecasts.html` renders the file and needs no daily edit.
