@@ -42,7 +42,21 @@ ul.archive .date{display:block;color:var(--muted);font-size:12px;letter-spacing:
 h2.section{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:38px 0 12px;font-weight:700}
 html[data-lang="en"] .fi{display:none}
 html[data-lang="fi"] .en{display:none}
-@media (max-width:520px){.brief h2{font-size:28px}h1.title{font-size:30px}.wrap{padding:28px 18px 64px}}
+@media (max-width:700px){
+  .wrap{padding:24px 16px 64px}
+  h1.title{font-size:30px}
+  .brief h2{font-size:28px}
+  .masthead{flex-direction:column;align-items:flex-start;gap:12px}
+  .mast-left{width:100%}
+  .masthead > div{max-width:100%}
+  .masthead > div:last-child{flex-wrap:wrap !important;gap:8px !important;align-items:center !important;width:100%}
+  .brand{font-size:24px;line-height:1.2;display:block}
+  .kicker{font-size:10.5px;letter-spacing:.12em;line-height:1.5}
+  .toplinks{font-size:10.5px;letter-spacing:.08em}
+  .btn{padding:6px 12px;font-size:11px}
+  .join{padding:16px}
+  .card{padding:16px 18px}
+}
 
 /* buttons */
 .btn{display:inline-block;border:1px solid currentColor;border-radius:999px;padding:.34em .85em;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;line-height:1.2;color:inherit}
