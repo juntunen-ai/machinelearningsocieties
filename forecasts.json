@@ -2,10 +2,43 @@
   "updated": "2026-10-21",
   "forecasts": [
     {
+      "id": "2026-10-14-01",
+      "made": "2026-10-14",
+      "claim_en": "By 30 June 2027 at least three EU health or financial procurers cite EN 18286 in published tender requirements (55 %).",
+      "claim_fi": "30.6.2027 mennessä vähintään kolme EU:n terveydenhuollon tai rahoituksen hankkijaa viittaa EN 18286 -standardiin julkaistuissa tarjouspyynnöissään (55 %).",
+      "resolves": "2027-06-30",
+      "probability": 55,
+      "status": "open",
+      "signal": "4/10",
+      "source": "briefs/2026-10-14.html"
+    },
+    {
+      "id": "2026-10-15-01",
+      "made": "2026-10-15",
+      "claim_en": "By 31 December 2027 at least five EU supervisors reference the FSB practices in published guidance or supervisory questionnaires (65 %).",
+      "claim_fi": "31.12.2027 mennessä vähintään viisi EU-valvojaa viittaa FSB:n käytäntöihin julkaistussa ohjeessa tai valvontakyselyssä (65 %).",
+      "resolves": "2027-12-31",
+      "probability": 65,
+      "status": "open",
+      "signal": "4/10",
+      "source": "briefs/2026-10-15.html"
+    },
+    {
+      "id": "2026-10-19-01",
+      "made": "2026-10-19",
+      "claim_en": "By 31 October 2027 at least one US health system reports an agent handling more than half of its prior authorisations with human sign-off (50 %).",
+      "claim_fi": "31.10.2027 mennessä vähintään yksi yhdysvaltalainen terveydenhuoltojärjestelmä kertoo agentin hoitavan yli puolet ennakkoluvistaan ihmisen hyväksynnällä (50 %).",
+      "resolves": "2027-10-31",
+      "probability": 50,
+      "status": "open",
+      "signal": "5/10",
+      "source": "briefs/2026-10-19.html"
+    },
+    {
       "id": "2026-10-21-01",
       "made": "2026-10-21",
-      "claim_en": "By 31 October 2027 a top-three AI lab has a customer-named production deployment inside a regulated workflow.",
-      "claim_fi": "31.10.2027 mennessä jollakin kolmesta suurimmasta tekoälylaboratoriosta on tuotantokäytössä asiakkaan nimeämä järjestelmä säännellýssä prosessissa.",
+      "claim_en": "By 31 October 2027, at least one of the three largest labs will have a named production deployment in a regulated workflow - clinical trial operations, pharmacovigilance or benefits adjudication - disclosed by the customer rather than the vendor.",
+      "claim_fi": "31.10.2027 mennessä ainakin yhdellä kolmesta suurimmasta laboratoriosta on nimetty tuotantokäyttö säännellyssä työnkulussa – kliinisten tutkimusten operaatioissa, lääketurvassa tai etuuksien käsittelyssä – ja käytön kertoo asiakas, ei myyjä.",
       "resolves": "2027-10-31",
       "probability": 60,
       "status": "open",
