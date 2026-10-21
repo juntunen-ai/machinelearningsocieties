@@ -13,9 +13,11 @@ Purpose: measure the diffusion of machine learning into the institutional layer 
 Each edition is monolingual. The English article uses English headings: Signal, Thesis, Antithesis, Forecast, Political consequences, What to watch, How the Signal is scored. The Finnish article uses Finnish headings: Signaali, Teesi, Anti-teesi, Ennuste, Poliittiset vaikutukset, Mitä seurata, Miten Signaali lasketaan. Never print a bilingual heading such as "Signaali / Signal" or "Teesi / Thesis": the FI/EN switch chooses the edition, not the heading.
 
 ## Signal index
-Score every candidate item in the 24-hour window: S = 3P + N, where P = 1 if a primary source exists and 0 otherwise; N = number of distinct newsletter senders mentioning it. With X in the pipeline, S = 3P + N + L, where L = 1; P is worth three of the ten points if a tier 1 or tier 2 account, or an official lab account, posted it before the newsletters.
-A candidate qualifies as the Signaali only if N >= 2 or P = 1. Rank by S, then by novelty: penalise anything covered in the past seven days. Report S and its parts in one line.
-Reject stories that appear only in commentary, only in marketing, or only in one sender without a primary source.
+Score every candidate twice: evidence and stakes. Publish the item with the highest evidence among those whose stakes reach 3; if none does, publish the highest stakes and say so in one line.
+Evidence E = 3P + N + L, out of ten. P = 1 when a primary source exists (paper, model card, release note, official announcement, regulator document, statistic) and is worth three points. N counts distinct newsletter senders that add a fact or name a source of their own; a sender that only repeats the release does not count. N is capped at six. L = 1 when the primary party or a tier 1 account posted before the newsletters did; it marks timing, not proof.
+Stakes C, 1-5: 1 one vendor's product; 2 one workflow in one organisation; 3 a workflow across a sector; 4 a procurement or budget rule changes; 5 a statute, liability or market structure changes. Justify C in one sentence in the Assessment paragraph.
+Report both numbers: "Signal 5/10 · stakes 3/5" (Finnish: "Signaali 5/10 · seuraus 3/5"). The front-page badge reads the same string from the score field in briefs/index.json.
+Reject stories that appear only in commentary, only in marketing, or only in one sender without a primary source. Penalise anything covered in the past seven days.
 
 ## Rigor: three tiers of evidence
 Every quantitative claim must be labelled with the tier it comes from.
