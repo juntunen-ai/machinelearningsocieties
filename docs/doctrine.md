@@ -76,3 +76,8 @@ Every brief is a complete HTML document, never a fragment. Copy `briefs/_templat
 A consequence is published only when three things can be named: the instrument (a law, a budget line, a procurement rule, a tax, a court decision), the actor who has to move it, and the observable that would show it happened. If one is missing, the claim is cut.
 Two horizons, not three. 1-2 years: the instrument exists and only a decision, money or a signature is missing. 3-4 years: a new instrument is needed (statute, institution, funding line, settled liability rule). Anything beyond four years is a scenario, not a consequence, and is left out.
 Every consequence carries its evidence tier: Measured, Bounded, Estimated.
+
+## Front page key point
+Under the h1 on index.html, one sentence carries that morning's insight: the day's thesis in plain language, not a summary of the topic and not the headline repeated.
+It sits in <p class="keypoint en"> and <p class="keypoint fi">, each opening with a <span class="kp-label">Today</span> or Tänään label, and is rewritten in the same commit as the brief so the front page never describes yesterday.
+Maximum two lines on a phone. If the insight needs a second clause, the clause names the mechanism, not the background.
