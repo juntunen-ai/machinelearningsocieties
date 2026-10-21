@@ -82,3 +82,10 @@ Inside the latest-brief card on index.html, directly under its heading, one sent
 It sits in <p class="keypoint en"> and <p class="keypoint fi">, muted and unlabelled, with no accent bar, and is rewritten in the same commit as the brief so the front page never describes yesterday.
 Directly under the card heading and above the key point, <span class="score card-score" id="latest-score"> prints the day's signal as Signal 5/10 or Signaali 5/10. The number comes from the score field of the first entry in briefs/index.json; if that field is missing the badge is hidden rather than guessed.
 Maximum two lines on a phone. If the insight needs a second clause, the clause names the mechanism, not the background.
+
+## Channel publications (X, LinkedIn, WhatsApp)
+Every publication opens with the running head `MACHINE LEARNING SOCIETIES · DD.MM.YYYY` on its own line, a blank line, then the day's headline as the opening sentence. The date is the publication date in Finnish form; the running head is never bilingual and never translated.
+Every publication carries the day's card as its image: one typographic card, 1200×630, used unchanged on X, LinkedIn and WhatsApp so the three channels show the same object.
+The card is built from the day's main headline only. No paraphrase, no second claim, no body copy, no logo. The headline is set exactly as it appears in the brief.
+Card specification: off-white ground #FDFDFB; running head `MACHINE LEARNING SOCIETIES` in bold sans, 9.5 pt with 2.2 pt tracking, muted grey #61707F; below it `DD.MM.YYYY · Signaali N/10` (Signal in English editions) in 9.5 pt sans, same grey; a 2.4 cm blue rule #1F4FD8; the headline in bold serif `DejaVu Serif` at 27 pt, near-black #12161A, at most three lines; a hairline and `juntunen-ai.github.io/machinelearningsocieties` at the foot.
+The card is generated deterministically from `assets/card.typ` with typst and rasterised at 150 dpi. Never generate it with an image model: those misspell Finnish and invent extra lines of copy.
