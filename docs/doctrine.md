@@ -79,5 +79,6 @@ Every consequence carries its evidence tier: Observed, Caveats, Assessment. In t
 
 ## Front page key point
 Inside the latest-brief card on index.html, directly under its heading, one sentence carries that morning's insight: the day's thesis in plain language, not a summary of the topic and not the headline repeated.
-It sits in <p class="keypoint en"> and <p class="keypoint fi">, each opening with a <span class="kp-label">Today</span> or Tänään label, and is rewritten in the same commit as the brief so the front page never describes yesterday.
+It sits in <p class="keypoint en"> and <p class="keypoint fi">, muted and unlabelled, with no accent bar, and is rewritten in the same commit as the brief so the front page never describes yesterday.
+Directly under the card heading and above the key point, <span class="score card-score" id="latest-score"> prints the day's signal as Signal 5/10 or Signaali 5/10. The number comes from the score field of the first entry in briefs/index.json; if that field is missing the badge is hidden rather than guessed.
 Maximum two lines on a phone. If the insight needs a second clause, the clause names the mechanism, not the background.
