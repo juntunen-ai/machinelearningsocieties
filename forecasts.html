@@ -65,7 +65,11 @@
       var d = document.createElement("span");
       d.className = "date";
       var status = L[f.status] || f.status;
-      d.textContent = L.resolves + " " + fmt(f.resolves, state.lang) + " · " + f.probability + " % " + L.chance + " · " + status;
+      d.textContent = L.resolves + " " + fmt(f.resolves, state.lang) + " · " + f.probability + " % " + L.chance + " ";
+      var pill = document.createElement("span");
+      pill.className = "pill " + (f.status === "open" ? "pill-open" : "pill-closed");
+      pill.textContent = status;
+      d.appendChild(pill);
       li.appendChild(a);
       li.appendChild(d);
       ul.appendChild(li);
