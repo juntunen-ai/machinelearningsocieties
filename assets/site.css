@@ -74,3 +74,8 @@ html[data-lang="fi"] .en{display:none}
 .join{margin:0 0 38px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
 .join p{margin:0 0 12px;font-size:15.5px;line-height:1.55;color:var(--ink)}
 .join .btn{margin-top:2px}
+
+/* card action prompt */
+.card:hover{text-decoration:none}
+.more{display:inline-block;margin-top:16px;padding:.42em .95em;border:1px solid var(--accent);border-radius:999px;color:var(--accent);background:transparent;font-size:.8rem;font-weight:600;line-height:1.25;letter-spacing:.02em;transition:background .15s ease,color .15s ease}
+.card:hover .more,.card:focus-visible .more{background:var(--accent);color:#fff}
