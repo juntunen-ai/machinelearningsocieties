@@ -19,9 +19,9 @@ Reject stories that appear only in commentary, only in marketing, or only in one
 
 ## Rigor: three tiers of evidence
 Every quantitative claim must be labelled with the tier it comes from.
-1. Measured: a statistic, filing, benchmark result or official document. Cite it.
-2. Bounded: an engineering limit derived from the systems literature - roofline, memory bandwidth, utilisation, orchestration overhead, fleet economics - as in Machine Learning Systems (mlsysbook.ai, Harvard CS249r). This is how we test whether a claim is physically plausible, not merely whether a vendor is honest.
-3. Estimated: our own model or extrapolation. Say so, give the assumption, and give the range.
+1. Observed: a statistic, filing, benchmark result or official document. Cite it.
+2. Caveats: an engineering limit derived from the systems literature - roofline, memory bandwidth, utilisation, orchestration overhead, fleet economics - as in Machine Learning Systems (mlsysbook.ai, Harvard CS249r). This is how we test whether a claim is physically plausible, not merely whether a vendor is honest.
+3. Assessment: our own model or extrapolation. Say so, give the assumption, and give the range.
 If a claim cannot be placed in one of the three, it does not enter the brief. Physics is the cheapest available criticism: a number that requires impossible bandwidth or utilisation is wrong regardless of who said it.
 
 ## Six lenses
@@ -75,7 +75,7 @@ Every brief is a complete HTML document, never a fragment. Copy `briefs/_templat
 ## Political consequences method
 A consequence is published only when three things can be named: the instrument (a law, a budget line, a procurement rule, a tax, a court decision), the actor who has to move it, and the observable that would show it happened. If one is missing, the claim is cut.
 Two horizons, not three. 1-2 years: the instrument exists and only a decision, money or a signature is missing. 3-4 years: a new instrument is needed (statute, institution, funding line, settled liability rule). Anything beyond four years is a scenario, not a consequence, and is left out.
-Every consequence carries its evidence tier: Measured, Bounded, Estimated.
+Every consequence carries its evidence tier: Observed, Caveats, Assessment. In the article the three are written as three short labelled paragraphs, one sentence or two each, never as one block.
 
 ## Front page key point
 Inside the latest-brief card on index.html, directly under its heading, one sentence carries that morning's insight: the day's thesis in plain language, not a summary of the topic and not the headline repeated.
