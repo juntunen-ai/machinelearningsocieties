@@ -50,3 +50,7 @@ html[data-lang="fi"] .en{display:none}
 .btn:hover span{color:#fff}
 .btn[aria-current="page"]{background:#111;border-color:#111;color:#fff}
 .keypoint{margin:10px 0 0;padding:0;border:0;background:transparent;font-size:15.5px;line-height:1.55;color:var(--muted)}
+.mast-left{display:flex;flex-direction:column;gap:5px}
+.toplinks{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.toplinks a{color:var(--muted)}
+.toplinks a:hover{color:var(--ink);text-decoration:none}
