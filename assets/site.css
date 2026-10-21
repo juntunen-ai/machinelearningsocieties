@@ -16,7 +16,7 @@ a:hover{text-decoration:underline}
 .brief h2{font-family:Georgia,"Iowan Old Style",serif;font-size:34px;line-height:1.16;letter-spacing:-.02em;margin:8px 0 12px;font-weight:700}
 .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
 .score{display:inline-block;background:var(--ink);color:#fff;font-size:13px;font-weight:600;letter-spacing:.08em;padding:6px 14px;border-radius:999px;margin:0 0 22px}
-.brief h3{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:34px 0 10px;padding-top:14px;border-top:1px solid var(--line);font-weight:700}
+.brief h3{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin:38px 0 12px;padding-top:16px;border-top:1px solid var(--line);font-weight:700}
 .brief p{margin:0 0 16px}
 .brief ul{margin:0 0 16px;padding-left:20px}
 .brief li{margin-bottom:6px}
