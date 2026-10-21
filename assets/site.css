@@ -51,3 +51,5 @@ html[data-lang="fi"] .en{display:none}
 .btn[aria-current="page"]{background:#111;border-color:#111;color:#fff}
 .keypoint{margin:20px 0 0;padding:14px 16px;border-left:3px solid var(--accent);background:var(--panel);font-size:16px;line-height:1.6;color:var(--ink)}
 .keypoint .kp-label{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.card .keypoint{margin:10px 0 0;padding:0;border:0;background:transparent;font-size:15.5px;line-height:1.55;color:var(--muted)}
+.card .keypoint .kp-label{margin-bottom:2px}
