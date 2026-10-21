@@ -37,7 +37,7 @@
       <span class="more fi">Lue koko katsaus &rarr;</span>
     </a>
 
-    <h2 class="section" id="archive-h">Previous insights</h2>
+    <h2 class="section" id="archive-h">Previous briefs</h2>
     <ul class="archive" id="archive"></ul>
   </main>
 
@@ -46,7 +46,7 @@
 <script>
 (function () {
   var T = {
-    en: { latest: "Latest brief", archive: "Previous insights" },
+    en: { latest: "Latest brief", archive: "Previous briefs" },
     fi: { latest: "Uusin katsaus", archive: "Aiemmat katsaukset" }
   };
   var state = { items: [], lang: "en" };
@@ -85,7 +85,7 @@
       if (first.score) { sc.textContent = (state.lang === "fi" ? "Signaali " : "Signal ") + first.score; sc.style.display = ""; }
       else { sc.style.display = "none"; }
     }
-    state.items.forEach(function (it) {
+    state.items.slice(1).forEach(function (it) {
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = "briefs/" + it.date + suffix + ".html";
