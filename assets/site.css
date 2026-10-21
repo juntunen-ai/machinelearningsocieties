@@ -83,3 +83,4 @@ html[data-lang="fi"] .en{display:none}
 /* forecast status pill */
 .pill{display:inline-block;margin-left:4px;padding:.1em .6em;border:1px solid #b7dfc4;border-radius:999px;background:#e9f6ee;color:#1a7f37;font-size:.72rem;font-weight:600;line-height:1.5;letter-spacing:.02em}
 .pill-closed{border-color:var(--line);background:transparent;color:var(--muted)}
+.pill-prob{border-color:#12161a;background:#fff;color:#12161a}
