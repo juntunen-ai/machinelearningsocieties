@@ -32,3 +32,18 @@ AI Supremacy, AI as Normal Technology, Claude's Notebook, Linas's Newsletter, AI
 
 ## Primary sources
 arXiv and Hugging Face trending, provider release notes and model cards, GitHub activity, EU AI Act and Finnish regulatory publications, NBER, IEA, Statistics Finland, funding and labour-market data.
+
+## Standing background
+Two sources set the frame for what we look for. They are read for framing, not cited as evidence.
+
+- normaltech.ai (Arvind Narayanan, Sayash Kapoor). AI as a normal technology: diffusion, adoption, economics and policy, not a single superintelligence event. Use it to keep the brief on technologies-in-use and to resist capability hype; check its AI-policy and evaluation work when a claim rests on benchmarks.
+- ai-2040.com (Plan A). A scenario in which frontier development is deliberately slowed and made transparent to 2040. Use it as a contrast case: it describes an institutional path we can test against, not a forecast we adopt. Never present its timeline as our own forecast.
+
+## Five levels of impact
+Every edition should say which level a change touches, and the political section should follow from it:
+1. Political - who decides, with what mandate, under what accountability.
+2. Social - how people coordinate, trust and sort themselves.
+3. Institutional - rules, courts, agencies, professional standards.
+4. Organisational - how firms and public bodies actually run the work.
+5. Individual - what a person can do, know, claim or refuse.
+A signal that touches only one level is still publishable; a thesis that claims all five at once needs evidence at more than one.
