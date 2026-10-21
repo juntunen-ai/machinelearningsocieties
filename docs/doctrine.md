@@ -78,6 +78,6 @@ Two horizons, not three. 1-2 years: the instrument exists and only a decision, m
 Every consequence carries its evidence tier: Measured, Bounded, Estimated.
 
 ## Front page key point
-Under the h1 on index.html, one sentence carries that morning's insight: the day's thesis in plain language, not a summary of the topic and not the headline repeated.
+Inside the latest-brief card on index.html, directly under its heading, one sentence carries that morning's insight: the day's thesis in plain language, not a summary of the topic and not the headline repeated.
 It sits in <p class="keypoint en"> and <p class="keypoint fi">, each opening with a <span class="kp-label">Today</span> or Tänään label, and is rewritten in the same commit as the brief so the front page never describes yesterday.
 Maximum two lines on a phone. If the insight needs a second clause, the clause names the mechanism, not the background.
