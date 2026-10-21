@@ -36,6 +36,7 @@ arXiv and Hugging Face trending, provider release notes and model cards, GitHub 
 ## Standing background
 Two sources set the frame for what we look for. They are read for framing, not cited as evidence.
 
+- David Edgerton, https://www.davidedgerton.org/about. Technologies-in-use rather than technologies-in-the-making. The front page adopts the distinction and links to his page; every claim is judged by what is in service, not by what is demonstrated.
 - normaltech.ai (Arvind Narayanan, Sayash Kapoor). AI as a normal technology: diffusion, adoption, economics and policy, not a single superintelligence event. Use it to keep the brief on technologies-in-use and to resist capability hype; check its AI-policy and evaluation work when a claim rests on benchmarks.
 - ai-2040.com (Plan A). A scenario in which frontier development is deliberately slowed and made transparent to 2040. Use it as a contrast case: it describes an institutional path we can test against, not a forecast we adopt. Never present its timeline as our own forecast.
 - humanistreview.ai, Daron Acemoglu, "AI replace workers?" (Humanist Review, issue 1). AI is being steered toward replacing work rather than complementing it; measured productivity gains are slow and the direction of technology is a choice, not a weather event. Use it as the counterweight whenever a diffusion claim implies that adoption automatically helps workers: ask whether the tool raises what a person can do, or only removes the task.
