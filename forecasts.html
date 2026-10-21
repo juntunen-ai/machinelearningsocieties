@@ -24,9 +24,9 @@
   </header>
 
   <main>
-    <h1 class="title">Forecast ledger</h1>
-    <p class="sub en">Every forecast the brief has published, with the date it resolves and the probability it was given. Nothing is rewritten after the fact: misses stay on the page.</p>
-    <p class="sub fi">Kaikki katsauksessa julkaistut ennusteet, ratkaisup&auml;iv&auml; ja niille annettu todenn&auml;koisyys. J&auml;lkik&auml;teen ei muokata: osumattomat j&auml;&auml;v&auml;t sivulle.</p>
+    <h1 class="title"><span class="en">Forecast ledger</span><span class="fi">Ennusterekisteri</span></h1>
+    <p class="sub en">Every forecast this brief has published, with the date it resolves and the probability it carried when it went out. The wording is frozen on publication: nothing is rewritten afterwards, and misses stay on the page.</p>
+    <p class="sub fi">Kaikki katsauksessa julkaistut ennusteet, niiden ratkaisup&auml;iv&auml; ja julkaisuhetkell&auml; annettu todenn&auml;koisyys. Sanamuoto j&auml;&auml;dytet&auml;&auml;n julkaisuun: j&auml;lkik&auml;teen ei muokata, ja osumattomat j&auml;&auml;v&auml;t sivulle.</p>
 
     <p class="meta" id="tally"></p>
     <ul class="archive" id="list"></ul>
@@ -61,11 +61,16 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = f.source;
-      a.textContent = state.lang === "fi" ? f.claim_fi : f.claim_en;
+      a.textContent = (state.lang === "fi" ? f.claim_fi : f.claim_en).replace(/\s*\(\s*\d+\s*%\s*\)\s*\.?$/, "");
       var d = document.createElement("span");
       d.className = "date";
       var status = L[f.status] || f.status;
-      d.textContent = L.resolves + " " + fmt(f.resolves, state.lang) + " · " + f.probability + " % " + L.chance + " ";
+      d.textContent = L.resolves + " " + fmt(f.resolves, state.lang) + " ";
+      var prob = document.createElement("span");
+      prob.className = "pill pill-prob";
+      prob.textContent = f.probability + " % " + L.chance;
+      d.appendChild(prob);
+      d.appendChild(document.createTextNode(" "));
       var pill = document.createElement("span");
       pill.className = "pill " + (f.status === "open" ? "pill-open" : "pill-closed");
       pill.textContent = status;
