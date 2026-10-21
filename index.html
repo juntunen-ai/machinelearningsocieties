@@ -30,6 +30,7 @@
     <a class="card" id="latest" href="#">
       <span class="meta" id="latest-meta">Latest brief</span>
       <h2 id="latest-title">The first edition publishes at 07:30.</h2>
+      <span class="score card-score" id="latest-score">Signal 5/10</span>
       <p class="keypoint en">Diffusion is limited by coordination, not capability: the lab that owns the process layer keeps the data, the switching costs and the audit trail.</p>
       <p class="keypoint fi">Leviämistä rajoittaa koordinaatio, ei kyvykkyys: prosessikerroksen omistaja pitää datan, vaihtokustannukset ja auditointijäljen.</p>
     </a>
@@ -84,6 +85,11 @@
     document.getElementById("latest-meta").textContent = T[state.lang].latest + " · " + fmt(first.date, state.lang);
     document.getElementById("latest-title").textContent =
       state.lang === "fi" ? (first.title_fi || first.title) : first.title;
+    var sc = document.getElementById("latest-score");
+    if (sc) {
+      if (first.score) { sc.textContent = (state.lang === "fi" ? "Signaali " : "Signal ") + first.score; sc.style.display = ""; }
+      else { sc.style.display = "none"; }
+    }
     state.items.forEach(function (it) {
       var li = document.createElement("li");
       var a = document.createElement("a");
