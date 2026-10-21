@@ -3,7 +3,7 @@
 // Edit only the five values below; the layout is fixed.
 
 #let kicker = "MACHINE LEARNING SOCIETIES"
-#let dateline = "21.10.2026 · Signaali 5/10"
+#let dateline = "21.10.2026 \u{00B7} Signal 5/10 \u{00B7} Stakes 5/10"
 #let headline = [Laboratoriot eivät enää myy malleja, ne ostavat paperityön.]
 #let footer = "juntunen-ai.github.io/machinelearningsocieties"
 
