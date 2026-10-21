@@ -13,7 +13,7 @@ Purpose: measure the diffusion of machine learning into the institutional layer 
 Each edition is monolingual. The English article uses English headings: Signal, Thesis, Antithesis, Forecast, Political consequences, What to watch, How the Signal is scored. The Finnish article uses Finnish headings: Signaali, Teesi, Anti-teesi, Ennuste, Poliittiset vaikutukset, Mitä seurata, Miten Signaali lasketaan. Never print a bilingual heading such as "Signaali / Signal" or "Teesi / Thesis": the FI/EN switch chooses the edition, not the heading.
 
 ## Signal index
-Score every candidate item in the 24-hour window: S = 2P + N, where P = 1 if a primary source exists and 0 otherwise; N = number of distinct newsletter senders mentioning it. With X in the pipeline, S = 2P + N + L, where L = 1 if a tier 1 or tier 2 account, or an official lab account, posted it before the newsletters.
+Score every candidate item in the 24-hour window: S = 3P + N, where P = 1 if a primary source exists and 0 otherwise; N = number of distinct newsletter senders mentioning it. With X in the pipeline, S = 3P + N + L, where L = 1; P is worth three of the ten points if a tier 1 or tier 2 account, or an official lab account, posted it before the newsletters.
 A candidate qualifies as the Signaali only if N >= 2 or P = 1. Rank by S, then by novelty: penalise anything covered in the past seven days. Report S and its parts in one line.
 Reject stories that appear only in commentary, only in marketing, or only in one sender without a primary source.
 
@@ -48,7 +48,7 @@ Primary sources over commentary: NBER, IEA, EU AI Act texts, Finnish statistical
 
 ## Signal scale
 The daily prints one number, scored out of ten, at the head of the Signal section: "Signaali 4/10". The derivation (P, N, L) is printed in the article, and the scale itself is explained at the foot of every article under "How the Signal is scored" / "Miten Signaali lasketaan".
-Use 1-10, not 1-100. The raw index S = 2P + N + L has a natural ceiling of nine (P at most 1, N capped at six, L at most 1), so a ten-point scale maps directly and invents no precision. A hundred-point scale would suggest a resolution the measurement does not have.
+Use 1-10, not 1-100. The raw index S = 3P + N + L reaches exactly ten (P 3, N capped at six, L 1), so ten is the real ceiling and not an aspiration. A hundred-point scale would suggest a resolution the measurement does not have.
 Reading: 1-2 is a single unconfirmed mention; 3-4 qualifies, with a primary source or at least two senders; 5-6 is primary evidence plus independent pickup; 7 or more is both, in strength.
 Distribution channels carry only the number and the scale, never the parts.
 
