@@ -79,3 +79,7 @@ html[data-lang="fi"] .en{display:none}
 .card:hover{text-decoration:none}
 .more{display:inline-block;margin-top:16px;padding:.42em .95em;border:1px solid var(--accent);border-radius:999px;color:var(--accent);background:transparent;font-size:.8rem;font-weight:600;line-height:1.25;letter-spacing:.02em;transition:background .15s ease,color .15s ease}
 .card:hover .more,.card:focus-visible .more{background:var(--accent);color:#fff}
+
+/* forecast status pill */
+.pill{display:inline-block;margin-left:4px;padding:.1em .6em;border:1px solid #b7dfc4;border-radius:999px;background:#e9f6ee;color:#1a7f37;font-size:.72rem;font-weight:600;line-height:1.5;letter-spacing:.02em}
+.pill-closed{border-color:var(--line);background:transparent;color:var(--muted)}
