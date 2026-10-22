@@ -1,26 +1,32 @@
 [
   {
+    "date": "2026-10-22",
+    "title": "The frontier model became a line item, not a vendor decision",
+    "title_fi": "Rajamallista tuli ostorivi, ei toimittajapäätös",
+    "score": "5/10 · Stakes 7/10"
+  },
+  {
     "date": "2026-10-21",
     "title": "The labs stopped selling models and started buying the paperwork",
-    "title_fi": "Laboratoriot eiv\u00e4t en\u00e4\u00e4 myy malleja, ne ostavat paperity\u00f6n",
-    "score": "5/10 \u00b7 Stakes 5/10"
+    "title_fi": "Laboratoriot eivät enää myy malleja, ne ostavat paperityön",
+    "score": "5/10 · Stakes 5/10"
   },
   {
     "date": "2026-10-19",
     "title": "The agents finish less than half the work",
-    "title_fi": "Agentit tekev\u00e4t alle puolet ty\u00f6st\u00e4",
-    "score": "5/10 \u00b7 Stakes 5/10"
+    "title_fi": "Agentit tekevät alle puolet työstä",
+    "score": "5/10 · Stakes 5/10"
   },
   {
     "date": "2026-10-15",
     "title": "The Financial Stability Board writes the first common AI checklist for banks",
-    "title_fi": "FSB kirjoitti pankeille ensimm\u00e4isen yhteisen teko\u00e4lytarkistuslistan",
-    "score": "4/10 \u00b7 Stakes 7/10"
+    "title_fi": "FSB kirjoitti pankeille ensimmäisen yhteisen tekoälytarkistuslistan",
+    "score": "4/10 · Stakes 7/10"
   },
   {
     "date": "2026-10-14",
     "title": "Europe publishes the first harmonised standard for AI quality management",
-    "title_fi": "Eurooppa julkaisi ensimm\u00e4isen harmonisoidun standardin teko\u00e4lyn laadunhallinnalle",
-    "score": "4/10 \u00b7 Stakes 8/10"
+    "title_fi": "Eurooppa julkaisi ensimmäisen harmonisoidun standardin tekoälyn laadunhallinnalle",
+    "score": "4/10 · Stakes 8/10"
   }
 ]
