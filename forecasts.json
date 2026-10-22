@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "forecasts": [
     {
       "id": "2026-10-14-01",
@@ -44,6 +44,17 @@
       "status": "open",
       "signal": "5/10",
       "source": "briefs/2026-10-21.html"
+    },
+    {
+      "id": "2026-10-22-01",
+      "made": "2026-10-22",
+      "claim_en": "By 30 June 2027 at least one named European public-sector framework agreement or listed enterprise reports purchasing frontier models through a hyperscaler marketplace rather than a direct contract (65 %).",
+      "claim_fi": "30.6.2027 mennessä vähintään yksi nimetty eurooppalainen julkisen sektorin puitejärjestely tai pörssilistattu yritys kertoo ostaneensa rajamalleja hyperskaalaajan marketplacen kautta eikä suoralla sopimuksella (65 %).",
+      "resolves": "2027-06-30",
+      "probability": 65,
+      "status": "open",
+      "signal": "5/10",
+      "source": "briefs/2026-10-22.html"
     }
   ]
 }
