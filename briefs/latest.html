@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The frontier model became a line item, not a vendor decision - Machine Learning Societies</title>
+<title>The proof got cheap; the specification became the scarce good - Machine Learning Societies</title>
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
@@ -14,73 +14,37 @@
       <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></span>
       <span class="toplinks"><a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></span>
     </div>
-    <div class="lang"><a href="2026-10-22.fi.html">FI</a><a href="#" aria-current="true">EN</a></div>
+    <div class="lang"><a href="2026-10-23.fi.html">FI</a><a href="#" aria-current="true">EN</a></div>
   </header>
   <article class="brief">
-<p class="kicker">22 October 2026 - Machine Learning Societies</p>
-<h2>The frontier model became a line item, not a vendor decision</h2>
-<p class="score">Signal 5/10 · Stakes 7/10</p>
-<p>On 21 October Google Cloud added OpenAI's GPT-6 family to its model garden, sold through Google Cloud Marketplace so that purchases draw down existing cloud commitments. All three leading closed labs are now purchasable inside one hyperscaler contract. The unit of AI adoption moved from a supplier relationship to a procurement line.</p>
+<p class="kicker">23 October 2026 - Machine Learning Societies</p>
+<h2>The proof got cheap; the specification became the scarce good</h2>
+<p class="score">Signal 4/10 Â· Stakes 5/10</p>
+<p>On 22 October Anthropic reported that Claude, working with the verification firm Theorem, had written machine-checked proofs that 239 entry points across 123 open-source libraries cannot crash, under stated assumptions, on any input up to 64 MB. The proofs run to about 180 million lines of Rocq. Verification stops being a boutique service and becomes a step bought by the token; what stays scarce is the specification the proof is checked against.</p>
 <h3>Signal</h3>
-<p>Google Cloud added OpenAI's GPT-6 Astra, GPT-6.1 Sol and GPT-6 Luna to its model garden in private preview for selected enterprise customers, with general availability promised in the coming weeks. Because the models are transacted through Google Cloud Marketplace, usage appears on a single invoice, draws down existing cloud commitments and counts toward Flexible Savings Plans across model providers. Codex CLI and Desktop can connect to Google's platform for inference, and the models are promised in Gemini for business and Antigravity.</p>
-<p><strong>Observed.</strong> Two primary announcements, one from each party, on the same day: Google Cloud's blog by Michael Gerstenhaber and OpenAI's own post. The commercial mechanism is explicit in both: marketplace transaction, commitment drawdown, one bill.</p>
-<p><strong>Caveats.</strong> Private preview, selected customers, prices undisclosed, no service-level terms published. Commitments are not new money; they are minimum spend already contracted, which flatters adoption figures. Data residency and retention terms still have to be negotiated per customer, and zero data retention is described as coming soon rather than available.</p>
-<p><strong>Assessment.</strong> The technical news is modest, since the models already existed and were already available on two other clouds. The procurement news is not: a buyer who has already committed to Google Cloud can now add a frontier model without a new vendor, a new contract or a new budget line. That is the mechanism by which large organisations actually adopt technology, and it is why the stakes rise above the signal.</p>
-<p><strong>Evidence 5/10.</strong></p>
-<ul><li>P = 3: primary sources, the Google Cloud and OpenAI announcements.</li><li>N = 1: one newsletter sender covered it before this edition.</li><li>L = 1: Google Cloud posted before the newsletters did.</li></ul>
-<p>Three plus one plus one is five out of ten.</p>
-<p><strong>Stakes 7/10.</strong> The rule for buying a frontier model inside a large organisation changed: existing cloud commitments now purchase it, which is a procurement-rule change rather than a product launch.</p>
+<p>The Frontier Red Team published the work with Theorem on 22 October. The pipeline compiles each library to RISC-V, applies Theorem's formal semantics for the instruction set and for Linux process behaviour, and has Claude write the proof; the Rocq kernel then checks it mechanically. Anthropic says Claude also patched the bugs it found, including defects that had survived years of fuzzing and, by its account, trillions of test runs. A subset of proofs, the RISC-V and operating-system semantics and a Claude skill are published, and Theorem offers to run the pipeline for other projects.</p>
+<p><strong>Observed.</strong> The numbers come from the primary post: 239 entry points, 123 OSS-Fuzz libraries, about 180 million lines of Rocq, a typical proof of roughly 600,000 lines for a binary of 18,000 RISC-V instructions, inputs bounded at 64 MB. The proofs assume a single-threaded static binary, a fixed memory budget, a RISC-V processor and a modelled Linux.</p>
+<p><strong>Caveats.</strong> Deployed reality differs: most of these libraries ship on x86 or ARM and are dynamically linked, so the same code carries no guarantee there. The proofs cover named entry points, not whole libraries. Generation consumes hundreds of millions of tokens, which prices the method for well-resourced users. And every line is only as good as the trusted base, the machine models and the exact theorem statements; a defect there invalidates 180 million lines at once.</p>
+<p><strong>Assessment.</strong> The engineering claim is narrower than the headline and more useful than it looks. What changed is the ratio: proof labour used to dominate, now the binding cost is the specification and the trusted semantics. That moves the assurance question from whether a human reviewed the code to what exactly was proved, against which model of the machine. The stakes are a workflow change across a sector, not yet a rule change.</p>
+<p><strong>Evidence 4/10.</strong></p>
+<ul><li>P = 3: one primary source, Anthropic's research post, with the numbers and assumptions stated.</li><li>N = 0: no newsletter in the inbox had covered the item when this edition was written.</li><li>L = 1: Anthropic posted the work on X before the newsletters did.</li></ul>
+<p>Three plus zero plus one is four out of ten.</p>
+<p><strong>Stakes 5/10.</strong> Machine-checked assurance becomes a repeatable workflow across software producers, one step below a procurement rule naming it as required evidence.</p>
 <h3>Thesis</h3>
-<p>Diffusion is limited by procurement, not capability. The binding constraint on adoption inside large organisations is not whether a model is smart enough but whether it can be bought, billed, audited and renewed through machinery that already exists. Putting frontier models inside cloud commitments removes the decision that stalls most deployments: the new vendor.</p>
+<p>When proof generation is priced by tokens, the scarce good is the specification. Whoever writes the spec and the model of the machine writes the standard of care, because a proof only proves the spec. Diffusion of AI into software production will show up first in assurance contracts, in what counts as evidence that a component is safe, rather than in faster code generation.</p>
 <h3>Antithesis</h3>
-<p>A marketplace listing is not adoption. Commitments are capital already allocated, so drawing them down shifts spend rather than adding it, and platform teams will still standardise on one provider because routing across models multiplies evaluation, logging and incident work. If buyers wanted portability they would have demanded it before; convenience consolidates as often as it opens.</p>
+<p>Proofs prove what the spec says, and here the same pipeline writes both, so verification can launder wrong assumptions into a certificate. The trusted base is one collaborator's model of RISC-V and Linux, a single point of failure that no court will audit. The assumptions exclude the machines actually in use. Formal verification has promised more than it delivered for four decades, and the constraint may simply move to specifications nobody has time to write.</p>
 <h3>Forecast</h3>
-<p>By 30 June 2027, at least one named European public-sector framework agreement or listed enterprise will report purchasing frontier models through a hyperscaler marketplace rather than a direct contract (65 %). It resolves on a published contract award, an annual report, or a framework catalogue entry naming the models; otherwise it fails.</p>
+<p>By 31 October 2027, at least one European harmonised standard, ENISA guidance or national public-procurement criterion will name machine-checked proofs as acceptable assurance evidence for open-source components (55 %). It resolves on a published document that names proofs as evidence, and fails if none appears by that date.</p>
 <h3>Political consequences</h3>
-<p>In one to two years, the instrument is the framework agreement: central purchasing bodies such as Hansel in Finland and their equivalents elsewhere will decide whether model access can be bought inside an existing cloud commitment. The observable is a catalogue entry that lists marketplace-transacted models, or an explicit rule forbidding it.</p>
-<p>In three to four years, the instrument is competition supervision: a national authority or the Commission examines whether bundling model access into cloud commitments forecloses smaller providers. The observable is a market inquiry, a statement of objections, or a remedy requiring separate pricing of model access.</p>
+<p>In one to two years, the instrument is the Cyber Resilience Act's harmonised standards and the procurement criteria that follow them; the actor is the Commission with ENISA and the national market-surveillance authorities. The observable is a standard or tender criterion listing formal proof among accepted evidence, or an explicit refusal to accept it.</p>
+<p>In three to four years, the instrument is liability: the revised Product Liability Directive applies from December 2026, and the question is whether a machine-checked proof rebuts a claim of defect. The actors are courts and the Commission's guidance; the observable is the first judgment or official guidance treating a proof as conformity evidence.</p>
+<p>Market test: pro-market. The instrument is publication, a subset of proofs, the machine semantics and a Claude skill any maintainer can use; the actors are Anthropic and Theorem. The gain goes to new entrants into assurance and to maintainers who could never afford a proof team. The caveat is concentration: if the trusted semantics stay one firm's, the entry that opens today closes tomorrow.</p>
 <h3>What to watch</h3>
-<p>The first public buyer that books model spend under an existing cloud commitment instead of opening a new AI budget line. That single accounting entry tells you whether diffusion follows procurement or follows enthusiasm.</p>
+<p>Whether an independent team reproduces one of the published proofs against a different model of the machine. That, not another announcement, is what turns a demonstration into accepted evidence.</p>
+<p class="method">How the signal is scored: Evidence E = 3P + N + L, maximum ten, where P is a primary source, N counts distinct newsletter senders that add a fact, and L marks the primary party posting first. Stakes C run from 1, a single team's experiment, through 5, a workflow adopted across a sector, and 7, a procurement rule or standard changing, to 10, market structure changing.</p>
 <p class="kicker" style="margin-top:40px">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></p>
-<details>
-<summary style="cursor:pointer;font-weight:600;padding:6px 0">Two numbers: what Evidence and Stakes mean</summary>
-
-<p><strong>Two readings.</strong> A claim can be well documented and still small, or consequential and thinly sourced. The two numbers answer different questions and are not added together.</p>
-
-<p><strong>Evidence (E, 0&ndash;10) &ndash; how well the claim is sourced.</strong></p>
-<p>E = 3P + N + L</p>
-<ul>
-<li><strong>P = 3 or 0.</strong> Three points when a primary source exists: a paper, release note, filing, contract notice or regulator document.</li>
-<li><strong>N = 0 to 6.</strong> One point per newsletter sender that adds its own fact or names its own source. A sender merely repeating the press release does not count.</li>
-<li><strong>L = 1 or 0.</strong> One point when the primary party or a tier-1 account posted before the newsletters did.</li>
-</ul>
-<p>Evidence measures documentation, not importance.</p>
-
-<p><strong>Stakes (C, 1&ndash;10) &ndash; how far the consequence reaches if the claim holds.</strong></p>
-<ul>
-<li><strong>1</strong> a single team's experiment</li>
-<li><strong>2</strong> one vendor's product</li>
-<li><strong>3</strong> one workflow in one organisation</li>
-<li><strong>4</strong> the same workflow in several organisations</li>
-<li><strong>5</strong> a workflow adopted across a sector</li>
-<li><strong>6</strong> a sector workflow with a named budget line</li>
-<li><strong>7</strong> a procurement rule or standard changes</li>
-<li><strong>8</strong> a purchasing or budget rule changes across sectors</li>
-<li><strong>9</strong> statute, liability or supervision changes</li>
-<li><strong>10</strong> market structure changes</li>
-</ul>
-<p>Odd steps are the named anchors, even steps the cases in between.</p>
-
-<p><strong>Which item is published.</strong> The best-evidenced candidate whose stakes reach 6 or more. If none does, the highest stakes wins and the edition says so in one line. Neither number compares across days: both rank that morning's candidates.</p>
-</details>
-<details style="margin-top:10px">
-<summary style="cursor:pointer;font-weight:600;padding:6px 0">How political consequences are assessed</summary>
-<p>A consequence is published only when we can name three things: the instrument &ndash; a law, a budget line, a procurement rule, a tax or a court decision &ndash; the actor who has to move it, and the observable that would show it happened. If one of the three is missing, the claim is cut, however plausible it sounds.</p>
-<p>There are two horizons. <strong>1&ndash;2 years</strong> covers consequences whose instrument already exists and where only a decision, money or a signature is missing. <strong>3&ndash;4 years</strong> covers consequences that need a new instrument: a statute, an institution, a funding line or a settled liability rule. Anything further out is not a consequence of today's signal but a scenario, and is left out.</p>
-<p>Each consequence carries its evidence tier: observed, when a number or document exists; bounded, when the limit is derived from mlsysbook physics or a published budget; assessed, when it is our judgement, marked as such.</p>
-</details>
-</section>
-</article>
+  </article>
   <footer><a href="https://github.com/juntunen-ai/Twin">source</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
 </div>
 </body>

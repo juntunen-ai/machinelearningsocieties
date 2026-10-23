@@ -1,32 +1,38 @@
 [
   {
+    "date": "2026-10-23",
+    "title": "The proof got cheap; the specification became the scarce good",
+    "title_fi": "Todistuksesta tuli halpa, mÃ¤Ã¤ritelmÃ¤stÃ¤ niukka hyÃ¶dyke",
+    "score": "4/10 Â· Stakes 5/10"
+  },
+  {
     "date": "2026-10-22",
     "title": "The frontier model became a line item, not a vendor decision",
-    "title_fi": "Rajamallista tuli ostorivi, ei toimittajapäätös",
-    "score": "5/10 · Stakes 7/10"
+    "title_fi": "Rajamallista tuli ostorivi, ei toimittajapÃ¤Ã¤tÃ¶s",
+    "score": "5/10 Â· Stakes 7/10"
   },
   {
     "date": "2026-10-21",
     "title": "The labs stopped selling models and started buying the paperwork",
-    "title_fi": "Laboratoriot eivät enää myy malleja, ne ostavat paperityön",
-    "score": "5/10 · Stakes 5/10"
+    "title_fi": "Laboratoriot eivÃ¤t enÃ¤Ã¤ myy malleja, ne ostavat paperityÃ¶n",
+    "score": "5/10 Â· Stakes 5/10"
   },
   {
     "date": "2026-10-19",
     "title": "The agents finish less than half the work",
-    "title_fi": "Agentit tekevät alle puolet työstä",
-    "score": "5/10 · Stakes 5/10"
+    "title_fi": "Agentit tekevÃ¤t alle puolet tyÃ¶stÃ¤",
+    "score": "5/10 Â· Stakes 5/10"
   },
   {
     "date": "2026-10-15",
     "title": "The Financial Stability Board writes the first common AI checklist for banks",
-    "title_fi": "FSB kirjoitti pankeille ensimmäisen yhteisen tekoälytarkistuslistan",
-    "score": "4/10 · Stakes 7/10"
+    "title_fi": "FSB kirjoitti pankeille ensimmÃ¤isen yhteisen tekoÃ¤lytarkistuslistan",
+    "score": "4/10 Â· Stakes 7/10"
   },
   {
     "date": "2026-10-14",
     "title": "Europe publishes the first harmonised standard for AI quality management",
-    "title_fi": "Eurooppa julkaisi ensimmäisen harmonisoidun standardin tekoälyn laadunhallinnalle",
-    "score": "4/10 · Stakes 8/10"
+    "title_fi": "Eurooppa julkaisi ensimmÃ¤isen harmonisoidun standardin tekoÃ¤lyn laadunhallinnalle",
+    "score": "4/10 Â· Stakes 8/10"
   }
 ]

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fi" data-lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Todistuksesta tuli halpa, määritelmästä niukka hyödyke - Machine Learning Societies</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mast-left">
+      <a class="brand" href="../index.html">Machine Learning Societies</a>
+      <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></span>
+      <span class="toplinks"><a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></span>
+    </div>
+    <div class="lang"><a href="2026-10-23.html">EN</a><a href="#" aria-current="true">FI</a></div>
+  </header>
+  <article class="brief">
+<p class="kicker">23. lokakuuta 2026 - Machine Learning Societies</p>
+<h2>Todistuksesta tuli halpa, määritelmästä niukka hyödyke</h2>
+<p class="score">Signaali 4/10 · Seuraus 5/10</p>
+<p>Anthropic kertoi 22. lokakuuta, että Claude kirjoitti yhdessä verifiointiin erikoistuneen Theorem-yrityksen kanssa koneellisesti tarkistetut todistukset sille, että 239 sisääntulokohtaa 123 avoimen lähdekoodin kirjastossa ei kaadu millään enintään 64 megatavun syötteellä, tietyin ehdoin. Todistuksia kertyi noin 180 miljoonaa riviä Rocq-kielellä. Verifiointi lakkaa olemasta räätälityötä ja muuttuu vaiheeksi, jonka voi ostaa tokeneina; niukaksi jää määritelmä, jota vasten todistus tarkistetaan.</p>
+<h3>Signaali</h3>
+<p>Anthropicin Frontier Red Team julkaisi työn Theoremin kanssa 22. lokakuuta. Menetelmä kääntää kirjaston RISC-V-arkkitehtuurille, soveltaa Theoremin muodollisia semantiikoita käskykannalle ja Linuxin prosessikäyttäytymiselle ja antaa Clauden kirjoittaa todistuksen; Rocq-ydin tarkistaa sen koneellisesti. Anthropicin mukaan Claude myös korjasi löytämänsä virheet, myös ne, jotka olivat säilyneet vuosien fuzzauksen ja yhtiön mukaan biljoonien testiajojen läpi. Osa todistuksista, RISC-V:n ja käyttöjärjestelmän semantiikat sekä Clauden taito ovat julkisia, ja Theorem tarjoaa saman putken ajamista muille avoimen lähdekoodin hankkeille.</p>
+<p><strong>Havaittu.</strong> Luvut tulevat primäärilähteestä: 239 sisääntulokohtaa, 123 OSS-Fuzz-kirjastoa, noin 180 miljoonaa riviä Rocqia, tyypillinen todistus noin 600 000 riviä 18 000 RISC-V-käskyn binäärille ja syötteet rajattu 64 megatavuun. Todistukset edellyttävät yksisäikeistä staattista binääriä, kiinteää muistibudjettia, RISC-V-suoritinta ja mallinnettua Linuxia.</p>
+<p><strong>Huomiot.</strong> Käytössä oleva todellisuus on toinen: useimmat näistä kirjastoista toimitetaan x86- tai ARM-koneille ja linkitetään dynaamisesti, joten sama koodi ei saa takeita siellä. Todistukset kattavat nimetyt sisääntulokohdat, eivät kokonaisia kirjastoja. Todistusten tuottaminen kuluttaa satoja miljoonia tokeneita, mikä hinnoittelee menetelmän hyvin resursoiduille käyttäjille. Ja jokainen rivi on yhtä hyvä kuin luotettu perusta, koneen mallit ja täsmälliset lauseet; virhe siellä mitätöi 180 miljoonaa riviä kerralla.</p>
+<p><strong>Arvio.</strong> Tekninen väite on otsikkoa kapeampi ja hyödyllisempi kuin miltä näyttää. Muutos on suhteessa: ennen todistustyö oli kallista, nyt sitovaa on määritelmä ja luotettu semantiikka. Se siirtää varmistuskysymyksen siitä, katsoiko ihminen koodin, siihen, mitä täsmälleen todistettiin ja mitä koneen mallia vasten. Seuraus on työnkulun muutos toimialalla, ei vielä sääntömuutos.</p>
+<p><strong>Näyttö 4/10.</strong></p>
+<ul><li>P = 3: yksi primäärilähde, Anthropicin tutkimusjulkaisu, jossa luvut ja oletukset on kerrottu.</li><li>N = 0: mikään postilaatikon uutiskirje ei ollut käsitellyt aihetta tätä painosta kirjoitettaessa.</li><li>L = 1: Anthropic julkaisi työn X:ssä ennen uutiskirjeitä.</li></ul>
+<p>Kolme plus nolla plus yksi on neljä kymmenestä.</p>
+<p><strong>Seuraus 5/10.</strong> Koneellisesti tarkistettu varmistus muuttuu toistettavaksi työnkuluksi ohjelmistotuottajien keskuudessa, askeleen alle hankintasäännön, joka nimeäisi sen vaadituksi näytöksi.</p>
+<h3>Teesi</h3>
+<p>Kun todistusten tuottaminen hinnoitellaan tokeneina, niukka hyödyke on määritelmä. Se, joka kirjoittaa määritelmän ja koneen mallin, kirjoittaa myös huolellisuuden standardin, koska todistus todistaa vain määritelmän. Tekoälyn leviäminen ohjelmistotuotantoon näkyy siksi ensin varmistussopimuksissa, siinä mikä kelpaa näytöksi komponentin turvallisuudesta, ei nopeammassa koodin tuottamisessa.</p>
+<h3>Anti-teesi</h3>
+<p>Todistukset todistavat sen, mitä määritelmä sanoo, ja tässä samainen putki kirjoittaa molemmat, joten verifiointi voi pestä väärät oletukset sertifikaatiksi. Luotettu perusta on yhden kumppanin malli RISC-V:stä ja Linuxista, yksi vikakohta, jota mikään tuomioistuin ei tarkasta. Oletukset sulkevat pois koneet, joita oikeasti käytetään. Muodollinen verifiointi on luvannut enemmän kuin antanut neljä vuosikymmentä, ja rajoite voi yksinkertaisesti siirtyä määritelmiin, joita kenelläkään ei ole aikaa kirjoittaa.</p>
+<h3>Ennuste</h3>
+<p>31.10.2027 mennessä vähintään yksi eurooppalainen harmonisoitu standardi, ENISAn ohje tai kansallinen julkisen hankinnan kriteeri nimeää koneellisesti tarkistetut todistukset hyväksyttäväksi näytöksi avoimen lähdekoodin komponenteille (55 %). Se ratkeaa julkaistuun asiakirjaan, joka nimeää todistukset näytöksi, ja raukeaa, jos sellaista ei siihen mennessä ilmesty.</p>
+<h3>Poliittiset vaikutukset</h3>
+<p>Yhdestä kahteen vuoteen väline on kyberturvallisuusasetuksen harmonisoidut standardit ja niitä seuraavat hankintakriteerit; toimija on komissio yhdessä ENISAn ja kansallisten markkinavalvontaviranomaisten kanssa. Havaittava on standardi tai tarjouspyyntökriteeri, joka luettelee muodollisen todistuksen hyväksyttyjen näyttöjen joukossa, tai nimenomainen kieltäytyminen hyväksymästä sitä.</p>
+<p>Kolmeen neljään vuoteen väline on vastuu: uudistettu tuotevastuudirektiivi tulee voimaan joulukuussa 2026, ja kysymys on, kumoanko koneellisesti tarkistettu todistus väitteen virheellisyydestä. Toimijoita ovat tuomioistuimet ja komission ohjeistus; havaittava on ensimmäinen tuomio tai virallinen ohje, joka pitää todistusta vaatimustenmukaisuuden näyttönä.</p>
+<p>Markkinatesti: markkinalähtöinen. Väline on julkaiseminen, osa todistuksista, koneen semantiikat ja Clauden taito, jota kuka tahansa ylläpitäjä voi käyttää; toimijoina Anthropic ja Theorem. Hyöty menee varmistusalalle tuleville uusille toimijoille ja ylläpitäjille, joilla ei koskaan ollut varaa todistustiimiin. Varaus on keskittyminen: jos luotettu semantiikka jää yhden yrityksen käsiin, tänään avautuva pääsy sulkeutuu huomenna.</p>
+<h3>Mitä seurata</h3>
+<p>Sitä, toistaako riippumaton ryhmä yhden julkaistuista todistuksista toista koneen mallia vasten. Se, eikä uusi ilmoitus, muuttaa demonstraation hyväksytyksi näytöksi.</p>
+<p class="method">Miten Signaali lasketaan: Näyttö E = 3P + N + L, enintään kymmenen, missä P on primäärilähde, N laskee eri uutiskirjelähettäjät, jotka lisäävät faktan, ja L merkitsee, että ensisijainen toimija julkaisi ensin. Seuraus C kulkee yhdestä, yhden tiimin kokeesta, viiden kautta, työnkulkuun joka on otettu käyttöön toimialalla, ja seitsemän, hankintasäännön tai standardin muutokseen, kymmeneen, markkinarakenteen muutokseen.</p>
+<p class="kicker" style="margin-top:40px">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></p>
+  </article>
+  <footer><a href="https://github.com/juntunen-ai/Twin">source</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
+</div>
+</body>
+</html>
