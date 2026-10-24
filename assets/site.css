@@ -84,3 +84,16 @@ html[data-lang="fi"] .en{display:none}
 .pill{display:inline-block;margin-left:4px;padding:.1em .6em;border:1px solid #b7dfc4;border-radius:999px;background:#e9f6ee;color:#1a7f37;font-size:.72rem;font-weight:600;line-height:1.5;letter-spacing:.02em}
 .pill-closed{border-color:var(--line);background:transparent;color:var(--muted)}
 .pill-prob{border-color:#12161a;background:#fff;color:#12161a}
+
+
+/* Collapsible explainer boxes */
+.brief details.method-box{margin:24px 0 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:0 18px}
+.brief details.method-box summary{cursor:pointer;list-style:none;padding:14px 0;font-size:15px;font-weight:600;letter-spacing:.01em}
+.brief details.method-box summary::-webkit-details-marker{display:none}
+.brief details.method-box summary::after{content:"+";float:right;color:var(--muted);font-weight:400}
+.brief details.method-box[open] summary::after{content:"\2013"}
+.brief details.method-box[open]{padding-bottom:4px}
+.brief details.method-box p,.brief details.method-box ul{margin:0 0 12px}
+.brief details.method-box ul{padding-left:20px}
+.brief details.method-box li{margin:0 0 6px}
+.brief details.method-box p:last-child,.brief details.method-box ul:last-child{margin-bottom:16px}
