@@ -3,48 +3,64 @@
     "date": "2026-10-25",
     "title": "Texas closed the on-site power loophole, and the delay moved into the permit queue",
     "title_fi": "Texas sulki oman voimalan porsaanreiän, ja viive siirtyi lupajonoon",
-    "score": "6/10 · Stakes 7/10"
+    "score": "6/10 · Stakes 7/10",
+    "summary_en": "Texas now gates the air permits of the power plants that data centres build for themselves. Six campuses and 8.7 gigawatts wait on the review.",
+    "summary_fi": "Texas valvoo nyt datakeskusten omien voimaloiden ilmalupia. Kuusi aluetta ja 8,7 gigawattia odottaa tarkastusta."
   },
   {
     "date": "2026-10-24",
     "title": "Containment became an engineering discipline, and its first export was a patch",
     "title_fi": "Laboratorio sulkee verkon malliltaan ja löytää reiän muualta",
-    "score": "4/10 · Stakes 6/10"
+    "score": "4/10 · Stakes 6/10",
+    "summary_en": "OpenAI now trains frontier models without live internet access after a DNS misconfiguration, and its red-teaming produced a critical Brotli patch across Node.js, Bun and Envoy.",
+    "summary_fi": "OpenAI kouluttaa huippumallejaan ilman elävää internetiä nimipalvelinvirheen jälkeen, ja sen red team -työ tuotti kriittisen Brotli-korjauksen Node.js-, Bun- ja Envoy-ympäristöihin."
   },
   {
     "date": "2026-10-23",
     "title": "The proof got cheap; the specification became the scarce good",
     "title_fi": "Todistuksesta tuli halpa, määritelmästä niukka hyödyke",
-    "score": "4/10 · Stakes 5/10"
+    "score": "4/10 · Stakes 5/10",
+    "summary_en": "Anthropic and Theorem generated 180 million lines of machine-checked Rocq proofs across 123 open-source libraries, shifting the bottleneck from proof labour to formal specification.",
+    "summary_fi": "Anthropic ja Theorem tuottivat 180 miljoonaa riviä koneellisesti tarkistettuja Rocq-todistuksia 123 avoimen lähdekoodin kirjastolle, jolloin pullonkaula siirtyi todistustyöstä täsmälliseen määrittelyyn."
   },
   {
     "date": "2026-10-22",
     "title": "The frontier model became a line item, not a vendor decision",
     "title_fi": "Rajamallista tuli ostorivi, ei toimittajapäätös",
-    "score": "5/10 · Stakes 7/10"
+    "score": "5/10 · Stakes 7/10",
+    "summary_en": "Google Cloud added OpenAI's GPT-6 family to its Marketplace so usage draws down existing cloud commitments, turning model adoption from a supplier relationship into a procurement line.",
+    "summary_fi": "Google Cloud lisäsi OpenAI:n GPT-6-mallit Marketplaceensa niin, että käyttö vähennetään olemassa olevista pilvisitoumuksista, mikä muuttaa käyttöönoton toimittajapäätöksestä hankintariviksi."
   },
   {
     "date": "2026-10-21",
     "title": "The labs stopped selling models and started buying the paperwork",
     "title_fi": "Laboratoriot eivät enää myy malleja, ne ostavat paperityön",
-    "score": "5/10 · Stakes 5/10"
+    "score": "5/10 · Stakes 5/10",
+    "summary_en": "OpenAI acquired drug-development coordination platform Orchestra Bio and folded it into Rosalind, buying the regulated process layer where agent output meets an audit trail.",
+    "summary_fi": "OpenAI osti lääkekehityksen koordinaatioalusta Orchestra Bion osaksi Rosalindia ja hankki säännellyn prosessikerroksen, jossa agentin tuotos tarkistetaan asiakirjaketjua vasten."
   },
   {
     "date": "2026-10-19",
     "title": "The agents finish less than half the work",
     "title_fi": "Agentit tekevät alle puolet työstä",
-    "score": "5/10 · Stakes 5/10"
+    "score": "5/10 · Stakes 5/10",
+    "summary_en": "Stanford HAI end-to-end hospital and payer benchmarks show frontier models completing under half of administrative workflows despite passing 90% of single-step clinical questions.",
+    "summary_fi": "Stanford HAI:n päästä päähän -vertailuissa huippumallit suorittivat alle puolet terveydenhuollon hallinnollisista työnkuluista, vaikka läpäisevät yli 90 % yksivaiheisista kysymyksistä."
   },
   {
     "date": "2026-10-15",
     "title": "The Financial Stability Board writes the first common AI checklist for banks",
     "title_fi": "FSB kirjoitti pankeille ensimmäisen yhteisen tekoälytarkistuslistan",
-    "score": "4/10 · Stakes 7/10"
+    "score": "4/10 · Stakes 7/10",
+    "summary_en": "The FSB published twelve non-binding AI governance and lifecycle practices for banks, insurers and supervisors, establishing the reference checklist for financial supervision.",
+    "summary_fi": "FSB julkaisi pankeille, vakuuttajille ja valvojille kaksitoista tekoälyn hallintokäytäntöä, jotka luovat yhteisen viitekehyksen finanssivalvonnalle."
   },
   {
     "date": "2026-10-14",
     "title": "Europe publishes the first harmonised standard for AI quality management",
     "title_fi": "Eurooppa julkaisi ensimmäisen harmonisoidun standardin tekoälyn laadunhallinnalle",
-    "score": "4/10 · Stakes 8/10"
+    "score": "4/10 · Stakes 8/10",
+    "summary_en": "The European Commission cited EN 18286:2026 in the Official Journal, giving providers a presumption of conformity with Article 17 AI Act quality-management rules.",
+    "summary_fi": "Euroopan komissio julkaisi virallisessa lehdessä viittauksen EN 18286:2026 -standardiin, joka antaa olettaman tekoälyasetuksen 17 artiklan laadunhallintavelvoitteiden mukaisuudesta."
   }
 ]

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss version='2.0'>
+  <channel>
+    <title>Machine Learning Societies (FI)</title>
+    <link>https://machine-learning-societies.web.app/</link>
+    <description>Teknologinen diffuusio: yksi signaali, yksi teesi, yksi koeteltava ennuste.</description>
+    <language>fi</language>
+    <item>
+      <title>Texas sulki oman voimalan porsaanreiän, ja viive siirtyi lupajonoon</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-25.fi.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-25.fi.html</guid>
+      <pubDate>Sun, 25 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 6/10 · Stakes 7/10] Texas valvoo nyt datakeskusten omien voimaloiden ilmalupia. Kuusi aluetta ja 8,7 gigawattia odottaa tarkastusta.</description>
+    </item>
+    <item>
+      <title>Laboratorio sulkee verkon malliltaan ja löytää reiän muualta</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-24.fi.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-24.fi.html</guid>
+      <pubDate>Sat, 24 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 4/10 · Stakes 6/10] OpenAI kouluttaa huippumallejaan ilman elävää internetiä nimipalvelinvirheen jälkeen, ja sen red team -työ tuotti kriittisen Brotli-korjauksen Node.js-, Bun- ja Envoy-ympäristöihin.</description>
+    </item>
+    <item>
+      <title>Todistuksesta tuli halpa, määritelmästä niukka hyödyke</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-23.fi.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-23.fi.html</guid>
+      <pubDate>Fri, 23 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 4/10 · Stakes 5/10] Anthropic ja Theorem tuottivat 180 miljoonaa riviä koneellisesti tarkistettuja Rocq-todistuksia 123 avoimen lähdekoodin kirjastolle, jolloin pullonkaula siirtyi todistustyöstä täsmälliseen määrittelyyn.</description>
+    </item>
+    <item>
+      <title>Rajamallista tuli ostorivi, ei toimittajapäätös</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-22.fi.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-22.fi.html</guid>
+      <pubDate>Thu, 22 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 5/10 · Stakes 7/10] Google Cloud lisäsi OpenAI:n GPT-6-mallit Marketplaceensa niin, että käyttö vähennetään olemassa olevista pilvisitoumuksista, mikä muuttaa käyttöönoton toimittajapäätöksestä hankintariviksi.</description>
+    </item>
+    <item>
+      <title>Laboratoriot eivät enää myy malleja, ne ostavat paperityön</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-21.fi.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-21.fi.html</guid>
+      <pubDate>Wed, 21 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 5/10 · Stakes 5/10] OpenAI osti lääkekehityksen koordinaatioalusta Orchestra Bion osaksi Rosalindia ja hankki säännellyn prosessikerroksen, jossa agentin tuotos tarkistetaan asiakirjaketjua vasten.</description>
+    </item>
+    <item>
+      <title>Agentit tekevät alle puolet työstä</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-19.fi.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-19.fi.html</guid>
+      <pubDate>Mon, 19 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 5/10 · Stakes 5/10] Stanford HAI:n päästä päähän -vertailuissa huippumallit suorittivat alle puolet terveydenhuollon hallinnollisista työnkuluista, vaikka läpäisevät yli 90 % yksivaiheisista kysymyksistä.</description>
+    </item>
+    <item>
+      <title>FSB kirjoitti pankeille ensimmäisen yhteisen tekoälytarkistuslistan</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-15.fi.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-15.fi.html</guid>
+      <pubDate>Thu, 15 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 4/10 · Stakes 7/10] FSB julkaisi pankeille, vakuuttajille ja valvojille kaksitoista tekoälyn hallintokäytäntöä, jotka luovat yhteisen viitekehyksen finanssivalvonnalle.</description>
+    </item>
+    <item>
+      <title>Eurooppa julkaisi ensimmäisen harmonisoidun standardin tekoälyn laadunhallinnalle</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-14.fi.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-14.fi.html</guid>
+      <pubDate>Wed, 14 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 4/10 · Stakes 8/10] Euroopan komissio julkaisi virallisessa lehdessä viittauksen EN 18286:2026 -standardiin, joka antaa olettaman tekoälyasetuksen 17 artiklan laadunhallintavelvoitteiden mukaisuudesta.</description>
+    </item>
+  </channel>
+</rss>

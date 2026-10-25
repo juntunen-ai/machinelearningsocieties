@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Machine Learning Societies</title>
+<meta name="description" content="Daily analytical brief on technological diffusion: how machine learning spreads through politics, the economy, work and law. One signal, one thesis, one falsifiable dated forecast.">
+<meta property="og:title" content="Machine Learning Societies">
+<meta property="og:description" content="One signal, one thesis, one falsifiable forecast — tracking how machine learning settles into the institutions of ordinary life.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://machine-learning-societies.web.app/">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="feed.fi.xml">
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -33,8 +41,8 @@
       <span class="meta" id="latest-meta">Latest brief</span>
       <h2 id="latest-title">Texas closed the on-site power loophole, and the delay moved into the permit queue</h2>
       <span class="score card-score" id="latest-score">Signal 6/10 &middot; Stakes 7/10</span>
-      <p class="keypoint en">Texas now gates the air permits of the power plants that data centres build for themselves. Six campuses and 8.7 gigawatts wait on the review.</p>
-      <p class="keypoint fi">Texas valvoo nyt datakeskusten omien voimaloiden ilmalupia. Kuusi aluetta ja 8,7 gigawattia odottaa tarkastusta.</p>
+      <p class="keypoint en" id="latest-summary-en">Texas now gates the air permits of the power plants that data centres build for themselves. Six campuses and 8.7 gigawatts wait on the review.</p>
+      <p class="keypoint fi" id="latest-summary-fi">Texas valvoo nyt datakeskusten omien voimaloiden ilmalupia. Kuusi aluetta ja 8,7 gigawattia odottaa tarkastusta.</p>
       <span class="more en">Read the full brief &rarr;</span>
       <span class="more fi">Lue koko katsaus &rarr;</span>
     </a>
@@ -52,7 +60,7 @@
     <ul class="archive" id="archive"></ul>
   </main>
 
-  <footer><a href="https://github.com/juntunen-ai/Twin">source</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a> &middot; <a href="https://chat.whatsapp.com/BlgG3tvmAUcIAvfPhfP9Hb">WhatsApp</a></footer>
+  <footer><a href="https://github.com/juntunen-ai/machinelearningsocieties">source</a> &middot; <a href="feed.xml" class="en">RSS</a><a href="feed.fi.xml" class="fi">RSS</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a> &middot; <a href="https://chat.whatsapp.com/BlgG3tvmAUcIAvfPhfP9Hb">WhatsApp</a></footer>
 </div>
 <script>
 (function () {
@@ -67,6 +75,14 @@
     if (lang === "fi") return p[2] + "." + p[1] + "." + p[0];
     var m = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     return Number(p[2]) + " " + m[Number(p[1]) - 1] + " " + p[0];
+  }
+
+  function fmtScore(score, lang) {
+    if (!score) return "";
+    if (lang === "fi") {
+      return "Signaali " + score.replace(/Stakes/g, "Seuraus");
+    }
+    return "Signal " + score;
   }
 
   function apply(lang) {
@@ -93,9 +109,14 @@
       state.lang === "fi" ? (first.title_fi || first.title) : first.title;
     var sc = document.getElementById("latest-score");
     if (sc) {
-      if (first.score) { sc.textContent = (state.lang === "fi" ? "Signaali " : "Signal ") + first.score; sc.style.display = ""; }
+      if (first.score) { sc.textContent = fmtScore(first.score, state.lang); sc.style.display = ""; }
       else { sc.style.display = "none"; }
     }
+    var sumEn = document.getElementById("latest-summary-en");
+    var sumFi = document.getElementById("latest-summary-fi");
+    if (sumEn && first.summary_en) sumEn.textContent = first.summary_en;
+    if (sumFi && first.summary_fi) sumFi.textContent = first.summary_fi;
+
     state.items.slice(1).forEach(function (it) {
       var li = document.createElement("li");
       var a = document.createElement("a");
@@ -103,7 +124,7 @@
       a.textContent = state.lang === "fi" ? (it.title_fi || it.title) : it.title;
       var d = document.createElement("span");
       d.className = "date";
-      d.textContent = fmt(it.date, state.lang);
+      d.textContent = fmt(it.date, state.lang) + (it.score ? " \u00b7 " + fmtScore(it.score, state.lang) : "");
       li.appendChild(a);
       li.appendChild(d);
       ul.appendChild(li);

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss version='2.0'>
+  <channel>
+    <title>Machine Learning Societies</title>
+    <link>https://machine-learning-societies.web.app/</link>
+    <description>Technological diffusion: one signal, one thesis, one falsifiable dated forecast.</description>
+    <language>en</language>
+    <item>
+      <title>Texas closed the on-site power loophole, and the delay moved into the permit queue</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-25.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-25.html</guid>
+      <pubDate>Sun, 25 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 6/10 · Stakes 7/10] Texas now gates the air permits of the power plants that data centres build for themselves. Six campuses and 8.7 gigawatts wait on the review.</description>
+    </item>
+    <item>
+      <title>Containment became an engineering discipline, and its first export was a patch</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-24.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-24.html</guid>
+      <pubDate>Sat, 24 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 4/10 · Stakes 6/10] OpenAI now trains frontier models without live internet access after a DNS misconfiguration, and its red-teaming produced a critical Brotli patch across Node.js, Bun and Envoy.</description>
+    </item>
+    <item>
+      <title>The proof got cheap; the specification became the scarce good</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-23.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-23.html</guid>
+      <pubDate>Fri, 23 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 4/10 · Stakes 5/10] Anthropic and Theorem generated 180 million lines of machine-checked Rocq proofs across 123 open-source libraries, shifting the bottleneck from proof labour to formal specification.</description>
+    </item>
+    <item>
+      <title>The frontier model became a line item, not a vendor decision</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-22.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-22.html</guid>
+      <pubDate>Thu, 22 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 5/10 · Stakes 7/10] Google Cloud added OpenAI's GPT-6 family to its Marketplace so usage draws down existing cloud commitments, turning model adoption from a supplier relationship into a procurement line.</description>
+    </item>
+    <item>
+      <title>The labs stopped selling models and started buying the paperwork</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-21.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-21.html</guid>
+      <pubDate>Wed, 21 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 5/10 · Stakes 5/10] OpenAI acquired drug-development coordination platform Orchestra Bio and folded it into Rosalind, buying the regulated process layer where agent output meets an audit trail.</description>
+    </item>
+    <item>
+      <title>The agents finish less than half the work</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-19.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-19.html</guid>
+      <pubDate>Mon, 19 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 5/10 · Stakes 5/10] Stanford HAI end-to-end hospital and payer benchmarks show frontier models completing under half of administrative workflows despite passing 90% of single-step clinical questions.</description>
+    </item>
+    <item>
+      <title>The Financial Stability Board writes the first common AI checklist for banks</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-15.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-15.html</guid>
+      <pubDate>Thu, 15 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 4/10 · Stakes 7/10] The FSB published twelve non-binding AI governance and lifecycle practices for banks, insurers and supervisors, establishing the reference checklist for financial supervision.</description>
+    </item>
+    <item>
+      <title>Europe publishes the first harmonised standard for AI quality management</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-14.html</link>
+      <guid isPermaLink='true'>https://machine-learning-societies.web.app/briefs/2026-10-14.html</guid>
+      <pubDate>Wed, 14 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 4/10 · Stakes 8/10] The European Commission cited EN 18286:2026 in the Official Journal, giving providers a presumption of conformity with Article 17 AI Act quality-management rules.</description>
+    </item>
+  </channel>
+</rss>

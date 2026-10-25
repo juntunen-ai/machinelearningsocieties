@@ -5,6 +5,9 @@
       ".github/**",
       "firebase.json",
       ".firebaserc",
+      "README.md",
+      "background.md",
+      "deploy-log.txt",
       "**/.*",
       "**/node_modules/**"
     ],
@@ -20,7 +23,7 @@
         ]
       },
       {
-        "source": "**/*.html",
+        "source": "**/*.@(html|json|xml)",
         "headers": [
           {
             "key": "Cache-Control",

@@ -4,11 +4,13 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - deploy-log.txt
+      - README.md
+      - background.md
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  checks: write
 
 jobs:
   deploy:
@@ -20,38 +22,27 @@ jobs:
         id: check
         run: |
           if [ -z "$FIREBASE_SA" ]; then
-            echo "No service account secret set; skipping deploy."
+            echo "::warning::No FIREBASE_SERVICE_ACCOUNT or MACHINE_LEARNING_SOCIETIES secret set; skipping deploy."
             echo "ready=false" >> "$GITHUB_OUTPUT"
           else
             echo "ready=true" >> "$GITHUB_OUTPUT"
           fi
       - uses: actions/checkout@v4
         if: steps.check.outputs.ready == 'true'
-      - name: Write service account
+      - name: Prepare credentials
         if: steps.check.outputs.ready == 'true'
-        run: printf '%s' "$FIREBASE_SA" > "$RUNNER_TEMP/sa.json"
-      - name: Deploy
-        id: deploy
+        run: |
+          # Support either raw JSON or base64-encoded service account JSON
+          if printf '%s' "$FIREBASE_SA" | jq -e . >/dev/null 2>&1; then
+            printf '%s' "$FIREBASE_SA" > "$RUNNER_TEMP/sa.json"
+          else
+            printf '%s' "$FIREBASE_SA" | base64 -d > "$RUNNER_TEMP/sa.json"
+          fi
+      - name: Deploy to Firebase Hosting
         if: steps.check.outputs.ready == 'true'
-        continue-on-error: true
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/sa.json
-        run: |
-          npx --yes firebase-tools@13 deploy --only hosting \
-            --project machine-learning-societies --non-interactive 2>&1 | tee deploy.log
-      - name: Publish log
-        if: steps.check.outputs.ready == 'true' && always()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          B64=$(base64 -w0 deploy.log)
-          SHA=$(curl -s -H "Authorization: Bearer $GH_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/contents/deploy-log.txt" | jq -r '.sha // empty')
-          if [ -n "$SHA" ]; then EXTRA=",\"sha\":\"$SHA\""; else EXTRA=""; fi
-          curl -s -X PUT -H "Authorization: Bearer $GH_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${{ github.repository }}/contents/deploy-log.txt" \
-            -d "{\"message\":\"Deploy log\",\"content\":\"$B64\"$EXTRA}" > /dev/null
-      - name: Fail if deploy failed
-        if: steps.deploy.outcome == 'failure'
-        run: exit 1
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT || secrets.MACHINE_LEARNING_SOCIETIES }}
+          channelId: live
+          projectId: machine-learning-societies

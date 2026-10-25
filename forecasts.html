@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Forecast ledger - Machine Learning Societies</title>
+<meta name="description" content="Public ledger of dated, probabilistic forecasts published by Machine Learning Societies, scored in the open.">
+<meta property="og:title" content="Forecast ledger - Machine Learning Societies">
+<meta property="og:description" content="Every forecast published by Machine Learning Societies, with frozen wording, resolution date and probability.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://machine-learning-societies.web.app/forecasts.html">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="feed.fi.xml">
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -26,17 +33,25 @@
   <main>
     <h1 class="title"><span class="en">Forecast ledger</span><span class="fi">Ennusterekisteri</span></h1>
     <p class="sub en">Every forecast this brief has published, with the date it resolves and the probability it carried when it went out. The wording is frozen on publication: nothing is rewritten afterwards, and misses stay on the page.</p>
-    <p class="sub fi">Kaikki katsauksessa julkaistut ennusteet, niiden ratkaisup&auml;iv&auml; ja julkaisuhetkell&auml; annettu todenn&auml;koisyys. Sanamuoto j&auml;&auml;dytet&auml;&auml;n julkaisuun: j&auml;lkik&auml;teen ei muokata, ja osumattomat j&auml;&auml;v&auml;t sivulle.</p>
+    <p class="sub fi">Kaikki katsauksessa julkaistut ennusteet, niiden ratkaisup&auml;iv&auml; ja julkaisuhetkell&auml; annettu todenn&auml;k&ouml;isyys. Sanamuoto j&auml;&auml;dytet&auml;&auml;n julkaisuun: j&auml;lkik&auml;teen ei muokata, ja osumattomat j&auml;&auml;v&auml;t sivulle.</p>
 
-    <p class="meta" id="tally"></p>
+    <div class="ledger-bar">
+      <p class="meta" id="tally" style="margin:0"></p>
+      <div class="toggle" role="group" aria-label="Sort forecasts">
+        <button id="sort-resolves" type="button" aria-pressed="true"><span class="en">Resolves soonest</span><span class="fi">Ratkeaa ensin</span></button>
+        <button id="sort-made" type="button" aria-pressed="false"><span class="en">Newest made</span><span class="fi">Uusin ensin</span></button>
+        <button id="sort-prob" type="button" aria-pressed="false"><span class="en">Probability</span><span class="fi">Todennäköisyys</span></button>
+      </div>
+    </div>
+
     <ul class="archive" id="list"></ul>
   </main>
 
-  <footer><a href="https://github.com/juntunen-ai/Twin">source</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
+  <footer><a href="https://github.com/juntunen-ai/machinelearningsocieties">source</a> &middot; <a href="feed.xml" class="en">RSS</a><a href="feed.fi.xml" class="fi">RSS</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a> &middot; <a href="https://chat.whatsapp.com/BlgG3tvmAUcIAvfPhfP9Hb">WhatsApp</a></footer>
 </div>
 <script>
 (function () {
-  var state = { items: [], lang: "en" };
+  var state = { items: [], lang: "en", sort: "resolves" };
 
   function fmt(date, lang) {
     var p = date.split("-");
@@ -45,32 +60,63 @@
     return Number(p[2]) + " " + m[Number(p[1]) - 1] + " " + p[0];
   }
   var LABEL = {
-    en: { resolves: "Resolves", chance: "chance", open: "open", hit: "hit", miss: "miss", tally: "count", made: "Made" },
-    fi: { resolves: "Ratkeaa", chance: "todennäköisyys", open: "avoin", hit: "osui", miss: "ei osunut", tally: "kpl", made: "Tehty" }
+    en: { resolves: "Resolves", chance: "chance", open: "open", hit: "hit", miss: "miss", tally: "forecasts", made: "Made", brier: "Mean Brier", signal: "Signal" },
+    fi: { resolves: "Ratkeaa", chance: "todennäköisyys", open: "avoinna", hit: "osui", miss: "ei osunut", tally: "ennustetta", made: "Julkaistu", brier: "Brier-keskiarvo", signal: "Signaali" }
   };
+
+  function localizedSource(src, lang) {
+    if (!src) return "#";
+    if (lang === "fi" && src.indexOf(".fi.html") === -1) {
+      return src.replace(/\.html$/, ".fi.html");
+    }
+    return src;
+  }
 
   function render() {
     var L = LABEL[state.lang];
     var ul = document.getElementById("list");
     ul.innerHTML = "";
-    var open = 0, done = 0;
+    var open = 0, done = 0, brierSum = 0, brierCount = 0;
     state.items.slice().sort(function (a, b) {
+      if (state.sort === "made") {
+        return a.made > b.made ? -1 : a.made < b.made ? 1 : 0;
+      }
+      if (state.sort === "prob") {
+        return (b.probability || 0) - (a.probability || 0);
+      }
       return a.resolves < b.resolves ? -1 : a.resolves > b.resolves ? 1 : 0;
     }).forEach(function (f) {
-      if (f.status === "open") open++; else done++;
+      if (f.status === "open") {
+        open++;
+      } else {
+        done++;
+        if (f.status === "hit" || f.status === "miss") {
+          var outcome = f.status === "hit" ? 1 : 0;
+          var p = (f.probability || 0) / 100;
+          brierSum += Math.pow(p - outcome, 2);
+          brierCount++;
+        }
+      }
       var li = document.createElement("li");
       var a = document.createElement("a");
-      a.href = f.source;
+      a.href = localizedSource(f.source, state.lang);
       a.textContent = (state.lang === "fi" ? f.claim_fi : f.claim_en).replace(/\s*\(\s*\d+\s*%\s*\)\s*\.?$/, "");
       var d = document.createElement("span");
       d.className = "date";
       var status = L[f.status] || f.status;
-      d.textContent = L.resolves + " " + fmt(f.resolves, state.lang) + " ";
+      d.textContent = L.made + " " + fmt(f.made, state.lang) + " \u00b7 " + L.resolves + " " + fmt(f.resolves, state.lang) + " ";
       var prob = document.createElement("span");
       prob.className = "pill pill-prob";
       prob.textContent = f.probability + " % " + L.chance;
       d.appendChild(prob);
       d.appendChild(document.createTextNode(" "));
+      if (f.signal) {
+        var sig = document.createElement("span");
+        sig.className = "pill pill-closed";
+        sig.textContent = L.signal + " " + f.signal;
+        d.appendChild(sig);
+        d.appendChild(document.createTextNode(" "));
+      }
       var pill = document.createElement("span");
       pill.className = "pill " + (f.status === "open" ? "pill-open" : "pill-closed");
       pill.textContent = status;
@@ -79,8 +125,20 @@
       li.appendChild(d);
       ul.appendChild(li);
     });
-    document.getElementById("tally").textContent =
-      state.items.length + " " + L.tally + " · " + open + " " + L.open + " · " + done + " " + (state.lang === "fi" ? "ratkennut" : "resolved");
+    var summary = state.items.length + " " + L.tally + " \u00b7 " + open + " " + L.open + " \u00b7 " + done + " " + (state.lang === "fi" ? "ratkennut" : "resolved");
+    if (brierCount > 0) {
+      summary += " \u00b7 " + L.brier + " " + (brierSum / brierCount).toFixed(3);
+    }
+    document.getElementById("tally").textContent = summary;
+  }
+
+  function applySort(s) {
+    state.sort = s;
+    ["resolves", "made", "prob"].forEach(function (k) {
+      var btn = document.getElementById("sort-" + k);
+      if (btn) btn.setAttribute("aria-pressed", String(k === s));
+    });
+    render();
   }
 
   function apply(lang) {
@@ -96,6 +154,9 @@
 
   document.getElementById("btn-en").addEventListener("click", function () { apply("en"); });
   document.getElementById("btn-fi").addEventListener("click", function () { apply("fi"); });
+  document.getElementById("sort-resolves").addEventListener("click", function () { applySort("resolves"); });
+  document.getElementById("sort-made").addEventListener("click", function () { applySort("made"); });
+  document.getElementById("sort-prob").addEventListener("click", function () { applySort("prob"); });
 
   var saved = "en";
   try { saved = localStorage.getItem("mls-lang") || "en"; } catch (e) {}

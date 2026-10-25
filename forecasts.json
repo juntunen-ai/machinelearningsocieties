@@ -37,8 +37,8 @@
     {
       "id": "2026-10-21-01",
       "made": "2026-10-21",
-      "claim_en": "By 31 October 2027, at least one of the three largest labs will have a named production deployment in a regulated workflow - clinical trial operations, pharmacovigilance or benefits adjudication - disclosed by the customer rather than the vendor.",
-      "claim_fi": "31.10.2027 mennessä ainakin yhdellä kolmesta suurimmasta laboratoriosta on nimetty tuotantokäyttö säännellyssä työnkulussa â€“ kliinisten tutkimusten operaatioissa, lääketurvassa tai etuuksien käsittelyssä â€“ ja käytön kertoo asiakas, ei myyjä.",
+      "claim_en": "By 31 October 2027, at least one of the three largest labs will have a named production deployment in a regulated workflow — clinical trial operations, pharmacovigilance or benefits adjudication — disclosed by the customer rather than the vendor (60 %).",
+      "claim_fi": "31.10.2027 mennessä ainakin yhdellä kolmesta suurimmasta laboratoriosta on nimetty tuotantokäyttö säännellyssä työnkulussa – kliinisten tutkimusten operaatioissa, lääketurvassa tai etuuksien käsittelyssä – ja käytön kertoo asiakas, ei myyjä (60 %).",
       "resolves": "2027-10-31",
       "probability": 60,
       "status": "open",
