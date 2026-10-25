@@ -3,7 +3,12 @@ name: Deploy to Firebase Hosting
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - deploy-log.txt
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -22,10 +27,31 @@ jobs:
           fi
       - uses: actions/checkout@v4
         if: steps.check.outputs.ready == 'true'
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Write service account
         if: steps.check.outputs.ready == 'true'
-        with:
-          repoToken: ${{ github.token }}
-          firebaseServiceAccount: ${{ env.FIREBASE_SA }}
-          projectId: machine-learning-societies
-          channelId: live
+        run: printf '%s' "$FIREBASE_SA" > "$RUNNER_TEMP/sa.json"
+      - name: Deploy
+        id: deploy
+        if: steps.check.outputs.ready == 'true'
+        continue-on-error: true
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/sa.json
+        run: |
+          npx --yes firebase-tools@13 deploy --only hosting \
+            --project machine-learning-societies --non-interactive 2>&1 | tee deploy.log
+      - name: Publish log
+        if: steps.check.outputs.ready == 'true' && always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          B64=$(base64 -w0 deploy.log)
+          SHA=$(curl -s -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/contents/deploy-log.txt" | jq -r '.sha // empty')
+          if [ -n "$SHA" ]; then EXTRA=",\"sha\":\"$SHA\""; else EXTRA=""; fi
+          curl -s -X PUT -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/contents/deploy-log.txt" \
+            -d "{\"message\":\"Deploy log\",\"content\":\"$B64\"$EXTRA}" > /dev/null
+      - name: Fail if deploy failed
+        if: steps.deploy.outcome == 'failure'
+        run: exit 1
