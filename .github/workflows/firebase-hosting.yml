@@ -9,13 +9,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT || secrets.MACHINE_LEARNING_SOCIETIES }}
     steps:
       - name: Check secret
         id: check
         run: |
           if [ -z "$FIREBASE_SA" ]; then
-            echo "FIREBASE_SERVICE_ACCOUNT is not set; skipping deploy."
+            echo "No service account secret set; skipping deploy."
             echo "ready=false" >> "$GITHUB_OUTPUT"
           else
             echo "ready=true" >> "$GITHUB_OUTPUT"
@@ -25,7 +25,7 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         if: steps.check.outputs.ready == 'true'
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          repoToken: ${{ github.token }}
+          firebaseServiceAccount: ${{ env.FIREBASE_SA }}
           projectId: machine-learning-societies
           channelId: live
