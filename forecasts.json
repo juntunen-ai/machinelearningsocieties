@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25",
+  "updated": "2026-10-26",
   "forecasts": [
     {
       "id": "2026-10-14-01",
@@ -88,6 +88,17 @@
       "status": "open",
       "signal": "6/10",
       "source": "briefs/2026-10-25.html"
+    },
+    {
+      "id": "2026-10-26-01",
+      "made": "2026-10-26",
+      "claim_en": "By 31 March 2027, at least two of AWS, Microsoft Azure and Google Cloud list a managed endpoint for an open-weight model of 1 trillion parameters or more with a context window of at least 500,000 tokens.",
+      "claim_fi": "31.3.2027 mennessä vähintään kaksi kolmesta – AWS, Microsoft Azure ja Google Cloud – listaa hallinnoidun päätepisteen avoimen painojen mallille, jossa on vähintään biljoona parametria ja vähintään 500 000 tokenin konteksti-ikkuna.",
+      "resolves": "2027-03-31",
+      "probability": 60,
+      "status": "open",
+      "signal": "7/10",
+      "source": "briefs/2026-10-26.html"
     }
   ]
 }
