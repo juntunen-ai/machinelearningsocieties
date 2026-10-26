@@ -6,7 +6,55 @@
     <atom:link href="https://machine-learning-societies.web.app/feed.fi.xml" rel="self" type="application/rss+xml"/>
     <description>Teknologinen diffuusio: yksi signaali, yksi teesi, yksi koeteltava ennuste.</description>
     <language>fi</language>
-    <lastBuildDate>Sun, 25 Oct 2026 05:30:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 05:30:00 +0000</lastBuildDate>
+    <item>
+      <title>Avoimet painot asettavat nyt huippukyvyn hinnan, ja pullonkaula on siirtynyt mallin tarjoamiseen</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-26.fi.html</link>
+      <guid isPermaLink="true">https://machine-learning-societies.web.app/briefs/2026-10-26.fi.html</guid>
+      <pubDate>Mon, 26 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 7/10 · Stakes 6/10] Moonshot AI julkaisi Kimi K3.1 Pron, kolmen biljoonan parametrin avoimen mallin miljoonan tokenin kontekstilla, ja säännösteli tilaajiensa kiintiöitä kahdessa vuorokaudessa. Rajoite on nyt kapasiteetti, ei mallin laatu.</description>
+      <content:encoded><![CDATA[<p class="kicker">26. lokakuuta 2026 – Machine Learning Societies</p>
+<h2>Avoimet painot asettavat nyt huippukyvyn hinnan, ja pullonkaula on siirtynyt mallin tarjoamiseen</h2>
+<p class="score">Signaali 7/10 · Seuraus 6/10</p>
+<p>Moonshot AI julkaisi 23. lokakuuta Kimi K3.1 Pron: kolmen biljoonan parametrin avoimen painojen malli, jonka konteksti-ikkuna on miljoona tokenia ja jonka täydet painot luvattiin marraskuussa. Alle kahdessa vuorokaudessa yhtiö pyysi maksavilta asiakkailtaan anteeksi käyttörajoja ja palautti näille neljänneksen kuukausikiintiöstä. Malli ei ole enää niukka hyödyke. Niukkaa on kyky tarjota sitä.</p>
+
+<h3>Signaali</h3>
+<p><strong>Havaittu.</strong> Moonshot julkaisi K3.1 Pron 23. lokakuuta 2,8 biljoonan parametrin Kimi K3:n jälkikoulutettuna versiona. Konteksti-ikkuna on 1 048 576 tokenia ja malli on suunnattu koodaukseen, 3D-työhön, taloustutkimukseen ja pitkiin agenttiajoihin. Täydet painot on luvattu marraskuulle. Päivää aiemmin MiniMax julkaisi M3.1 Flashin, 428 miljardin parametrin mallin, jonka se sanoo laskevan agenttien ajokustannuksia 70 % edelliseen versioon verrattuna. Molemmat asettuvat hintalistan halpaan päähän. Moonshot kertoi 25. lokakuuta tilaajilleen, että K3.1 Pro -tilauksen käyttörajat ja "tarpeeton kiintiön kulutus" olivat sen oma virhe, ja antoi jokaiselle tilaajalle kertaluonteisen palautuksen, joka palautti 25 % kuukausikiintiöstä. Samana viikonloppuna levinneet riippumattomat arviot sijoittavat aiemman K3:n tarjoamisen bruttokatteen AMD-laitteistolla vLLM:n kautta jopa kolmeen dollariin piirituntia kohden, kun vuokrahinnat ovat nousseet.</p>
+<p><strong>Huomiot.</strong> Kolmen dollarin luku on kolmannen osapuolen arvio, ei tilintarkastettu luku, ja se olettaa täyden käyttöasteen. Tilauskiintiö ei ole sama rajoite kuin API:n käyttöraja, eikä Moonshot ole julkaissut kapasiteettilukuja. Marraskuulle luvatut painot eivät ole toimitettuja painoja: heinäkuun K3-julkaisu myöhästyi päivistä ja saapui räätälöidyllä lisenssillä. Kiinalaisperäisiin painoihin liittyy eurooppalaisille ostajille myös tietojen sijaintiin, vientivalvontaan ja vastuuseen liittyviä kysymyksiä, jotka eivät katoa hinnan laskiessa.</p>
+<p><strong>Arvio.</strong> Tällä viikolla ei muuttunut vertailuluku vaan hintasignaali. Kolmen biljoonan luokan malli painoina, ja kilpailija joka leikkaa agenttikustannuksia 70 %, kertoo jokaiselle päättelylaskennan ostajalle, missä lattiataso on. Moonshotin oma säännöstely näyttää, mihin rajoite on siirtynyt: niukkoihin kiihdyttimiin ja insinöörityöhön, jolla biljoonan parametrin asiantuntijasekoite tarjotaan halvalla. Se on kapasiteettitarina, ja kapasiteetti on hankinta- ja energiatarina ennen kuin se on tutkimustarina. Seuraus on 6 eikä 7, koska mikään hankintasääntö ei ole muuttunut muodollisesti; muuttunut on se vertailukohta, jota vasten jokainen ostaja neuvottelee olemassa olevien budjettirivien sisällä.</p>
+<p><strong>Näyttö 7/10.</strong></p>
+<ul>
+<li><strong>Primäärilähde = 3:</strong> Moonshotin oma julkaisutiedote ja tilaajille suunnattu anteeksipyyntö sekä mallikortti ja lisenssi.</li>
+<li><strong>Riippumaton vahvistus = 3:</strong> Kolme uutiskirjettä lisäsi oman faktansa: parametrimäärät, marraskuun painopäivän ja erillisen MiniMax-julkaisun.</li>
+<li><strong>Ensimmäinen julkaisija = 1:</strong> Keskellä oleva toimija julkaisi ensimmäisenä; koostajat seurasivat.</li>
+</ul>
+<p>3 + 3 + 1 = 7.</p>
+<p><strong>Seuraus 6/10.</strong> Päättelylaskennan hinnoittelu avoimien painojen vaihtoehtoa vasten leviää sektoreiden yli, mutta se tapahtuu olemassa olevissa budjeteissa eikä kirjoita uudelleen muodollista sääntöä.</p>
+
+<h3>Teesi</h3>
+<p>Huippukyky muuttuu hyödykkeeksi painojen kerroksessa ja keskittyy tarjoamisen kerrokseen. Kun kolmen biljoonan malli on ladattavissa, mallin laatu lakkaa olemasta suoja; suoja on siinä, kuka pystyy ajamaan sitä hinnalla ja lainkäyttöalueella, jonka ostaja hyväksyy. Politiikka seuraa toista kerrosta: laskentaa, energiaa ja ehtoja, joilla ulkomaisia painoja saa käyttää.</p>
+
+<h3>Anti-teesi</h3>
+<p>Avoimet painot ilman halpaa tarjoamista ovat lisenssi, eivät markkina. Moonshotin oma säännöstely osoittaa, että keskittyminen säilyy, ja tietojen sijaintia ja vastuuta koskevien sääntöjen kanssa painivat eurooppalaiset ostajat maksavat jatkossakin lisähintaa suljetuista malleista, jotka he voivat auditoida ja vakuuttaa.</p>
+
+<h3>Ennuste</h3>
+<p>31.3.2027 mennessä vähintään kaksi kolmesta – AWS, Microsoft Azure ja Google Cloud – listaa hallinnoidun päätepisteen avoimen painojen mallille, jossa on vähintään biljoona parametria ja vähintään 500 000 tokenin konteksti-ikkuna. Ratkaisu: kolmen tarjoajan julkiset malliluettelot ja hinnastot 31.3.2027. Todennäköisyys 60 %. Perustaso: hyperskaalaajat listaavat jo 400 miljardin luokan avoimia malleja, mutta biljoonan luokan mallit vaativat tarjoamistaloutta, jota ne eivät ole vielä julkaisseet.</p>
+
+<h3>Poliittiset vaikutukset</h3>
+<p><strong>1–2 vuotta.</strong> EU:n tekoälyasetuksen yleiskäyttöisten mallien velvoitteet muuttavat dokumentaation hankintasuodattimeksi: ostajat kysyvät koulutusdatan yhteenvetoja ja tekijänoikeuskäytäntöjä, ja avoimien painojen toimittajat vastaavat mallikorteilla eikä sopimuksilla. Välineet: komission GPAI-ohjeistus, kansalliset AI-tehdaskaapasiteetin jaot, julkisen sektorin puitesopimukset. Havaittava: ensimmäinen EU-puitehanke, jossa avoimen painojen malli nimetään oletukseksi ei-salaiselle työlle.</p>
+<p><strong>3–4 vuotta.</strong> Jos tarjoamiskapasiteetti pysyy rajoitteena, poliittinen kysymys on, saavatko eurooppalaiset julkiset toimijat ylipäätään nojata kiinalaisperäisiin painoihin. Välineet: GPAI-tarjoajien valvonta, tietosuojan täytäntöönpano ja tekoälyasetuksen täytäntöönpanosäädöksiin kirjoitettavat rajoitukset. Havaittava: jäsenvaltion ohjeasiakirja, joka nimeää mallin alkuperän valintariskiä.</p>
+
+<h3>Mitä seurata</h3>
+<ul>
+<li>Ilmestyvätkö K3.1 Pron painot marraskuussa ja millä lisenssillä.</li>
+<li>Listaako jokin länsimainen hyperskaalaaja mallin; listaus muuttaisi hintasignaalin markkinaksi.</li>
+<li>Moonshotin seuraava kiintiöpäätös: uusi säännöstely kertoisi kapasiteetin, ei kysynnän, olevan rajoite.</li>
+<li>Yksikin EU-hankinta tai valvontakannanotto, joka kohtelee mallin alkuperää valintakriteerinä.</li>
+</ul>
+
+
+<p class="kicker" style="margin-top:40px">Koonnut Harri Juntunen &amp; <a href="https://twin.so/">Twin</a></p>]]></content:encoded>
+    </item>
     <item>
       <title>Texas sulki oman voimalan porsaanreiän, ja viive siirtyi lupajonoon</title>
       <link>https://machine-learning-societies.web.app/briefs/2026-10-25.fi.html</link>

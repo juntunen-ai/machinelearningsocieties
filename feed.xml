@@ -6,7 +6,55 @@
     <atom:link href="https://machine-learning-societies.web.app/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Technological diffusion: one signal, one thesis, one falsifiable dated forecast.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Oct 2026 05:30:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 05:30:00 +0000</lastBuildDate>
+    <item>
+      <title>Open weights now set the price of frontier capability, and the bottleneck has moved to serving it</title>
+      <link>https://machine-learning-societies.web.app/briefs/2026-10-26.html</link>
+      <guid isPermaLink="true">https://machine-learning-societies.web.app/briefs/2026-10-26.html</guid>
+      <pubDate>Mon, 26 Oct 2026 05:30:00 +0000</pubDate>
+      <description>[Signal 7/10 · Stakes 6/10] Moonshot AI shipped Kimi K3.1 Pro, a three-trillion-parameter open-weight model with a million-token context, then rationed its own subscribers' quotas within 48 hours. Capacity, not model quality, is now the constraint.</description>
+      <content:encoded><![CDATA[<p class="kicker">26 October 2026 - Machine Learning Societies</p>
+<h2>Open weights now set the price of frontier capability, and the bottleneck has moved to serving it</h2>
+<p class="score">Signal 7/10 · Stakes 6/10</p>
+<p>Moonshot AI released Kimi K3.1 Pro on 23 October, a three-trillion-parameter open-weight model with a one-million-token context window, and promised full weights in November. Within 48 hours it was apologising to paying subscribers for rate limits and handing back a quarter of their monthly quota. The model is no longer the scarce good. The capacity to serve it is.</p>
+
+<h3>Signal</h3>
+<p><strong>Observed.</strong> Moonshot published K3.1 Pro on 23 October as a post-trained version of its 2.8-trillion-parameter Kimi K3, with a context window of 1,048,576 tokens and positioning in coding, 3D work, financial research and long agent runs. Full weights are scheduled for November. One day earlier MiniMax shipped M3.1 Flash, a 428-billion-parameter model it says cuts the cost of running agents by 70 % against its predecessor. Both sit at the cheap end of the price list. On 25 October Moonshot told subscribers that the rate limits and "unnecessary quota consumption" on the K3.1 Pro plan were its own failure, and gave every subscriber a one-time reset restoring 25 % of their monthly quota. Independent estimates circulating the same weekend put the gross margin of serving the earlier K3 on AMD hardware through vLLM at up to $3 per chip-hour, after the recent rise in rental prices.</p>
+<p><strong>Caveats.</strong> The $3 figure is a third-party estimate, not an audited number, and it assumes full utilisation. A subscription quota is not the same constraint as an API rate limit, and Moonshot has published no capacity figures. Weights promised for November are not weights shipped: the K3 release in July slipped by days and arrived under a custom licence. Chinese-origin weights also carry data-residency, export-control and liability questions for European buyers, which do not disappear when the price falls.</p>
+<p><strong>Assessment.</strong> What changed this week is not a benchmark but a price signal. A 3T-class model available as weights, with a competitor cutting agent costs by 70 %, tells every buyer of inference what the floor looks like. Moonshot's own rationing shows where the constraint now sits: scarce accelerators and the engineering needed to serve a trillion-parameter mixture of experts cheaply. That is a capacity story, and capacity is a procurement and energy story before it is a research story. Stakes are 6 rather than 7 because no procurement rule has formally changed; what has changed is the benchmark every buyer will now negotiate against, inside budget lines that already exist.</p>
+<p><strong>Evidence 7/10.</strong></p>
+<ul>
+<li><strong>Primary source = 3:</strong> Moonshot's own release note and its subscriber apology, plus the model card and licence.</li>
+<li><strong>Independent confirmation = 3:</strong> Three newsletters added facts of their own: parameter counts, the November weights date, and the separate MiniMax release.</li>
+<li><strong>First mover = 1:</strong> The party at the centre published first; aggregators followed.</li>
+</ul>
+<p>3 + 3 + 1 = 7.</p>
+<p><strong>Stakes 6/10.</strong> Pricing inference against an open-weight alternative is spreading across sectors, but it runs inside existing budgets rather than rewriting a formal rule.</p>
+
+<h3>Thesis</h3>
+<p>Frontier capability is commoditising at the weights layer and concentrating at the serving layer. Once a 3T model is downloadable, model quality stops being the moat; the moat is who can run it at a price, and under a jurisdiction, that a buyer will accept. Politics will follow the second layer: compute, energy, and the terms on which foreign weights may be used.</p>
+
+<h3>Antithesis</h3>
+<p>Open weights without cheap serving are a licence, not a market. Moonshot rationing its own subscribers is evidence that concentration persists, and European buyers facing residency and liability rules will keep paying a premium for closed models they can audit and insure.</p>
+
+<h3>Forecast</h3>
+<p>By 31 March 2027, at least two of AWS, Microsoft Azure and Google Cloud will list a managed endpoint for an open-weight model of 1 trillion parameters or more with a context window of at least 500,000 tokens. Resolution: the public model catalogues and price pages of the three providers on 31 March 2027. Probability 60 %. Base rate: hyperscalers already list 400B-class open models, but 1T-class models require serving economics they have not yet published.</p>
+
+<h3>Political consequences</h3>
+<p><strong>1–2 years.</strong> The EU AI Act's general-purpose model obligations turn documentation into a procurement filter: buyers will ask for training-data summaries and copyright policies, and open-weight vendors will answer with model cards rather than contracts. Instruments: Commission GPAI guidance, national AI-factory compute allocations, public-sector framework agreements. Observable: the first EU framework tender that names an open-weight model as the default for non-classified work.</p>
+<p><strong>3–4 years.</strong> If serving capacity stays the constraint, the political question becomes whether European public bodies may depend on Chinese-origin weights at all. Instruments: supervision of GPAI providers, data-protection enforcement, and any restriction written into the AI Act's implementing acts. Observable: a member state guidance document that names model origin as a risk factor in selection.</p>
+
+<h3>What to watch</h3>
+<ul>
+<li>Whether K3.1 Pro weights actually appear in November, and under what licence.</li>
+<li>Whether a Western hyperscaler lists the model; a listing would turn a price signal into a market.</li>
+<li>Moonshot's next quota decision: rationing again would mean capacity, not demand, is binding.</li>
+<li>Any EU tender or supervisory statement that treats model origin as a selection criterion.</li>
+</ul>
+
+
+<p class="kicker" style="margin-top:40px">Compiled by Harri Juntunen &amp; <a href="https://twin.so/">Twin</a></p>]]></content:encoded>
+    </item>
     <item>
       <title>Texas closed the on-site power loophole, and the delay moved into the permit queue</title>
       <link>https://machine-learning-societies.web.app/briefs/2026-10-25.html</link>
