@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-10-26",
+    "title": "Open weights now set the price of frontier capability, and the bottleneck has moved to serving it",
+    "title_fi": "Avoimet painot asettavat nyt huippukyvyn hinnan, ja pullonkaula on siirtynyt mallin tarjoamiseen",
+    "score": "7/10 · Stakes 6/10",
+    "summary_en": "Moonshot AI shipped Kimi K3.1 Pro, a three-trillion-parameter open-weight model with a million-token context, then rationed its own subscribers' quotas within 48 hours. Capacity, not model quality, is now the constraint.",
+    "summary_fi": "Moonshot AI julkaisi Kimi K3.1 Pron, kolmen biljoonan parametrin avoimen mallin miljoonan tokenin kontekstilla, ja säännösteli tilaajiensa kiintiöitä kahdessa vuorokaudessa. Rajoite on nyt kapasiteetti, ei mallin laatu."
+  },
+  {
     "date": "2026-10-25",
     "title": "Texas closed the on-site power loophole, and the delay moved into the permit queue",
     "title_fi": "Texas sulki oman voimalan porsaanreiän, ja viive siirtyi lupajonoon",
