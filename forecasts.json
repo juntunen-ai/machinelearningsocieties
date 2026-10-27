@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26",
+  "updated": "2026-10-27",
   "forecasts": [
     {
       "id": "2026-10-14-01",
@@ -99,6 +99,17 @@
       "status": "open",
       "signal": "7/10",
       "source": "briefs/2026-10-26.html"
+    },
+    {
+      "id": "2026-10-27-01",
+      "made": "2026-10-27",
+      "claim_en": "By 31 January 2027 the group led by Impagliazzo, Paturi and Williams will publish a public written verdict on OpenAIs refutation of the Exponential Time Hypothesis.",
+      "claim_fi": "31.1.2027 mennessä Impagliazzon, Paturin ja Williamsin johtama ryhmä julkaisee julkisen kirjallisen päätelmän OpenAI:n eksponentiaalisen ajan hypoteesin kumoamisesta.",
+      "resolves": "2027-01-31",
+      "probability": 70,
+      "status": "open",
+      "signal": "4/10",
+      "source": "briefs/2026-10-27.html"
     }
   ]
 }
