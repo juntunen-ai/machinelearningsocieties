@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-10-27",
+    "title": "OpenAI convened the referees, and that is the result that will last",
+    "title_fi": "OpenAI kokoaa arvioijat – siitä syntyy pysyvä tulos",
+    "score": "4/10 · Stakes 6/10",
+    "summary_en": "OpenAI published Lean-checked proofs of three long-open results and convened the outside groups that will judge them. The proofs may shrink; the referee arrangement will not.",
+    "summary_fi": "OpenAI julkaisi Lean-tarkistetut todistukset kolmesta pitkään avoimesta tuloksesta ja kokosi ulkopuoliset ryhmät arvioimaan niitä. Todistukset voivat kutistua, arvioijien järjestely ei."
+  },
+  {
     "date": "2026-10-26",
     "title": "Open weights now set the price of frontier capability, and the bottleneck has moved to serving it",
     "title_fi": "Avoimet painot asettavat nyt huippukyvyn hinnan, ja pullonkaula on siirtynyt mallin tarjoamiseen",
