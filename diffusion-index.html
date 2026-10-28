@@ -7,7 +7,7 @@
 <meta name="description" content="Scientific measurement of how artificial intelligence moves from lab models into daily work, physical machines, laws, power grids, and planetary boundaries.">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="https://machine-learning-societies.web.app/feed.fi.xml">
-<link rel="stylesheet" href="assets/site.css?v=20261028b">
+<link rel="stylesheet" href="assets/site.css?v=20261028c">
 </head>
 <body>
 <div class="wrap-wide">
@@ -145,8 +145,8 @@
       <span class="fi">Kolme erillistä lohkoa ja yhteiskunnan kerrostumien vauhtiero</span>
     </h2>
     <p class="sub" style="max-width:82ch">
-      <span class="en">An index cannot test whether power grids limit AI or whether AI changes jobs if it mixes all numbers into one score. Therefore, we keep <strong>Block A (Actual Use)</strong> separate from <strong>Block B (Conditions)</strong> and <strong>Block C (Effects)</strong>.</span>
-      <span class="fi">Indeksi ei voi tutkia, rajoittaako sähköverkko tekoälyä tai muuttaako tekoäly työtä, jos kaikki luvut lasketaan yhteen. Siksi pidämme <strong>Lohkon A (todellinen käyttö)</strong> erillään <strong>Lohkosta B (edellytykset)</strong> ja <strong>Lohkosta C (vaikutukset)</strong>.</span>
+      <span class="en">An index cannot test whether power grids limit AI or whether AI changes jobs if it mixes all numbers into one score. Therefore, we keep <strong>Block A (Actual Use)</strong> separate from <strong>Block B (Conditions)</strong> and <strong>Block C (Effects)</strong>. <strong>Hover over or focus on any pillar badge below</strong> to read what the term means and how we score it.</span>
+      <span class="fi">Indeksi ei voi tutkia, rajoittaako sähköverkko tekoälyä tai muuttaako tekoäly työtä, jos kaikki luvut lasketaan yhteen. Siksi pidämme <strong>Lohkon A (todellinen käyttö)</strong> erillään <strong>Lohkosta B (edellytykset)</strong> ja <strong>Lohkosta C (vaikutukset)</strong>. <strong>Vie hiiri minkä tahansa pilarin päälle</strong> nähdäksesi, mitä termi tarkoittaa ja miten se pisteytetään.</span>
     </p>
     <div class="di-blocks-row" id="blocks-row"></div>
 
@@ -488,6 +488,118 @@
     `;
   }
 
+  function renderPillarPill(pid){
+    const p = DATA.pillars.find(x => x.id === pid);
+    if (!p) return '';
+    const tipId = `pillar-tip-${p.code}`;
+    const anchorVar = `--pillar-tip-${p.code}`;
+    const velStr = `${p.velocity_pp_yr > 0 ? '+' : ''}${p.velocity_pp_yr} ${t('pts/yr', 'p./v')}`;
+    return `
+      <button type="button" class="di-badge di-pill-trigger"
+        interestfor="${tipId}"
+        data-tip-target="${tipId}"
+        data-pillar-jump="pillar-card-${p.code}"
+        style="anchor-name:${anchorVar}">
+        ${t(p.label_en, p.label_fi)} (${p.level_score.toFixed(1)})
+        <span class="di-pill-q" aria-hidden="true">?</span>
+      </button>
+      <div popover="hint" id="${tipId}" class="di-pillar-tooltip" style="position-anchor:${anchorVar}">
+        <div class="di-pillar-tooltip-kicker">${p.code} · ${t('Score:', 'Pisteet:')} ${p.level_score.toFixed(1)} / 100 · ${velStr}</div>
+        <div class="di-pillar-tooltip-title">${t(p.label_en, p.label_fi)}</div>
+        <div class="di-pillar-tooltip-meaning">
+          <strong>${t('What this means:', 'Mitä tämä tarkoittaa:')}</strong> ${t(p.plain_meaning_en, p.plain_meaning_fi)}
+        </div>
+        <div class="di-pillar-tooltip-meta">
+          <div><strong>${t('How we score it:', 'Miten pisteytetään:')}</strong> ${t(p.score_guide_en, p.score_guide_fi)}</div>
+          <div style="margin-top:4px"><strong>${t('Today:', 'Nyt:')}</strong> ${p.headline_value} (${p.headline_unit})</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function wirePillarTooltips(){
+    const triggers = document.querySelectorAll('.di-pill-trigger');
+    let hideTimer = null;
+    let activeTip = null;
+    let activeBtn = null;
+
+    function closeTip(tip, btn){
+      if (!tip) return;
+      tip.classList.remove('di-tip-active', 'interest-target', ':popover-open');
+      if (btn) btn.classList.remove('interest-source');
+      try { if (typeof tip.hidePopover === 'function' && tip.matches(':popover-open')) tip.hidePopover(); } catch(e){}
+      if (activeTip === tip) { activeTip = null; activeBtn = null; }
+    }
+
+    function openTip(btn){
+      const tipId = btn.dataset.tipTarget;
+      const tip = document.getElementById(tipId);
+      if (!tip) return;
+      clearTimeout(hideTimer);
+      if (activeTip && activeTip !== tip) closeTip(activeTip, activeBtn);
+      activeTip = tip;
+      activeBtn = btn;
+      btn.classList.add('interest-source');
+      tip.classList.add('di-tip-active', 'interest-target');
+      try { if (typeof tip.showPopover === 'function' && !tip.matches(':popover-open')) tip.showPopover(); } catch(e){}
+
+      if (!("anchorName" in document.documentElement.style)) {
+        const rect = btn.getBoundingClientRect();
+        const tipWidth = Math.min(340, window.innerWidth - 24);
+        let left = rect.left;
+        if (left + tipWidth > window.innerWidth - 12) {
+          left = Math.max(12, window.innerWidth - tipWidth - 12);
+        }
+        tip.style.position = 'fixed';
+        tip.style.left = `${left}px`;
+        const spaceBelow = window.innerHeight - rect.bottom;
+        if (spaceBelow < 210 && rect.top > 210) {
+          tip.style.top = 'auto';
+          tip.style.bottom = `${window.innerHeight - rect.top + 8}px`;
+        } else {
+          tip.style.bottom = 'auto';
+          tip.style.top = `${rect.bottom + 8}px`;
+        }
+      }
+    }
+
+    function scheduleClose(tip, btn){
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => closeTip(tip, btn), 160);
+    }
+
+    triggers.forEach(btn => {
+      const tip = document.getElementById(btn.dataset.tipTarget);
+      if (!tip) return;
+
+      btn.addEventListener('mouseenter', () => openTip(btn));
+      btn.addEventListener('mouseleave', () => scheduleClose(tip, btn));
+      btn.addEventListener('focus', () => openTip(btn));
+      btn.addEventListener('blur', () => scheduleClose(tip, btn));
+
+      tip.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+      tip.addEventListener('mouseleave', () => scheduleClose(tip, btn));
+
+      btn.addEventListener('click', () => {
+        const cardId = btn.dataset.pillarJump;
+        const card = document.getElementById(cardId);
+        if (card) {
+          closeTip(tip, btn);
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    });
+
+    if (!window.__mlsTipEscBound) {
+      window.__mlsTipEscBound = true;
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && activeTip) {
+          closeTip(activeTip, activeBtn);
+        }
+      });
+    }
+  }
+
   function renderBlocksAndPace(){
     const h = DATA.headline;
     const pd = DATA.pace_diagnostics;
@@ -498,31 +610,25 @@
         <h3>${t('Block A — Actual Use and Investment', 'Lohko A — Todellinen käyttö ja investoinnit')} (${h.block_a_diffusion_core.score.toFixed(1)} / 100)</h3>
         <p>${t('Measures how many organizations use AI, how much it costs to finish real tasks, and how much money is locked into long-term compute contracts.', 'Mittaa kuinka moni organisaatio käyttää tekoälyä, mitä tehtävien suorittaminen maksaa ja paljonko rahaa on sidottu pitkiin laskentasopimuksiin.')}</p>
         <div class="di-pill-list">
-          <span class="di-badge">1. ${t('Deployment', 'Käyttöönotto')} (28.4)</span>
-          <span class="di-badge">2. ${t('Cost to serve', 'Suorituskustannus')} (41.2)</span>
-          <span class="di-badge">3. ${t('Capital intensity', 'Pääomavaltaisuus')} (58.6)</span>
+          ${['deployment', 'cost_to_serve', 'capital_intensity'].map(renderPillarPill).join('')}
         </div>
       </div>
       <div class="di-block-box">
         <h3>${t('Block B — Enabling Conditions', 'Lohko B — Mahdollistavat edellytykset')} (${h.block_b_conditions.score.toFixed(1)} / 100)</h3>
         <p>${t('Measures the rules, worker skills, power grid queues, and market competition that either speed up or hold back AI adoption.', 'Mittaa sääntelyä, henkilöstön osaamista, sähköverkon lupajonoja ja markkinakilpailua, jotka joko vauhdittavat tai jarruttavat tekoälyn leviämistä.')}</p>
         <div class="di-pill-list">
-          <span class="di-badge">5. ${t('Governance burden', 'Sääntelykuorma')} (64.5)</span>
-          <span class="di-badge">6. ${t('Human capital', 'Inhimillinen pääoma')} (46.8)</span>
-          <span class="di-badge">8. ${t('Energy and grid', 'Energia ja verkko')} (34.8)</span>
-          <span class="di-badge">10. ${t('Market openness', 'Markkinoiden avoimuus')} (44.2)</span>
+          ${['governance_burden', 'human_capital', 'energy_capacity', 'market_openness'].map(renderPillarPill).join('')}
         </div>
       </div>
       <div class="di-block-box">
         <h3>${t('Block C — Societal and Planetary Effects', 'Lohko C — Yhteiskunnalliset ja planetaariset vaikutukset')} (${h.block_c_consequences.score.toFixed(1)} / 100)</h3>
         <p>${t('Measures how companies redesign jobs, how revenue concentrates in a few cloud platforms, and how much electricity and resources AI consumes.', 'Mittaa miten yritykset muuttavat työnkulkuja, miten tulot keskittyvät muutamalle pilvialustalle ja kuinka paljon sähköä ja luonnonvaroja tekoäly kuluttaa.')}</p>
         <div class="di-pill-list">
-          <span class="di-badge">4. ${t('Labour reorganisation', 'Työn uudelleenjärjestely')} (31.2)</span>
-          <span class="di-badge">7. ${t('Ecological balance', 'Ekologinen tasapaino')} (52.4)</span>
-          <span class="di-badge">9. ${t('Ownership distribution', 'Omistuksen jakautuminen')} (38.5)</span>
+          ${['labour_reorganisation', 'ecological_balance', 'ownership_distribution'].map(renderPillarPill).join('')}
         </div>
       </div>
     `;
+    wirePillarTooltips();
 
     const paceLabels = {
       fashion_attention: { en: '1. Fashion and Hype (not scored in index)', fi: '1. Muoti ja huomio (ei pisteytetä indeksissä)' },
@@ -715,7 +821,7 @@
       `).join('');
 
       return `
-        <div class="di-pillar-card">
+        <div class="di-pillar-card" id="pillar-card-${p.code}">
           <div class="di-pillar-head">
             <div>
               <div class="kicker">${p.code} · ${p.block.replace('_',' ').toUpperCase()} · ${t('SPEED LAYER:', 'KERROS:')} ${p.pace_layer.toUpperCase()}</div>
@@ -723,6 +829,9 @@
             </div>
             <div class="di-pillar-score">${p.level_score.toFixed(1)} <span style="font-size:13px;font-weight:400;color:var(--muted)">/ 100</span></div>
           </div>
+          <p style="font-size:13px;line-height:1.45;color:var(--ink);margin:0 0 8px">
+            <strong>${t('What this means:', 'Mitä tämä tarkoittaa:')}</strong> ${t(p.plain_meaning_en, p.plain_meaning_fi)}
+          </p>
           <div class="di-bar-track">
             <div class="di-bar-fill" style="width:${p.level_score}%"></div>
           </div>
@@ -934,6 +1043,17 @@
       console.error('Failed to load computed.v0.6.json:', err);
     });
 })();
+</script>
+<script type="module">
+  if (!("popover" in HTMLElement.prototype)) {
+    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  }
+  if (!HTMLButtonElement.prototype.hasOwnProperty("interestForElement")) {
+    import("https://unpkg.com/interestfor@latest");
+  }
+  if (!("anchorName" in document.documentElement.style)) {
+    import("https://unpkg.com/@oddbird/css-anchor-positioning");
+  }
 </script>
 </body>
 </html>

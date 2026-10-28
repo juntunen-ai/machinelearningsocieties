@@ -148,7 +148,21 @@ html[data-lang="fi"] .en{display:none}
 .di-block-box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
 .di-block-box h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 6px;color:var(--ink)}
 .di-block-box p{font-size:13.5px;line-height:1.5;color:#33404d;margin:0 0 10px}
-.di-pill-list{display:flex;flex-wrap:wrap;gap:6px}
+.di-pill-list{display:flex;flex-wrap:wrap;gap:7px}
+.di-pill-trigger{cursor:pointer;font-family:inherit;transition:background .15s ease,border-color .15s ease,transform .1s ease}
+.di-pill-trigger:hover,.di-pill-trigger:focus-visible,.di-pill-trigger:is(:interest-source,.interest-source){border-color:var(--ink);background:#eef2ff;color:var(--ink);transform:translateY(-1px)}
+.di-pill-q{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--panel);border:1px solid #cbd5e1;font-size:10px;font-weight:700;color:var(--muted);margin-left:2px}
+.di-pill-trigger:hover .di-pill-q,.di-pill-trigger:focus-visible .di-pill-q,.di-pill-trigger:is(:interest-source,.interest-source) .di-pill-q{background:var(--ink);border-color:var(--ink);color:#fff}
+
+[interestfor]{--interest-delay-start:0.12s;interest-delay-start:var(--interest-delay-start);--interest-delay-end:0.18s;interest-delay-end:var(--interest-delay-end)}
+.di-pillar-tooltip{max-width:340px;width:max-content;padding:14px 16px;border:1px solid var(--ink);border-radius:12px;background:#fff;color:var(--ink);box-shadow:0 14px 34px rgba(18,22,26,.18);font-size:13px;line-height:1.48;z-index:1000;margin:unset;top:anchor(bottom);left:anchor(left)}
+.di-pillar-tooltip:is(:popover-open,.\:popover-open),
+.di-pillar-tooltip:is(:interest-target,.interest-target),
+.di-pillar-tooltip.di-tip-active{display:block}
+.di-pillar-tooltip-kicker{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 3px}
+.di-pillar-tooltip-title{font-family:Georgia,"Iowan Old Style",serif;font-size:16px;font-weight:700;color:var(--ink);margin:0 0 6px}
+.di-pillar-tooltip-meaning{margin:0 0 8px;color:#1e293b}
+.di-pillar-tooltip-meta{border-top:1px solid var(--line);padding-top:7px;margin-top:7px;font-size:12px;color:#475569}
 
 .di-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:12px 0 16px;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
 .di-toolbar-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
