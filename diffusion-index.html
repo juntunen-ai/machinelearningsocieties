@@ -7,7 +7,7 @@
 <meta name="description" content="Scientific measurement of how artificial intelligence moves from lab models into daily work, physical machines, laws, power grids, and planetary boundaries.">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="https://machine-learning-societies.web.app/feed.fi.xml">
-<link rel="stylesheet" href="assets/site.css?v=20261028d">
+<link rel="stylesheet" href="assets/site.css?v=20261028e">
 </head>
 <body>
 <div class="wrap-wide">
@@ -636,53 +636,263 @@
     `;
     wirePillarTooltips();
 
-    const paceLabels = {
-      fashion_attention: { en: '1. Fashion and Hype (not scored in index)', fi: '1. Muoti ja huomio (ei pisteytetä indeksissä)' },
-      commerce: { en: '2. Commerce and Markets (P1, P2, P3)', fi: '2. Kauppa ja markkinat (P1, P2, P3)' },
-      infrastructure: { en: '3. Power Grids and Hardware (P8)', fi: '3. Sähköverkot ja infrastruktuuri (P8)' },
-      governance: { en: '4. Laws and Standards (P5, P9, P10)', fi: '4. Lait ja standardit (P5, P9, P10)' },
-      culture: { en: '5. Work Habits and Skills (P4, P6)', fi: '5. Työtavat ja osaaminen (P4, P6)' },
-      nature: { en: '6. Nature and Planetary Limits (P7)', fi: '6. Luonto ja planetaariset rajat (P7)' }
-    };
+    const pmix = pd.brief_pace_layer_mix || {};
+    const bCount = (k) => (pmix[k] ? pmix[k].count : 0);
+    const bPct = (k) => (pmix[k] ? pmix[k].share_pct : 0);
 
-    const paceRowsHtml = Object.keys(paceLabels).map(k => {
-      const m = pd.brief_pace_layer_mix[k] || { count: 0, share_pct: 0 };
-      return `
-        <div class="di-pace-row">
-          <div><strong>${t(paceLabels[k].en, paceLabels[k].fi)}</strong></div>
+    const strata = [
+      {
+        key: 'fashion_attention',
+        cls: 'di-stratum-unscored',
+        clock_en: 'LAYER 1 · DAYS TO WEEKS (FASTEST)',
+        clock_fi: 'KERROS 1 · PÄIVISTÄ VIIKKOIHIN (NOPEIN)',
+        name_en: '1. Fashion & Hype',
+        name_fi: '1. Muoti ja huomio',
+        pillars_en: 'Not scored in index (filtered out)',
+        pillars_fi: 'Ei pisteytetä indeksissä (suodatettu pois)',
+        desc_en: 'Viral model demos, social media hype, and press-release benchmarks. Changes every week, so we exclude it from the index.',
+        desc_fi: 'Viraalit demot, sosiaalisen median kohu ja lehdistötiedotteiden testitulokset. Muuttuu viikoittain, joten jätämme sen pois indeksistä.',
+        score_label_en: 'Unscored (0 weight)',
+        score_label_fi: 'Ei pisteytetä (paino 0)',
+        vel_en: 'Changes in days →→→→',
+        vel_fi: 'Muuttuu päivissä →→→→',
+        bar_pct: 0,
+        bar_color: '#94a3b8',
+        insert_shear_after: false
+      },
+      {
+        key: 'commerce',
+        cls: 'di-stratum-fast',
+        clock_en: 'LAYER 2 · MONTHS TO QUARTERS',
+        clock_fi: 'KERROS 2 · KUUKAUSISTA VUOSINELJÄNNEKSIIN',
+        name_en: '2. Commerce & Markets',
+        name_fi: '2. Kauppa ja markkinat',
+        pillars_en: 'Pillars P1 Deployment (28.4), P2 Cost to Serve (41.2), P3 Capital (58.6)',
+        pillars_fi: 'Pilarit P1 Käyttöönotto (28.4), P2 Suorituskustannus (41.2), P3 Pääoma (58.6)',
+        desc_en: 'Company software rollouts, API spending, and multi-year cloud contracts ($265.6B in Anthropic S-1). Moves fast and pushes pressure onto the slower layers below.',
+        desc_fi: 'Yritysten ohjelmistokäyttöönotot, rajapintakulut ja monivuotiset pilvisopimukset (265,6 mrd. $ Anthropicin S-1:ssä). Liikkuu nopeasti ja luo painetta alempiin kerroksiin.',
+        score_label_en: '42.7 / 100 (Block A)',
+        score_label_fi: '42.7 / 100 (Lohko A)',
+        vel_en: '+8.9 pts/yr →→→',
+        vel_fi: '+8,9 p./v →→→',
+        bar_pct: 42.7,
+        bar_color: '#1f4fd8',
+        insert_shear_after: true
+      },
+      {
+        key: 'infrastructure',
+        cls: 'di-stratum-bottleneck',
+        clock_en: 'LAYER 3 · YEARS TO DECADES',
+        clock_fi: 'KERROS 3 · VUOSISTA VUOSIKYMMENIIN',
+        name_en: '3. Infrastructure & Power Grids',
+        name_fi: '3. Sähköverkot ja infrastruktuuri',
+        pillars_en: 'Pillar P8 Energy and Grid Capacity (34.8)',
+        pillars_fi: 'Pilari P8 Energia- ja sähköverkkokapasiteetti (34.8)',
+        desc_en: 'Power plants, high-voltage transformers, and environmental permits. Moves in years to decades. Texas paused 8.7 GW of data-centre gas permits across 6 campuses.',
+        desc_fi: 'Voimalaitokset, muuntajat ja ympäristöluvat. Rakentaminen kestää vuosia tai vuosikymmeniä. Texas keskeytti 8,7 GW datakeskuslupia 6 alueella.',
+        score_label_en: '34.8 / 100 (Bottleneck)',
+        score_label_fi: '34.8 / 100 (Pullonkaula)',
+        vel_en: '-5.4 pts/yr ← (Falling)',
+        vel_fi: '-5,4 p./v ← (Laskee)',
+        bar_pct: 34.8,
+        bar_color: '#d97706',
+        insert_shear_after: false
+      },
+      {
+        key: 'governance',
+        cls: 'di-stratum-slow',
+        clock_en: 'LAYER 4 · YEARS',
+        clock_fi: 'KERROS 4 · VUODET',
+        name_en: '4. Governance, Laws & Standards',
+        name_fi: '4. Hallinta, lait ja standardit',
+        pillars_en: 'Pillars P5 Governance (64.5), P9 Ownership (38.5), P10 Openness (44.2)',
+        pillars_fi: 'Pilarit P5 Sääntely (64.5), P9 Omistus (38.5), P10 Avoimuus (44.2)',
+        desc_en: 'Official standards (EN 18286:2026 under the EU AI Act), banking supervision rules (FSB 12 practices), and court liability rulings (420+ hallucination cases).',
+        desc_fi: 'Viralliset laatustandardit (EN 18286:2026 EU:n tekoälyasetukseen), pankkivalvonta (FSB:n 12 ohjetta) ja oikeuskäytäntö (yli 420 hallusinaatiotapausta).',
+        score_label_en: '49.1 / 100 avg',
+        score_label_fi: '49.1 / 100 keskiarvo',
+        vel_en: '+4.1 pts/yr →',
+        vel_fi: '+4,1 p./v →',
+        bar_pct: 49.1,
+        bar_color: '#0f172a',
+        insert_shear_after: false
+      },
+      {
+        key: 'culture',
+        cls: 'di-stratum-slow',
+        clock_en: 'LAYER 5 · YEARS TO GENERATIONS',
+        clock_fi: 'KERROS 5 · VUOSISTA SUKUPOLVIIN',
+        name_en: '5. Culture, Skills & Work Habits',
+        name_fi: '5. Kulttuuri, osaaminen ja työtavat',
+        pillars_en: 'Pillars P4 Labour Reorganisation (31.2), P6 Human Capital (46.8)',
+        pillars_fi: 'Pilarit P4 Työn uudelleenjärjestely (31.2), P6 Osaaminen (46.8)',
+        desc_en: 'How people learn, trust tools, and redesign daily workflows. Only 24.8% of firms have redesigned workflows around AI, and fewer than 50% of multi-step hospital tasks finish.',
+        desc_fi: 'Miten ihmiset oppivat, luottavat työkaluihin ja muuttavat arjen työnkulkuja. Vain 24,8 % yrityksistä on uudistanut työnkulkujaan, ja alle 50 % sairaalatehtävistä valmistuu.',
+        score_label_en: '39.0 / 100 avg',
+        score_label_fi: '39.0 / 100 keskiarvo',
+        vel_en: '+4.2 pts/yr →',
+        vel_fi: '+4,2 p./v →',
+        bar_pct: 39.0,
+        bar_color: '#0f172a',
+        insert_shear_after: false
+      },
+      {
+        key: 'nature',
+        cls: 'di-stratum-slow',
+        clock_en: 'LAYER 6 · DECADES TO CENTURIES (SLOWEST)',
+        clock_fi: 'KERROS 6 · VUOSIKYMMENISTÄ VUOSISATOIHIN (HITAIN)',
+        name_en: '6. Nature & Planetary Boundaries',
+        name_fi: '6. Luonto ja planetaariset rajat',
+        pillars_en: 'Pillar P7 Ecological Balance (+52.4↑ Burden / -26.8↓ Reduction)',
+        pillars_fi: 'Pilari P7 Ekologinen tasapaino (+52,4↑ Kuorma / -26,8↓ Vähennys)',
+        desc_en: 'Earth biophysical systems (climate, freshwater, forests, nitrogen cycles). 7 of 9 planetary boundaries are already crossed. AI adds ~485 TWh/yr load while helping grid and farm efficiency.',
+        desc_fi: 'Maapallon biofyysiset järjestelmät (ilmasto, vesistöt, metsät, typen kierto). 7/9 planetaarista rajaa on ylitetty. Tekoäly kuluttaa ~485 TWh/v, mutta tehostaa verkkoja ja viljelyä.',
+        score_label_en: '+52.4↑ / -26.8↓',
+        score_label_fi: '+52.4↑ / -26.8↓',
+        vel_en: '+6.8 pts/yr load →',
+        vel_fi: '+6,8 p./v kuorma →',
+        bar_pct: 52.4,
+        bar_color: '#b91c1c',
+        insert_shear_after: false
+      }
+    ];
+
+    const stackHtml = strata.map(s => {
+      const cnt = bCount(s.key);
+      const pct = bPct(s.key);
+      const rowHtml = `
+        <div class="di-layer-stratum ${s.cls}">
           <div>
-            <div class="di-bar-track" style="margin:0">
-              <div class="di-bar-fill di-bar-accent" style="width:${Math.max(m.share_pct, 2)}%"></div>
+            <span class="di-stratum-clock">${t(s.clock_en, s.clock_fi)}</span>
+            <h4 class="di-stratum-name">${t(s.name_en, s.name_fi)}</h4>
+            <div class="di-stratum-pillars">${t(s.pillars_en, s.pillars_fi)}</div>
+          </div>
+          <div class="di-stratum-mid">
+            <div>${t(s.desc_en, s.desc_fi)}</div>
+            <div class="di-bar-track" style="margin:7px 0 0;height:6px">
+              <div class="di-bar-fill" style="width:${s.bar_pct}%;background:${s.bar_color}"></div>
             </div>
           </div>
-          <div style="text-align:right"><strong>${m.count}</strong> ${t('briefs', 'katsausta')} (${m.share_pct}%)</div>
+          <div class="di-stratum-right">
+            <div style="font-weight:700;font-size:14px;color:var(--ink)">${t(s.score_label_en, s.score_label_fi)}</div>
+            <div style="color:#475569;font-weight:600;margin:2px 0">${t(s.vel_en, s.vel_fi)}</div>
+            <div style="font-size:11.5px;color:var(--muted)"><strong>${cnt}</strong> ${t('daily briefs', 'päiväkatsausta')} (${pct}%)</div>
+          </div>
+        </div>
+      `;
+      if (!s.insert_shear_after) return rowHtml;
+      return rowHtml + `
+        <div class="di-shear-banner">
+          <span>⚡ ${t('PACE-SHEAR FAULT LINE (1.95× SPEED GAP): Fast AI money and cloud contracts (+8.9 pts/yr above) collide with slow power grid permits (-5.4 pts/yr) and workflow redesign (+3.4 pts/yr) below.', 'KERROSTUMIEN KITkalinja (1,95× NOPEUSERO): Nopea tekoälyraha ja pilvisopimukset (+8,9 p./v yllä) törmäävät hitaisiin sähköverkkolupiin (-5,4 p./v) ja työnkulkujen uudistamiseen (+3,4 p./v) alla.')}</span>
+          <span class="di-badge di-badge-proxy" style="background:#fff">${pd.fast_layer_velocity_pp_yr} vs ${pd.slow_layer_velocity_pp_yr} ${t('pts/yr', 'p./v')}</span>
         </div>
       `;
     }).join('');
 
     document.getElementById('pace-panel').innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:10px">
-        <h3 style="margin:0;font-family:Georgia,serif;font-size:19px">
-          ${t('Why Fast AI Money Hits Slow Real-World Bottlenecks (Stewart Brand Pace Layers)', 'Miksi nopea tekoälyraha törmää hitaisiin pullonkauloihin (Stewart Brandin muutoskerrokset)')}
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:8px">
+        <h3 style="margin:0;font-family:Georgia,serif;font-size:20px">
+          ${t('How Society Absorbs New Technology: Stewart Brand’s Six Pace Layers', 'Miten yhteiskunta omaksuu teknologian: Stewart Brandin kuusi muutoskerrosta')}
         </h3>
         <span class="di-badge di-badge-proxy">
           ${t('Speed Ratio:', 'Nopeussuhde:')} ${pd.pace_shear_ratio}× (${pd.fast_layer_velocity_pp_yr} ${t('compared with', 'verrattuna')} ${pd.slow_layer_velocity_pp_yr} ${t('points per year', 'pistettä vuodessa')})
         </span>
       </div>
-      <p style="margin:0 0 14px;font-size:14.5px;color:#33404d">
-        ${t(pd.diagnostic_summary_en, pd.diagnostic_summary_fi)}
+      <p style="margin:0 0 12px;font-size:14.5px;line-height:1.58;color:#33404d;max-width:86ch">
+        ${t(
+          'In Pace Layering (2018), systems thinker Stewart Brand explains that society works like six stacked layers moving at different clock speeds. Fast top layers (Fashion and Commerce) invent and spend quickly. Slow bottom layers (Power Grids, Laws, Work Habits, and Nature) change over years or decades. Real-world bottlenecks happen at the fault line where fast AI money tries to move faster than physical grids and human workflows.',
+          'Teoksessaan Pace Layering (2018) Stewart Brand kuvaa yhteiskunnan kuutena päällekkäisenä kerroksena, jotka liikkuvat eri nopeuksilla. Nopeat yläkerrokset (Muoti ja Kauppa) keksivät ja investoivat nopeasti. Hitaat alakerrokset (Sähköverkot, Lait, Työtavat ja Luonto) muuttuvat vuosissa tai vuosikymmenissä. Todelliset pullonkaulat syntyvät kitkalinjalla, jossa nopea tekoälyraha törmää hitaisiin sähköverkkoihin ja työtapoihin.'
+        )}
       </p>
-      <div style="background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13.5px">
+
+      <div class="di-pace-intro-grid">
+        <div class="di-pace-rule-card">
+          <strong>${t('1. Fast Layers Propose (Top)', '1. Nopeat kerrokset ehdottavat (Ylhäällä)')}</strong>
+          <p>${t('Fashion (days) and Commerce (months) test new models, sign $265.6B in cloud contracts, and push rapid change (+8.9 points per year).', 'Muoti (päivät) ja Kauppa (kuukaudet) testaavat uusia malleja, solmivat 265,6 mrd. $ pilvisopimuksia ja vauhdittavat muutosta (+8,9 pistettä vuodessa).')}</p>
+        </div>
+        <div class="di-pace-rule-card">
+          <strong>${t('2. Slow Layers Stabilize (Bottom)', '2. Hitaat kerrokset vakauttavat (Alhaalla)')}</strong>
+          <p>${t('Power Grids, Laws, Work Culture, and Nature move at 4.57 points per year. They decide what can actually be powered, trusted, and sustained.', 'Sähköverkot, lait, työkulttuuri ja luonto liikkuvat 4,57 pisteen vuosivauhdilla. Ne määräävät, mille riittää sähkö, luottamus ja kantokyky.')}</p>
+        </div>
+        <div class="di-pace-rule-card">
+          <strong>${t('3. Pace Shear Creates Bottlenecks', '3. Nopeusero synnyttää kitkaa')}</strong>
+          <p>${t('Because Commerce moves 1.95× faster than Grids and Work Habits, capital piles up behind paused power permits (8.7 GW in Texas) and unfinished workflows.', 'Koska Kauppa liikkuu 1,95× nopeammin kuin sähköverkot ja työtavat, pääoma ruuhkautuu lupajonoihin (8,7 GW Texasissa) ja keskeneräisiin työnkulkuihin.')}</p>
+        </div>
+      </div>
+
+      <figure class="di-pace-svg-fig">
+        <svg viewBox="0 0 880 272" role="img" aria-labelledby="pace-svg-title pace-svg-desc">
+          <title id="pace-svg-title">${t('Stewart Brand Six Pace Layers Diagram showing the 1.95x speed gap between fast AI commerce and slow infrastructure and culture', 'Stewart Brandin kuuden muutoskerroksen kaavio, joka näyttää 1,95-kertaisen nopeuseron nopean tekoälykaupan ja hitaan infrastruktuurin välillä')}</title>
+          <desc id="pace-svg-desc">${t('Six horizontal layers stacked from top to bottom: 1. Fashion (days to weeks, unscored), 2. Commerce (months to quarters, score 42.7, +8.9 pts/yr), followed by a red dashed Pace-Shear Fault Line (1.95x gap), then 3. Infrastructure (years to decades, score 34.8, -5.4 pts/yr), 4. Governance (years, score 49.1, +4.1 pts/yr), 5. Culture and Skills (years to generations, score 39.0, +4.2 pts/yr), and 6. Nature (decades to centuries, +52.4 burden / -26.8 reduction).', 'Kuusi päällekkäistä kerrosta ylhäältä alas: 1. Muoti (päivät–viikot), 2. Kauppa (kuukaudet–kvartaalit, 42,7 pistettä, +8,9 p./v), punainen kitkalinja (1,95x nopeusero), 3. Infrastruktuuri (34,8 pistettä, -5,4 p./v), 4. Lait ja standardit (49,1 pistettä), 5. Työtavat ja osaaminen (39,0 pistettä) sekä 6. Luonto (+52,4 kuorma / -26,8 vähennys).')}</desc>
+
+          <!-- Layer 1: Fashion -->
+          <rect x="10" y="8" width="860" height="32" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+          <text x="24" y="28" font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" fill="#64748b">${t('1. FASHION & HYPE (Days–Weeks)', '1. MUOTI JA HUOMIO (Päivät–Viikot)')}</text>
+          <text x="315" y="28" font-family="-apple-system,sans-serif" font-size="11.5" fill="#64748b">${t('Viral demos & press releases — Filtered out (0 weight)', 'Viraalit demot ja tiedotteet — Suodatettu pois (paino 0)')}</text>
+          <text x="854" y="28" text-anchor="end" font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" fill="#64748b">→→→→</text>
+
+          <!-- Layer 2: Commerce -->
+          <rect x="10" y="46" width="860" height="38" rx="6" fill="#dbeafe" stroke="#60a5fa" stroke-width="1.5"/>
+          <rect x="310" y="54" width="320" height="22" rx="4" fill="#1f4fd8" opacity="0.16"/>
+          <rect x="310" y="54" width="190" height="22" rx="4" fill="#1f4fd8"/>
+          <text x="24" y="69" font-family="-apple-system,sans-serif" font-size="12" font-weight="700" fill="#1e3a8a">${t('2. COMMERCE (Months–Quarters)', '2. KAUPPA (Kuukaudet–Kvartaalit)')}</text>
+          <text x="320" y="69" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" fill="#ffffff">${t('Block A: 42.7 / 100 ($265.6B S-1 contracts)', 'Lohko A: 42,7 / 100 (265,6 mrd. $ sopimukset)')}</text>
+          <text x="854" y="69" text-anchor="end" font-family="-apple-system,sans-serif" font-size="12" font-weight="700" fill="#1e3a8a">${t('+8.9 pts/yr →→→', '+8,9 p./v →→→')}</text>
+
+          <!-- Pace-Shear Fault Line -->
+          <line x1="10" y1="95" x2="870" y2="95" stroke="#d97706" stroke-width="2.5" stroke-dasharray="8 5"/>
+          <rect x="195" y="84" width="490" height="22" rx="11" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+          <text x="440" y="99" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" fill="#92400e">${t('⚡ PACE-SHEAR FAULT LINE: 1.95× SPEED GAP (Fast Capital Meets Slow Grids & Workflows)', '⚡ KITKALINJA: 1,95× NOPEUSERO (Nopea pääoma törmää hitaisiin verkkoihin ja työtapoihin)')}</text>
+
+          <!-- Layer 3: Infrastructure -->
+          <rect x="10" y="112" width="860" height="36" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+          <rect x="310" y="119" width="155" height="22" rx="4" fill="#d97706"/>
+          <text x="24" y="134" font-family="-apple-system,sans-serif" font-size="12" font-weight="700" fill="#78350f">${t('3. INFRASTRUCTURE (Years–Decades)', '3. INFRASTRUKTUURI (Vuodet–Vuosikymmenet)')}</text>
+          <text x="320" y="134" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" fill="#ffffff">${t('P8 Grid: 34.8 / 100 (8.7 GW paused in TX)', 'P8 Verkko: 34,8 / 100 (8,7 GW tauolla TX)')}</text>
+          <text x="854" y="134" text-anchor="end" font-family="-apple-system,sans-serif" font-size="12" font-weight="700" fill="#b45309">${t('-5.4 pts/yr ← (Bottleneck)', '-5,4 p./v ← (Pullonkaula)')}</text>
+
+          <!-- Layer 4: Governance -->
+          <rect x="10" y="154" width="860" height="34" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+          <rect x="310" y="160" width="215" height="22" rx="4" fill="#334155"/>
+          <text x="24" y="175" font-family="-apple-system,sans-serif" font-size="12" font-weight="700" fill="#0f172a">${t('4. GOVERNANCE & LAWS (Years)', '4. LAIT JA STANDARDIT (Vuodet)')}</text>
+          <text x="320" y="175" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" fill="#ffffff">${t('P5, P9, P10: 49.1 / 100 (EN 18286 · FSB 12)', 'P5, P9, P10: 49,1 / 100 (EN 18286 · FSB 12)')}</text>
+          <text x="854" y="175" text-anchor="end" font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" fill="#334155">${t('+4.1 pts/yr →', '+4,1 p./v →')}</text>
+
+          <!-- Layer 5: Culture -->
+          <rect x="10" y="194" width="860" height="34" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+          <rect x="310" y="200" width="172" height="22" rx="4" fill="#475569"/>
+          <text x="24" y="215" font-family="-apple-system,sans-serif" font-size="12" font-weight="700" fill="#0f172a">${t('5. CULTURE & WORK HABITS (Generations)', '5. KULTTUURI JA TYÖTAVAT (Sukupolvet)')}</text>
+          <text x="320" y="215" font-family="-apple-system,sans-serif" font-size="11" font-weight="700" fill="#ffffff">${t('P4, P6: 39.0 / 100 (24.8% firms redesign work)', 'P4, P6: 39,0 / 100 (24,8 % uudistaa työtä)')}</text>
+          <text x="854" y="215" text-anchor="end" font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" fill="#334155">${t('+4.2 pts/yr →', '+4,2 p./v →')}</text>
+
+          <!-- Layer 6: Nature -->
+          <rect x="10" y="234" width="860" height="32" rx="6" fill="#fef2f2" stroke="#fecaca"/>
+          <rect x="310" y="240" width="140" height="20" rx="4" fill="#b91c1c"/>
+          <rect x="454" y="240" width="95" height="20" rx="4" fill="#15803d"/>
+          <text x="24" y="254" font-family="-apple-system,sans-serif" font-size="12" font-weight="700" fill="#7f1d1d">${t('6. NATURE (Decades–Centuries)', '6. LUONTO (Vuosikymmenet–Vuosisadat)')}</text>
+          <text x="318" y="254" font-family="-apple-system,sans-serif" font-size="10.5" font-weight="700" fill="#ffffff">${t('+52.4↑ Load', '+52,4↑ Kuorma')}</text>
+          <text x="462" y="254" font-family="-apple-system,sans-serif" font-size="10.5" font-weight="700" fill="#ffffff">${t('-26.8↓ Abate', '-26,8↓ Vähennys')}</text>
+          <text x="854" y="254" text-anchor="end" font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" fill="#7f1d1d">${t('7/9 Limits Crossed', '7/9 rajaa ylitetty')}</text>
+        </svg>
+        <figcaption>
+          ${t('Adapted from Stewart Brand’s', 'Sovellettu Stewart Brandin teoksesta')} <cite>Pace Layering: How Complex Systems Learn and Keep Learning</cite> (2018). ${t('Bar lengths show current 0–100 index scores; right-hand arrows show annual speed.', 'Palkkien pituudet näyttävät indeksipisteet asteikolla 0–100 ja oikean reunan nuolet vuosivauhdin.')}
+        </figcaption>
+      </figure>
+
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px">
+        ${t('Detailed Breakdown of All Six Layers (Ordered from Fastest at Top to Slowest at Bottom)', 'Kaikkien kuuden kerroksen tarkka erittely (nopeimmasta ylhäällä hitaimpaan alhaalla)')}
+      </div>
+      <div class="di-layer-stack">
+        ${stackHtml}
+      </div>
+
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px">
         <strong>${t('Why Buying Compute Alone Does Not Raise Productivity (The J-Curve Rule):', 'Miksi pelkkä laskentatehon ostaminen ei vielä nosta tuottavuutta (J-käyrän sääntö):')}</strong>
         ${t(
-          `Economists Erik Brynjolfsson, Daniel Rock, and Chad Syverson (2021) show that every $1 spent on AI compute requires <strong>$${jc.low_multiplier_2x} to $${jc.high_multiplier_10x}</strong> of investment in redesigning workflows, training staff, and building quality checks. Today, Capital Intensity (58.6) leads Labour Reorganisation (31.2) by <strong>+${jc.implied_complement_gap_points} points</strong>.`,
-          `Taloustieteilijät Erik Brynjolfsson, Daniel Rock ja Chad Syverson (2021) osoittavat, että jokainen laskentatehoon sijoitettu dollari vaatii <strong>${jc.low_multiplier_2x}–${jc.high_multiplier_10x} dollaria</strong> työnkulkujen uudistamiseen, koulutukseen ja laadunvalvontaan. Nyt pääomavaltaisuus (58.6) on <strong>+${jc.implied_complement_gap_points} pistettä</strong> työn uudelleenjärjestelyn (31.2) edellä.`
+          `Economists Erik Brynjolfsson, Daniel Rock, and Chad Syverson (2021) show that every $1 spent on AI compute in Layer 2 (Commerce) requires <strong>$${jc.low_multiplier_2x} to $${jc.high_multiplier_10x}</strong> of investment in Layer 5 (redesigning workflows and training staff) and Layer 4 (quality management systems). Today, Capital Intensity (58.6) leads Labour Reorganisation (31.2) by <strong>+${jc.implied_complement_gap_points} points</strong>.`,
+          `Taloustieteilijät Erik Brynjolfsson, Daniel Rock ja Chad Syverson (2021) osoittavat, että jokainen kerroksessa 2 (Kauppa) laskentatehoon sijoitettu dollari vaatii <strong>${jc.low_multiplier_2x}–${jc.high_multiplier_10x} dollaria</strong> kerrokseen 5 (työnkulkujen uudistaminen ja koulutus) sekä kerrokseen 4 (laadunhallinta). Nyt pääomavaltaisuus (58.6) on <strong>+${jc.implied_complement_gap_points} pistettä</strong> työn uudelleenjärjestelyn (31.2) edellä.`
         )}
       </div>
-      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px">
-        ${t('Published Daily Briefs by Societal Speed Layer (Fastest at Top, Slowest at Bottom)', 'Julkaistut päiväkatsaukset muutoskerroksittain (nopein ylhäällä, hitain alhaalla)')}
-      </div>
-      ${paceRowsHtml}
     `;
   }
 

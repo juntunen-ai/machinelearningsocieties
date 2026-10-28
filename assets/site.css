@@ -192,7 +192,26 @@ table.di-table th.sticky-col{background:var(--panel);z-index:3}
 .di-layer-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px 10px;background:var(--panel);border-radius:8px;font-size:12px;font-variant-numeric:tabular-nums;margin-bottom:10px}
 .di-layer-strip div span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 
-.di-pace-panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:0 0 32px}
+.di-pace-panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:0 0 32px}
+.di-pace-intro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0 18px}
+.di-pace-rule-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.di-pace-rule-card strong{display:block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
+.di-pace-rule-card p{font-size:13px;line-height:1.48;color:#33404d;margin:0}
+.di-pace-svg-fig{margin:0 0 18px;background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.di-pace-svg-fig svg{width:100%;height:auto;display:block}
+.di-pace-svg-fig figcaption{font-size:12px;color:var(--muted);margin-top:8px;text-align:center}
+.di-layer-stack{display:flex;flex-direction:column;gap:8px;margin:0 0 16px}
+.di-layer-stratum{display:grid;grid-template-columns:230px 1fr 195px;gap:14px;align-items:center;padding:12px 15px;border:1px solid var(--line);border-radius:10px;background:#fff;font-variant-numeric:tabular-nums}
+.di-layer-stratum.di-stratum-fast{background:linear-gradient(90deg,#eff6ff 0%,#ffffff 100%);border-color:#93c5fd}
+.di-layer-stratum.di-stratum-unscored{background:#f8fafc;border-style:dashed;color:var(--muted)}
+.di-layer-stratum.di-stratum-slow{background:#fff}
+.di-layer-stratum.di-stratum-bottleneck{background:linear-gradient(90deg,#fffbeb 0%,#ffffff 100%);border-color:#fcd34d}
+.di-stratum-clock{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.di-stratum-name{font-family:Georgia,"Iowan Old Style",serif;font-size:16px;font-weight:700;color:var(--ink);margin:0 0 2px}
+.di-stratum-pillars{font-size:11.5px;color:#475569}
+.di-stratum-mid{font-size:13px;line-height:1.45;color:#33404d}
+.di-stratum-right{text-align:right;font-size:12px}
+.di-shear-banner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:10px 16px;margin:2px 0;border-radius:10px;border:2px dashed #d97706;background:#fffbeb;color:#92400e;font-size:12.5px;font-weight:600}
 .di-pace-row{display:grid;grid-template-columns:170px 1fr 90px;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px;font-variant-numeric:tabular-nums}
 .di-pace-row:last-child{border-bottom:0}
 
@@ -232,7 +251,8 @@ dialog.di-modal::backdrop{background:rgba(18,22,26,.45)}
 
 @media (max-width:860px){
   .di-kpi-grid{grid-template-columns:repeat(2,1fr)}
-  .di-blocks-row,.di-pillar-grid,.di-scale-grid,.di-scale-terms,.di-ecometer-grid{grid-template-columns:1fr}
+  .di-blocks-row,.di-pillar-grid,.di-scale-grid,.di-scale-terms,.di-ecometer-grid,.di-pace-intro-grid,.di-layer-stratum{grid-template-columns:1fr}
+  .di-stratum-right{text-align:left}
   .di-pace-row{grid-template-columns:120px 1fr 70px}
 }
 @media (max-width:520px){
