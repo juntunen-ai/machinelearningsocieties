@@ -1,0 +1,4615 @@
+{
+  "schema_version": "0.6.0",
+  "generated_at": "2026-10-28T12:20:29Z",
+  "reference_period": "2026-Q4 (as of 2026-10-28)",
+  "strict_verification_enforced": true,
+  "Verified_Observation_Count": 56,
+  "Registered_Source_Count": 49,
+  "Verified_Source_Count": 27,
+  "Unverified_Candidate_Source_Count": 22,
+  "Brief_Signal_Count": 11,
+  "headline": {
+    "block_a_diffusion_core": {
+      "score": 42.7,
+      "p5": 32.0,
+      "p50": 41.7,
+      "p95": 53.4,
+      "geometric_mean": 40.5,
+      "velocity_pp_yr": 8.9,
+      "pillars": [
+        "deployment",
+        "cost_to_serve",
+        "capital_intensity"
+      ],
+      "label_en": "Block A — Headline Diffusion Core (P1–P3)",
+      "label_fi": "Lohko A — Päädiffuusioindeksi (P1–P3)",
+      "note_en": "Measures actual diffusion only (Deployment, Cost to Serve, Capital Intensity). Conditions (Block B) and Consequences (Block C) are never blended into this headline.",
+      "note_fi": "Mittaa vain todellista diffuusiota (Käyttöönotto, Suorituskustannus, Pääomavaltaisuus). Edellytyksiä (Lohko B) ja seurauksia (Lohko C) ei koskaan sekoiteta pääindeksiin."
+    },
+    "dai_digital": {
+      "score": 47.0,
+      "p5": 35.9,
+      "p50": 46.1,
+      "p95": 58.8,
+      "velocity_pp_yr": 8.9,
+      "ai_specificity": "specific",
+      "label_en": "Digital AI Index (DAI)",
+      "label_fi": "Digitaalinen tekoälyindeksi (DAI)"
+    },
+    "pai_physical": {
+      "score": 26.1,
+      "p5": 22.5,
+      "p50": 25.8,
+      "p95": 30.4,
+      "velocity_pp_yr": 2.4,
+      "ai_specificity": "proxy",
+      "label_en": "Physical AI & Robotics Index (PAI)",
+      "label_fi": "Fyysinen tekoäly- ja robotiikkaindeksi (PAI)",
+      "proxy_warning_en": "AI-specificity: proxy — IFR robot installations (542,076 in 2024; operational stock 4,663,698) include non-AI industrial automation alongside FDA AI/ML medical devices (1,620+).",
+      "proxy_warning_fi": "Tekoälytarkkuus: proksi — IFR-robottiasennukset (542 076 vuonna 2024; kanta 4 663 698) sisältävät myös perinteisen teollisuusautomaation FDA:n tekoälylääkintälaitteiden (1 620+) rinnalla."
+    },
+    "sector_gap": {
+      "gap_points": 50.9,
+      "leader_sector_id": "software",
+      "leader_name_en": "Information & software",
+      "leader_name_fi": "Informaatio ja ohjelmistot",
+      "leader_score": 70.3,
+      "leader_grade": "A",
+      "laggard_sector_id": "agriculture",
+      "laggard_name_en": "Agriculture & forestry",
+      "laggard_name_fi": "Maa- ja metsätalous",
+      "laggard_score": 19.4,
+      "laggard_grade": "A",
+      "eu_ict_vs_agriculture_pp": 47.4,
+      "finland_ict_vs_all_pp": 42.0,
+      "note_en": "Computed strictly between sectors of comparable provenance (Grade A/B): Information & software (70.3) vs Agriculture & forestry (19.4).",
+      "note_fi": "Laskettu vain vertailukelpoisen laatuluokan (A/B) toimialojen välillä: Informaatio ja ohjelmistot (70.3) vs. Maa- ja metsätalous (19.4)."
+    },
+    "block_b_conditions": {
+      "score": 47.6,
+      "pillars": [
+        "energy_capacity",
+        "governance_burden",
+        "human_capital",
+        "market_openness"
+      ],
+      "label_en": "Block B — Enabling Conditions (P5, P6, P8, P10)",
+      "label_fi": "Lohko B — Mahdollistavat edellytykset (P5, P6, P8, P10)"
+    },
+    "block_c_consequences": {
+      "score": 40.7,
+      "pillars": [
+        "labour_reorganisation",
+        "ownership_distribution",
+        "ecological_balance"
+      ],
+      "label_en": "Block C — Societal & Planetary Consequences (P4, P7, P9)",
+      "label_fi": "Lohko C — Yhteiskunnalliset ja planetaariset seuraukset (P4, P7, P9)"
+    }
+  },
+  "pace_diagnostics": {
+    "fast_layer_velocity_pp_yr": 8.9,
+    "slow_layer_velocity_pp_yr": 4.57,
+    "pace_shear_ratio": 1.95,
+    "j_curve_sensitivity": {
+      "benchmark_label_en": "Required organisational & process complements per $1B of direct compute/model spend (2×–10× sensitivity range, Brynjolfsson et al. 2021)",
+      "benchmark_label_fi": "Vaaditut organisaatio- ja prosessitäydennykset jokaista 1 mrd. $ suoraa laskentapanostusta kohti (2×–10× herkkyysväli, Brynjolfsson ym. 2021)",
+      "audited_lab_h1_compute_usd_b": 8.95,
+      "audited_lab_commitments_usd_b": 265.6,
+      "low_multiplier_2x": 2.0,
+      "mid_multiplier_5x": 5.0,
+      "high_multiplier_10x": 10.0,
+      "implied_complement_gap_points": 27.4
+    },
+    "brief_pace_layer_mix": {
+      "fashion_attention": {
+        "count": 0,
+        "share_pct": 0.0
+      },
+      "commerce": {
+        "count": 4,
+        "share_pct": 36.4
+      },
+      "infrastructure": {
+        "count": 3,
+        "share_pct": 27.3
+      },
+      "governance": {
+        "count": 3,
+        "share_pct": 27.3
+      },
+      "culture": {
+        "count": 1,
+        "share_pct": 9.1
+      },
+      "nature": {
+        "count": 0,
+        "share_pct": 0.0
+      }
+    },
+    "brief_block_mix": {
+      "A_diffusion": 5,
+      "B_conditions": 6
+    },
+    "diagnostic_summary_en": "Pace-shear ratio is 1.95×: Commerce-layer capital commitments ($265.6B in Anthropic's S-1) and formal proof generation (180M Rocq lines) are advancing 1.95× faster than Culture-layer workflow reorganisation (24.8% of firms; <50% hospital e2e completion) and Infrastructure-layer grid permits (8.7 GW gated in Texas).",
+    "diagnostic_summary_fi": "Kerrostumien kitkasuhde on 1.95×: Kaupan kerroksen pääomasitoumukset (265,6 mrd. $ Anthropicin S-1-ilmoituksessa) ja koneelliset todistukset (180 milj. Rocq-riviä) etenevät 1.95× nopeammin kuin Kulttuuri-kerroksen työnkulkujen uudelleenjärjestely (24,8 % yrityksistä; <50 % sairaalatyönkuluista) ja Infrastruktuuri-kerroksen sähköverkkoluvat (8,7 GW Texasissa)."
+  },
+  "pillars": [
+    {
+      "id": "deployment",
+      "label_en": "1. Deployment",
+      "label_fi": "1. Käyttöönotto",
+      "block": "A_diffusion",
+      "direction": 1,
+      "pace_layer": "commerce",
+      "goalpost": {
+        "scale": "linear_or_log",
+        "share_floor": 0.0,
+        "share_ceiling": 100.0,
+        "robot_density_floor": 10.0,
+        "robot_density_ceiling": 1500.0,
+        "unit": "% of units / log quantity"
+      },
+      "code": "P1",
+      "level_score": 28.4,
+      "digital_score": 32.2,
+      "physical_score": 22.8,
+      "reach_score": 34.5,
+      "depth_score": 18.2,
+      "embeddedness_score": 32.5,
+      "momentum_percentile": 82,
+      "velocity_pp_yr": 6.5,
+      "primary_metric_label_en": "EU-27 firms: 20.0% (+6.5 pp/yr; FI 38.0%, DK 42.0%); EU individuals: 32.7%; IFR 542,076 robots (proxy); FDA 1,620+ devices",
+      "primary_metric_label_fi": "EU-27 yritykset: 20,0 % (+6,5 %-yks./v; FI 38,0 %, DK 42,0 %); kansalaiset: 32,7 %; IFR 542 076 robottia (proksi); FDA 1 620+ laitetta",
+      "headline_value": "20.0% / 32.7%",
+      "headline_unit": "EU-27 firms / individuals",
+      "ai_specificity": "specific + proxy (physical)",
+      "grade": "A-Y",
+      "observation_count": 37,
+      "brief_signal_count": 1,
+      "recent_briefs": [
+        {
+          "date": "2026-10-22",
+          "title_en": "The frontier model became a line item, not a vendor decision",
+          "title_fi": "Rajamallista tuli ostorivi, ei toimittajapäätös",
+          "signal_score": 5.0,
+          "stakes_score": 7.0,
+          "quant_metric": "GPT-6 family added to Google Cloud Marketplace commitment drawdowns",
+          "brief_path": "briefs/2026-10-22.html"
+        }
+      ]
+    },
+    {
+      "id": "cost_to_serve",
+      "label_en": "2. Cost to serve",
+      "label_fi": "2. Suorituskustannus",
+      "block": "A_diffusion",
+      "direction": -1,
+      "pace_layer": "commerce",
+      "goalpost": {
+        "scale": "log_index",
+        "base": 100.0,
+        "floor": 10.0,
+        "ceiling": 200.0,
+        "unit": "Task Price Index (2026 baseline = 100)"
+      },
+      "code": "P2",
+      "level_score": 41.2,
+      "digital_score": 44.5,
+      "physical_score": 24.0,
+      "reach_score": 52.0,
+      "depth_score": 41.5,
+      "embeddedness_score": 30.1,
+      "momentum_percentile": 86,
+      "velocity_pp_yr": 7.8,
+      "primary_metric_label_en": "Anthropic S-1 compute cost 54.9% of rev ($8.95B/$16.29B); 180M Rocq proof lines; <50% hospital e2e workflow completion",
+      "primary_metric_label_fi": "Anthropic S-1 laskentakulu 54,9 % liikevaihdosta (8,95/16,29 mrd. $); 180 milj. Rocq-riviä; <50 % sairaalatyönkuluista valmiiksi",
+      "headline_value": "54.9% / <50%",
+      "headline_unit": "lab compute/rev · e2e completion",
+      "ai_specificity": "specific",
+      "grade": "A-Q",
+      "observation_count": 3,
+      "brief_signal_count": 2,
+      "recent_briefs": [
+        {
+          "date": "2026-10-23",
+          "title_en": "The proof got cheap; the specification became the scarce good",
+          "title_fi": "Todistuksesta tuli halpa, määritelmästä niukka hyödyke",
+          "signal_score": 4.0,
+          "stakes_score": 5.0,
+          "quant_metric": "180M lines of machine-checked Rocq proofs across 123 open-source libraries",
+          "brief_path": "briefs/2026-10-23.html"
+        },
+        {
+          "date": "2026-10-19",
+          "title_en": "The agents finish less than half the work",
+          "title_fi": "Agentit tekevät alle puolet työstä",
+          "signal_score": 5.0,
+          "stakes_score": 5.0,
+          "quant_metric": "<50% end-to-end hospital/payer workflow completion vs >90% single-step QA",
+          "brief_path": "briefs/2026-10-19.html"
+        }
+      ]
+    },
+    {
+      "id": "capital_intensity",
+      "label_en": "3. Capital intensity",
+      "label_fi": "3. Pääomavaltaisuus",
+      "block": "A_diffusion",
+      "direction": 1,
+      "pace_layer": "commerce",
+      "goalpost": {
+        "scale": "log",
+        "floor": 1.0,
+        "ceiling": 500.0,
+        "intangible_multiplier_low": 2.0,
+        "intangible_multiplier_high": 10.0,
+        "unit": "USD B / index level (lower bound)"
+      },
+      "code": "P3",
+      "level_score": 58.6,
+      "digital_score": 64.2,
+      "physical_score": 31.5,
+      "reach_score": 66.0,
+      "depth_score": 58.0,
+      "embeddedness_score": 51.8,
+      "momentum_percentile": 94,
+      "velocity_pp_yr": 12.4,
+      "primary_metric_label_en": "Anthropic S-1 $265.6B fixed compute commitments (up from $54.6B end-2025); J-curve intangible multiplier 2×–10×",
+      "primary_metric_label_fi": "Anthropic S-1 265,6 mrd. $ kiinteät laskentasitoumukset (54,6 mrd. $ vuoden 2025 lopussa); J-käyrän aineeton kerroin 2×–10×",
+      "headline_value": "$265.6B",
+      "headline_unit": "Anthropic S-1 commits (lower bound)",
+      "ai_specificity": "specific",
+      "grade": "A-Q",
+      "observation_count": 3,
+      "brief_signal_count": 2,
+      "recent_briefs": [
+        {
+          "date": "2026-10-28",
+          "title_en": "Anthropic made artificial intelligence auditable, and audited numbers will discipline the industry faster than any statute",
+          "title_fi": "Anthropic teki tekoälystä tilintarkastettavaa – ja luvut kurittavat alaa lakia nopeammin",
+          "signal_score": 5.0,
+          "stakes_score": 5.0,
+          "quant_metric": "$16.29B H1 rev; $8.95B compute cost; $265.6B commitments; 48% cloud marketplace share",
+          "brief_path": "briefs/2026-10-28.html"
+        },
+        {
+          "date": "2026-10-21",
+          "title_en": "The labs stopped selling models and started buying the paperwork",
+          "title_fi": "Laboratoriot eivät enää myy malleja, ne ostavat paperityön",
+          "signal_score": 5.0,
+          "stakes_score": 5.0,
+          "quant_metric": "Acquisition of Orchestra Bio into Rosalind clinical workflow layer (J-curve complement)",
+          "brief_path": "briefs/2026-10-21.html"
+        }
+      ]
+    },
+    {
+      "id": "labour_reorganisation",
+      "label_en": "4. Labour reorganisation",
+      "label_fi": "4. Työn uudelleenjärjestely",
+      "block": "C_consequences",
+      "direction": 0,
+      "pace_layer": "culture",
+      "goalpost": {
+        "scale": "linear",
+        "floor": 0.0,
+        "ceiling": 100.0,
+        "unit": "% tasks / firms reorganised (diagnostic)"
+      },
+      "code": "P4",
+      "level_score": 31.2,
+      "digital_score": 34.0,
+      "physical_score": 19.5,
+      "reach_score": 36.5,
+      "depth_score": 29.0,
+      "embeddedness_score": 28.1,
+      "momentum_percentile": 68,
+      "velocity_pp_yr": 3.4,
+      "primary_metric_label_en": "24.8% of firms reorganising workflows (NBER w34836); 36.5% task augmentation share (Anthropic Economic Index)",
+      "primary_metric_label_fi": "24,8 % yrityksistä järjestää työnkulkuja uudelleen (NBER w34836); 36,5 % tehtävistä täydennetty (AEI)",
+      "headline_value": "24.8%",
+      "headline_unit": "firms reorganising tasks (direction 0)",
+      "ai_specificity": "specific",
+      "grade": "B-Y",
+      "observation_count": 2,
+      "brief_signal_count": 0,
+      "recent_briefs": []
+    },
+    {
+      "id": "governance_burden",
+      "label_en": "5. Governance burden",
+      "label_fi": "5. Sääntely- ja valvontakuorma",
+      "block": "B_conditions",
+      "direction": 0,
+      "pace_layer": "governance",
+      "goalpost": {
+        "scale": "linear",
+        "floor": 0.0,
+        "ceiling": 50.0,
+        "unit": "Binding obligations / harmonised standards in force"
+      },
+      "code": "P5",
+      "level_score": 64.5,
+      "digital_score": 66.0,
+      "physical_score": 58.0,
+      "reach_score": 70.0,
+      "depth_score": 61.5,
+      "embeddedness_score": 62.0,
+      "momentum_percentile": 90,
+      "velocity_pp_yr": 11.2,
+      "primary_metric_label_en": "EN 18286:2026 cited in EU Official Journal (Art. 17 AI Act); FSB 12 banking practices; Charlotin 420+ court hallucination cases",
+      "primary_metric_label_fi": "EN 18286:2026 EU:n virallisessa lehdessä (tekoälyasetuksen 17 art.); FSB:n 12 pankkikäytäntöä; 420+ oikeustapausta",
+      "headline_value": "EN 18286 · FSB 12",
+      "headline_unit": "harmonised standard & supervisory rules",
+      "ai_specificity": "specific",
+      "grade": "A-M",
+      "observation_count": 3,
+      "brief_signal_count": 3,
+      "recent_briefs": [
+        {
+          "date": "2026-10-24",
+          "title_en": "Containment became an engineering discipline, and its first export was a patch",
+          "title_fi": "Laboratorio sulkee verkon malliltaan ja löytää reiän muualta",
+          "signal_score": 4.0,
+          "stakes_score": 6.0,
+          "quant_metric": "Air-gapped training clusters; critical Brotli patch in Node.js, Bun, Envoy",
+          "brief_path": "briefs/2026-10-24.html"
+        },
+        {
+          "date": "2026-10-15",
+          "title_en": "The Financial Stability Board writes the first common AI checklist for banks",
+          "title_fi": "FSB kirjoitti pankeille ensimmäisen yhteisen tekoälytarkistuslistan",
+          "signal_score": 4.0,
+          "stakes_score": 7.0,
+          "quant_metric": "12 common FSB supervisory & lifecycle practices for banks and insurers",
+          "brief_path": "briefs/2026-10-15.html"
+        },
+        {
+          "date": "2026-10-14",
+          "title_en": "Europe publishes the first harmonised standard for AI quality management",
+          "title_fi": "Eurooppa julkaisi ensimmäisen harmonisoidun standardin tekoälyn laadunhallinnalle",
+          "signal_score": 5.0,
+          "stakes_score": 5.0,
+          "quant_metric": "EN 18286:2026 cited in Official Journal (Art. 17 AI Act presumption of conformity)",
+          "brief_path": "briefs/2026-10-14.html"
+        }
+      ]
+    },
+    {
+      "id": "human_capital",
+      "label_en": "6. Human capital",
+      "label_fi": "6. Inhimillinen pääoma",
+      "block": "B_conditions",
+      "direction": 1,
+      "pace_layer": "culture",
+      "goalpost": {
+        "scale": "linear",
+        "floor": 0.0,
+        "ceiling": 25.0,
+        "unit": "% ICT specialists / AI-trained workforce"
+      },
+      "code": "P6",
+      "level_score": 46.8,
+      "digital_score": 51.0,
+      "physical_score": 28.0,
+      "reach_score": 54.0,
+      "depth_score": 44.0,
+      "embeddedness_score": 42.4,
+      "momentum_percentile": 74,
+      "velocity_pp_yr": 4.9,
+      "primary_metric_label_en": "54.0% of Finnish enterprises maintain AI competence/governance guidelines (StatFin 13vg); 76% of developers use AI (SO 2026)",
+      "primary_metric_label_fi": "54,0 % suomalaisyrityksistä ylläpitää tekoälyohjeistusta (StatFin 13vg); 76 % ohjelmistokehittäjistä käyttää tekoälyä",
+      "headline_value": "54.0% / 76.0%",
+      "headline_unit": "FI firm guidelines / dev usage",
+      "ai_specificity": "specific",
+      "grade": "A-Y",
+      "observation_count": 2,
+      "brief_signal_count": 1,
+      "recent_briefs": [
+        {
+          "date": "2026-10-27",
+          "title_en": "OpenAI convened the referees, and that is the result that will last",
+          "title_fi": "OpenAI kokoaa arvioijat – siitä syntyy pysyvä tulos",
+          "signal_score": 4.0,
+          "stakes_score": 6.0,
+          "quant_metric": "3 Lean-checked proofs; independent scientific referee consortium",
+          "brief_path": "briefs/2026-10-27.html"
+        }
+      ]
+    },
+    {
+      "id": "ecological_balance",
+      "label_en": "7. Ecological balance",
+      "label_fi": "7. Ekologinen tasapaino",
+      "block": "C_consequences",
+      "direction": 0,
+      "pace_layer": "nature",
+      "goalpost": {
+        "scale": "log",
+        "floor": 10.0,
+        "ceiling": 2000.0,
+        "unit": "TWh / share of planetary boundary control flow"
+      },
+      "code": "P7",
+      "level_score": 52.4,
+      "digital_score": 54.0,
+      "physical_score": 48.0,
+      "reach_score": 58.0,
+      "depth_score": 50.0,
+      "embeddedness_score": 49.2,
+      "momentum_percentile": 81,
+      "velocity_pp_yr": 6.8,
+      "primary_metric_label_en": "IEA data-centre & AI electricity ~485 TWh/yr; 7 of 9 planetary boundaries transgressed (6 of 9 AI shares 'not measured')",
+      "primary_metric_label_fi": "IEA datakeskus- ja tekoälysähkö ~485 TWh/v; 7/9 planetaarista rajaa ylitetty (6/9 tekoälyosuutta 'ei mitattu')",
+      "headline_value": "485 TWh · 7/9 PB",
+      "headline_unit": "DC electricity · planetary boundaries",
+      "ai_specificity": "specific + macro_context",
+      "grade": "B-Y",
+      "observation_count": 2,
+      "brief_signal_count": 0,
+      "recent_briefs": []
+    },
+    {
+      "id": "energy_capacity",
+      "label_en": "8. Energy & grid capacity",
+      "label_fi": "8. Energia- ja verkkokapasiteetti",
+      "block": "B_conditions",
+      "direction": 1,
+      "pace_layer": "infrastructure",
+      "goalpost": {
+        "scale": "queue_ratio",
+        "floor": 0.5,
+        "ceiling": 10.0,
+        "unit": "Requested MW ÷ Connected MW (queue ratio)"
+      },
+      "code": "P8",
+      "level_score": 34.8,
+      "digital_score": 36.0,
+      "physical_score": 32.0,
+      "reach_score": 41.0,
+      "depth_score": 33.5,
+      "embeddedness_score": 30.0,
+      "momentum_percentile": 29,
+      "velocity_pp_yr": -5.4,
+      "primary_metric_label_en": "8.7 GW across 6 data-centre campuses (16 air permits) gated in Texas TCEQ/ERCOT review queue until 10 Dec 2026",
+      "primary_metric_label_fi": "8,7 GW kuudella datakeskusalueella (16 ilmalupaa) jumissa Texasin TCEQ/ERCOT-lupajonossa 10.12.2026 asti",
+      "headline_value": "8.7 GW gated",
+      "headline_unit": "ERCOT / TCEQ permit queue bottleneck",
+      "ai_specificity": "specific",
+      "grade": "A-Q",
+      "observation_count": 1,
+      "brief_signal_count": 1,
+      "recent_briefs": [
+        {
+          "date": "2026-10-25",
+          "title_en": "Texas closed the on-site power loophole, and the delay moved into the permit queue",
+          "title_fi": "Texas sulki oman voimalan porsaanreiän, ja viive siirtyi lupajonoon",
+          "signal_score": 6.0,
+          "stakes_score": 7.0,
+          "quant_metric": "8.7 GW across 6 data-centre campuses; 16 permits gated by TCEQ/ERCOT",
+          "brief_path": "briefs/2026-10-25.html"
+        }
+      ]
+    },
+    {
+      "id": "ownership_distribution",
+      "label_en": "9. Ownership distribution",
+      "label_fi": "9. Omistuksen jakautuminen",
+      "block": "C_consequences",
+      "direction": 0,
+      "pace_layer": "governance",
+      "goalpost": {
+        "scale": "linear",
+        "floor": 0.0,
+        "ceiling": 100.0,
+        "unit": "% broad/public/employee equity share"
+      },
+      "code": "P9",
+      "level_score": 38.5,
+      "digital_score": 39.5,
+      "physical_score": 35.0,
+      "reach_score": 42.0,
+      "depth_score": 37.5,
+      "embeddedness_score": 36.0,
+      "momentum_percentile": 42,
+      "velocity_pp_yr": -2.1,
+      "primary_metric_label_en": "Anthropic S-1: 48% of revenue flows through 3 cloud marketplaces; EU country gap 36.8 pp (DK 42.0% vs RO 5.2%)",
+      "primary_metric_label_fi": "Anthropic S-1: 48 % liikevaihdosta kulkee 3 pilvikauppapaikan kautta; EU-maakuilu 36,8 %-yks. (DK 42,0 % vs RO 5,2 %)",
+      "headline_value": "48% · 36.8 pp",
+      "headline_unit": "3-cloud share · DK–RO adoption gap",
+      "ai_specificity": "specific",
+      "grade": "A-Q",
+      "observation_count": 1,
+      "brief_signal_count": 0,
+      "recent_briefs": []
+    },
+    {
+      "id": "market_openness",
+      "label_en": "10. Market openness",
+      "label_fi": "10. Markkinoiden avoimuus",
+      "block": "B_conditions",
+      "direction": 1,
+      "pace_layer": "governance",
+      "goalpost": {
+        "scale": "linear",
+        "floor": 0.0,
+        "ceiling": 100.0,
+        "unit": "Open-weights / non-concentrated share (%)"
+      },
+      "code": "P10",
+      "level_score": 44.2,
+      "digital_score": 46.5,
+      "physical_score": 34.0,
+      "reach_score": 51.0,
+      "depth_score": 42.5,
+      "embeddedness_score": 39.1,
+      "momentum_percentile": 62,
+      "velocity_pp_yr": 3.1,
+      "primary_metric_label_en": "Open-weight Kimi K3.1 Pro (3T) matches frontier but rations serving quota in 48h; top-5 hyperscalers hold 67% compute share",
+      "primary_metric_label_fi": "Avoin Kimi K3.1 Pro (3T) vastaa huippumalleja mutta säännösteli kapasiteettia 48 tunnissa; 5 pilvijättiä hallitsee 67 % laskennasta",
+      "headline_value": "38.5% open / 67% top-5",
+      "headline_unit": "routed open tokens vs compute share",
+      "ai_specificity": "specific",
+      "grade": "B-Q",
+      "observation_count": 2,
+      "brief_signal_count": 1,
+      "recent_briefs": [
+        {
+          "date": "2026-10-26",
+          "title_en": "Open weights now set the price of frontier capability, and the bottleneck has moved to serving it",
+          "title_fi": "Avoimet painot asettavat nyt huippukyvyn hinnan, ja pullonkaula on siirtynyt mallin tarjoamiseen",
+          "signal_score": 7.0,
+          "stakes_score": 6.0,
+          "quant_metric": "3T parameters; 1M context; subscriber inference rationing within 48h",
+          "brief_path": "briefs/2026-10-26.html"
+        }
+      ]
+    }
+  ],
+  "sectors": [
+    {
+      "sector_id": "professional_services",
+      "code": "M",
+      "name_en": "Professional & scientific services",
+      "name_fi": "Asiantuntija- ja tieteelliset palvelut",
+      "provenance_grade": "A",
+      "block_a_score": 46.4,
+      "dai_score": 50.1,
+      "pai_score": 20.9,
+      "block_b_score": 53.5,
+      "block_c_score": 40.8
+    },
+    {
+      "sector_id": "software",
+      "code": "J",
+      "name_en": "Information & software",
+      "name_fi": "Informaatio ja ohjelmistot",
+      "provenance_grade": "A",
+      "block_a_score": 70.3,
+      "dai_score": 75.9,
+      "pai_score": 31.6,
+      "block_b_score": 59.5,
+      "block_c_score": 53.3
+    },
+    {
+      "sector_id": "manufacturing",
+      "code": "C",
+      "name_en": "Manufacturing",
+      "name_fi": "Teollisuus",
+      "provenance_grade": "A",
+      "block_a_score": 40.8,
+      "dai_score": 37.5,
+      "pai_score": 46.9,
+      "block_b_score": 43.5,
+      "block_c_score": 43.3
+    },
+    {
+      "sector_id": "agriculture",
+      "code": "A",
+      "name_en": "Agriculture & forestry",
+      "name_fi": "Maa- ja metsätalous",
+      "provenance_grade": "A",
+      "block_a_score": 19.4,
+      "dai_score": 17.8,
+      "pai_score": 22.3,
+      "block_b_score": 35.2,
+      "block_c_score": 38.0
+    },
+    {
+      "sector_id": "healthcare",
+      "code": "Q",
+      "name_en": "Healthcare & social work",
+      "name_fi": "Sosiaali- ja terveyspalvelut",
+      "provenance_grade": "A",
+      "block_a_score": 35.1,
+      "dai_score": 32.3,
+      "pai_score": 40.4,
+      "block_b_score": 49.5,
+      "block_c_score": 35.7
+    },
+    {
+      "sector_id": "education",
+      "code": "P",
+      "name_en": "Education & research",
+      "name_fi": "Koulutus ja tutkimus",
+      "provenance_grade": "B",
+      "block_a_score": 39.5,
+      "dai_score": 36.3,
+      "pai_score": 17.8,
+      "block_b_score": 53.2,
+      "block_c_score": 37.7
+    },
+    {
+      "sector_id": "public_administration",
+      "code": "O",
+      "name_en": "Public administration",
+      "name_fi": "Julkinen hallinto",
+      "provenance_grade": "A",
+      "block_a_score": 28.1,
+      "dai_score": 25.9,
+      "pai_score": 12.6,
+      "block_b_score": 51.2,
+      "block_c_score": 35.7
+    },
+    {
+      "sector_id": "finance_insurance",
+      "code": "K",
+      "name_en": "Finance & insurance",
+      "name_fi": "Rahoitus ja vakuutus",
+      "provenance_grade": "A",
+      "block_a_score": 52.1,
+      "dai_score": 56.3,
+      "pai_score": 23.4,
+      "block_b_score": 55.6,
+      "block_c_score": 39.7
+    },
+    {
+      "sector_id": "retail_logistics",
+      "code": "G/H",
+      "name_en": "Retail & transport/logistics",
+      "name_fi": "Kauppa ja kuljetus/logistiikka",
+      "provenance_grade": "A",
+      "block_a_score": 32.8,
+      "dai_score": 30.2,
+      "pai_score": 14.8,
+      "block_b_score": 41.2,
+      "block_c_score": 38.5
+    },
+    {
+      "sector_id": "energy_utilities",
+      "code": "D/E",
+      "name_en": "Energy & utilities",
+      "name_fi": "Energia- ja vesihuolto",
+      "provenance_grade": "A",
+      "block_a_score": 41.5,
+      "dai_score": 38.2,
+      "pai_score": 47.7,
+      "block_b_score": 42.1,
+      "block_c_score": 44.3
+    }
+  ],
+  "grid_cells": [
+    {
+      "sector_id": "professional_services",
+      "pillar_id": "deployment",
+      "score": 41.8,
+      "reach": 47.7,
+      "depth": 36.8,
+      "embeddedness": 41.0,
+      "grade": "A",
+      "ai_specificity": "specific + proxy (physical)",
+      "obs_ids": [
+        "OBS-015"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "professional_services",
+      "pillar_id": "cost_to_serve",
+      "score": 49.5,
+      "reach": 56.4,
+      "depth": 43.6,
+      "embeddedness": 48.5,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "professional_services",
+      "pillar_id": "capital_intensity",
+      "score": 48.0,
+      "reach": 54.7,
+      "depth": 42.2,
+      "embeddedness": 47.0,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-043"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "professional_services",
+      "pillar_id": "labour_reorganisation",
+      "score": 46.5,
+      "reach": 53.0,
+      "depth": 40.9,
+      "embeddedness": 45.6,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-044",
+        "OBS-045"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "professional_services",
+      "pillar_id": "governance_burden",
+      "score": 58.0,
+      "reach": 66.1,
+      "depth": 51.0,
+      "embeddedness": 56.8,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-048"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "professional_services",
+      "pillar_id": "human_capital",
+      "score": 56.0,
+      "reach": 63.8,
+      "depth": 49.3,
+      "embeddedness": 54.9,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-050"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "professional_services",
+      "pillar_id": "ecological_balance",
+      "score": 31.0,
+      "reach": 35.3,
+      "depth": 27.3,
+      "embeddedness": 30.4,
+      "grade": "A",
+      "ai_specificity": "specific + macro_context",
+      "obs_ids": [
+        "OBS-052"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "professional_services",
+      "pillar_id": "energy_capacity",
+      "score": 51.0,
+      "reach": 58.1,
+      "depth": 44.9,
+      "embeddedness": 50.0,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "professional_services",
+      "pillar_id": "ownership_distribution",
+      "score": 45.0,
+      "reach": 51.3,
+      "depth": 39.6,
+      "embeddedness": 44.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "professional_services",
+      "pillar_id": "market_openness",
+      "score": 49.0,
+      "reach": 55.9,
+      "depth": 43.1,
+      "embeddedness": 48.0,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "software",
+      "pillar_id": "deployment",
+      "score": 64.5,
+      "reach": 73.5,
+      "depth": 56.8,
+      "embeddedness": 63.2,
+      "grade": "A",
+      "ai_specificity": "specific + proxy (physical)",
+      "obs_ids": [
+        "OBS-012",
+        "OBS-013",
+        "OBS-028"
+      ],
+      "brief_dates": [
+        "2026-10-22"
+      ]
+    },
+    {
+      "sector_id": "software",
+      "pillar_id": "cost_to_serve",
+      "score": 68.0,
+      "reach": 77.5,
+      "depth": 59.8,
+      "embeddedness": 66.6,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-038"
+      ],
+      "brief_dates": [
+        "2026-10-23"
+      ]
+    },
+    {
+      "sector_id": "software",
+      "pillar_id": "capital_intensity",
+      "score": 78.5,
+      "reach": 89.5,
+      "depth": 69.1,
+      "embeddedness": 76.9,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-041",
+        "OBS-042"
+      ],
+      "brief_dates": [
+        "2026-10-28"
+      ]
+    },
+    {
+      "sector_id": "software",
+      "pillar_id": "labour_reorganisation",
+      "score": 54.0,
+      "reach": 61.6,
+      "depth": 47.5,
+      "embeddedness": 52.9,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-044",
+        "OBS-045"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "software",
+      "pillar_id": "governance_burden",
+      "score": 68.0,
+      "reach": 77.5,
+      "depth": 59.8,
+      "embeddedness": 66.6,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": [
+        "2026-10-24"
+      ]
+    },
+    {
+      "sector_id": "software",
+      "pillar_id": "human_capital",
+      "score": 76.0,
+      "reach": 86.6,
+      "depth": 66.9,
+      "embeddedness": 74.5,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-049"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "software",
+      "pillar_id": "ecological_balance",
+      "score": 58.0,
+      "reach": 66.1,
+      "depth": 51.0,
+      "embeddedness": 56.8,
+      "grade": "A",
+      "ai_specificity": "specific + macro_context",
+      "obs_ids": [
+        "OBS-052"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "software",
+      "pillar_id": "energy_capacity",
+      "score": 42.0,
+      "reach": 47.9,
+      "depth": 37.0,
+      "embeddedness": 41.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "software",
+      "pillar_id": "ownership_distribution",
+      "score": 48.0,
+      "reach": 54.7,
+      "depth": 42.2,
+      "embeddedness": 47.0,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-054"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "software",
+      "pillar_id": "market_openness",
+      "score": 52.0,
+      "reach": 59.3,
+      "depth": 45.8,
+      "embeddedness": 51.0,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-055",
+        "OBS-056"
+      ],
+      "brief_dates": [
+        "2026-10-26"
+      ]
+    },
+    {
+      "sector_id": "manufacturing",
+      "pillar_id": "deployment",
+      "score": 34.5,
+      "reach": 39.3,
+      "depth": 30.4,
+      "embeddedness": 33.8,
+      "grade": "A",
+      "ai_specificity": "proxy",
+      "obs_ids": [
+        "OBS-017",
+        "OBS-034",
+        "OBS-035",
+        "OBS-036"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "manufacturing",
+      "pillar_id": "cost_to_serve",
+      "score": 36.0,
+      "reach": 41.0,
+      "depth": 31.7,
+      "embeddedness": 35.3,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "manufacturing",
+      "pillar_id": "capital_intensity",
+      "score": 52.0,
+      "reach": 59.3,
+      "depth": 45.8,
+      "embeddedness": 51.0,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-043"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "manufacturing",
+      "pillar_id": "labour_reorganisation",
+      "score": 32.0,
+      "reach": 36.5,
+      "depth": 28.2,
+      "embeddedness": 31.4,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-044",
+        "OBS-045"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "manufacturing",
+      "pillar_id": "governance_burden",
+      "score": 54.0,
+      "reach": 61.6,
+      "depth": 47.5,
+      "embeddedness": 52.9,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "manufacturing",
+      "pillar_id": "human_capital",
+      "score": 41.0,
+      "reach": 46.7,
+      "depth": 36.1,
+      "embeddedness": 40.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-050"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "manufacturing",
+      "pillar_id": "ecological_balance",
+      "score": 56.0,
+      "reach": 63.8,
+      "depth": 49.3,
+      "embeddedness": 54.9,
+      "grade": "A",
+      "ai_specificity": "specific + macro_context",
+      "obs_ids": [
+        "OBS-052"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "manufacturing",
+      "pillar_id": "energy_capacity",
+      "score": 38.0,
+      "reach": 43.3,
+      "depth": 33.4,
+      "embeddedness": 37.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "manufacturing",
+      "pillar_id": "ownership_distribution",
+      "score": 42.0,
+      "reach": 47.9,
+      "depth": 37.0,
+      "embeddedness": 41.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "manufacturing",
+      "pillar_id": "market_openness",
+      "score": 41.0,
+      "reach": 46.7,
+      "depth": 36.1,
+      "embeddedness": 40.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "agriculture",
+      "pillar_id": "deployment",
+      "score": 12.8,
+      "reach": 14.6,
+      "depth": 11.3,
+      "embeddedness": 12.5,
+      "grade": "A",
+      "ai_specificity": "specific + proxy (physical)",
+      "obs_ids": [
+        "OBS-022"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "agriculture",
+      "pillar_id": "cost_to_serve",
+      "score": 19.5,
+      "reach": 22.2,
+      "depth": 17.2,
+      "embeddedness": 19.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "agriculture",
+      "pillar_id": "capital_intensity",
+      "score": 26.0,
+      "reach": 29.6,
+      "depth": 22.9,
+      "embeddedness": 25.5,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-043"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "agriculture",
+      "pillar_id": "labour_reorganisation",
+      "score": 16.0,
+      "reach": 18.2,
+      "depth": 14.1,
+      "embeddedness": 15.7,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-044",
+        "OBS-045"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "agriculture",
+      "pillar_id": "governance_burden",
+      "score": 38.0,
+      "reach": 43.3,
+      "depth": 33.4,
+      "embeddedness": 37.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "agriculture",
+      "pillar_id": "human_capital",
+      "score": 24.0,
+      "reach": 27.4,
+      "depth": 21.1,
+      "embeddedness": 23.5,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-050"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "agriculture",
+      "pillar_id": "ecological_balance",
+      "score": 62.0,
+      "reach": 70.7,
+      "depth": 54.6,
+      "embeddedness": 60.8,
+      "grade": "A",
+      "ai_specificity": "specific + macro_context",
+      "obs_ids": [
+        "OBS-052"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "agriculture",
+      "pillar_id": "energy_capacity",
+      "score": 44.0,
+      "reach": 50.2,
+      "depth": 38.7,
+      "embeddedness": 43.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "agriculture",
+      "pillar_id": "ownership_distribution",
+      "score": 36.0,
+      "reach": 41.0,
+      "depth": 31.7,
+      "embeddedness": 35.3,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "agriculture",
+      "pillar_id": "market_openness",
+      "score": 35.0,
+      "reach": 39.9,
+      "depth": 30.8,
+      "embeddedness": 34.3,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "healthcare",
+      "pillar_id": "deployment",
+      "score": 26.8,
+      "reach": 30.6,
+      "depth": 23.6,
+      "embeddedness": 26.3,
+      "grade": "A",
+      "ai_specificity": "specific + proxy (physical)",
+      "obs_ids": [
+        "OBS-019",
+        "OBS-037"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "healthcare",
+      "pillar_id": "cost_to_serve",
+      "score": 31.5,
+      "reach": 35.9,
+      "depth": 27.7,
+      "embeddedness": 30.9,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-039"
+      ],
+      "brief_dates": [
+        "2026-10-19"
+      ]
+    },
+    {
+      "sector_id": "healthcare",
+      "pillar_id": "capital_intensity",
+      "score": 47.0,
+      "reach": 53.6,
+      "depth": 41.4,
+      "embeddedness": 46.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-043"
+      ],
+      "brief_dates": [
+        "2026-10-21"
+      ]
+    },
+    {
+      "sector_id": "healthcare",
+      "pillar_id": "labour_reorganisation",
+      "score": 28.0,
+      "reach": 31.9,
+      "depth": 24.6,
+      "embeddedness": 27.4,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-044",
+        "OBS-045"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "healthcare",
+      "pillar_id": "governance_burden",
+      "score": 69.0,
+      "reach": 78.7,
+      "depth": 60.7,
+      "embeddedness": 67.6,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "healthcare",
+      "pillar_id": "human_capital",
+      "score": 44.0,
+      "reach": 50.2,
+      "depth": 38.7,
+      "embeddedness": 43.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-050"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "healthcare",
+      "pillar_id": "ecological_balance",
+      "score": 36.0,
+      "reach": 41.0,
+      "depth": 31.7,
+      "embeddedness": 35.3,
+      "grade": "A",
+      "ai_specificity": "specific + macro_context",
+      "obs_ids": [
+        "OBS-052"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "healthcare",
+      "pillar_id": "energy_capacity",
+      "score": 46.0,
+      "reach": 52.4,
+      "depth": 40.5,
+      "embeddedness": 45.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "healthcare",
+      "pillar_id": "ownership_distribution",
+      "score": 43.0,
+      "reach": 49.0,
+      "depth": 37.8,
+      "embeddedness": 42.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "healthcare",
+      "pillar_id": "market_openness",
+      "score": 39.0,
+      "reach": 44.5,
+      "depth": 34.3,
+      "embeddedness": 38.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "education",
+      "pillar_id": "deployment",
+      "score": 31.0,
+      "reach": 35.3,
+      "depth": 27.3,
+      "embeddedness": 30.4,
+      "grade": "B",
+      "ai_specificity": "specific + proxy (physical)",
+      "obs_ids": [
+        "OBS-020"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "education",
+      "pillar_id": "cost_to_serve",
+      "score": 48.5,
+      "reach": 55.3,
+      "depth": 42.7,
+      "embeddedness": 47.5,
+      "grade": "B",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-040"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "education",
+      "pillar_id": "capital_intensity",
+      "score": 39.0,
+      "reach": 44.5,
+      "depth": 34.3,
+      "embeddedness": 38.2,
+      "grade": "B",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-043"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "education",
+      "pillar_id": "labour_reorganisation",
+      "score": 38.0,
+      "reach": 43.3,
+      "depth": 33.4,
+      "embeddedness": 37.2,
+      "grade": "B",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-044",
+        "OBS-045"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "education",
+      "pillar_id": "governance_burden",
+      "score": 52.0,
+      "reach": 59.3,
+      "depth": 45.8,
+      "embeddedness": 51.0,
+      "grade": "B",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "education",
+      "pillar_id": "human_capital",
+      "score": 54.0,
+      "reach": 61.6,
+      "depth": 47.5,
+      "embeddedness": 52.9,
+      "grade": "B",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-050"
+      ],
+      "brief_dates": [
+        "2026-10-27"
+      ]
+    },
+    {
+      "sector_id": "education",
+      "pillar_id": "ecological_balance",
+      "score": 29.0,
+      "reach": 33.1,
+      "depth": 25.5,
+      "embeddedness": 28.4,
+      "grade": "B",
+      "ai_specificity": "specific + macro_context",
+      "obs_ids": [
+        "OBS-052"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "education",
+      "pillar_id": "energy_capacity",
+      "score": 49.0,
+      "reach": 55.9,
+      "depth": 43.1,
+      "embeddedness": 48.0,
+      "grade": "B",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "education",
+      "pillar_id": "ownership_distribution",
+      "score": 46.0,
+      "reach": 52.4,
+      "depth": 40.5,
+      "embeddedness": 45.1,
+      "grade": "B",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "education",
+      "pillar_id": "market_openness",
+      "score": 58.0,
+      "reach": 66.1,
+      "depth": 51.0,
+      "embeddedness": 56.8,
+      "grade": "B",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "public_administration",
+      "pillar_id": "deployment",
+      "score": 21.2,
+      "reach": 24.2,
+      "depth": 18.7,
+      "embeddedness": 20.8,
+      "grade": "A",
+      "ai_specificity": "specific + proxy (physical)",
+      "obs_ids": [
+        "OBS-021"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "public_administration",
+      "pillar_id": "cost_to_serve",
+      "score": 28.0,
+      "reach": 31.9,
+      "depth": 24.6,
+      "embeddedness": 27.4,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "public_administration",
+      "pillar_id": "capital_intensity",
+      "score": 35.0,
+      "reach": 39.9,
+      "depth": 30.8,
+      "embeddedness": 34.3,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-043"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "public_administration",
+      "pillar_id": "labour_reorganisation",
+      "score": 24.0,
+      "reach": 27.4,
+      "depth": 21.1,
+      "embeddedness": 23.5,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-044",
+        "OBS-045"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "public_administration",
+      "pillar_id": "governance_burden",
+      "score": 74.0,
+      "reach": 84.4,
+      "depth": 65.1,
+      "embeddedness": 72.5,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-046"
+      ],
+      "brief_dates": [
+        "2026-10-14"
+      ]
+    },
+    {
+      "sector_id": "public_administration",
+      "pillar_id": "human_capital",
+      "score": 39.0,
+      "reach": 44.5,
+      "depth": 34.3,
+      "embeddedness": 38.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-050"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "public_administration",
+      "pillar_id": "ecological_balance",
+      "score": 32.0,
+      "reach": 36.5,
+      "depth": 28.2,
+      "embeddedness": 31.4,
+      "grade": "A",
+      "ai_specificity": "specific + macro_context",
+      "obs_ids": [
+        "OBS-052"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "public_administration",
+      "pillar_id": "energy_capacity",
+      "score": 45.0,
+      "reach": 51.3,
+      "depth": 39.6,
+      "embeddedness": 44.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "public_administration",
+      "pillar_id": "ownership_distribution",
+      "score": 51.0,
+      "reach": 58.1,
+      "depth": 44.9,
+      "embeddedness": 50.0,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "public_administration",
+      "pillar_id": "market_openness",
+      "score": 47.0,
+      "reach": 53.6,
+      "depth": 41.4,
+      "embeddedness": 46.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "finance_insurance",
+      "pillar_id": "deployment",
+      "score": 46.2,
+      "reach": 52.7,
+      "depth": 40.7,
+      "embeddedness": 45.3,
+      "grade": "A",
+      "ai_specificity": "specific + proxy (physical)",
+      "obs_ids": [
+        "OBS-014"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "finance_insurance",
+      "pillar_id": "cost_to_serve",
+      "score": 52.0,
+      "reach": 59.3,
+      "depth": 45.8,
+      "embeddedness": 51.0,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "finance_insurance",
+      "pillar_id": "capital_intensity",
+      "score": 58.0,
+      "reach": 66.1,
+      "depth": 51.0,
+      "embeddedness": 56.8,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-043"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "finance_insurance",
+      "pillar_id": "labour_reorganisation",
+      "score": 44.0,
+      "reach": 50.2,
+      "depth": 38.7,
+      "embeddedness": 43.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-044",
+        "OBS-045"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "finance_insurance",
+      "pillar_id": "governance_burden",
+      "score": 72.5,
+      "reach": 82.6,
+      "depth": 63.8,
+      "embeddedness": 71.0,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-047"
+      ],
+      "brief_dates": [
+        "2026-10-15"
+      ]
+    },
+    {
+      "sector_id": "finance_insurance",
+      "pillar_id": "human_capital",
+      "score": 58.0,
+      "reach": 66.1,
+      "depth": 51.0,
+      "embeddedness": 56.8,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-050"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "finance_insurance",
+      "pillar_id": "ecological_balance",
+      "score": 34.0,
+      "reach": 38.8,
+      "depth": 29.9,
+      "embeddedness": 33.3,
+      "grade": "A",
+      "ai_specificity": "specific + macro_context",
+      "obs_ids": [
+        "OBS-052"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "finance_insurance",
+      "pillar_id": "energy_capacity",
+      "score": 48.0,
+      "reach": 54.7,
+      "depth": 42.2,
+      "embeddedness": 47.0,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "finance_insurance",
+      "pillar_id": "ownership_distribution",
+      "score": 41.0,
+      "reach": 46.7,
+      "depth": 36.1,
+      "embeddedness": 40.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "finance_insurance",
+      "pillar_id": "market_openness",
+      "score": 44.0,
+      "reach": 50.2,
+      "depth": 38.7,
+      "embeddedness": 43.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "retail_logistics",
+      "pillar_id": "deployment",
+      "score": 24.4,
+      "reach": 27.8,
+      "depth": 21.5,
+      "embeddedness": 23.9,
+      "grade": "A",
+      "ai_specificity": "specific + proxy (physical)",
+      "obs_ids": [
+        "OBS-018"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "retail_logistics",
+      "pillar_id": "cost_to_serve",
+      "score": 33.0,
+      "reach": 37.6,
+      "depth": 29.0,
+      "embeddedness": 32.3,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "retail_logistics",
+      "pillar_id": "capital_intensity",
+      "score": 41.0,
+      "reach": 46.7,
+      "depth": 36.1,
+      "embeddedness": 40.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-043"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "retail_logistics",
+      "pillar_id": "labour_reorganisation",
+      "score": 29.5,
+      "reach": 33.6,
+      "depth": 26.0,
+      "embeddedness": 28.9,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-044",
+        "OBS-045"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "retail_logistics",
+      "pillar_id": "governance_burden",
+      "score": 44.0,
+      "reach": 50.2,
+      "depth": 38.7,
+      "embeddedness": 43.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "retail_logistics",
+      "pillar_id": "human_capital",
+      "score": 36.0,
+      "reach": 41.0,
+      "depth": 31.7,
+      "embeddedness": 35.3,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-050"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "retail_logistics",
+      "pillar_id": "ecological_balance",
+      "score": 48.0,
+      "reach": 54.7,
+      "depth": 42.2,
+      "embeddedness": 47.0,
+      "grade": "A",
+      "ai_specificity": "specific + macro_context",
+      "obs_ids": [
+        "OBS-052"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "retail_logistics",
+      "pillar_id": "energy_capacity",
+      "score": 43.0,
+      "reach": 49.0,
+      "depth": 37.8,
+      "embeddedness": 42.1,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "retail_logistics",
+      "pillar_id": "ownership_distribution",
+      "score": 38.0,
+      "reach": 43.3,
+      "depth": 33.4,
+      "embeddedness": 37.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "retail_logistics",
+      "pillar_id": "market_openness",
+      "score": 42.0,
+      "reach": 47.9,
+      "depth": 37.0,
+      "embeddedness": 41.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "energy_utilities",
+      "pillar_id": "deployment",
+      "score": 28.4,
+      "reach": 32.4,
+      "depth": 25.0,
+      "embeddedness": 27.8,
+      "grade": "A",
+      "ai_specificity": "specific + proxy (physical)",
+      "obs_ids": [
+        "OBS-016"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "energy_utilities",
+      "pillar_id": "cost_to_serve",
+      "score": 34.0,
+      "reach": 38.8,
+      "depth": 29.9,
+      "embeddedness": 33.3,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "energy_utilities",
+      "pillar_id": "capital_intensity",
+      "score": 62.0,
+      "reach": 70.7,
+      "depth": 54.6,
+      "embeddedness": 60.8,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-043"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "energy_utilities",
+      "pillar_id": "labour_reorganisation",
+      "score": 26.0,
+      "reach": 29.6,
+      "depth": 22.9,
+      "embeddedness": 25.5,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-044",
+        "OBS-045"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "energy_utilities",
+      "pillar_id": "governance_burden",
+      "score": 64.0,
+      "reach": 73.0,
+      "depth": 56.3,
+      "embeddedness": 62.7,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "energy_utilities",
+      "pillar_id": "human_capital",
+      "score": 42.0,
+      "reach": 47.9,
+      "depth": 37.0,
+      "embeddedness": 41.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-050"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "energy_utilities",
+      "pillar_id": "ecological_balance",
+      "score": 68.0,
+      "reach": 77.5,
+      "depth": 59.8,
+      "embeddedness": 66.6,
+      "grade": "A",
+      "ai_specificity": "specific + macro_context",
+      "obs_ids": [
+        "OBS-051"
+      ],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "energy_utilities",
+      "pillar_id": "energy_capacity",
+      "score": 24.5,
+      "reach": 27.9,
+      "depth": 21.6,
+      "embeddedness": 24.0,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [
+        "OBS-053"
+      ],
+      "brief_dates": [
+        "2026-10-25"
+      ]
+    },
+    {
+      "sector_id": "energy_utilities",
+      "pillar_id": "ownership_distribution",
+      "score": 39.0,
+      "reach": 44.5,
+      "depth": 34.3,
+      "embeddedness": 38.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    },
+    {
+      "sector_id": "energy_utilities",
+      "pillar_id": "market_openness",
+      "score": 38.0,
+      "reach": 43.3,
+      "depth": 33.4,
+      "embeddedness": 37.2,
+      "grade": "A",
+      "ai_specificity": "specific",
+      "obs_ids": [],
+      "brief_dates": []
+    }
+  ],
+  "observations": [
+    {
+      "obs_id": "OBS-001",
+      "date_logged": "2026-10-28",
+      "period": "2023",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "8.0",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "EU-27 enterprises (10+ employees) using at least one AI technology (2023 baseline)"
+    },
+    {
+      "obs_id": "OBS-002",
+      "date_logged": "2026-10-28",
+      "period": "2024",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "13.5",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "EU-27 enterprises (10+ employees) using at least one AI technology (2024 release)"
+    },
+    {
+      "obs_id": "OBS-003",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "20.0",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "EU-27 enterprises (10+ employees) using at least one AI technology (2025 release; +6.5pp/yr)"
+    },
+    {
+      "obs_id": "OBS-004",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "DK",
+      "value": "42.0",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Denmark enterprise AI adoption (EU top country in 2025 release)"
+    },
+    {
+      "obs_id": "OBS-005",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "FI",
+      "value": "37.8",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Finland enterprise AI adoption (Eurostat 2025 harmonised release)"
+    },
+    {
+      "obs_id": "OBS-006",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "SE",
+      "value": "35.0",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Sweden enterprise AI adoption (Eurostat 2025 harmonised release)"
+    },
+    {
+      "obs_id": "OBS-007",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "RO",
+      "value": "5.2",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Romania enterprise AI adoption (Eurostat 2025 harmonised release)"
+    },
+    {
+      "obs_id": "OBS-008",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "PL",
+      "value": "8.4",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Poland enterprise AI adoption (Eurostat 2025 harmonised release)"
+    },
+    {
+      "obs_id": "OBS-009",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "BG",
+      "value": "8.5",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Bulgaria enterprise AI adoption (Eurostat 2025 harmonised release)"
+    },
+    {
+      "obs_id": "OBS-010",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "FI",
+      "value": "38.0",
+      "unit": "pct_firms_10plus",
+      "source_id": "statfin_icte_13vg",
+      "series_id": "statfin_icte_pxt_13vg.px",
+      "series_version": "2025-11",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Statistics Finland national release: 38% of Finnish enterprises (10+ employees) use AI"
+    },
+    {
+      "obs_id": "OBS-011",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "depth",
+      "geo": "FI",
+      "value": "68.0",
+      "unit": "pct_large_firms",
+      "source_id": "statfin_icte_13vg",
+      "series_id": "statfin_icte_pxt_13vg.px",
+      "series_version": "2025-11",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Statistics Finland: 68% of large Finnish enterprises (250+ employees) use AI"
+    },
+    {
+      "obs_id": "OBS-012",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "software",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "FI",
+      "value": "80.0",
+      "unit": "pct_firms_10plus",
+      "source_id": "statfin_icte_13vg",
+      "series_id": "statfin_icte_pxt_13vg.px",
+      "series_version": "2025-11",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Statistics Finland: ~80% of ICT and software enterprises in Finland use AI"
+    },
+    {
+      "obs_id": "OBS-013",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "software",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "54.2",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai_nace_J",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat EU-27 NACE J (Information & software) enterprise AI adoption"
+    },
+    {
+      "obs_id": "OBS-014",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "finance_insurance",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "41.5",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai_nace_K",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat EU-27 Finance & insurance enterprise AI adoption baseline"
+    },
+    {
+      "obs_id": "OBS-015",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "professional_services",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "36.8",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai_nace_M",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat EU-27 Professional & scientific services enterprise AI adoption"
+    },
+    {
+      "obs_id": "OBS-016",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "energy_utilities",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "21.4",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai_nace_D_E",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat EU-27 Energy & utilities enterprise AI adoption"
+    },
+    {
+      "obs_id": "OBS-017",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "manufacturing",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "18.2",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai_nace_C",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat EU-27 Manufacturing enterprise AI adoption (digital workflows)"
+    },
+    {
+      "obs_id": "OBS-018",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "retail_logistics",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "16.9",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai_nace_G_H",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat EU-27 Retail & transport/logistics enterprise AI adoption"
+    },
+    {
+      "obs_id": "OBS-019",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "healthcare",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "15.6",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai_nace_Q",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat EU-27 Healthcare & social work enterprise AI adoption"
+    },
+    {
+      "obs_id": "OBS-020",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "education",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "19.5",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai_nace_P",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat EU-27 Education & research institutional AI adoption"
+    },
+    {
+      "obs_id": "OBS-021",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "public_administration",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "14.8",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai_nace_O",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat EU-27 Public administration digital workflow AI adoption"
+    },
+    {
+      "obs_id": "OBS-022",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "agriculture",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "6.8",
+      "unit": "pct_firms_10plus",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai_nace_A",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat EU-27 Agriculture & forestry lagging sector enterprise AI adoption"
+    },
+    {
+      "obs_id": "OBS-023",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "IE",
+      "value": "28.4",
+      "unit": "pct_firms_10plus",
+      "source_id": "cso_biiesa20",
+      "series_id": "BIIESA20",
+      "series_version": "2025-12",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "CSO Ireland Business in Ireland enterprise AI adoption"
+    },
+    {
+      "obs_id": "OBS-024",
+      "date_logged": "2026-10-28",
+      "period": "2025-W44",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "US",
+      "value": "9.8",
+      "unit": "pct_firms_production",
+      "source_id": "census_btos",
+      "series_id": "BTOS_AI_USE_V1",
+      "series_version": "2025-10",
+      "grade": "A-M",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "US Census BTOS pre-break production AI question (producing goods/services)"
+    },
+    {
+      "obs_id": "OBS-025",
+      "date_logged": "2026-10-28",
+      "period": "2025-W48",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "US",
+      "value": "17.4",
+      "unit": "pct_firms_any_fn",
+      "source_id": "census_btos",
+      "series_id": "BTOS_AI_USE_V2",
+      "series_version": "2025-11-17",
+      "grade": "A-M",
+      "trust_tier": "1",
+      "break_flag": "true",
+      "bridge_factor": "0.563",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "US Census BTOS post-2025-11-17 expanded any-business-function AI question (break_flag=true)"
+    },
+    {
+      "obs_id": "OBS-026",
+      "date_logged": "2026-10-28",
+      "period": "2026-Q3",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "US",
+      "value": "21.2",
+      "unit": "pct_firms_any_fn",
+      "source_id": "census_btos",
+      "series_id": "BTOS_AI_USE_V2",
+      "series_version": "2026-09",
+      "grade": "A-M",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "0.563",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "US Census BTOS Q3 2026 any-business-function AI adoption (bridged via 0.563 factor to pre-break series)"
+    },
+    {
+      "obs_id": "OBS-027",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "depth",
+      "geo": "EU27",
+      "value": "6.4",
+      "unit": "pct_firms_multi_workflow",
+      "source_id": "eurostat_isoc_eb_ai",
+      "series_id": "isoc_eb_ai_multi3",
+      "series_version": "2026-01",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "EU-27 enterprises using 3 or more distinct AI technologies/workflows (Depth layer)"
+    },
+    {
+      "obs_id": "OBS-028",
+      "date_logged": "2026-10-28",
+      "period": "2026-H1",
+      "pillar": "deployment",
+      "sector": "software",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "geo": "GLOBAL",
+      "value": "48.0",
+      "unit": "pct_revenue_cloud_mp",
+      "source_id": "sec_edgar",
+      "series_id": "0001872341-26-S1",
+      "series_version": "2026-10-26",
+      "grade": "A-Q",
+      "trust_tier": "2",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-28",
+      "notes": "Anthropic S-1: 48% of H1 2026 revenue transacted through 3 cloud marketplaces (procurement line-item embeddedness)"
+    },
+    {
+      "obs_id": "OBS-029",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "32.7",
+      "unit": "pct_individuals_16_74",
+      "source_id": "eurostat_isoc_ai_iaiu",
+      "series_id": "isoc_ai_iaiu",
+      "series_version": "2026-02",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat: 32.7% of EU individuals aged 16-74 used generative AI tools in 2025"
+    },
+    {
+      "obs_id": "OBS-030",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "DK",
+      "value": "48.4",
+      "unit": "pct_individuals_16_74",
+      "source_id": "eurostat_isoc_ai_iaiu",
+      "series_id": "isoc_ai_iaiu",
+      "series_version": "2026-02",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat: Denmark individual generative AI usage (48.4%)"
+    },
+    {
+      "obs_id": "OBS-031",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "FI",
+      "value": "46.2",
+      "unit": "pct_individuals_16_74",
+      "source_id": "eurostat_isoc_ai_iaiu",
+      "series_id": "isoc_ai_iaiu",
+      "series_version": "2026-02",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Eurostat: Finland individual generative AI usage (46.2%)"
+    },
+    {
+      "obs_id": "OBS-032",
+      "date_logged": "2026-10-28",
+      "period": "2026-Q1",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "GLOBAL",
+      "value": "17.8",
+      "unit": "pct_working_age_pop",
+      "source_id": "microsoft_ai_user_share",
+      "series_id": "MSFT-ECON-2026Q1",
+      "series_version": "2026-04",
+      "grade": "B-Q",
+      "trust_tier": "4",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Microsoft AI Economy Institute: Global working-age AI user share Q1 2026 (17.8%)"
+    },
+    {
+      "obs_id": "OBS-033",
+      "date_logged": "2026-10-28",
+      "period": "2026-Q2",
+      "pillar": "deployment",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "GLOBAL",
+      "value": "18.8",
+      "unit": "pct_working_age_pop",
+      "source_id": "microsoft_ai_user_share",
+      "series_id": "MSFT-ECON-2026Q2",
+      "series_version": "2026-07",
+      "grade": "B-Q",
+      "trust_tier": "4",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Microsoft AI Economy Institute: Global working-age AI user share Q2 2026 (18.8%; +1.0pp QoQ)"
+    },
+    {
+      "obs_id": "OBS-034",
+      "date_logged": "2026-10-28",
+      "period": "2024",
+      "pillar": "deployment",
+      "sector": "manufacturing",
+      "channel": "physical",
+      "layer": "reach",
+      "geo": "GLOBAL",
+      "value": "177.0",
+      "unit": "robots_per_10k_mfg",
+      "source_id": "ifr_world_robotics",
+      "series_id": "IFR-WR-2025-DENSITY",
+      "series_version": "2025-09",
+      "grade": "B-Y",
+      "trust_tier": "3",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "proxy",
+      "brief_ref": "",
+      "notes": "IFR World Robotics 2025: Global average robot density in manufacturing (542076 installed in 2024; operational stock 4663698; proxy)"
+    },
+    {
+      "obs_id": "OBS-035",
+      "date_logged": "2026-10-28",
+      "period": "2024",
+      "pillar": "deployment",
+      "sector": "manufacturing",
+      "channel": "physical",
+      "layer": "reach",
+      "geo": "EU27",
+      "value": "219.0",
+      "unit": "robots_per_10k_mfg",
+      "source_id": "ifr_world_robotics",
+      "series_id": "IFR-WR-2025-EU",
+      "series_version": "2025-09",
+      "grade": "B-Y",
+      "trust_tier": "3",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "proxy",
+      "brief_ref": "",
+      "notes": "IFR World Robotics 2025: European Union manufacturing robot density per 10000 employees (proxy)"
+    },
+    {
+      "obs_id": "OBS-036",
+      "date_logged": "2026-10-28",
+      "period": "2024",
+      "pillar": "deployment",
+      "sector": "manufacturing",
+      "channel": "physical",
+      "layer": "reach",
+      "geo": "US",
+      "value": "295.0",
+      "unit": "robots_per_10k_mfg",
+      "source_id": "ifr_world_robotics",
+      "series_id": "IFR-WR-2025-US",
+      "series_version": "2025-09",
+      "grade": "B-Y",
+      "trust_tier": "3",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "proxy",
+      "brief_ref": "",
+      "notes": "IFR World Robotics 2025: United States manufacturing robot density per 10000 employees (proxy)"
+    },
+    {
+      "obs_id": "OBS-037",
+      "date_logged": "2026-10-28",
+      "period": "2026-Q3",
+      "pillar": "deployment",
+      "sector": "healthcare",
+      "channel": "physical",
+      "layer": "embeddedness",
+      "geo": "US",
+      "value": "1620.0",
+      "unit": "count_devices",
+      "source_id": "fda_ai_device_list",
+      "series_id": "FDA-AIML-LIST",
+      "series_version": "2026-08",
+      "grade": "A-Q",
+      "trust_tier": "2",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "FDA AI-Enabled Medical Device List: 1620+ cleared/approved clinical devices (76% radiology)"
+    },
+    {
+      "obs_id": "OBS-038",
+      "date_logged": "2026-10-28",
+      "period": "2026-10",
+      "pillar": "cost_to_serve",
+      "sector": "software",
+      "channel": "digital",
+      "layer": "depth",
+      "geo": "GLOBAL",
+      "value": "54.9",
+      "unit": "pct_compute_cost_of_rev",
+      "source_id": "sec_edgar",
+      "series_id": "0001872341-26-S1-COST",
+      "series_version": "2026-10-26",
+      "grade": "A-Q",
+      "trust_tier": "2",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-28",
+      "notes": "Anthropic S-1: $8.95B H1 2026 compute and infrastructure cost on $16.29B revenue (54.9% cost-to-serve ratio)"
+    },
+    {
+      "obs_id": "OBS-039",
+      "date_logged": "2026-10-28",
+      "period": "2026-10",
+      "pillar": "cost_to_serve",
+      "sector": "healthcare",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "geo": "US",
+      "value": "44.0",
+      "unit": "pct_e2e_workflows",
+      "source_id": "stanford_ai_index",
+      "series_id": "STANFORD-HAI-MEDAGENT-2026",
+      "series_version": "2026-10-19",
+      "grade": "C-Y",
+      "trust_tier": "5",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-19",
+      "notes": "Stanford HAI hospital/payer benchmark: frontier agents complete <50% of multi-step workflows (integration & oversight cost remains binding)"
+    },
+    {
+      "obs_id": "OBS-040",
+      "date_logged": "2026-10-28",
+      "period": "2026-10",
+      "pillar": "cost_to_serve",
+      "sector": "education",
+      "channel": "digital",
+      "layer": "depth",
+      "geo": "GLOBAL",
+      "value": "180.0",
+      "unit": "million_lines_rocq",
+      "source_id": "gdpval",
+      "series_id": "ROCQ-180M-PROOFS",
+      "series_version": "2026-10-23",
+      "grade": "C-Q",
+      "trust_tier": "4",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-23",
+      "notes": "180M lines of machine-checked Rocq proofs across 123 libraries (proof generation cost collapsed; specification cost now binding)"
+    },
+    {
+      "obs_id": "OBS-041",
+      "date_logged": "2026-10-28",
+      "period": "2026-H1",
+      "pillar": "capital_intensity",
+      "sector": "software",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "geo": "US",
+      "value": "265.6",
+      "unit": "usd_billions_commitments",
+      "source_id": "sec_edgar",
+      "series_id": "0001872341-26-S1-COMMIT",
+      "series_version": "2026-10-26",
+      "grade": "A-Q",
+      "trust_tier": "2",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-28",
+      "notes": "Anthropic PBC Form S-1: $265.6B in fixed multi-year compute purchase commitments (up from $54.6B end-2025)"
+    },
+    {
+      "obs_id": "OBS-042",
+      "date_logged": "2026-10-28",
+      "period": "2026-H1",
+      "pillar": "capital_intensity",
+      "sector": "software",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "US",
+      "value": "16.29",
+      "unit": "usd_billions_h1_rev",
+      "source_id": "sec_edgar",
+      "series_id": "0001872341-26-S1-REV",
+      "series_version": "2026-10-26",
+      "grade": "A-Q",
+      "trust_tier": "2",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-28",
+      "notes": "Anthropic PBC Form S-1: $16.29B H1 2026 audited revenue ($8.95B H1 compute cost)"
+    },
+    {
+      "obs_id": "OBS-043",
+      "date_logged": "2026-10-28",
+      "period": "2026-Q3",
+      "pillar": "capital_intensity",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "depth",
+      "geo": "GLOBAL",
+      "value": "74.0",
+      "unit": "index_0_100",
+      "source_id": "epoch_ai_data",
+      "series_id": "EPOCH-FRONTIER-DC-2026",
+      "series_version": "2026-09",
+      "grade": "B-Q",
+      "trust_tier": "3",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Epoch AI Frontier Data Centers & GPU Clusters capital stock index (lower bound; excludes 2x-10x intangible complement)"
+    },
+    {
+      "obs_id": "OBS-044",
+      "date_logged": "2026-10-28",
+      "period": "2026-Q1",
+      "pillar": "labour_reorganisation",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "depth",
+      "geo": "GLOBAL",
+      "value": "36.5",
+      "unit": "pct_tasks_augmented_or_automated",
+      "source_id": "anthropic_economic_index",
+      "series_id": "AEI-2026-TASKMIX",
+      "series_version": "2026-03",
+      "grade": "C-Q",
+      "trust_tier": "4",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Anthropic Economic Index task-mix share of occupations showing active workflow augmentation/reorganisation"
+    },
+    {
+      "obs_id": "OBS-045",
+      "date_logged": "2026-10-28",
+      "period": "2026-Q1",
+      "pillar": "labour_reorganisation",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "US",
+      "value": "24.8",
+      "unit": "pct_firms_task_change",
+      "source_id": "firm_data_on_ai",
+      "series_id": "NBER-W34836-2026",
+      "series_version": "2026-05",
+      "grade": "B-Y",
+      "trust_tier": "3",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Firm Data on AI (NBER w34836; Atlanta Fed/BoE/Bundesbank): share of firms reorganising workflows around AI"
+    },
+    {
+      "obs_id": "OBS-046",
+      "date_logged": "2026-10-28",
+      "period": "2026-10",
+      "pillar": "governance_burden",
+      "sector": "public_administration",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "geo": "EU27",
+      "value": "68.0",
+      "unit": "index_0_100",
+      "source_id": "eur_lex",
+      "series_id": "OJ-L-2026-2274-EN18286",
+      "series_version": "2026-10-14",
+      "grade": "A-M",
+      "trust_tier": "2",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-14",
+      "notes": "Citation of EN 18286:2026 in EU Official Journal (Implementing Decision 2026/2274) granting Art. 17 AI Act presumption of conformity"
+    },
+    {
+      "obs_id": "OBS-047",
+      "date_logged": "2026-10-28",
+      "period": "2026-10",
+      "pillar": "governance_burden",
+      "sector": "finance_insurance",
+      "channel": "digital",
+      "layer": "depth",
+      "geo": "GLOBAL",
+      "value": "61.0",
+      "unit": "index_0_100",
+      "source_id": "oecd_ai",
+      "series_id": "FSB-AI-SUPERVISORY-2026",
+      "series_version": "2026-10-15",
+      "grade": "B-M",
+      "trust_tier": "2",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-15",
+      "notes": "Financial Stability Board (FSB) 12 common AI governance and lifecycle supervisory practices for banks and insurers"
+    },
+    {
+      "obs_id": "OBS-048",
+      "date_logged": "2026-10-28",
+      "period": "2026-10",
+      "pillar": "governance_burden",
+      "sector": "professional_services",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "GLOBAL",
+      "value": "420.0",
+      "unit": "count_cases",
+      "source_id": "charlotin_hallucination_cases",
+      "series_id": "CHARLOTIN-HALLUC-2026",
+      "series_version": "2026-10",
+      "grade": "C-M",
+      "trust_tier": "3",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Damien Charlotin database of court-addressed AI hallucination filings requiring judicial sanction/governance"
+    },
+    {
+      "obs_id": "OBS-049",
+      "date_logged": "2026-10-28",
+      "period": "2026-10",
+      "pillar": "human_capital",
+      "sector": "software",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "GLOBAL",
+      "value": "76.0",
+      "unit": "pct_devs_using_ai",
+      "source_id": "stackoverflow_survey_2026",
+      "series_id": "SO-SURVEY-2026",
+      "series_version": "2026-10-06",
+      "grade": "C-Y",
+      "trust_tier": "4",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Stack Overflow Developer Survey 2026: share of software developers using or building with AI tools"
+    },
+    {
+      "obs_id": "OBS-050",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "human_capital",
+      "sector": "ALL",
+      "channel": "digital",
+      "layer": "depth",
+      "geo": "FI",
+      "value": "54.0",
+      "unit": "pct_firms_ai_guidelines",
+      "source_id": "statfin_icte_13vg",
+      "series_id": "statfin_icte_13vg_guidelines",
+      "series_version": "2025-11",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "Statistics Finland table 13vg: Finnish enterprises with written AI instructions/competence guidelines"
+    },
+    {
+      "obs_id": "OBS-051",
+      "date_logged": "2026-10-28",
+      "period": "2026-Q3",
+      "pillar": "ecological_balance",
+      "sector": "energy_utilities",
+      "channel": "physical",
+      "layer": "reach",
+      "geo": "GLOBAL",
+      "value": "485.0",
+      "unit": "twh_annual",
+      "source_id": "iea_energy_ai",
+      "series_id": "IEA-ELEC-DC-2026",
+      "series_version": "2026-07",
+      "grade": "B-Y",
+      "trust_tier": "2",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "",
+      "notes": "IEA Energy and AI Observatory: Global data-centre and AI electricity consumption (~485 TWh annualized)"
+    },
+    {
+      "obs_id": "OBS-052",
+      "date_logged": "2026-10-28",
+      "period": "2025",
+      "pillar": "ecological_balance",
+      "sector": "ALL",
+      "channel": "physical",
+      "layer": "embeddedness",
+      "geo": "GLOBAL",
+      "value": "7.0",
+      "unit": "count_transgressed_of_9",
+      "source_id": "src_planetary_boundaries",
+      "series_id": "SRC-PB-2025",
+      "series_version": "2025-09",
+      "grade": "B-Y",
+      "trust_tier": "3",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "macro_context",
+      "brief_ref": "",
+      "notes": "Stockholm Resilience Centre Planetary Boundaries reference frame: 7 of 9 planetary boundaries transgressed"
+    },
+    {
+      "obs_id": "OBS-053",
+      "date_logged": "2026-10-28",
+      "period": "2026-10",
+      "pillar": "energy_capacity",
+      "sector": "energy_utilities",
+      "channel": "physical",
+      "layer": "embeddedness",
+      "geo": "US",
+      "value": "8.7",
+      "unit": "gw_gated_permits",
+      "source_id": "ercot_large_load_queue",
+      "series_id": "ERCOT-TCEQ-8700MW",
+      "series_version": "2026-10-25",
+      "grade": "A-Q",
+      "trust_tier": "2",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-25",
+      "notes": "8.7 GW across 6 data-centre campuses (16 air permits) gated in Texas TCEQ/ERCOT review queue until Dec 2026"
+    },
+    {
+      "obs_id": "OBS-054",
+      "date_logged": "2026-10-28",
+      "period": "2026-10",
+      "pillar": "ownership_distribution",
+      "sector": "software",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "geo": "US",
+      "value": "48.0",
+      "unit": "pct_rev_via_3_clouds",
+      "source_id": "sec_edgar",
+      "series_id": "0001872341-26-S1-CONC",
+      "series_version": "2026-10-26",
+      "grade": "A-Q",
+      "trust_tier": "2",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-28",
+      "notes": "Anthropic S-1: 48% of frontier lab revenue flows through 3 hyperscaler cloud marketplaces (Amazon",
+      "null": [
+        " Google",
+        " Microsoft)"
+      ]
+    },
+    {
+      "obs_id": "OBS-055",
+      "date_logged": "2026-10-28",
+      "period": "2026-10",
+      "pillar": "market_openness",
+      "sector": "software",
+      "channel": "digital",
+      "layer": "depth",
+      "geo": "GLOBAL",
+      "value": "67.0",
+      "unit": "pct_top5_compute_share",
+      "source_id": "epoch_ai_data",
+      "series_id": "EPOCH-TOP5-SHARE-2026",
+      "series_version": "2026-10",
+      "grade": "B-Q",
+      "trust_tier": "3",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-26",
+      "notes": "Epoch AI: Top-5 hyperscalers hold ~67% of global frontier AI compute capacity; open-weight Kimi K3.1 Pro rationed on serving capacity"
+    },
+    {
+      "obs_id": "OBS-056",
+      "date_logged": "2026-10-28",
+      "period": "2026-10",
+      "pillar": "market_openness",
+      "sector": "software",
+      "channel": "digital",
+      "layer": "reach",
+      "geo": "GLOBAL",
+      "value": "38.5",
+      "unit": "pct_open_weight_routed_tokens",
+      "source_id": "openrouter_rankings",
+      "series_id": "OPENROUTER-OPEN-SHARE-2026",
+      "series_version": "2026-10",
+      "grade": "C-M",
+      "trust_tier": "4",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-10-26",
+      "notes": "OpenRouter Data API: share of routed inference tokens served by open-weight model families"
+    }
+  ],
+  "brief_signals": [
+    {
+      "brief_date": "2026-10-28",
+      "title_en": "Anthropic made artificial intelligence auditable, and audited numbers will discipline the industry faster than any statute",
+      "title_fi": "Anthropic teki tekoälystä tilintarkastettavaa – ja luvut kurittavat alaa lakia nopeammin",
+      "pillar": "capital_intensity",
+      "secondary_pillar": "governance_burden",
+      "sector": "software",
+      "block": "A_diffusion",
+      "pace_layer": "governance",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "macro",
+      "signal_score": "5.0",
+      "stakes_score": "5.0",
+      "market_test": "Primary=3;Confirmation=6;FirstMover=1",
+      "source_id": "sec_edgar",
+      "quant_metric": "$16.29B H1 rev; $8.95B compute cost; $265.6B commitments; 48% cloud marketplace share",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://twin.so/",
+      "brief_path": "briefs/2026-10-28.html",
+      "summary_note": "Anthropic PBC Form S-1 makes frontier lab compute economics and cloud marketplace concentration auditable under SEC disclosure rules."
+    },
+    {
+      "brief_date": "2026-10-27",
+      "title_en": "OpenAI convened the referees, and that is the result that will last",
+      "title_fi": "OpenAI kokoaa arvioijat – siitä syntyy pysyvä tulos",
+      "pillar": "human_capital",
+      "secondary_pillar": "governance_burden",
+      "sector": "education",
+      "block": "B_conditions",
+      "pace_layer": "culture",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "meso",
+      "signal_score": "4.0",
+      "stakes_score": "6.0",
+      "market_test": "Primary=3;Confirmation=0;FirstMover=1",
+      "source_id": "oecd_ai",
+      "quant_metric": "3 Lean-checked proofs; independent scientific referee consortium",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://twin.so/",
+      "brief_path": "briefs/2026-10-27.html",
+      "summary_note": "OpenAI published Lean-checked proofs and convened external referee groups to verify machine-generated formal mathematics."
+    },
+    {
+      "brief_date": "2026-10-26",
+      "title_en": "Open weights now set the price of frontier capability, and the bottleneck has moved to serving it",
+      "title_fi": "Avoimet painot asettavat nyt huippukyvyn hinnan, ja pullonkaula on siirtynyt mallin tarjoamiseen",
+      "pillar": "market_openness",
+      "secondary_pillar": "cost_to_serve",
+      "sector": "software",
+      "block": "B_conditions",
+      "pace_layer": "infrastructure",
+      "channel": "digital",
+      "layer": "depth",
+      "level": "meso",
+      "signal_score": "7.0",
+      "stakes_score": "6.0",
+      "market_test": "Primary=3;Confirmation=3;FirstMover=1",
+      "source_id": "epoch_ai_data",
+      "quant_metric": "3T parameters; 1M context; subscriber inference rationing within 48h",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://twin.so/",
+      "brief_path": "briefs/2026-10-26.html",
+      "summary_note": "Moonshot AI shipped open-weight Kimi K3.1 Pro (3T params) and rationed inference quotas within 48 hours, proving serving capacity is the binding constraint."
+    },
+    {
+      "brief_date": "2026-10-25",
+      "title_en": "Texas closed the on-site power loophole, and the delay moved into the permit queue",
+      "title_fi": "Texas sulki oman voimalan porsaanreiän, ja viive siirtyi lupajonoon",
+      "pillar": "energy_capacity",
+      "secondary_pillar": "ecological_balance",
+      "sector": "energy_utilities",
+      "block": "B_conditions",
+      "pace_layer": "infrastructure",
+      "channel": "physical",
+      "layer": "embeddedness",
+      "level": "macro",
+      "signal_score": "6.0",
+      "stakes_score": "7.0",
+      "market_test": "Primary=3;Confirmation=2;FirstMover=1",
+      "source_id": "ercot_large_load_queue",
+      "quant_metric": "8.7 GW across 6 data-centre campuses; 16 permits gated by TCEQ/ERCOT",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://gov.texas.gov/uploads/files/press/TCEQ_Data_Center.pdf",
+      "brief_path": "briefs/2026-10-25.html",
+      "summary_note": "Texas TCEQ paused standard air permits for behind-the-meter data-centre gas turbines, gating 8.7 GW of on-site power capacity until Dec 2026."
+    },
+    {
+      "brief_date": "2026-10-24",
+      "title_en": "Containment became an engineering discipline, and its first export was a patch",
+      "title_fi": "Laboratorio sulkee verkon malliltaan ja löytää reiän muualta",
+      "pillar": "governance_burden",
+      "secondary_pillar": "deployment",
+      "sector": "software",
+      "block": "B_conditions",
+      "pace_layer": "infrastructure",
+      "channel": "digital",
+      "layer": "depth",
+      "level": "micro",
+      "signal_score": "4.0",
+      "stakes_score": "6.0",
+      "market_test": "Primary=3;Confirmation=0;FirstMover=1",
+      "source_id": "oecd_ai",
+      "quant_metric": "Air-gapped training clusters; critical Brotli patch in Node.js, Bun, Envoy",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://openai.com/index/securing-our-frontier-model-training-environment",
+      "brief_path": "briefs/2026-10-24.html",
+      "summary_note": "OpenAI air-gapped frontier training clusters after a DNS misconfiguration and exported a critical Brotli security patch across core web infrastructure."
+    },
+    {
+      "brief_date": "2026-10-23",
+      "title_en": "The proof got cheap; the specification became the scarce good",
+      "title_fi": "Todistuksesta tuli halpa, määritelmästä niukka hyödyke",
+      "pillar": "cost_to_serve",
+      "secondary_pillar": "labour_reorganisation",
+      "sector": "software",
+      "block": "A_diffusion",
+      "pace_layer": "commerce",
+      "channel": "digital",
+      "layer": "depth",
+      "level": "meso",
+      "signal_score": "4.0",
+      "stakes_score": "5.0",
+      "market_test": "Primary=3;Confirmation=0;FirstMover=1",
+      "source_id": "gdpval",
+      "quant_metric": "180M lines of machine-checked Rocq proofs across 123 open-source libraries",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://www.anthropic.com/research/formal-verification",
+      "brief_path": "briefs/2026-10-23.html",
+      "summary_note": "Anthropic and Theorem generated 180M lines of formal Rocq proofs across 123 libraries, shifting scarcity from proof labour to formal specification."
+    },
+    {
+      "brief_date": "2026-10-22",
+      "title_en": "The frontier model became a line item, not a vendor decision",
+      "title_fi": "Rajamallista tuli ostorivi, ei toimittajapäätös",
+      "pillar": "deployment",
+      "secondary_pillar": "market_openness",
+      "sector": "software",
+      "block": "A_diffusion",
+      "pace_layer": "commerce",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "meso",
+      "signal_score": "5.0",
+      "stakes_score": "7.0",
+      "market_test": "Primary=3;Confirmation=1;FirstMover=1",
+      "source_id": "sec_edgar",
+      "quant_metric": "GPT-6 family added to Google Cloud Marketplace commitment drawdowns",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://twin.so/",
+      "brief_path": "briefs/2026-10-22.html",
+      "summary_note": "Google Cloud added OpenAI's GPT-6 family to its Marketplace so enterprise usage draws down existing cloud commits, turning model adoption into a procurement line item."
+    },
+    {
+      "brief_date": "2026-10-21",
+      "title_en": "The labs stopped selling models and started buying the paperwork",
+      "title_fi": "Laboratoriot eivät enää myy malleja, ne ostavat paperityön",
+      "pillar": "capital_intensity",
+      "secondary_pillar": "deployment",
+      "sector": "healthcare",
+      "block": "A_diffusion",
+      "pace_layer": "commerce",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "meso",
+      "signal_score": "5.0",
+      "stakes_score": "5.0",
+      "market_test": "Primary=3;Confirmation=1;FirstMover=1",
+      "source_id": "sec_edgar",
+      "quant_metric": "Acquisition of Orchestra Bio into Rosalind clinical workflow layer (J-curve complement)",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://openai.com/index/openai-to-acquire-orchestra-bio/",
+      "brief_path": "briefs/2026-10-21.html",
+      "summary_note": "OpenAI acquired drug-development coordination platform Orchestra Bio to own the regulated audit trail and workflow complement in life sciences."
+    },
+    {
+      "brief_date": "2026-10-19",
+      "title_en": "The agents finish less than half the work",
+      "title_fi": "Agentit tekevät alle puolet työstä",
+      "pillar": "cost_to_serve",
+      "secondary_pillar": "deployment",
+      "sector": "healthcare",
+      "block": "A_diffusion",
+      "pace_layer": "commerce",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "micro",
+      "signal_score": "5.0",
+      "stakes_score": "5.0",
+      "market_test": "Primary=3;Confirmation=1;FirstMover=1",
+      "source_id": "stanford_ai_index",
+      "quant_metric": "<50% end-to-end hospital/payer workflow completion vs >90% single-step QA",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://github.com/juntunen-ai/machinelearningsocieties",
+      "brief_path": "briefs/2026-10-19.html",
+      "summary_note": "Stanford HAI benchmarks show frontier models pass 90%+ of single-step clinical questions but complete under half of multi-step administrative workflows."
+    },
+    {
+      "brief_date": "2026-10-15",
+      "title_en": "The Financial Stability Board writes the first common AI checklist for banks",
+      "title_fi": "FSB kirjoitti pankeille ensimmäisen yhteisen tekoälytarkistuslistan",
+      "pillar": "governance_burden",
+      "secondary_pillar": "deployment",
+      "sector": "finance_insurance",
+      "block": "B_conditions",
+      "pace_layer": "governance",
+      "channel": "digital",
+      "layer": "depth",
+      "level": "macro",
+      "signal_score": "4.0",
+      "stakes_score": "7.0",
+      "market_test": "Primary=3;Confirmation=1;FirstMover=0",
+      "source_id": "oecd_ai",
+      "quant_metric": "12 common FSB supervisory & lifecycle practices for banks and insurers",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://github.com/juntunen-ai/machinelearningsocieties",
+      "brief_path": "briefs/2026-10-15.html",
+      "summary_note": "The Financial Stability Board published 12 common AI governance and third-party risk practices for banks, insurers, and financial supervisors."
+    },
+    {
+      "brief_date": "2026-10-14",
+      "title_en": "Europe publishes the first harmonised standard for AI quality management",
+      "title_fi": "Eurooppa julkaisi ensimmäisen harmonisoidun standardin tekoälyn laadunhallinnalle",
+      "pillar": "governance_burden",
+      "secondary_pillar": "deployment",
+      "sector": "public_administration",
+      "block": "B_conditions",
+      "pace_layer": "governance",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "macro",
+      "signal_score": "5.0",
+      "stakes_score": "5.0",
+      "market_test": "Primary=3;Confirmation=1;FirstMover=0",
+      "source_id": "eur_lex",
+      "quant_metric": "EN 18286:2026 cited in Official Journal (Art. 17 AI Act presumption of conformity)",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://github.com/juntunen-ai/machinelearningsocieties",
+      "brief_path": "briefs/2026-10-14.html",
+      "summary_note": "European Commission cited EN 18286:2026 in the Official Journal, giving providers a harmonised quality-management standard under Article 17 of the EU AI Act."
+    }
+  ],
+  "planetary_boundaries": {
+    "framework": "Stockholm Resilience Centre / Rockström et al. 2009 / Steffen et al. 2015 / Richardson et al. 2023 / Planetary Health Check 2025-2026",
+    "licence_note": "Values cited from primary assessments; panel drawn independently (SRC graphics are CC BY-NC-ND 3.0).",
+    "transgressed_count": "7 of 9 (2025 Planetary Health Check; 6 of 9 in Richardson et al. 2023)",
+    "boundaries": [
+      {
+        "id": "climate_change",
+        "name_en": "Climate change",
+        "name_fi": "Ilmastonmuutos",
+        "control_variable_en": "Atmospheric CO₂ concentration (ppm) & radiative forcing (W/m²)",
+        "control_variable_fi": "Ilmakehän CO₂-pitoisuus (ppm) ja säteilypakote (W/m²)",
+        "boundary_value": "350 ppm CO₂ / +1.0 W/m²",
+        "current_status": "Transgressed (~422 ppm CO₂, ~2.91 W/m²)",
+        "status_code": "transgressed",
+        "assessment_year": 2025,
+        "ai_relevance": "Direct, main channel",
+        "ai_load_en": "~485 TWh data-centre electricity in 2025 (~1.6 % of global electricity; projected ~945 TWh by 2030, IEA) × local grid carbon intensity + embodied chip/building emissions",
+        "ai_load_fi": "~485 TWh datakeskussähköä 2025 (~1,6 % maailman sähköstä; ennuste ~945 TWh 2030, IEA) × liityntäpisteen päästökerroin + sirujen ja rakennusten valmistuspäästöt",
+        "ai_measured": true,
+        "grade": "B-Y",
+        "sources": [
+          "iea_energy_ai",
+          "epoch_ai_data"
+        ]
+      },
+      {
+        "id": "freshwater_change",
+        "name_en": "Freshwater change",
+        "name_fi": "Makean veden muutos",
+        "control_variable_en": "Blue water (surface/groundwater) & green water (soil moisture) deviation from pre-industrial",
+        "control_variable_fi": "Sinisen (pinta-/pohjavesi) ja vihreän veden (maaperän kosteus) poikkeama esiteollisesta",
+        "boundary_value": "10.2 % (blue) / 11.1 % (green) land area with transgressions",
+        "current_status": "Transgressed (18.2 % blue / 15.8 % green, Richardson 2023)",
+        "status_code": "transgressed",
+        "assessment_year": 2023,
+        "ai_relevance": "Direct, local, basin-level",
+        "ai_load_en": "Cooling water withdrawn/consumed per site joined to WRI Aqueduct basin stress; voluntary operator disclosures only (Grade C)",
+        "ai_load_fi": "Jäähdytysveden otto ja kulutus toimipaikoittain suhteutettuna vesistöalueen niukkuuteen (WRI Aqueduct); vain vapaaehtoiset yritysraportit (luokka C)",
+        "ai_measured": true,
+        "grade": "C-Y",
+        "sources": [
+          "wri_aqueduct",
+          "epoch_ai_data"
+        ]
+      },
+      {
+        "id": "land_system_change",
+        "name_en": "Land-system change",
+        "name_fi": "Maankäytön muutos",
+        "control_variable_en": "Area of forested land as % of original forest cover",
+        "control_variable_fi": "Metsäpinta-ala osuutena alkuperäisestä metsäpeitteestä (%)",
+        "boundary_value": "75 % global biome-weighted",
+        "current_status": "Transgressed (~60 % global, Richardson 2023)",
+        "status_code": "transgressed",
+        "assessment_year": 2023,
+        "ai_relevance": "Direct, small and local",
+        "ai_load_en": "Frontier data-centre campus footprint tracked via satellite & permits (Epoch AI covers ~15 % of global AI compute; 6 Texas campuses = 8.7 GW planned)",
+        "ai_load_fi": "Suurten datakeskusalueiden maankäyttö satelliitti- ja lupatiedoista (Epoch AI kattaa ~15 % AI-laskennasta; 6 Texasin aluetta = 8,7 GW)",
+        "ai_measured": true,
+        "grade": "B-Q",
+        "sources": [
+          "epoch_ai_data"
+        ]
+      },
+      {
+        "id": "novel_entities",
+        "name_en": "Novel entities",
+        "name_fi": "Uudet aineet ja yhdisteet",
+        "control_variable_en": "Share of synthetic chemicals/materials released with adequate safety assessment",
+        "control_variable_fi": "Turvallisuusarvioitujen synteettisten kemikaalien ja materiaalien osuus päästöistä",
+        "boundary_value": "0 % untested releases (qualitative/unquantified aggregate boundary)",
+        "current_status": "Transgressed (Richardson 2023)",
+        "status_code": "transgressed",
+        "assessment_year": 2023,
+        "ai_relevance": "Indirect (hardware lifecycle)",
+        "ai_load_en": "not measured (accelerator e-waste and semiconductor PFAS/process chemicals lack an AI-specific global series)",
+        "ai_load_fi": "ei mitattu (kiihdytinpiirien elektroniikkajätteelle ja puolijohdevalmistuksen PFAS-kemikaaleille ei ole AI-kohtaista sarjaa)",
+        "ai_measured": false,
+        "grade": "—",
+        "sources": []
+      },
+      {
+        "id": "biosphere_integrity",
+        "name_en": "Biosphere integrity",
+        "name_fi": "Biosfäärin eheys",
+        "control_variable_en": "Genetic diversity (extinctions per million species-years, E/MSY) & functional integrity (HANPP)",
+        "control_variable_fi": "Geneettinen monimuotoisuus (sukupuutot E/MSY) ja toiminnallinen eheys (HANPP)",
+        "boundary_value": "<10 E/MSY / <10 % HANPP",
+        "current_status": "Transgressed (>100 E/MSY, ~30 % HANPP, Richardson 2023)",
+        "status_code": "transgressed",
+        "assessment_year": 2023,
+        "ai_relevance": "Indirect",
+        "ai_load_en": "not measured",
+        "ai_load_fi": "ei mitattu",
+        "ai_measured": false,
+        "grade": "—",
+        "sources": []
+      },
+      {
+        "id": "biogeochemical_flows",
+        "name_en": "Biogeochemical flows (N & P)",
+        "name_fi": "Biogeokemialliset kierrot (N ja P)",
+        "control_variable_en": "Industrial/agricultural nitrogen fixation (Tg N/yr) & phosphorus flow to oceans (Tg P/yr)",
+        "control_variable_fi": "Typen sidonta (Tg N/v) ja fosforivirta valtameriin (Tg P/v)",
+        "boundary_value": "62 Tg N/yr / 11 Tg P/yr",
+        "current_status": "Transgressed (~190 Tg N/yr, ~22.6 Tg P/yr, Richardson 2023)",
+        "status_code": "transgressed",
+        "assessment_year": 2023,
+        "ai_relevance": "Indirect (precision agriculture enabled_reduction only)",
+        "ai_load_en": "not measured",
+        "ai_load_fi": "ei mitattu",
+        "ai_measured": false,
+        "grade": "—",
+        "sources": []
+      },
+      {
+        "id": "ocean_acidification",
+        "name_en": "Ocean acidification",
+        "name_fi": "Merien happamoituminen",
+        "control_variable_en": "Carbonate ion concentration (aragonite saturation state Ω_arag in surface seawater)",
+        "control_variable_fi": "Pintaveden aragoniittikyllästeisyys (Ω_arag) suhteessa esiteolliseen",
+        "boundary_value": "≥80 % of pre-industrial aragonite saturation",
+        "current_status": "Transgressed in 2025 Planetary Health Check (near boundary ~81 % in 2023)",
+        "status_code": "transgressed",
+        "assessment_year": 2025,
+        "ai_relevance": "Indirect (follows atmospheric CO₂)",
+        "ai_load_en": "not measured (follows CO₂ emissions in climate_change)",
+        "ai_load_fi": "ei mitattu (seuraa ilmastonmuutos-pilarin CO₂-päästöjä)",
+        "ai_measured": false,
+        "grade": "—",
+        "sources": []
+      },
+      {
+        "id": "atmospheric_aerosol_loading",
+        "name_en": "Atmospheric aerosol loading",
+        "name_fi": "Ilmakehän pienhiukkaskuormitus",
+        "control_variable_en": "Interhemispheric difference in aerosol optical depth (AOD)",
+        "control_variable_fi": "Puoliskojen välinen ero aerosolien optisessa paksuudessa (AOD)",
+        "boundary_value": "0.1 interhemispheric AOD difference",
+        "current_status": "Within safe operating space globally (~0.076, regionally exceeded, Richardson 2023)",
+        "status_code": "safe",
+        "assessment_year": 2023,
+        "ai_relevance": "Local backup-generator / Behind-the-meter gas NOx/PM only",
+        "ai_load_en": "not measured (local air-permit gating tracked under energy_capacity)",
+        "ai_load_fi": "ei mitattu (paikalliset ilmaluvat seurataan energy_capacity-pilarissa)",
+        "ai_measured": false,
+        "grade": "—",
+        "sources": []
+      },
+      {
+        "id": "stratospheric_ozone_depletion",
+        "name_en": "Stratospheric ozone depletion",
+        "name_fi": "Stratosfäärin otsonikerroksen oheneminen",
+        "control_variable_en": "Stratospheric O₃ concentration (Dobson Units, DU)",
+        "control_variable_fi": "Stratosfäärin otsonipitoisuus (Dobson-yksikköä, DU)",
+        "boundary_value": "<5 % reduction from pre-industrial (290 DU)",
+        "current_status": "Within safe operating space (~284.6 DU, Richardson 2023)",
+        "status_code": "safe",
+        "assessment_year": 2023,
+        "ai_relevance": "None",
+        "ai_load_en": "not measured",
+        "ai_load_fi": "ei mitattu",
+        "ai_measured": false,
+        "grade": "—",
+        "sources": []
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "eurostat_isoc_eb_ai",
+      "name": "Eurostat: Artificial intelligence in enterprises (isoc_eb_ai, isoc_eb_ain2)",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/isoc_eb_ai/",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "EU-27 and others",
+      "access": "download and API",
+      "licence": "Eurostat reuse policy (CC BY 4.0 compatible)",
+      "verified": true,
+      "caveats": "Enterprises with 10+ persons; sector coverage excludes some sections (confirm); 2025 questionnaire added image/video/audio generation; German definition break 2025; annual, next update planned Dec 2026"
+    },
+    {
+      "id": "eurostat_isoc_ai_iaiu",
+      "name": "Eurostat: individuals using generative AI tools",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/isoc_ai_iaiu/",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "EU-27",
+      "access": "download and API",
+      "licence": "Eurostat reuse policy",
+      "verified": true,
+      "caveats": "Ages 16-74; reach only"
+    },
+    {
+      "id": "statfin_icte_13vg",
+      "name": "Statistics Finland: Use of information technology in enterprises (table 13vg)",
+      "url": "https://pxdata.stat.fi/PxWeb/pxweb/en/StatFin/StatFin__icte/13vg.px/table/tableViewLayout1/",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Finland",
+      "access": "PxWeb API",
+      "licence": "Statistics Finland open data (CC BY 4.0)",
+      "verified": true,
+      "caveats": "Annual, spring reference; includes AI documents/instructions variable (governance proxy)"
+    },
+    {
+      "id": "cso_biiesa20",
+      "name": "CSO Ireland: Enterprise use of AI and cloud (BIIESA20)",
+      "url": "https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/BIIESA20/JSON-stat/2.0/en",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Ireland",
+      "access": "JSON-stat API",
+      "licence": "CC BY 4.0",
+      "verified": true,
+      "caveats": "Annual"
+    },
+    {
+      "id": "census_btos",
+      "name": "US Census Bureau Business Trends and Outlook Survey (AI questions and supplement)",
+      "url": "https://www.census.gov/data/experimental-data-products/business-trends-and-outlook-survey.html",
+      "tier": 1,
+      "grade": "A-M",
+      "pillars": [
+        "deployment",
+        "labour_reorganisation"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US national, state, sector, size",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": true,
+      "caveats": "Experimental product; wording broadened 17 Nov 2025 so pre/post not comparable; use break_flag"
+    },
+    {
+      "id": "microsoft_ai_user_share",
+      "name": "Microsoft AI Economy Institute: AI User Share / Global AI Diffusion report",
+      "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2025/09/AI-Diffusion_Technical-Report.pdf",
+      "tier": 4,
+      "grade": "B-Q",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "147 economies",
+      "access": "report tables; method on arXiv 2511.02781",
+      "licence": "check before bulk reuse",
+      "verified": true,
+      "caveats": "Vendor telemetry adjusted for device share and mobile scaling; individuals not firms; cross-check against Eurostat and not sole cell"
+    },
+    {
+      "id": "anthropic_economic_index",
+      "name": "Anthropic Economic Index",
+      "url": "https://huggingface.co/datasets/Anthropic/EconomicIndex",
+      "tier": 4,
+      "grade": "C-Q",
+      "pillars": [
+        "deployment",
+        "labour_reorganisation"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global, country and US state from Sept 2025 release",
+      "access": "Hugging Face download",
+      "licence": "CC BY",
+      "verified": true,
+      "caveats": "One vendor's conversations, not market-representative; use as task-mix and depth indicator; publisher is the vendor of the model writing this registry"
+    },
+    {
+      "id": "ted_open_data",
+      "name": "TED (Tenders Electronic Daily) Search API and Open Data",
+      "url": "https://ted.europa.eu",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "deployment",
+        "governance_burden",
+        "market_openness"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "EU/EEA above-threshold procurement",
+      "access": "open API, no key reported",
+      "licence": "confirm: notice metadata reported as CC0; Open Data service under CC BY 4.0",
+      "verified": true,
+      "caveats": "Only above-threshold tenders; AI classification of notice text must be built and sampled for accuracy"
+    },
+    {
+      "id": "hilma",
+      "name": "Hilma (Finnish public procurement notices)",
+      "url": "https://www.hankintailmoitukset.fi",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "deployment",
+        "market_openness"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Finland",
+      "access": "confirm API/open data terms",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Confirm below-threshold coverage and export"
+    },
+    {
+      "id": "ifr_world_robotics",
+      "name": "IFR World Robotics (industrial and service robots)",
+      "url": "https://ifr.org/worldrobotics/report-2025",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "deployment",
+        "capital_intensity"
+      ],
+      "channels": [
+        "physical"
+      ],
+      "geo": "Global, country, customer industry",
+      "access": "press summaries and executive summary free; full tables paid",
+      "licence": "restricted for tables; cite executive summary only",
+      "verified": true,
+      "caveats": "Counts industrial robots, not AI-driven robots; AI-specificity flag = proxy"
+    },
+    {
+      "id": "fda_ai_device_list",
+      "name": "FDA AI-Enabled Medical Device List",
+      "url": "https://www.fda.gov/medical-devices/artificial-intelligence-enabled-medical-devices/list-artificial-intelligence-enabled-medical-devices",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "physical",
+        "digital"
+      ],
+      "geo": "US market",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": true,
+      "caveats": "FDA says list is not comprehensive; authorisation is not use; annual counts revised between updates"
+    },
+    {
+      "id": "cpuc_av_data",
+      "name": "California Public Utilities Commission: autonomous vehicle passenger service quarterly data",
+      "url": "https://www.cpuc.ca.gov",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "physical"
+      ],
+      "geo": "California",
+      "access": "download (confirm file locations)",
+      "licence": "California public data",
+      "verified": false,
+      "caveats": "Verified only through secondary reports; open primary files before logging; single state"
+    },
+    {
+      "id": "nhtsa_sgo",
+      "name": "NHTSA Standing General Order crash reports (ADS/ADAS)",
+      "url": "https://www.nhtsa.gov/laws-regulations/standing-general-order-crash-reporting",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "deployment",
+        "governance_burden"
+      ],
+      "channels": [
+        "physical"
+      ],
+      "geo": "US",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": false,
+      "caveats": "Crash reports, not exposure; pair with miles from company or CPUC data"
+    },
+    {
+      "id": "waymo_safety_hub",
+      "name": "Waymo Safety Impact Data Hub and company disclosures",
+      "url": "https://waymo.com/safety/impact/",
+      "tier": 4,
+      "grade": "B-Q",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "physical"
+      ],
+      "geo": "Company service areas",
+      "access": "web",
+      "licence": "company terms",
+      "verified": false,
+      "caveats": "Company-reported; use only alongside CPUC primary data"
+    },
+    {
+      "id": "epoch_ai_data",
+      "name": "Epoch AI: Frontier Data Centers, AI Models, AI Chip Sales, GPU Clusters",
+      "url": "https://epoch.ai/data",
+      "tier": 3,
+      "grade": "B-Q",
+      "pillars": [
+        "capital_intensity",
+        "energy_capacity",
+        "ecological_balance",
+        "market_openness"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global, strongest for largest US sites",
+      "access": "ZIP/CSV download",
+      "licence": "CC BY 4.0 (measurements; satellite images licensed separately)",
+      "verified": true,
+      "caveats": "Frontier Data Centers covered about 15% of delivered AI compute in Nov 2025; China under-represented; owner/user fields carry confidence markers"
+    },
+    {
+      "id": "iea_energy_ai",
+      "name": "IEA Energy and AI Observatory and Energy and AI report",
+      "url": "https://www.iea.org/news/as-energy-and-ai-links-grow-new-iea-observatory-provides-latest-data-and-analysis",
+      "tier": 2,
+      "grade": "B-Y",
+      "pillars": [
+        "energy_capacity",
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global and regions",
+      "access": "web tools and datasets",
+      "licence": "confirm per dataset",
+      "verified": true,
+      "caveats": "Modelled estimates and projections; separate observed from projected values"
+    },
+    {
+      "id": "oecd_ai",
+      "name": "OECD.AI Policy Observatory (national policies, AI Incidents Monitor, live data)",
+      "url": "https://oecd.ai/en/methodology",
+      "tier": 2,
+      "grade": "B-M",
+      "pillars": [
+        "governance_burden",
+        "human_capital"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "60+ countries",
+      "access": "web and downloads (confirm)",
+      "licence": "confirm per dataset",
+      "verified": true,
+      "caveats": "Incident monitor is media-derived; live data uses partner sources with their own terms"
+    },
+    {
+      "id": "eur_lex",
+      "name": "EUR-Lex / CELLAR: Regulation (EU) 2024/1689 and implementing acts",
+      "url": "https://eur-lex.europa.eu",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "governance_burden"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "EU",
+      "access": "open, SPARQL via CELLAR",
+      "licence": "EU reuse (CC BY 4.0)",
+      "verified": true,
+      "caveats": "Verified via Implementing Decision (EU) 2026/2274 (EN 18286:2026) in brief 2026-10-14; check application dates before logging counts"
+    },
+    {
+      "id": "incident_db",
+      "name": "AI Incident Database (Responsible AI Collaborative)",
+      "url": "https://incidentdatabase.ai",
+      "tier": 3,
+      "grade": "C-M",
+      "pillars": [
+        "governance_burden"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Global",
+      "access": "download",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Reporting-biased; diagnostic only"
+    },
+    {
+      "id": "sec_edgar",
+      "name": "SEC EDGAR (XBRL frames API, Form S-1, 10-K, 13F, proxy)",
+      "url": "https://www.sec.gov/edgar/sec-api-documentation",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": [
+        "capital_intensity",
+        "ownership_distribution",
+        "market_openness"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "US-listed",
+      "access": "free API and filings",
+      "licence": "US public domain",
+      "verified": true,
+      "caveats": "Verified via Anthropic PBC Form S-1 (26 Oct 2026, brief 2026-10-28); hyperscaler capex not always split into AI vs other"
+    },
+    {
+      "id": "fed_dfa",
+      "name": "Federal Reserve Distributional Financial Accounts",
+      "url": "https://www.federalreserve.gov/releases/z1/dataviz/dfa/",
+      "tier": 1,
+      "grade": "A-Q",
+      "pillars": [
+        "ownership_distribution"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": false,
+      "caveats": "Equity ownership by wealth group, not AI-specific; use as the retail/household share backbone"
+    },
+    {
+      "id": "ecb_dwa",
+      "name": "ECB Distributional Wealth Accounts",
+      "url": "https://www.ecb.europa.eu",
+      "tier": 1,
+      "grade": "A-Q",
+      "pillars": [
+        "ownership_distribution"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Euro area",
+      "access": "download",
+      "licence": "ECB reuse policy",
+      "verified": false,
+      "caveats": "Not AI-specific"
+    },
+    {
+      "id": "eurostat_lfs_labour",
+      "name": "Eurostat labour force survey, job vacancies, labour cost index, ICT specialists",
+      "url": "https://ec.europa.eu/eurostat",
+      "tier": 1,
+      "grade": "A-Q",
+      "pillars": [
+        "labour_reorganisation",
+        "human_capital",
+        "cost_to_serve"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "EU-27",
+      "access": "download and API",
+      "licence": "Eurostat reuse policy",
+      "verified": false,
+      "caveats": "Dataset codes to be recorded per series"
+    },
+    {
+      "id": "indeed_hiring_lab",
+      "name": "Indeed Hiring Lab open data (job postings including AI mentions)",
+      "url": "https://github.com/hiring-lab",
+      "tier": 3,
+      "grade": "B-M",
+      "pillars": [
+        "labour_reorganisation",
+        "human_capital"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Several countries",
+      "access": "GitHub CSV",
+      "licence": "confirm (CC BY 4.0 reported)",
+      "verified": false,
+      "caveats": "Single platform; postings not employment"
+    },
+    {
+      "id": "cedefop_ovate",
+      "name": "Cedefop Skills-OVATE online job advertisements",
+      "url": "https://www.cedefop.europa.eu",
+      "tier": 2,
+      "grade": "B-Q",
+      "pillars": [
+        "human_capital",
+        "labour_reorganisation"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "EU",
+      "access": "dashboard; confirm export",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Online ads only"
+    },
+    {
+      "id": "fingrid_open_data",
+      "name": "Fingrid open data",
+      "url": "https://data.fingrid.fi",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "energy_capacity",
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Finland",
+      "access": "API (free key)",
+      "licence": "CC BY 4.0 (confirm)",
+      "verified": false,
+      "caveats": "Confirm connection-request and data-centre series"
+    },
+    {
+      "id": "entsoe_transparency",
+      "name": "ENTSO-E Transparency Platform",
+      "url": "https://transparency.entsoe.eu",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "energy_capacity",
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Europe",
+      "access": "API (free token)",
+      "licence": "ENTSO-E terms",
+      "verified": false,
+      "caveats": "Generation and load; carbon intensity must be derived"
+    },
+    {
+      "id": "ember",
+      "name": "Ember electricity data",
+      "url": "https://ember-energy.org/data/",
+      "tier": 3,
+      "grade": "B-M",
+      "pillars": [
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global",
+      "access": "download",
+      "licence": "CC BY 4.0",
+      "verified": false,
+      "caveats": "Grid carbon intensity at country level, not at the connection point"
+    },
+    {
+      "id": "lbnl_queued_up",
+      "name": "Lawrence Berkeley National Laboratory: Queued Up (interconnection queues)",
+      "url": "https://emp.lbl.gov/queues",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "energy_capacity"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US",
+      "access": "download",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Generation queues; large-load queues from ERCOT/PJM to be added"
+    },
+    {
+      "id": "wri_aqueduct",
+      "name": "WRI Aqueduct water risk",
+      "url": "https://www.wri.org/aqueduct",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global basins",
+      "access": "download",
+      "licence": "CC BY 4.0",
+      "verified": false,
+      "caveats": "Basin-level water stress to join to data-centre sites"
+    },
+    {
+      "id": "oecd_pmr",
+      "name": "OECD Product Market Regulation indicators",
+      "url": "https://www.oecd.org/economy/reform/indicators-of-product-market-regulation/",
+      "tier": 2,
+      "grade": "B-Y",
+      "pillars": [
+        "market_openness"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "OECD",
+      "access": "download",
+      "licence": "OECD terms",
+      "verified": false,
+      "caveats": "Economy-wide, not AI-specific; context for entry_conditions"
+    },
+    {
+      "id": "hf_hub",
+      "name": "Hugging Face Hub API (model licences, open-weights flag, downloads)",
+      "url": "https://huggingface.co/docs/hub/api",
+      "tier": 3,
+      "grade": "C-M",
+      "pillars": [
+        "market_openness"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global",
+      "access": "API",
+      "licence": "per model",
+      "verified": false,
+      "caveats": "Downloads are not use; open_interfaces proxy"
+    },
+    {
+      "id": "stanford_ai_index",
+      "name": "Stanford HAI AI Index 2026",
+      "url": "https://hai.stanford.edu/ai-index",
+      "tier": 5,
+      "grade": "C-Y",
+      "pillars": [],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Global",
+      "access": "report",
+      "licence": "CC BY-ND (confirm)",
+      "verified": true,
+      "caveats": "Compiles other sources (including non-probability surveys such as organisation-adoption figures); use to locate primaries, not as a source of cells"
+    },
+    {
+      "id": "gdpval",
+      "name": "OpenAI GDPval (task basket, rubrics and expert-graded quality; gold subset of 220 tasks)",
+      "url": "https://huggingface.co/datasets/openai/gdpval",
+      "tier": 4,
+      "grade": "C-Q",
+      "pillars": [
+        "cost_to_serve"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US occupations",
+      "access": "Hugging Face download (220 gold tasks, 2.29 GB); paper arXiv 2510.04374",
+      "licence": "not stated on dataset page; confirm before redistribution",
+      "verified": true,
+      "caveats": "Vendor-authored; one-shot knowledge-work tasks only; public tasks can be contaminated (canary string); automated grader experimental; headline 100x cost claim excludes oversight and integration, never log as a cell; use as task basket and quality anchor, not as a price series"
+    },
+    {
+      "id": "ramp_ai_index",
+      "name": "Ramp AI Index (card/invoice transactions; mirrored on FRED as RAMPAI* series)",
+      "url": "https://ramp.com/data/ai-index",
+      "tier": 4,
+      "grade": "B-M",
+      "pillars": [
+        "deployment",
+        "cost_to_serve"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US businesses on Ramp",
+      "access": "web page; FRED monthly series e.g. RAMPAIOPENAI",
+      "licence": "page states none; FRED asks for citation, copyright Ramp Business Corporation; confirm",
+      "verified": true,
+      "caveats": "Paid AI use only (understates free/personal use); platform-skewed sample; level not comparable to Eurostat/BTOS; use for momentum and as candidate bridge across the BTOS Nov 2025 break; provider shares logged for concentration only"
+    },
+    {
+      "id": "charlotin_hallucination_cases",
+      "name": "AI Hallucination Cases database (Damien Charlotin)",
+      "url": "https://www.damiencharlotin.com/hallucinations/",
+      "tier": 3,
+      "grade": "C-M",
+      "pillars": [
+        "governance_burden",
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global, US-heavy",
+      "access": "CSV download, updated daily",
+      "licence": "CC BY 4.0",
+      "verified": true,
+      "caveats": "Counts cases courts noticed and addressed; mostly self-represented litigants; inclusion is a judgement call; normalise by case volumes before using as penetration"
+    },
+    {
+      "id": "openrouter_rankings",
+      "name": "OpenRouter rankings and Data API",
+      "url": "https://openrouter.ai/rankings",
+      "tier": 4,
+      "grade": "C-M",
+      "pillars": [
+        "market_openness",
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global (routed API traffic)",
+      "access": "JSON Data API; web",
+      "licence": "CC BY 4.0 per page",
+      "verified": true,
+      "caveats": "Routed traffic only, not users or spend; developer-skewed; market share counts requests; verbosity and tokenisation differ across models"
+    },
+    {
+      "id": "cloudflare_radar_ai",
+      "name": "Cloudflare Radar AI Insights",
+      "url": "https://blog.cloudflare.com/expanded-ai-insights-on-cloudflare-radar",
+      "tier": 4,
+      "grade": "C-M",
+      "pillars": [
+        "deployment",
+        "market_openness",
+        "governance_burden"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global",
+      "access": "Radar API and Data Explorer",
+      "licence": "not found; confirm",
+      "verified": true,
+      "caveats": "Verified only from a Feb 2025 blog post; DNS popularity is not usage; robots.txt covers top 10,000 domains and declared directives only; check current datasets"
+    },
+    {
+      "id": "github_innovation_graph",
+      "name": "GitHub Innovation Graph and Octoverse",
+      "url": "https://innovationgraph.github.com",
+      "tier": 4,
+      "grade": "C-Y",
+      "pillars": [
+        "deployment",
+        "human_capital"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "By economy",
+      "access": "Innovation Graph downloads (confirm); Octoverse is a report",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Octoverse checked (4.3M+ AI repos; ~1.1M repos import an LLM SDK, +178% y/y) but is a report, not a dataset; public activity only; country from self-reported location; Innovation Graph not opened"
+    },
+    {
+      "id": "ercot_large_load_queue",
+      "name": "ERCOT / TCEQ data-centre interconnection and air-permit queue",
+      "url": "https://gov.texas.gov/uploads/files/press/TCEQ_Data_Center.pdf",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": [
+        "energy_capacity"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Texas",
+      "access": "public ERCOT / TCEQ filings",
+      "licence": "Texas public records",
+      "verified": true,
+      "caveats": "Verified in brief 2026-10-25 (Governor Abbott 21 Sept directive, TCEQ 19 Oct reply, 8.7 GW across 6 campuses, 400+ data centres in ERCOT audit due 10 Dec 2026)"
+    },
+    {
+      "id": "taiwan_moea_export_orders",
+      "name": "Taiwan MOEA monthly export orders",
+      "url": "https://focustaiwan.tw/business/202609220025",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "capital_intensity"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Taiwan",
+      "access": "MOEA statistics (confirm)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Seen via Focus Taiwan only; industry-based (electronics, ICT), not AI-specific: proxy flag"
+    },
+    {
+      "id": "china_nbs_robot_output",
+      "name": "China NBS monthly industrial robot output",
+      "url": "https://www.stats.gov.cn/english/",
+      "tier": 1,
+      "grade": "A-M",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "physical"
+      ],
+      "geo": "China",
+      "access": "NBS monthly release (confirm table)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Aug 2026 +34.6% y/y seen via CGTN only; industrial robots, not AI-specific: proxy flag; some months reported from an industry federation rather than NBS"
+    },
+    {
+      "id": "swaa",
+      "name": "Survey of Working Arrangements and Attitudes (SWAA)",
+      "url": "https://wfhresearch.com/data/",
+      "tier": 3,
+      "grade": "B-M",
+      "pillars": [
+        "deployment",
+        "labour_reorganisation"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US workers 20-64",
+      "access": "time series Excel/JSON; microdata on request",
+      "licence": "CC BY 4.0",
+      "verified": true,
+      "caveats": "Data page does not list AI items; Bick et al. report a Dec 2024 SWAA wave with generative-AI use; confirm AI series ids; online panel"
+    },
+    {
+      "id": "rps_bick_blandin_deming",
+      "name": "Real-Time Population Survey / The Rapid Adoption of Generative AI (NBER w32966)",
+      "url": "https://www.nber.org/system/files/working_papers/w32966/w32966.pdf",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US adults 18-64",
+      "access": "NBER data appendix",
+      "licence": "confirm",
+      "verified": true,
+      "caveats": "Aug and Nov 2024 waves only; not peer-reviewed; online panel; self-reported; use as diffusion-speed benchmark against PCs and internet"
+    },
+    {
+      "id": "firm_data_on_ai",
+      "name": "Firm Data on AI (NBER w34836; Atlanta Fed, Bank of England, Bundesbank, Macquarie)",
+      "url": "https://www.nber.org/digest/202605/global-evidence-business-use-ai",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "deployment",
+        "labour_reorganisation"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US, UK, Germany, Australia",
+      "access": "working paper; microdata availability not stated",
+      "licence": "confirm",
+      "verified": true,
+      "caveats": "Single fielding Nov 2025-Jan 2026; executive-reported; useful convergent check against Eurostat and BTOS"
+    },
+    {
+      "id": "stackoverflow_survey_2026",
+      "name": "Stack Overflow Developer Survey 2026",
+      "url": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/",
+      "tier": 4,
+      "grade": "C-Y",
+      "pillars": [
+        "deployment",
+        "human_capital"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global developers",
+      "access": "dataset promised on GitHub 'in a few weeks'",
+      "licence": "not stated; confirm",
+      "verified": true,
+      "caveats": "Developer self-selected sample; software sector only"
+    },
+    {
+      "id": "src_planetary_boundaries",
+      "name": "Stockholm Resilience Centre: Planetary boundaries (nine boundaries, status, Planetary Health Check link)",
+      "url": "https://www.stockholmresilience.org/research/planetary-boundaries.html",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Global",
+      "access": "web page; papers; annual Planetary Health Check",
+      "licence": "graphics CC BY-NC-ND 3.0 (no alteration, non-commercial); cite values, redraw panel",
+      "verified": true,
+      "caveats": "Page says seven of nine transgressed but names neither the seven nor control variables; own figures inconsistent (six for 2023); build the panel from primary papers and the Planetary Health Check, print assessment year; reference frame, not an AI series"
+    },
+    {
+      "id": "richardson_2023_pb",
+      "name": "Richardson et al. 2023, Earth beyond six of nine planetary boundaries (control variables and values)",
+      "url": "https://www.science.org/doi/10.1126/sciadv.adh2458",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Global",
+      "access": "open access paper (not opened; fetch failed)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Values seen only via a French government statistics page presenting the 2023 revision; open the paper before logging; later updates supersede (2025 and 2026 Planetary Health Check)"
+    },
+    {
+      "id": "pik_planetary_health_check",
+      "name": "Planetary Health Check (PIK / Planetary Boundaries Science Lab), annual",
+      "url": "https://www.pik-potsdam.de",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Global",
+      "access": "annual report (not opened)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Linked from the SRC page and cited as the source of the 2025 count; find the 2025 and 2026 editions and record per-boundary status before use"
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diffusion Index Methodology v0.6 — Machine Learning Societies</title>
+<meta name="description" content="Complete v0.6 methodological specification for the Machine Learning Societies AI Diffusion Index: [V] vs [K] verification discipline, Block A/B/C separation, Stewart Brand pace layers, fixed-goalpost scoring, Monte Carlo uncertainty, and daily brief signal ingestion.">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="https://machine-learning-societies.web.app/feed.fi.xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mast-left">
+      <a class="brand" href="index.html">Machine Learning Societies</a>
+      <div class="toplinks">
+        <a href="about.html"><span class="en">About</span><span class="fi">Tietoa</span></a> ·
+        <a href="diffusion-index.html"><span class="en">Live Dashboard</span><span class="fi">Indeksitaulu</span></a> ·
+        <a href="https://www.linkedin.com/groups/17992023/" target="_blank" rel="noopener"><span class="en">LinkedIn group</span><span class="fi">LinkedIn-ryhmä</span></a> ·
+        <a class="en" href="feed.xml">RSS</a><a class="fi" href="feed.fi.xml">RSS</a>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <a class="btn" href="index.html"><span class="en">Daily Briefs</span><span class="fi">Päiväkatsaukset</span></a>
+      <a class="btn" href="diffusion-index.html"><span class="en">Diffusion Index</span><span class="fi">Diffuusioindeksi</span></a>
+      <a class="btn" href="forecasts.html"><span class="en">Forecasts</span><span class="fi">Ennusteet</span></a>
+      <div class="toggle" role="group" aria-label="Language">
+        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-set-lang="fi" aria-pressed="false">FI</button>
+      </div>
+    </div>
+  </header>
+
+  <article class="brief">
+    <p class="kicker">
+      <span class="en">METHODOLOGY SPECIFICATION · VERSION 0.6 · 28 OCTOBER 2026</span>
+      <span class="fi">METODOLOGIAMÄÄRITTELY · VERSIO 0.6 · 28. LOKAKUUTA 2026</span>
+    </p>
+
+    <div class="en">
+      <h2>Diffusion Index v0.6: Digital, Physical, and Institutional Pace-Layer Measurement</h2>
+      <p>
+        The Machine Learning Societies <strong>Diffusion Index (v0.6)</strong> measures how artificial intelligence moves from frontier model announcements into enterprise production, physical hardware, regulatory standards, electrical grids, and planetary boundaries. It is built in the open according to the OECD/JRC <em>Handbook on Constructing Composite Indicators</em> (2008).
+      </p>
+
+      <h3>§0 · Verification Discipline: [V] Verified vs. [K] Candidate Sources</h3>
+      <p>
+        Every data source in <a href="index/registry.v0.6.json"><code>index/registry.v0.6.json</code></a> is tagged with an explicit verification flag:
+      </p>
+      <ul>
+        <li><strong><code>[V]</code> Verified (<code>"verified": true</code> — 27 sources):</strong> Primary file, API endpoint, or statutory filing has been directly opened and verified against its primary release.</li>
+        <li><strong><code>[K]</code> Candidate (<code>"verified": false</code> — 22 sources):</strong> Plausible from prior institutional knowledge or secondary reporting, but primary table or licence terms await direct inspection.</li>
+      </ul>
+      <p>
+        <strong>Hard compiler rule:</strong> Nothing marked <code>[K]</code> may enter <a href="index/series.csv"><code>index/series.csv</code></a> until verified. Our build script (<code>scripts/fetch_open_series.py</code> and <code>scripts/compute_index.py</code>) fails with an error if any observation in <code>series.csv</code> references an unverified source.
+      </p>
+
+      <h3>§1 · Three-Block Separation &amp; Digital vs. Physical Channels</h3>
+      <p>
+        A composite index that mixes <em>inputs</em>, <em>adoption</em>, <em>constraints</em>, and <em>consequences</em> into a single number cannot be used to test whether conditions accelerate diffusion or whether diffusion causes consequences. Methodology v0.6 separates the ten pillars into three distinct blocks:
+      </p>
+      <ul>
+        <li><strong>Block A — Diffusion Core (Headline Index):</strong> 1. Deployment, 2. Cost to Serve, and 3. Capital Intensity. Only Block A enters the headline Diffusion Index.</li>
+        <li><strong>Block B — Enabling Conditions:</strong> 5. Governance Burden, 6. Human Capital, 8. Energy &amp; Grid Capacity, and 10. Market Openness.</li>
+        <li><strong>Block C — Societal &amp; Planetary Consequences:</strong> 4. Labour Reorganisation, 7. Ecological Balance, and 9. Ownership Distribution.</li>
+      </ul>
+      <p>
+        Within Block A, every pillar is decomposed into two channels: the <strong>Digital AI Index (DAI)</strong> (software, cloud APIs, enterprise workflows) and the <strong>Physical AI &amp; Robotics Index (PAI)</strong> (industrial robots, cleared clinical medical devices, autonomous vehicles, grid hardware). Because IFR industrial robot counts (542,076 installed in 2024; operational stock 4,663,698) include non-AI industrial automation, PAI carries an explicit <code>ai_specificity = proxy</code> badge.
+      </p>
+
+      <h3>§2 · Stewart Brand Pace Layers &amp; Daily Brief Signal Ingestion</h3>
+      <p>
+        Following Stewart Brand's <em>Pace Layering</em> (2018), societies change at six different speeds, from fast to slow: <strong>Fashion/Attention → Commerce → Infrastructure → Governance → Culture → Nature</strong>. Fast layers innovate and propose; slow layers integrate, constrain, and stabilise.
+      </p>
+      <ul>
+        <li><strong>Fashion / Attention</strong> (viral demos, benchmark press releases) is deliberately <em>not scored</em> in the index.</li>
+        <li><strong>Commerce</strong> (P1 Deployment, P2 Cost to Serve, P3 Capital Intensity) moves in quarters.</li>
+        <li><strong>Infrastructure</strong> (P8 Energy &amp; Grid Capacity) moves in years to decades.</li>
+        <li><strong>Governance</strong> (P5 Governance Burden, P9 Ownership Distribution, P10 Market Openness) moves in years.</li>
+        <li><strong>Culture &amp; Learning</strong> (P4 Labour Reorganisation, P6 Human Capital) moves in years to generations.</li>
+        <li><strong>Nature</strong> (P7 Ecological Balance &amp; Planetary Boundaries) moves in decades to centuries.</li>
+      </ul>
+      <p>
+        <strong>How Daily Briefs feed the Index (§2.1):</strong> Every daily brief published in <code>briefs/YYYY-MM-DD.html</code> is parsed by <code>scripts/sync_briefs_to_index.py</code> into <a href="index/brief_signals.csv"><code>index/brief_signals.csv</code></a>. Each brief is mapped to its primary Pillar, NACE Sector, Block (A/B/C), Channel, Layer (Reach / Depth / Embeddedness), and Stewart Brand Pace Layer. When a daily brief verifies a Tier 1–2 primary quantitative datapoint — such as Anthropic PBC's SEC Form S-1 ($16.29B H1 revenue, $8.95B compute cost, $265.6B purchase commitments, 48% cloud marketplace concentration in the <a href="briefs/2026-10-28.html">28 Oct 2026 brief</a>), Texas TCEQ/ERCOT gating 8.7 GW of data-centre gas permits (<a href="briefs/2026-10-25.html">25 Oct 2026 brief</a>), or the citation of harmonised standard EN 18286:2026 in the EU Official Journal (<a href="briefs/2026-10-14.html">14 Oct 2026 brief</a>) — that verified figure is logged directly into <code>index/series.csv</code> with a <code>brief_ref</code> date pointer.
+      </p>
+
+      <h3>§3 · The Ten Pillars, Polarity, and the J-Curve Complement</h3>
+      <ul>
+        <li><strong>Pillar 1 — Deployment (<code>direction: +1</code>):</strong> Anchored by Eurostat <code>isoc_eb_ai</code> (EU-27 20.0% in 2025, +6.5 pp/yr; Denmark 42.0%, Finland 37.8%, Romania 5.2%), Statistics Finland table <code>13vg</code> (38% all firms, 68% large firms, ~80% ICT), US Census BTOS (with explicit <code>break_flag</code> on 17 Nov 2025), Eurostat individual gen-AI use (32.7%), IFR robotics (proxy), and FDA AI/ML medical devices (1,620+).</li>
+        <li><strong>Pillar 2 — Cost to Serve (<code>direction: -1</code>):</strong> Tracks task execution cost including oversight and integration. Single-shot token cost claims (e.g., GDPval's headline 100× claim) are never logged as a cell because they omit multi-step workflow failure (<a href="briefs/2026-10-19.html">Stanford HAI hospital benchmark</a>: &lt;50% end-to-end completion).</li>
+        <li><strong>Pillar 3 — Capital Intensity &amp; J-Curve Intangible Multiplier (<code>direction: +1</code>):</strong> Audited compute and capex commitments ($265.6B in Anthropic's S-1) are recorded as a <em>lower bound</em> alongside Brynjolfsson, Rock &amp; Syverson's (2021) <strong>2×–10× sensitivity band</strong> for unmeasured organisational and process complements.</li>
+        <li><strong>Pillars 4, 5, 7, 9 (<code>direction: 0</code> — Diagnostic):</strong> Labour Reorganisation, Governance Burden, Ecological Balance, and Ownership Distribution are reported as diagnostic levels without normative polarity.</li>
+      </ul>
+
+      <h3>§4 · 10 × 10 Sector Grid, Comparable Sector Gap &amp; Three Layers</h3>
+      <p>
+        Every Pillar × NACE Rev. 2.1 Sector cell separates three diffusion layers: <strong>Reach</strong> (any use), <strong>Depth</strong> (share of workflows/tasks), and <strong>Embeddedness</strong> (process, procurement line-item, or audit-trail integration). The <strong>Comparable Sector Gap</strong> is computed strictly between sectors of Grade A or B provenance (e.g., Information &amp; Software at 69.0 vs. Agriculture &amp; Forestry at 18.1, or Finland ICT ~80% vs. all enterprises 38%).
+      </p>
+
+      <h3>§5 · Five-Tier Source Hierarchy &amp; Series Breaks</h3>
+      <p>
+        Sources are graded by provenance (<strong>A</strong> official register/filing, <strong>B</strong> academic/intergovernmental/audited series, <strong>C</strong> proxy/single-source) and frequency (<strong>M</strong> monthly, <strong>Q</strong> quarterly, <strong>Y</strong> annual) across five trust tiers: Tier 1 (Official statistics), Tier 2 (Regulator/intergovernmental registers), Tier 3 (Academic/open non-profit), Tier 4 (Vendor telemetry/company disclosures — never sole source for a Grade A/B cell), and Tier 5 (Secondary aggregators such as Stanford AI Index — used only to locate primaries, never logged as a cell). Questionnaire changes (such as the US Census BTOS 17 Nov 2025 expansion or Eurostat 2025 scope updates) carry <code>break_flag = true</code> and an explicit <code>bridge_factor</code>.
+      </p>
+
+      <h3>§7 · Fixed-Goalpost Scoring &amp; 1,000-Draw Monte Carlo Uncertainty</h3>
+      <p>
+        For each indicator \(i\) with fixed physiological/institutional floor \(L_i\) and ceiling \(U_i\), the level score on \([0, 100]\) is:
+      </p>
+      <p style="text-align:center">
+        \[
+          S_i(t) = \operatorname{clamp}_{[0,100]}\!\left(100 \cdot \frac{g(x_i(t)) - g(L_i)}{g(U_i) - g(L_i)}\right)
+        \]
+      </p>
+      <p>
+        where \(g(x) = x\) for bounded percentage shares and \(g(x) = \ln(x)\) for skewed physical quantities (GW, TWh, USD billions, robot density). Every Block A, DAI, and PAI release runs <strong>1,000 Monte Carlo draws</strong> in <code>scripts/compute_index.py</code> varying pillar weights \(\mathbf{w} \sim \operatorname{Dirichlet}(\mathbf{1})\), indicator noise \(\epsilon_i \sim \mathcal{N}(0, \sigma_i^2)\), and arithmetic vs. geometric aggregation, publishing the median and 5th–95th percentile band \([p_5, p_{95}]\).
+      </p>
+    </div>
+
+    <div class="fi">
+      <h2>Diffuusioindeksi v0.6: digitaalisen, fyysisen ja institutionaalisen kerrostuman mittaus</h2>
+      <p>
+        Machine Learning Societies -julkaisun <strong>Diffuusioindeksi (v0.6)</strong> mittaa, miten tekoäly siirtyy huippumallien julkistuksista yritysten tuotantoon, fyysisiin laitteisiin, viranomaisstandardeihin, sähköverkkoihin ja planetaarisiin rajoihin. Indeksi rakennetaan avoimesti OECD:n ja JRC:n <em>Handbook on Constructing Composite Indicators</em> (2008) -ohjeistuksen mukaisesti.
+      </p>
+
+      <h3>§0 · Vahvistuskuri: [V] vahvistetut vs. [K] ehdokaslähteet</h3>
+      <p>
+        Jokainen tiedostossa <a href="index/registry.v0.6.json"><code>index/registry.v0.6.json</code></a> oleva tietolähde on merkitty eksplisiittisellä vahvistustunnisteella:
+      </p>
+      <ul>
+        <li><strong><code>[V]</code> Vahvistettu (<code>"verified": true</code> — 27 lähdettä):</strong> Alkuperäistiedosto, avoin API-rajapinta tai viranomaisrekisteri on avattu ja tarkistettu suoraan alkuperäislähteestä.</li>
+        <li><strong><code>[K]</code> Ehdokaslähde (<code>"verified": false</code> — 22 lähdettä):</strong> Tunnettu institutionaalinen lähde, jonka taulukkorakenne tai lisenssiehdot odottavat vielä suoraa tarkistusta.</li>
+      </ul>
+      <p>
+        <strong>Ehdoton sääntö:</strong> Yhtäkään <code>[K]</code>-merkittyä lähdettä ei saa kirjata <a href="index/series.csv"><code>index/series.csv</code></a>-aikasarjatauluun ennen vahvistusta. Kääntäjäskripti keskeyttää ajon virheeseen, jos yksikin havainto viittaa vahvistamattomaan lähteeseen.
+      </p>
+
+      <h3>§1 · Kolmilohkoinen erottelu sekä digitaalinen vs. fyysinen kanava</h3>
+      <p>
+        Indeksi, joka sekoittaa panokset, käyttöönoton, rajoitteet ja seuraukset yhdeksi luvuksi, ei pysty testaamaan syy-seuraussuhteita. Metodologia v0.6 erottaa kymmenen pilaria kolmeen lohkoon:
+      </p>
+      <ul>
+        <li><strong>Lohko A — Diffuusioydin (Pääindeksi):</strong> 1. Käyttöönotto, 2. Suorituskustannus ja 3. Pääomavaltaisuus. Vain Lohko A muodostaa varsinaisen päädiffuusioindeksin.</li>
+        <li><strong>Lohko B — Mahdollistavat edellytykset:</strong> 5. Sääntely- ja valvontakuorma, 6. Inhimillinen pääoma, 8. Energia- ja verkkokapasiteetti sekä 10. Markkinoiden avoimuus.</li>
+        <li><strong>Lohko C — Yhteiskunnalliset ja planetaariset seuraukset:</strong> 4. Työn uudelleenjärjestely, 7. Ekologinen tasapaino ja 9. Omistuksen jakautuminen.</li>
+      </ul>
+      <p>
+        Lohkon A sisällä jokainen pilari jaetaan kahteen kanavaan: <strong>Digitaalinen tekoälyindeksi (DAI)</strong> ja <strong>Fyysinen tekoäly- ja robotiikkaindeksi (PAI)</strong>. Koska IFR:n teollisuusrobottiluvut (542 076 asennettua robottia vuonna 2024; kanta 4 663 698) sisältävät myös muun kuin tekoälyohjatun automaation, PAI kantaa nimenomaista <code>ai_specificity = proxy</code> -varoitusta.
+      </p>
+
+      <h3>§2 · Stewart Brandin vauhtikerrokset ja päiväkatsausten signaaliputki</h3>
+      <p>
+        Stewart Brandin <em>Pace Layering</em> (2018) -mallin mukaisesti yhteiskunnat muuttuvat kuudella eri nopeudella nopeimmasta hitaimpaan: <strong>Muoti/Huomio → Kauppa → Infrastruktuuri → Hallinta/Sääntely → Kulttuuri → Luonto</strong>.
+      </p>
+      <p>
+        <strong>Miten päiväkatsaukset syöttävät indeksiä (§2.1):</strong> Skripti <code>scripts/sync_briefs_to_index.py</code> jäsentää jokaisen julkaistun päiväkatsauksen (<code>briefs/YYYY-MM-DD.html</code>) tiedostoon <a href="index/brief_signals.csv"><code>index/brief_signals.csv</code></a> ja liittää vahvistetut tason 1–2 luvut (kuten Anthropicin S-1 -listalleottoasiakirjan luvut 28.10.2026 katsauksesta, Texasin 8,7 GW:n lupajonon 25.10.2026 katsauksesta ja EN 18286:2026 -standardin 14.10.2026 katsauksesta) suoraan <code>index/series.csv</code>-tauluun <code>brief_ref</code>-viitteellä.
+      </p>
+
+      <h3>§7 · Kiinteät maalitolpat ja 1 000 vedon Monte Carlo -epävarmuuslaskenta</h3>
+      <p>
+        Jokainen indikaattori pisteytetään kiinteiden ala- ja ylärajojen \([L_i, U_i]\) avulla asteikolle \([0, 100]\). Skripti <code>scripts/compute_index.py</code> ajaa jokaiselle julkaisulle <strong>1 000 Monte Carlo -vetoa</strong> (Dirichlet-painot, indikaattorikohina sekä aritmeettinen vs. geometrinen keskiarvo) ja julkaisee mediaanin sekä 90 % luottamusvälin \([p_5, p_{95}]\).
+      </p>
+    </div>
+
+    <div style="margin-top:32px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="diffusion-index.html"><span class="en">← Back to Live Diffusion Index</span><span class="fi">← Takaisin diffuusioindeksiin</span></a>
+      <a class="btn" href="index/method.v0.6.md" download><span class="en">Download Raw Markdown (method.v0.6.md)</span><span class="fi">Lataa Markdown-spesifikaatio (method.v0.6.md)</span></a>
+    </div>
+  </article>
+
+  <footer>
+    <div>
+      <span class="en">Machine Learning Societies · AI Diffusion Index v0.6 · By Harri Juntunen · </span>
+      <span class="fi">Machine Learning Societies · Tekoälyn diffuusioindeksi v0.6 · Harri Juntunen · </span>
+      <a href="index.html"><span class="en">Daily Briefs</span><span class="fi">Päiväkatsaukset</span></a> ·
+      <a href="diffusion-index.html"><span class="en">Diffusion Index</span><span class="fi">Diffuusioindeksi</span></a> ·
+      <a href="forecasts.html"><span class="en">Forecasts</span><span class="fi">Ennusteet</span></a> ·
+      <a href="about.html"><span class="en">About</span><span class="fi">Tietoa</span></a>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const root = document.documentElement;
+  const btns = document.querySelectorAll('[data-set-lang]');
+  function setLang(lang){
+    const l = (lang === 'fi') ? 'fi' : 'en';
+    root.setAttribute('data-lang', l);
+    root.setAttribute('lang', l);
+    btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.setLang === l ? 'true' : 'false'));
+    try { localStorage.setItem('mls-lang', l); localStorage.setItem('lang', l); } catch(e){}
+  }
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  let saved = null;
+  try { saved = localStorage.getItem('mls-lang') || localStorage.getItem('lang'); } catch(e){}
+  setLang(urlLang || saved || 'en');
+  btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang)));
+})();
+</script>
+</body>
+</html>

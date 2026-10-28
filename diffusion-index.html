@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Diffusion Index v0.6 — Machine Learning Societies</title>
+<meta name="description" content="Multi-source institutional measurement of Digital and Physical AI diffusion across 10 pillars, 10 NACE sectors, 3 blocks (Diffusion, Conditions, Consequences), Stewart Brand pace layers, and 9 planetary boundaries.">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="https://machine-learning-societies.web.app/feed.fi.xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="wrap-wide">
+  <header class="masthead">
+    <div class="mast-left">
+      <a class="brand" href="index.html">Machine Learning Societies</a>
+      <div class="toplinks">
+        <a href="about.html"><span class="en">About</span><span class="fi">Tietoa</span></a> ·
+        <a href="diffusion-method.html"><span class="en">Index Methodology v0.6</span><span class="fi">Indeksimetodologia v0.6</span></a> ·
+        <a href="https://www.linkedin.com/groups/17992023/" target="_blank" rel="noopener"><span class="en">LinkedIn group</span><span class="fi">LinkedIn-ryhmä</span></a> ·
+        <a class="en" href="feed.xml">RSS</a><a class="fi" href="feed.fi.xml">RSS</a>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <a class="btn" href="index.html"><span class="en">Daily Briefs</span><span class="fi">Päiväkatsaukset</span></a>
+      <a class="btn" href="diffusion-index.html" aria-current="page"><span class="en">Diffusion Index</span><span class="fi">Diffuusioindeksi</span></a>
+      <a class="btn" href="forecasts.html"><span class="en">Forecasts</span><span class="fi">Ennusteet</span></a>
+      <div class="toggle" role="group" aria-label="Language">
+        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-set-lang="fi" aria-pressed="false">FI</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="di-hero">
+    <p class="kicker">
+      <span class="en">SOCIETAL &amp; PHYSICAL DIFFUSION OBSERVATORY · METHODOLOGY V0.6 · UPDATED 28 OCT 2026</span>
+      <span class="fi">YHTEISKUNNALLISEN JA FYYSISEN DIFFUUSION OBSERVATORIO · METODOLOGIA V0.6 · PÄIVITETTY 28.10.2026</span>
+    </p>
+    <h1>
+      <span class="en">AI Diffusion Index: Digital, Physical &amp; Institutional Pace Layers</span>
+      <span class="fi">Tekoälyn diffuusioindeksi: digitaalinen, fyysinen ja institutionaalinen kerrostuma</span>
+    </h1>
+    <p class="di-sub en">
+      A longitudinal, audit-grade observatory tracking how artificial intelligence moves from frontier model capability into real enterprise workflows, physical machines, regulatory standards, energy grids, and planetary boundaries. Strictly separates <strong>Block A (Actual Diffusion)</strong> from <strong>Block B (Enabling Conditions)</strong> and <strong>Block C (Societal &amp; Planetary Consequences)</strong>.
+    </p>
+    <p class="di-sub fi">
+      Pitkittäinen, tilintarkastuskelpoinen seurantajärjestelmä sille, miten tekoäly siirtyy huippumallien suorituskyvystä todellisiin työnkulkuihin, fyysisiin koneisiin, standardeihin, sähköverkkoihin ja planetaarisiin rajoihin. Erottaa tiukasti <strong>Lohkon A (todellinen diffuusio)</strong> <strong>Lohkosta B (mahdollistavat edellytykset)</strong> ja <strong>Lohkosta C (yhteiskunnalliset ja planetaariset seuraukset)</strong>.
+    </p>
+    <div class="di-meta-strip" id="hero-meta-strip">
+      <span class="di-badge di-badge-verified"><span class="en">56 Verified [V] Observations</span><span class="fi">56 vahvistettua [V] havaintoa</span></span>
+      <span class="di-badge"><span class="en">11 Daily Brief Signals Linked</span><span class="fi">11 päiväkatsaussignaalia linkitetty</span></span>
+      <span class="di-badge"><span class="en">27 Verified / 22 Candidate [K] Sources</span><span class="fi">27 vahvistettua / 22 ehdokaslähdettä [K]</span></span>
+      <span class="di-badge di-badge-proxy"><span class="en">Zero [K] sources in series.csv (§0 enforced)</span><span class="fi">Nolla [K]-lähdettä series.csv:ssä (§0 voimassa)</span></span>
+      <a class="btn" href="diffusion-method.html" style="margin-left:auto"><span class="en">Read v0.6 Specification →</span><span class="fi">Lue v0.6-määrittely →</span></a>
+    </div>
+  </section>
+
+  <!-- 1. FOUR HEADLINE KPI CARDS (Block A, DAI, PAI, Comparable Sector Gap) -->
+  <div class="di-kpi-grid" id="kpi-grid" aria-live="polite"></div>
+
+  <!-- 2. THREE BLOCKS + STEWART BRAND PACE-SHEAR DIAGNOSTIC -->
+  <h2 class="section">
+    <span class="en">Three-Block Architecture &amp; Stewart Brand Pace-Shear Diagnostic</span>
+    <span class="fi">Kolmilohkoinen arkkitehtuuri ja Stewart Brandin kerrostumien kitkadiagnostiikka</span>
+  </h2>
+  <div class="di-blocks-row" id="blocks-row"></div>
+
+  <div class="di-pace-panel" id="pace-panel"></div>
+
+  <!-- 3. INTERACTIVE 10x10 SECTOR x PILLAR HEATMAP -->
+  <h2 class="section">
+    <span class="en">10 × 10 Sector × Pillar Diffusion Matrix (Click any cell to inspect primary sources &amp; daily briefs)</span>
+    <span class="fi">10 × 10 Toimiala × Pilari -diffuusiomatriisi (Klikkaa solua nähdäksesi alkuperäislähteet ja päiväkatsaukset)</span>
+  </h2>
+  <div class="di-toolbar">
+    <div class="di-toolbar-group">
+      <span class="di-toolbar-label"><span class="en">Layer View:</span><span class="fi">Kerrosnäkymä:</span></span>
+      <div class="toggle" role="group" aria-label="Diffusion layer view">
+        <button type="button" data-layer-view="score" aria-pressed="true"><span class="en">Composite Level (0–100)</span><span class="fi">Kokonaistaso (0–100)</span></button>
+        <button type="button" data-layer-view="reach" aria-pressed="false"><span class="en">Reach</span><span class="fi">Kattavuus (Reach)</span></button>
+        <button type="button" data-layer-view="depth" aria-pressed="false"><span class="en">Depth</span><span class="fi">Syvyys (Depth)</span></button>
+        <button type="button" data-layer-view="embeddedness" aria-pressed="false"><span class="en">Embeddedness</span><span class="fi">Juurtuneisuus</span></button>
+      </div>
+    </div>
+    <div class="di-toolbar-group">
+      <span class="di-toolbar-label"><span class="en">Sort Sectors:</span><span class="fi">Järjestä toimialat:</span></span>
+      <div class="toggle" role="group" aria-label="Sector sort">
+        <button type="button" data-sector-sort="block_a" aria-pressed="true"><span class="en">By Block A Score</span><span class="fi">Lohkon A mukaan</span></button>
+        <button type="button" data-sector-sort="dai" aria-pressed="false"><span class="en">By Digital (DAI)</span><span class="fi">Digitaalinen (DAI)</span></button>
+        <button type="button" data-sector-sort="pai" aria-pressed="false"><span class="en">By Physical (PAI)</span><span class="fi">Fyysinen (PAI)</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table class="di-table" id="matrix-table">
+      <thead id="matrix-thead"></thead>
+      <tbody id="matrix-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- 4. TEN PILLARS (FIXED GOALPOSTS, REACH/DEPTH/EMBEDDEDNESS, LINKED BRIEFS) -->
+  <h2 class="section">
+    <span class="en">Ten Pillars: Fixed-Goalpost Scores, Direction, Velocity &amp; Linked Brief Signals</span>
+    <span class="fi">Kymmenen pilaria: kiinteät maalitolppapisteet, suunta, nopeus ja linkitetyt katsaukset</span>
+  </h2>
+  <div class="di-toolbar">
+    <div class="di-toolbar-group">
+      <span class="di-toolbar-label"><span class="en">Filter Block:</span><span class="fi">Suodata lohko:</span></span>
+      <div class="toggle" role="group" aria-label="Block filter">
+        <button type="button" data-block-filter="ALL" aria-pressed="true"><span class="en">All 10 Pillars</span><span class="fi">Kaikki 10 pilaria</span></button>
+        <button type="button" data-block-filter="A_diffusion" aria-pressed="false"><span class="en">Block A: Diffusion Core (3)</span><span class="fi">Lohko A: Diffuusioydin (3)</span></button>
+        <button type="button" data-block-filter="B_conditions" aria-pressed="false"><span class="en">Block B: Conditions (4)</span><span class="fi">Lohko B: Edellytykset (4)</span></button>
+        <button type="button" data-block-filter="C_consequences" aria-pressed="false"><span class="en">Block C: Consequences (3)</span><span class="fi">Lohko C: Seuraukset (3)</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="di-pillar-grid" id="pillar-grid"></div>
+
+  <!-- 5. DAILY BRIEF SIGNAL LEDGER & MONTHLY PACE-LAYER MIX (§2.1) -->
+  <h2 class="section">
+    <span class="en">Daily Brief Signal Ingestion &amp; Pace-Layer Mix (brief_signals.csv)</span>
+    <span class="fi">Päiväkatsausten signaalikirjanpito ja vauhtikerrosjakauma (brief_signals.csv)</span>
+  </h2>
+  <p class="sub" style="max-width:80ch">
+    <span class="en">Every daily brief published on Machine Learning Societies is classified into its primary Pillar, NACE Sector, Block (A/B/C), Channel (Digital/Physical), Layer (Reach/Depth/Embeddedness), and Stewart Brand Pace Layer. Verified Tier 1–2 quantitative figures from briefs are logged directly into <code>index/series.csv</code> with a <code>brief_ref</code> date pointer.</span>
+    <span class="fi">Jokainen Machine Learning Societies -julkaisun päiväkatsaus luokitellaan ensisijaiseen pilariin, NACE-toimialaan, lohkoon (A/B/C), kanavaan (digitaalinen/fyysinen), kerrokseen (kattavuus/syvyys/juurtuneisuus) ja Stewart Brandin vauhtikerrokseen. Vahvistetut tason 1–2 luvut kirjataan suoraan <code>index/series.csv</code>-tauluun <code>brief_ref</code>-viitteellä.</span>
+  </p>
+  <div class="table-scroll">
+    <table class="di-table" id="briefs-signal-table">
+      <thead>
+        <tr>
+          <th><span class="en">Date</span><span class="fi">Pvm</span></th>
+          <th><span class="en">Daily Brief &amp; Institutional Signal</span><span class="fi">Päiväkatsaus ja institutionaalinen signaali</span></th>
+          <th><span class="en">Pillar &amp; Block</span><span class="fi">Pilari ja lohko</span></th>
+          <th><span class="en">Sector &amp; Layer</span><span class="fi">Toimiala ja kerros</span></th>
+          <th><span class="en">Pace Layer</span><span class="fi">Vauhtikerros</span></th>
+          <th><span class="en">Primary Quantitative Metric</span><span class="fi">Keskeinen määrällinen mittari</span></th>
+          <th class="num"><span class="en">Signal · Stakes</span><span class="fi">Signaali · Panos</span></th>
+        </tr>
+      </thead>
+      <tbody id="briefs-signal-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- 6. PLANETARY BOUNDARIES REFERENCE PANEL (Pillar 7 / Block C) -->
+  <h2 class="section">
+    <span class="en">Planetary Boundaries Reference Frame (Pillar 7 — Ecological Balance)</span>
+    <span class="fi">Planetaaristen rajojen viitekehys (Pilari 7 — Ekologinen tasapaino)</span>
+  </h2>
+  <p class="sub" style="max-width:82ch">
+    <span class="en">Following Stockholm Resilience Centre, Richardson et al. (2023), and the 2025 Planetary Health Check, 7 of 9 Earth-system boundaries are currently transgressed. Per Methodology v0.6 §3 (Pillar 7), boundaries lacking a defensible AI-specific share are explicitly printed as <strong>"not measured"</strong> — never imputed as zero.</span>
+    <span class="fi">Stockholm Resilience Centren, Richardson ym. (2023) ja vuoden 2025 Planetary Health Checkin mukaan 7 yhdeksästä maapallon järjestelmän rajasta on ylitetty. Metodologian v0.6 §3 mukaisesti rajat, joille ei ole luotettavaa tekoälykohtaista osuutta, merkitään nimenomaisesti <strong>"ei mitattu" (not measured)</strong> — ei koskaan nollaksi.</span>
+  </p>
+  <div class="table-scroll">
+    <table class="di-table" id="pb-table">
+      <thead>
+        <tr>
+          <th><span class="en">Planetary Boundary</span><span class="fi">Planetaarinen raja</span></th>
+          <th><span class="en">Earth-System Status</span><span class="fi">Tilanne</span></th>
+          <th><span class="en">Control Variable</span><span class="fi">Ohjausmuuttuja</span></th>
+          <th><span class="en">Assessment Year</span><span class="fi">Arviointivuosi</span></th>
+          <th><span class="en">AI Load Share / Series Status</span><span class="fi">Tekoälyn kuormitusosuus / sarjan tila</span></th>
+        </tr>
+      </thead>
+      <tbody id="pb-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- 7. VERIFIED OBSERVATION LEDGER (series.csv) -->
+  <h2 class="section">
+    <span class="en">Verified Observation Ledger (index/series.csv — 56 Primary Series Points)</span>
+    <span class="fi">Vahvistettujen havaintojen pääkirja (index/series.csv — 56 havaintopistettä)</span>
+  </h2>
+  <div class="di-toolbar">
+    <div class="di-toolbar-group">
+      <span class="di-toolbar-label"><span class="en">Filter Observations:</span><span class="fi">Suodata havainnot:</span></span>
+      <div class="toggle" role="group" aria-label="Observation channel filter">
+        <button type="button" data-obs-filter="ALL" aria-pressed="true"><span class="en">All (56)</span><span class="fi">Kaikki (56)</span></button>
+        <button type="button" data-obs-filter="digital" aria-pressed="false"><span class="en">Digital Channel</span><span class="fi">Digitaalinen kanava</span></button>
+        <button type="button" data-obs-filter="physical" aria-pressed="false"><span class="en">Physical Channel</span><span class="fi">Fyysinen kanava</span></button>
+        <button type="button" data-obs-filter="brief" aria-pressed="false"><span class="en">From Daily Briefs</span><span class="fi">Päiväkatsauksista</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="table-scroll" style="max-height:460px;overflow-y:auto">
+    <table class="di-table" id="obs-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th><span class="en">Period</span><span class="fi">Ajankohta</span></th>
+          <th><span class="en">Pillar &amp; Sector</span><span class="fi">Pilari ja toimiala</span></th>
+          <th><span class="en">Geo &amp; Layer</span><span class="fi">Alue ja kerros</span></th>
+          <th class="num"><span class="en">Value &amp; Unit</span><span class="fi">Arvo ja yksikkö</span></th>
+          <th><span class="en">Source &amp; Grade</span><span class="fi">Lähde ja luokka</span></th>
+          <th><span class="en">Notes / Break Flag / Brief Ref</span><span class="fi">Huomiot / Aikasarjakatkos / Katsausviite</span></th>
+        </tr>
+      </thead>
+      <tbody id="obs-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- 8. SOURCE REGISTRY (49 SOURCES: [V] VERIFIED VS [K] CANDIDATES) -->
+  <h2 class="section">
+    <span class="en">Source Registry (registry.v0.6.json — [V] Verified vs [K] Candidate Sources)</span>
+    <span class="fi">Lähderekisteri (registry.v0.6.json — [V] vahvistetut vs. [K] ehdokaslähteet)</span>
+  </h2>
+  <div class="di-toolbar">
+    <div class="di-toolbar-group">
+      <span class="di-toolbar-label"><span class="en">Verification Status:</span><span class="fi">Vahvistustila:</span></span>
+      <div class="toggle" role="group" aria-label="Source verification filter">
+        <button type="button" data-src-filter="ALL" aria-pressed="true"><span class="en">All Sources (49)</span><span class="fi">Kaikki lähteet (49)</span></button>
+        <button type="button" data-src-filter="verified" aria-pressed="false"><span class="en">[V] Verified Only (27)</span><span class="fi">Vain [V] vahvistetut (27)</span></button>
+        <button type="button" data-src-filter="candidate" aria-pressed="false"><span class="en">[K] Candidates Awaiting Check (22)</span><span class="fi">[K] Tarkistusta odottavat (22)</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="table-scroll" style="max-height:480px;overflow-y:auto">
+    <table class="di-table" id="sources-table">
+      <thead>
+        <tr>
+          <th><span class="en">Status</span><span class="fi">Tila</span></th>
+          <th><span class="en">Source &amp; Primary Endpoint</span><span class="fi">Lähde ja ensisijainen rajapinta</span></th>
+          <th><span class="en">Tier &amp; Grade</span><span class="fi">Taso ja luokka</span></th>
+          <th><span class="en">Pillars &amp; Geo</span><span class="fi">Pilarit ja alue</span></th>
+          <th><span class="en">Methodological Caveats &amp; Licence</span><span class="fi">Metodologiset varaukset ja lisenssi</span></th>
+        </tr>
+      </thead>
+      <tbody id="sources-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- 9. OPEN REPLICATION PACKAGE -->
+  <div class="method" style="margin-top:36px">
+    <h3>
+      <span class="en">Open Replication Package &amp; Machine-Readable Files</span>
+      <span class="fi">Avoin toistettavuuspaketti ja koneluettavat tiedostot</span>
+    </h3>
+    <p class="en">
+      Every score, uncertainty interval, and sector cell on this page is compiled deterministically by <code>scripts/compute_index.py</code> from flat files in <code>index/</code>. Download the primary artefacts to audit or re-run the Monte Carlo simulation locally:
+    </p>
+    <p class="fi">
+      Jokainen tämän sivun pisteluku, epävarmuusväli ja toimialasolu on käännetty deterministisesti skriptillä <code>scripts/compute_index.py</code> hakemiston <code>index/</code> tiedostoista. Lataa lähdetiedostot tarkastusta tai paikallista Monte Carlo -ajoa varten:
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
+      <a class="btn" href="index/computed.v0.6.json" download>computed.v0.6.json</a>
+      <a class="btn" href="index/registry.v0.6.json" download>registry.v0.6.json</a>
+      <a class="btn" href="index/series.csv" download>series.csv</a>
+      <a class="btn" href="index/brief_signals.csv" download>brief_signals.csv</a>
+      <a class="btn" href="index/planetary_boundaries.json" download>planetary_boundaries.json</a>
+      <a class="btn" href="index/method.v0.6.md" download>method.v0.6.md</a>
+      <a class="btn" href="diffusion-method.html"><span class="en">Full Methodology v0.6 Page →</span><span class="fi">Koko metodologia v0.6 -sivu →</span></a>
+    </div>
+  </div>
+
+  <!-- Native HTML <dialog> modal for 10x10 Cell Drilldown -->
+  <dialog class="di-modal" id="cell-modal" aria-labelledby="modal-title">
+    <div class="di-modal-head">
+      <div>
+        <div class="kicker" id="modal-kicker"></div>
+        <h3 id="modal-title" style="margin:4px 0 0;font-family:Georgia,serif;font-size:21px"></h3>
+      </div>
+      <button type="button" class="di-modal-close" id="modal-close-btn">✕ <span class="en">Close</span><span class="fi">Sulje</span></button>
+    </div>
+    <div id="modal-body"></div>
+  </dialog>
+
+  <footer>
+    <div>
+      <span class="en">Machine Learning Societies · AI Diffusion Index v0.6 · By Harri Juntunen · </span>
+      <span class="fi">Machine Learning Societies · Tekoälyn diffuusioindeksi v0.6 · Harri Juntunen · </span>
+      <a href="index.html"><span class="en">Daily Briefs</span><span class="fi">Päiväkatsaukset</span></a> ·
+      <a href="diffusion-method.html"><span class="en">Index Methodology</span><span class="fi">Indeksimetodologia</span></a> ·
+      <a href="forecasts.html"><span class="en">Forecasts</span><span class="fi">Ennusteet</span></a> ·
+      <a href="about.html"><span class="en">About</span><span class="fi">Tietoa</span></a> ·
+      <a class="en" href="feed.xml">RSS</a><a class="fi" href="feed.fi.xml">RSS</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const root = document.documentElement;
+  const btns = document.querySelectorAll('[data-set-lang]');
+  let currentLang = 'en';
+  let DATA = null;
+  let layerView = 'score';
+  let sectorSort = 'block_a';
+  let blockFilter = 'ALL';
+  let obsFilter = 'ALL';
+  let srcFilter = 'ALL';
+
+  function setLang(lang){
+    currentLang = (lang === 'fi') ? 'fi' : 'en';
+    root.setAttribute('data-lang', currentLang);
+    root.setAttribute('lang', currentLang);
+    btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.setLang === currentLang ? 'true' : 'false'));
+    try { localStorage.setItem('mls-lang', currentLang); localStorage.setItem('lang', currentLang); } catch(e){}
+    if (DATA) renderAll();
+  }
+
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  let saved = null;
+  try { saved = localStorage.getItem('mls-lang') || localStorage.getItem('lang'); } catch(e){}
+  setLang(urlLang || saved || 'en');
+  btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang)));
+
+  function t(enStr, fiStr){
+    return currentLang === 'fi' ? (fiStr || enStr) : enStr;
+  }
+
+  function heatColor(score){
+    const s = Math.max(0, Math.min(100, Number(score) || 0));
+    if (s >= 65) return { bg: '#dbeafe', fg: '#1e3a8a', border: '#93c5fd' };
+    if (s >= 50) return { bg: '#e0f2fe', fg: '#075985', border: '#bae6fd' };
+    if (s >= 35) return { bg: '#f1f5f9', fg: '#0f172a', border: '#cbd5e1' };
+    if (s >= 22) return { bg: '#fef9c3', fg: '#713f12', border: '#fde047' };
+    return { bg: '#fee2e2', fg: '#7f1d1d', border: '#fecaca' };
+  }
+
+  function renderKPIs(){
+    const h = DATA.headline;
+    const ba = h.block_a_diffusion_core;
+    const dai = h.dai_digital;
+    const pai = h.pai_physical;
+    const sg = h.sector_gap;
+
+    document.getElementById('kpi-grid').innerHTML = `
+      <div class="di-kpi-card di-kpi-primary">
+        <div>
+          <div class="di-kpi-kicker">${t('BLOCK A · HEADLINE DIFFUSION CORE', 'LOHKO A · PÄÄDIFFUUSIOINDEKSI')}</div>
+          <div class="di-kpi-val">${ba.score.toFixed(1)} <span style="font-size:15px;font-weight:400;color:var(--muted)">/ 100</span></div>
+          <div class="di-kpi-band">
+            ${t('90% Monte Carlo band:', '90 % Monte Carlo -väli:')} <strong>[${ba.p5.toFixed(1)} – ${ba.p95.toFixed(1)}]</strong> ·
+            ${t('Geom:', 'Geom:')} ${ba.geometric_mean.toFixed(1)}
+          </div>
+        </div>
+        <div class="di-kpi-foot">
+          <strong>+${ba.velocity_pp_yr} pp/yr</strong> · ${t('Combines P1 Deployment, P2 Cost to Serve & P3 Capital Intensity. Never blends Conditions or Consequences.', 'Yhdistää pilarit P1 Käyttöönotto, P2 Suorituskustannus ja P3 Pääomavaltaisuus. Ei sekoita edellytyksiä tai seurauksia.')}
+        </div>
+      </div>
+
+      <div class="di-kpi-card">
+        <div>
+          <div class="di-kpi-kicker">${t('DIGITAL AI INDEX (DAI)', 'DIGITAALINEN TEKOÄLYINDEKSI (DAI)')}</div>
+          <div class="di-kpi-val">${dai.score.toFixed(1)} <span style="font-size:15px;font-weight:400;color:var(--muted)">/ 100</span></div>
+          <div class="di-kpi-band">
+            ${t('90% band:', '90 % väli:')} <strong>[${dai.p5.toFixed(1)} – ${dai.p95.toFixed(1)}]</strong> ·
+            <span class="di-badge di-badge-verified" style="padding:1px 7px;font-size:10px">specific</span>
+          </div>
+        </div>
+        <div class="di-kpi-foot">
+          ${t('EU-27 firms 20.0% (+6.5 pp/yr; FI 38.0%, DK 42.0%); EU gen-AI individuals 32.7%; Anthropic S-1 $265.6B cloud/compute commits.', 'EU-27 yritykset 20,0 % (+6,5 %-yks./v; FI 38,0 %, DK 42,0 %); kansalaiset 32,7 %; Anthropicin S-1 265,6 mrd. $ laskentasitoumukset.')}
+        </div>
+      </div>
+
+      <div class="di-kpi-card">
+        <div>
+          <div class="di-kpi-kicker">${t('PHYSICAL AI & ROBOTICS (PAI)', 'FYYSINEN TEKOÄLY JA ROBOTIIKKA (PAI)')}</div>
+          <div class="di-kpi-val">${pai.score.toFixed(1)} <span style="font-size:15px;font-weight:400;color:var(--muted)">/ 100</span></div>
+          <div class="di-kpi-band">
+            ${t('90% band:', '90 % väli:')} <strong>[${pai.p5.toFixed(1)} – ${pai.p95.toFixed(1)}]</strong> ·
+            <span class="di-badge di-badge-proxy" style="padding:1px 7px;font-size:10px">AI-specificity: proxy</span>
+          </div>
+        </div>
+        <div class="di-kpi-foot">
+          ${t(pai.proxy_warning_en, pai.proxy_warning_fi)}
+        </div>
+      </div>
+
+      <div class="di-kpi-card">
+        <div>
+          <div class="di-kpi-kicker">${t('COMPARABLE SECTOR GAP (GRADE A/B)', 'TOIMIALAKUILU (LAATULUOKKA A/B)')}</div>
+          <div class="di-kpi-val">${sg.gap_points.toFixed(1)} <span style="font-size:15px;font-weight:400;color:var(--muted)">pts</span></div>
+          <div class="di-kpi-band">
+            ${t(sg.leader_name_en, sg.leader_name_fi)} (${sg.leader_score}) vs. ${t(sg.laggard_name_en, sg.laggard_name_fi)} (${sg.laggard_score})
+          </div>
+        </div>
+        <div class="di-kpi-foot">
+          ${t('Finland ICT ~80% vs all enterprises 38% (42.0 pp gap, StatFin 13vg). Only Grade A/B sectors compared (§4).', 'Suomessa ICT ~80 % vs. kaikki yritykset 38 % (42,0 %-yks. kuilu, StatFin 13vg). Vain A/B-luokan toimialoja verrataan (§4).')}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderBlocksAndPace(){
+    const h = DATA.headline;
+    const pd = DATA.pace_diagnostics;
+    const jc = pd.j_curve_sensitivity;
+
+    document.getElementById('blocks-row').innerHTML = `
+      <div class="di-block-box">
+        <h3>${t('Block A — Diffusion Core', 'Lohko A — Diffuusioydin')} (${h.block_a_diffusion_core.score.toFixed(1)})</h3>
+        <p>${t('What is actually deployed, at what task cost, and with what committed capital.', 'Mitä on todellisuudessa otettu käyttöön, millä suorituskustannuksella ja millä pääomasitoumuksilla.')}</p>
+        <div class="di-pill-list">
+          <span class="di-badge">1. ${t('Deployment', 'Käyttöönotto')} (28.4)</span>
+          <span class="di-badge">2. ${t('Cost to serve', 'Suorituskustannus')} (41.2)</span>
+          <span class="di-badge">3. ${t('Capital intensity', 'Pääomavaltaisuus')} (58.6)</span>
+        </div>
+      </div>
+      <div class="di-block-box">
+        <h3>${t('Block B — Enabling Conditions', 'Lohko B — Mahdollistavat edellytykset')} (${h.block_b_conditions.score.toFixed(1)})</h3>
+        <p>${t('Institutional standards, workforce capability, grid interconnection queues, and market openness that gate or accelerate diffusion.', 'Standardit, osaaminen, sähköverkon lupajonot ja markkinoiden avoimuus, jotka joko jarruttavat tai vauhdittavat diffuusiota.')}</p>
+        <div class="di-pill-list">
+          <span class="di-badge">5. ${t('Governance burden', 'Sääntelykuorma')} (64.5)</span>
+          <span class="di-badge">6. ${t('Human capital', 'Inhimillinen pääoma')} (46.8)</span>
+          <span class="di-badge">8. ${t('Energy & grid', 'Energia ja verkko')} (34.8)</span>
+          <span class="di-badge">10. ${t('Market openness', 'Markkinoiden avoimuus')} (44.2)</span>
+        </div>
+      </div>
+      <div class="di-block-box">
+        <h3>${t('Block C — Consequences', 'Lohko C — Seuraukset')} (${h.block_c_consequences.score.toFixed(1)})</h3>
+        <p>${t('Task reorganisation, cloud/equity ownership concentration, and ecological load against planetary boundaries.', 'Työn uudelleenjärjestely, pilvi- ja omistuskeskittyminen sekä ekologinen kuormitus suhteessa planetaarisiin rajoihin.')}</p>
+        <div class="di-pill-list">
+          <span class="di-badge">4. ${t('Labour reorganisation', 'Työn uudelleenjärjestely')} (31.2)</span>
+          <span class="di-badge">7. ${t('Ecological balance', 'Ekologinen tasapaino')} (52.4)</span>
+          <span class="di-badge">9. ${t('Ownership distribution', 'Omistuksen jakautuminen')} (38.5)</span>
+        </div>
+      </div>
+    `;
+
+    const paceLabels = {
+      fashion_attention: { en: 'Fashion / Attention (unscored)', fi: 'Muoti / Huomio (ei pisteytetä)' },
+      commerce: { en: 'Commerce (P1, P2, P3)', fi: 'Kauppa (P1, P2, P3)' },
+      infrastructure: { en: 'Infrastructure (P8 Energy & Grid)', fi: 'Infrastruktuuri (P8 Energia ja verkko)' },
+      governance: { en: 'Governance (P5, P9, P10)', fi: 'Hallinta ja sääntely (P5, P9, P10)' },
+      culture: { en: 'Culture & Learning (P4, P6)', fi: 'Kulttuuri ja oppiminen (P4, P6)' },
+      nature: { en: 'Nature (P7 Ecological Balance)', fi: 'Luonto (P7 Ekologinen tasapaino)' }
+    };
+
+    const paceRowsHtml = Object.keys(paceLabels).map(k => {
+      const m = pd.brief_pace_layer_mix[k] || { count: 0, share_pct: 0 };
+      return `
+        <div class="di-pace-row">
+          <div><strong>${t(paceLabels[k].en, paceLabels[k].fi)}</strong></div>
+          <div>
+            <div class="di-bar-track" style="margin:0">
+              <div class="di-bar-fill di-bar-accent" style="width:${Math.max(m.share_pct, 2)}%"></div>
+            </div>
+          </div>
+          <div style="text-align:right"><strong>${m.count}</strong> ${t('briefs', 'katsausta')} (${m.share_pct}%)</div>
+        </div>
+      `;
+    }).join('');
+
+    document.getElementById('pace-panel').innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:10px">
+        <h3 style="margin:0;font-family:Georgia,serif;font-size:19px">
+          ${t('Stewart Brand Pace-Layer Shear & J-Curve Complement Diagnostic', 'Stewart Brandin kerrostumakitka ja J-käyrän täydennysdiagnostiikka')}
+        </h3>
+        <span class="di-badge di-badge-proxy">
+          ${t('Pace-Shear Ratio:', 'Kitkasuhde:')} ${pd.pace_shear_ratio}× (${pd.fast_layer_velocity_pp_yr} vs ${pd.slow_layer_velocity_pp_yr} pp/yr)
+        </span>
+      </div>
+      <p style="margin:0 0 14px;font-size:14.5px;color:#33404d">
+        ${t(pd.diagnostic_summary_en, pd.diagnostic_summary_fi)}
+      </p>
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13.5px">
+        <strong>${t('Productivity J-Curve Sensitivity (Brynjolfsson, Rock & Syverson 2021):', 'Tuottavuuden J-käyrän herkkyysväli (Brynjolfsson, Rock & Syverson 2021):')}</strong>
+        ${t(
+          `Direct frontier lab compute spend ($${jc.audited_lab_h1_compute_usd_b}B H1 2026 audited; $${jc.audited_lab_commitments_usd_b}B multi-year commitments) requires a <strong>${jc.low_multiplier_2x}× to ${jc.high_multiplier_10x}×</strong> multiplier in unmeasured organisational workflow redesign and audit trails (such as OpenAI's Orchestra Bio acquisition or EN 18286 quality management). Current Capital-to-Reorganisation gap: <strong>+${jc.implied_complement_gap_points} index points</strong>.`,
+          `Suora laskentapanostus (${jc.audited_lab_h1_compute_usd_b} mrd. $ H1 2026 tilintarkastettu; ${jc.audited_lab_commitments_usd_b} mrd. $ monivuotiset sitoumukset) vaatii <strong>${jc.low_multiplier_2x}×–${jc.high_multiplier_10x}×</strong> kertoimen organisaatioiden työnkulkujen uudistamiseen ja tarkastusketjuihin (kuten Orchestra Bio -yrityskauppa tai EN 18286 -laadunhallinta). Pääomavaltaisuuden ja työn uudelleenjärjestelyn välinen kuilu: <strong>+${jc.implied_complement_gap_points} indeksipistettä</strong>.`
+        )}
+      </div>
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px">
+        ${t('Published Daily Briefs by Stewart Brand Pace Layer (§2.1 Diagnostic)', 'Julkaistut päiväkatsaukset Stewart Brandin vauhtikerroksittain (§2.1)')}
+      </div>
+      ${paceRowsHtml}
+    `;
+  }
+
+  function renderMatrix(){
+    const pillars = DATA.pillars;
+    let sectors = [...DATA.sectors];
+    if (sectorSort === 'dai') {
+      sectors.sort((a,b) => b.dai_score - a.dai_score);
+    } else if (sectorSort === 'pai') {
+      sectors.sort((a,b) => b.pai_score - a.pai_score);
+    } else {
+      sectors.sort((a,b) => b.block_a_score - a.block_a_score);
+    }
+
+    const cellMap = {};
+    DATA.grid_cells.forEach(c => {
+      cellMap[c.sector_id + '__' + c.pillar_id] = c;
+    });
+
+    const thead = document.getElementById('matrix-thead');
+    thead.innerHTML = `
+      <tr>
+        <th class="sticky-col">${t('NACE Rev. 2.1 Sector', 'NACE Rev. 2.1 Toimiala')}</th>
+        <th class="num">${t('Block A', 'Lohko A')}</th>
+        <th class="num">DAI / PAI</th>
+        ${pillars.map(p => `<th class="num" title="${t(p.label_en, p.label_fi)}">${p.code}<br><span style="font-weight:400;font-size:9.5px;text-transform:none">${t(p.label_en, p.label_fi).replace(/^\d+\.\s*/,'').slice(0,12)}</span></th>`).join('')}
+      </tr>
+    `;
+
+    const tbody = document.getElementById('matrix-tbody');
+    tbody.innerHTML = sectors.map(sec => {
+      const cellsHtml = pillars.map(p => {
+        const c = cellMap[sec.sector_id + '__' + p.id];
+        const val = c ? c[layerView] : 0;
+        const col = heatColor(val);
+        const hasBrief = c && c.brief_dates && c.brief_dates.length > 0;
+        const isProxy = c && String(c.ai_specificity).includes('proxy');
+        return `
+          <td class="num">
+            <button type="button" class="di-cell-btn"
+              data-sector="${sec.sector_id}" data-pillar="${p.id}"
+              style="background:${col.bg};color:${col.fg};border-color:${col.border}"
+              title="${t('Click to inspect sources & briefs', 'Klikkaa nähdäksesi lähteet ja katsaukset')}">
+              ${val.toFixed(1)}${isProxy ? '*' : ''}${hasBrief ? '<span class="di-cell-dot" title="Daily Brief linked"></span>' : ''}
+            </button>
+          </td>
+        `;
+      }).join('');
+
+      return `
+        <tr>
+          <td class="sticky-col">
+            <strong>${t(sec.name_en, sec.name_fi)}</strong>
+            <span style="display:block;font-size:11px;color:var(--muted)">NACE ${sec.code} · Grade ${sec.provenance_grade}</span>
+          </td>
+          <td class="num"><strong>${sec.block_a_score.toFixed(1)}</strong></td>
+          <td class="num" style="font-size:12px;color:var(--muted)">${sec.dai_score.toFixed(1)} / ${sec.pai_score.toFixed(1)}</td>
+          ${cellsHtml}
+        </tr>
+      `;
+    }).join('');
+
+    tbody.querySelectorAll('.di-cell-btn').forEach(btn => {
+      btn.addEventListener('click', () => openCellModal(btn.dataset.sector, btn.dataset.pillar));
+    });
+  }
+
+  function openCellModal(sectorId, pillarId){
+    const sec = DATA.sectors.find(s => s.sector_id === sectorId);
+    const pil = DATA.pillars.find(p => p.id === pillarId);
+    const cell = DATA.grid_cells.find(c => c.sector_id === sectorId && c.pillar_id === pillarId);
+    if (!sec || !pil || !cell) return;
+
+    const obsList = DATA.observations.filter(o => cell.obs_ids.includes(o.obs_id));
+    const briefList = DATA.brief_signals.filter(b => cell.brief_dates.includes(b.brief_date));
+
+    document.getElementById('modal-kicker').textContent =
+      `NACE ${sec.code} · ${pil.code} (${pil.block.replace('_',' ').toUpperCase()}) · PACE LAYER: ${pil.pace_layer.toUpperCase()}`;
+    document.getElementById('modal-title').textContent =
+      `${t(sec.name_en, sec.name_fi)} × ${t(pil.label_en, pil.label_fi)}`;
+
+    const obsHtml = obsList.length ? obsList.map(o => `
+      <li style="margin-bottom:8px">
+        <strong>${o.obs_id}</strong> (${o.period}, ${o.geo}, ${o.layer}): <strong>${o.value} ${o.unit}</strong>
+        <span class="di-badge" style="font-size:10px;padding:1px 6px">Grade ${o.grade} · Tier ${o.trust_tier}</span>
+        ${o.break_flag === 'true' ? `<span class="di-badge di-badge-proxy" style="font-size:10px;padding:1px 6px">break_flag (bridge=${o.bridge_factor})</span>` : ''}
+        ${o.ai_specificity === 'proxy' ? `<span class="di-badge di-badge-proxy" style="font-size:10px;padding:1px 6px">proxy</span>` : ''}
+        <div style="font-size:12.5px;color:#33404d;margin-top:2px">${o.notes} (Source: <code>${o.source_id}</code>)</div>
+      </li>
+    `).join('') : `<li style="color:var(--muted)">${t('Anchored via all-sector pillar baseline.', 'Ankkuroitu pilarin yleistasoon.')}</li>`;
+
+    const briefsHtml = briefList.length ? briefList.map(b => `
+      <li style="margin-bottom:8px">
+        <a href="${b.brief_path}"><strong>${b.brief_date}: ${t(b.title_en, b.title_fi)}</strong></a>
+        <span class="di-badge" style="font-size:10px;padding:1px 6px">Signal ${b.signal_score}/10 · Stakes ${b.stakes_score}/10</span>
+        <div style="font-size:12.5px;color:#33404d;margin-top:2px">${b.quant_metric} — ${b.summary_note}</div>
+      </li>
+    `).join('') : `<li style="color:var(--muted)">${t('No sector-specific daily brief logged for this cell yet.', 'Tälle solulle ei ole vielä toimialakohtaista päiväkatsausta.')}</li>`;
+
+    document.getElementById('modal-body').innerHTML = `
+      <div class="di-layer-strip" style="margin-bottom:14px">
+        <div><span>${t('Composite Level', 'Kokonaistaso')}</span><strong>${cell.score.toFixed(1)} / 100</strong></div>
+        <div><span>${t('Reach / Depth', 'Kattavuus / Syvyys')}</span><strong>${cell.reach.toFixed(1)} / ${cell.depth.toFixed(1)}</strong></div>
+        <div><span>${t('Embeddedness', 'Juurtuneisuus')}</span><strong>${cell.embeddedness.toFixed(1)} (Grade ${cell.grade})</strong></div>
+      </div>
+      <h4 style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px">
+        ${t('Verified Series Observations (index/series.csv)', 'Vahvistetut aikasarjahavainnot (index/series.csv)')}
+      </h4>
+      <ul style="padding-left:18px;margin:0 0 14px;font-size:13.5px">${obsHtml}</ul>
+      <h4 style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px">
+        ${t('Linked Daily Brief Signals (index/brief_signals.csv)', 'Linkitetyt päiväkatsaukset (index/brief_signals.csv)')}
+      </h4>
+      <ul style="padding-left:18px;margin:0;font-size:13.5px">${briefsHtml}</ul>
+    `;
+
+    const dialog = document.getElementById('cell-modal');
+    if (typeof dialog.showModal === 'function') {
+      dialog.showModal();
+    }
+  }
+
+  document.getElementById('modal-close-btn').addEventListener('click', () => {
+    document.getElementById('cell-modal').close();
+  });
+  document.getElementById('cell-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'cell-modal') e.target.close();
+  });
+
+  function renderPillars(){
+    const container = document.getElementById('pillar-grid');
+    const filtered = DATA.pillars.filter(p => blockFilter === 'ALL' || p.block === blockFilter);
+
+    const dirLabel = (d) => {
+      if (d === 1) return t('Direction: +1 (Higher = More Diffusion)', 'Suunta: +1 (Korkeampi = Enemmän diffuusiota)');
+      if (d === -1) return t('Direction: -1 (Lower Cost = Higher Score)', 'Suunta: -1 (Alempi kustannus = Korkeampi piste)');
+      return t('Direction: 0 (Diagnostic — Not Normative)', 'Suunta: 0 (Diagnostinen — Ei normatiivinen)');
+    };
+
+    container.innerHTML = filtered.map(p => {
+      const briefsList = (p.recent_briefs || []).map(b => `
+        <li style="margin-bottom:4px">
+          <a href="${b.brief_path}"><strong>${b.date}</strong>: ${t(b.title_en, b.title_fi)}</a>
+          <span style="color:var(--muted);font-size:11.5px"> (${b.quant_metric})</span>
+        </li>
+      `).join('');
+
+      return `
+        <div class="di-pillar-card">
+          <div class="di-pillar-head">
+            <div>
+              <div class="kicker">${p.code} · ${p.block.replace('_',' ').toUpperCase()} · PACE: ${p.pace_layer.toUpperCase()}</div>
+              <h3 class="di-pillar-title">${t(p.label_en, p.label_fi)}</h3>
+            </div>
+            <div class="di-pillar-score">${p.level_score.toFixed(1)}</div>
+          </div>
+          <div class="di-bar-track">
+            <div class="di-bar-fill" style="width:${p.level_score}%"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:12px;color:var(--muted);margin-bottom:10px">
+            <span>${dirLabel(p.direction)}</span>
+            <span><strong>${p.velocity_pp_yr > 0 ? '+' : ''}${p.velocity_pp_yr} pp/yr</strong> · Grade ${p.grade}</span>
+          </div>
+          <div class="di-layer-strip">
+            <div><span>${t('Reach', 'Kattavuus')}</span><strong>${p.reach_score.toFixed(1)}</strong></div>
+            <div><span>${t('Depth', 'Syvyys')}</span><strong>${p.depth_score.toFixed(1)}</strong></div>
+            <div><span>${t('Embeddedness', 'Juurtuneisuus')}</span><strong>${p.embeddedness_score.toFixed(1)}</strong></div>
+          </div>
+          <p style="font-size:13.5px;line-height:1.5;color:#33404d;margin:0 0 10px">
+            <strong>${p.headline_value}</strong> (${p.headline_unit}) — ${t(p.primary_metric_label_en, p.primary_metric_label_fi)}
+          </p>
+          ${briefsList ? `
+            <div style="border-top:1px solid var(--line);padding-top:8px;font-size:12.5px">
+              <div style="font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px">
+                ${t('Linked Daily Brief Signals:', 'Linkitetyt päiväkatsaukset:')}
+              </div>
+              <ul style="margin:0;padding-left:16px">${briefsList}</ul>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderBriefSignals(){
+    const tbody = document.getElementById('briefs-signal-tbody');
+    tbody.innerHTML = DATA.brief_signals.map(b => `
+      <tr>
+        <td style="white-space:nowrap"><strong>${b.brief_date}</strong></td>
+        <td>
+          <a href="${b.brief_path}"><strong>${t(b.title_en, b.title_fi)}</strong></a>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">${b.summary_note}</div>
+        </td>
+        <td>
+          <span class="di-badge">${b.pillar}</span>
+          <span style="display:block;font-size:11px;color:var(--muted);margin-top:2px">${b.block}</span>
+        </td>
+        <td>
+          <strong>${b.sector}</strong>
+          <span style="display:block;font-size:11px;color:var(--muted)">${b.channel} · ${b.layer} (${b.level})</span>
+        </td>
+        <td><span class="di-badge">${b.pace_layer}</span></td>
+        <td style="font-size:12.5px">${b.quant_metric}<br><span style="font-size:11px;color:var(--muted)">Source: <code>${b.source_id}</code></span></td>
+        <td class="num" style="white-space:nowrap">
+          <strong>${b.signal_score}/10</strong> · ${b.stakes_score}/10
+          <span style="display:block;font-size:10.5px;color:var(--muted)">${b.market_test}</span>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function renderPlanetaryBoundaries(){
+    const tbody = document.getElementById('pb-tbody');
+    const pbs = DATA.planetary_boundaries.boundaries || [];
+    tbody.innerHTML = pbs.map(b => {
+      const isTransgressed = b.status === 'transgressed';
+      const aiShare = b.ai_load_share;
+      const isNotMeasured = aiShare === 'not measured';
+      return `
+        <tr>
+          <td><strong>${t(b.name_en, b.name_fi)}</strong></td>
+          <td>
+            <span class="di-badge ${isTransgressed ? 'di-badge-transgressed' : 'di-badge-safe'}">
+              ${isTransgressed ? t('Transgressed', 'Ylitetty') : t('Within Safe Operating Space', 'Turvallisella alueella')}
+            </span>
+          </td>
+          <td style="font-size:12.5px">${b.control_variable}</td>
+          <td>${b.assessment_year}</td>
+          <td style="font-size:12.5px">
+            ${isNotMeasured
+              ? `<span class="di-badge di-badge-candidate">${t('not measured (never imputed as 0)', 'ei mitattu (ei koskaan oleteta 0:ksi)')}</span>`
+              : `<span class="di-badge di-badge-verified">${t('Measured proxy:', 'Mitattu proksi:')}</span> ${aiShare}`}
+            ${b.notes ? `<div style="font-size:11.5px;color:var(--muted);margin-top:3px">${b.notes}</div>` : ''}
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function renderObservations(){
+    const tbody = document.getElementById('obs-tbody');
+    const filtered = DATA.observations.filter(o => {
+      if (obsFilter === 'digital') return o.channel === 'digital';
+      if (obsFilter === 'physical') return o.channel === 'physical';
+      if (obsFilter === 'brief') return Boolean(o.brief_ref);
+      return true;
+    });
+
+    tbody.innerHTML = filtered.map(o => `
+      <tr>
+        <td style="white-space:nowrap"><code>${o.obs_id}</code></td>
+        <td style="white-space:nowrap">${o.period}</td>
+        <td><strong>${o.pillar}</strong><br><span style="font-size:11px;color:var(--muted)">Sector: ${o.sector}</span></td>
+        <td><strong>${o.geo}</strong><br><span style="font-size:11px;color:var(--muted)">${o.channel} · ${o.layer}</span></td>
+        <td class="num" style="white-space:nowrap">
+          <strong>${o.value}</strong>
+          <span style="display:block;font-size:11px;color:var(--muted)">${o.unit}</span>
+        </td>
+        <td>
+          <code>${o.source_id}</code>
+          <span style="display:block;font-size:11px;color:var(--muted)">Grade ${o.grade} · Tier ${o.trust_tier}</span>
+        </td>
+        <td style="font-size:12.5px">
+          ${o.notes}
+          ${o.break_flag === 'true' ? ` <span class="di-badge di-badge-proxy">break_flag (bridge=${o.bridge_factor})</span>` : ''}
+          ${o.ai_specificity === 'proxy' ? ` <span class="di-badge di-badge-proxy">AI-specificity: proxy</span>` : ''}
+          ${o.brief_ref ? ` <a class="di-badge di-badge-verified" href="briefs/${o.brief_ref}.html">Brief ${o.brief_ref}</a>` : ''}
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function renderSources(){
+    const tbody = document.getElementById('sources-tbody');
+    const filtered = DATA.sources.filter(s => {
+      if (srcFilter === 'verified') return s.verified === true;
+      if (srcFilter === 'candidate') return s.verified === false;
+      return true;
+    });
+
+    tbody.innerHTML = filtered.map(s => `
+      <tr>
+        <td style="white-space:nowrap">
+          ${s.verified
+            ? `<span class="di-badge di-badge-verified">[V] Verified</span>`
+            : `<span class="di-badge di-badge-candidate">[K] Candidate</span>`}
+        </td>
+        <td>
+          <a href="${s.url}" target="_blank" rel="noopener"><strong>${s.name}</strong></a>
+          <div style="font-size:11px;color:var(--muted)">ID: <code>${s.id}</code> · Access: ${s.access}</div>
+        </td>
+        <td style="white-space:nowrap">
+          <strong>Tier ${s.tier}</strong> · Grade ${s.grade}
+        </td>
+        <td style="font-size:12px">
+          ${(s.pillars || []).join(', ') || '—'}
+          <span style="display:block;font-size:11px;color:var(--muted)">Geo: ${s.geo}</span>
+        </td>
+        <td style="font-size:12px;color:#33404d">
+          ${s.caveats}
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Licence: ${s.licence}</div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function renderAll(){
+    renderKPIs();
+    renderBlocksAndPace();
+    renderMatrix();
+    renderPillars();
+    renderBriefSignals();
+    renderPlanetaryBoundaries();
+    renderObservations();
+    renderSources();
+  }
+
+  // Wire toolbar toggles
+  document.querySelectorAll('[data-layer-view]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      layerView = btn.dataset.layerView;
+      document.querySelectorAll('[data-layer-view]').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      if (DATA) renderMatrix();
+    });
+  });
+
+  document.querySelectorAll('[data-sector-sort]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sectorSort = btn.dataset.sectorSort;
+      document.querySelectorAll('[data-sector-sort]').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      if (DATA) renderMatrix();
+    });
+  });
+
+  document.querySelectorAll('[data-block-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      blockFilter = btn.dataset.blockFilter;
+      document.querySelectorAll('[data-block-filter]').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      if (DATA) renderPillars();
+    });
+  });
+
+  document.querySelectorAll('[data-obs-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      obsFilter = btn.dataset.obsFilter;
+      document.querySelectorAll('[data-obs-filter]').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      if (DATA) renderObservations();
+    });
+  });
+
+  document.querySelectorAll('[data-src-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      srcFilter = btn.dataset.srcFilter;
+      document.querySelectorAll('[data-src-filter]').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      if (DATA) renderSources();
+    });
+  });
+
+  fetch('index/computed.v0.6.json')
+    .then(r => r.json())
+    .then(json => {
+      DATA = json;
+      renderAll();
+    })
+    .catch(err => {
+      console.error('Failed to load computed.v0.6.json:', err);
+    });
+})();
+</script>
+</body>
+</html>

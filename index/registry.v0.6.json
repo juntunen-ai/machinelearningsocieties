@@ -1,0 +1,961 @@
+{
+  "version": "0.6-proposed",
+  "date": "2026-10-28",
+  "grade_scheme": {
+    "provenance": {
+      "A": "official/administrative register or filing",
+      "B": "academic, intergovernmental or documented commercial series, stable definition",
+      "C": "proxy, voluntary or single-source"
+    },
+    "frequency": {
+      "M": "monthly or better",
+      "Q": "quarterly",
+      "Y": "annual"
+    }
+  },
+  "trust_tiers": {
+    "1": "official statistics",
+    "2": "regulator or intergovernmental register",
+    "3": "academic or non-profit open data with documented method",
+    "4": "vendor telemetry or company disclosure (flag; never sole A/B cell)",
+    "5": "secondary aggregator or blog (locate primary only; never a source)"
+  },
+  "blocks": {
+    "A_diffusion": [
+      "deployment",
+      "cost_to_serve",
+      "capital_intensity"
+    ],
+    "B_conditions": [
+      "energy_capacity",
+      "governance_burden",
+      "human_capital",
+      "market_openness"
+    ],
+    "C_consequences": [
+      "labour_reorganisation",
+      "ownership_distribution",
+      "ecological_balance"
+    ]
+  },
+  "channels": [
+    "digital",
+    "physical"
+  ],
+  "layers": [
+    "reach",
+    "depth",
+    "embeddedness"
+  ],
+  "pillars": [
+    {
+      "id": "deployment",
+      "label_en": "1. Deployment",
+      "label_fi": "1. Käyttöönotto",
+      "block": "A_diffusion",
+      "direction": 1,
+      "pace_layer": "commerce",
+      "goalpost": {
+        "scale": "linear_or_log",
+        "share_floor": 0.0,
+        "share_ceiling": 100.0,
+        "robot_density_floor": 10.0,
+        "robot_density_ceiling": 1500.0,
+        "unit": "% of units / log quantity"
+      }
+    },
+    {
+      "id": "cost_to_serve",
+      "label_en": "2. Cost to serve",
+      "label_fi": "2. Suorituskustannus",
+      "block": "A_diffusion",
+      "direction": -1,
+      "pace_layer": "commerce",
+      "goalpost": {
+        "scale": "log_index",
+        "base": 100.0,
+        "floor": 10.0,
+        "ceiling": 200.0,
+        "unit": "Task Price Index (2026 baseline = 100)"
+      }
+    },
+    {
+      "id": "capital_intensity",
+      "label_en": "3. Capital intensity",
+      "label_fi": "3. Pääomavaltaisuus",
+      "block": "A_diffusion",
+      "direction": 1,
+      "pace_layer": "commerce",
+      "goalpost": {
+        "scale": "log",
+        "floor": 1.0,
+        "ceiling": 500.0,
+        "intangible_multiplier_low": 2.0,
+        "intangible_multiplier_high": 10.0,
+        "unit": "USD B / index level (lower bound)"
+      }
+    },
+    {
+      "id": "labour_reorganisation",
+      "label_en": "4. Labour reorganisation",
+      "label_fi": "4. Työn uudelleenjärjestely",
+      "block": "C_consequences",
+      "direction": 0,
+      "pace_layer": "culture",
+      "goalpost": {
+        "scale": "linear",
+        "floor": 0.0,
+        "ceiling": 100.0,
+        "unit": "% tasks / firms reorganised (diagnostic)"
+      }
+    },
+    {
+      "id": "governance_burden",
+      "label_en": "5. Governance burden",
+      "label_fi": "5. Sääntely- ja valvontakuorma",
+      "block": "B_conditions",
+      "direction": 0,
+      "pace_layer": "governance",
+      "goalpost": {
+        "scale": "linear",
+        "floor": 0.0,
+        "ceiling": 50.0,
+        "unit": "Binding obligations / harmonised standards in force"
+      }
+    },
+    {
+      "id": "human_capital",
+      "label_en": "6. Human capital",
+      "label_fi": "6. Inhimillinen pääoma",
+      "block": "B_conditions",
+      "direction": 1,
+      "pace_layer": "culture",
+      "goalpost": {
+        "scale": "linear",
+        "floor": 0.0,
+        "ceiling": 25.0,
+        "unit": "% ICT specialists / AI-trained workforce"
+      }
+    },
+    {
+      "id": "ecological_balance",
+      "label_en": "7. Ecological balance",
+      "label_fi": "7. Ekologinen tasapaino",
+      "block": "C_consequences",
+      "direction": 0,
+      "pace_layer": "nature",
+      "goalpost": {
+        "scale": "log",
+        "floor": 10.0,
+        "ceiling": 2000.0,
+        "unit": "TWh / share of planetary boundary control flow"
+      }
+    },
+    {
+      "id": "energy_capacity",
+      "label_en": "8. Energy & grid capacity",
+      "label_fi": "8. Energia- ja verkkokapasiteetti",
+      "block": "B_conditions",
+      "direction": 1,
+      "pace_layer": "infrastructure",
+      "goalpost": {
+        "scale": "queue_ratio",
+        "floor": 0.5,
+        "ceiling": 10.0,
+        "unit": "Requested MW ÷ Connected MW (queue ratio)"
+      }
+    },
+    {
+      "id": "ownership_distribution",
+      "label_en": "9. Ownership distribution",
+      "label_fi": "9. Omistuksen jakautuminen",
+      "block": "C_consequences",
+      "direction": 0,
+      "pace_layer": "governance",
+      "goalpost": {
+        "scale": "linear",
+        "floor": 0.0,
+        "ceiling": 100.0,
+        "unit": "% broad/public/employee equity share"
+      }
+    },
+    {
+      "id": "market_openness",
+      "label_en": "10. Market openness",
+      "label_fi": "10. Markkinoiden avoimuus",
+      "block": "B_conditions",
+      "direction": 1,
+      "pace_layer": "governance",
+      "goalpost": {
+        "scale": "linear",
+        "floor": 0.0,
+        "ceiling": 100.0,
+        "unit": "Open-weights / non-concentrated share (%)"
+      }
+    }
+  ],
+  "sectors": [
+    {
+      "id": "professional_services",
+      "label_en": "Professional & scientific services",
+      "label_fi": "Asiantuntija- ja tieteelliset palvelut",
+      "nace_section": ["M"]
+    },
+    {
+      "id": "software",
+      "label_en": "Information & software",
+      "label_fi": "Informaatio ja ohjelmistot",
+      "nace_section": ["J"]
+    },
+    {
+      "id": "manufacturing",
+      "label_en": "Manufacturing",
+      "label_fi": "Teollisuus",
+      "nace_section": ["C"]
+    },
+    {
+      "id": "agriculture",
+      "label_en": "Agriculture & forestry",
+      "label_fi": "Maa- ja metsätalous",
+      "nace_section": ["A"]
+    },
+    {
+      "id": "healthcare",
+      "label_en": "Healthcare & social work",
+      "label_fi": "Sosiaali- ja terveyspalvelut",
+      "nace_section": ["Q"]
+    },
+    {
+      "id": "education",
+      "label_en": "Education & research",
+      "label_fi": "Koulutus ja tutkimus",
+      "nace_section": ["P"]
+    },
+    {
+      "id": "public_administration",
+      "label_en": "Public administration",
+      "label_fi": "Julkinen hallinto",
+      "nace_section": ["O"]
+    },
+    {
+      "id": "finance_insurance",
+      "label_en": "Finance & insurance",
+      "label_fi": "Rahoitus ja vakuutus",
+      "nace_section": ["K"]
+    },
+    {
+      "id": "retail_logistics",
+      "label_en": "Retail & transport/logistics",
+      "label_fi": "Kauppa ja kuljetus/logistiikka",
+      "nace_section": ["G", "H"]
+    },
+    {
+      "id": "energy_utilities",
+      "label_en": "Energy & utilities",
+      "label_fi": "Energia- ja vesihuolto",
+      "nace_section": ["D", "E"]
+    }
+  ],
+  "schema_additions": [
+    "break_flag",
+    "series_version",
+    "brief_ref"
+  ],
+  "sources": [
+    {
+      "id": "eurostat_isoc_eb_ai",
+      "name": "Eurostat: Artificial intelligence in enterprises (isoc_eb_ai, isoc_eb_ain2)",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/isoc_eb_ai/",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": ["deployment"],
+      "channels": ["digital", "physical"],
+      "geo": "EU-27 and others",
+      "access": "download and API",
+      "licence": "Eurostat reuse policy (CC BY 4.0 compatible)",
+      "verified": true,
+      "caveats": "Enterprises with 10+ persons; sector coverage excludes some sections (confirm); 2025 questionnaire added image/video/audio generation; German definition break 2025; annual, next update planned Dec 2026"
+    },
+    {
+      "id": "eurostat_isoc_ai_iaiu",
+      "name": "Eurostat: individuals using generative AI tools",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/isoc_ai_iaiu/",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": ["deployment"],
+      "channels": ["digital"],
+      "geo": "EU-27",
+      "access": "download and API",
+      "licence": "Eurostat reuse policy",
+      "verified": true,
+      "caveats": "Ages 16-74; reach only"
+    },
+    {
+      "id": "statfin_icte_13vg",
+      "name": "Statistics Finland: Use of information technology in enterprises (table 13vg)",
+      "url": "https://pxdata.stat.fi/PxWeb/pxweb/en/StatFin/StatFin__icte/13vg.px/table/tableViewLayout1/",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": ["deployment"],
+      "channels": ["digital"],
+      "geo": "Finland",
+      "access": "PxWeb API",
+      "licence": "Statistics Finland open data (CC BY 4.0)",
+      "verified": true,
+      "caveats": "Annual, spring reference; includes AI documents/instructions variable (governance proxy)"
+    },
+    {
+      "id": "cso_biiesa20",
+      "name": "CSO Ireland: Enterprise use of AI and cloud (BIIESA20)",
+      "url": "https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/BIIESA20/JSON-stat/2.0/en",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": ["deployment"],
+      "channels": ["digital"],
+      "geo": "Ireland",
+      "access": "JSON-stat API",
+      "licence": "CC BY 4.0",
+      "verified": true,
+      "caveats": "Annual"
+    },
+    {
+      "id": "census_btos",
+      "name": "US Census Bureau Business Trends and Outlook Survey (AI questions and supplement)",
+      "url": "https://www.census.gov/data/experimental-data-products/business-trends-and-outlook-survey.html",
+      "tier": 1,
+      "grade": "A-M",
+      "pillars": ["deployment", "labour_reorganisation"],
+      "channels": ["digital"],
+      "geo": "US national, state, sector, size",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": true,
+      "caveats": "Experimental product; wording broadened 17 Nov 2025 so pre/post not comparable; use break_flag"
+    },
+    {
+      "id": "microsoft_ai_user_share",
+      "name": "Microsoft AI Economy Institute: AI User Share / Global AI Diffusion report",
+      "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2025/09/AI-Diffusion_Technical-Report.pdf",
+      "tier": 4,
+      "grade": "B-Q",
+      "pillars": ["deployment"],
+      "channels": ["digital"],
+      "geo": "147 economies",
+      "access": "report tables; method on arXiv 2511.02781",
+      "licence": "check before bulk reuse",
+      "verified": true,
+      "caveats": "Vendor telemetry adjusted for device share and mobile scaling; individuals not firms; cross-check against Eurostat and not sole cell"
+    },
+    {
+      "id": "anthropic_economic_index",
+      "name": "Anthropic Economic Index",
+      "url": "https://huggingface.co/datasets/Anthropic/EconomicIndex",
+      "tier": 4,
+      "grade": "C-Q",
+      "pillars": ["deployment", "labour_reorganisation"],
+      "channels": ["digital"],
+      "geo": "Global, country and US state from Sept 2025 release",
+      "access": "Hugging Face download",
+      "licence": "CC BY",
+      "verified": true,
+      "caveats": "One vendor's conversations, not market-representative; use as task-mix and depth indicator; publisher is the vendor of the model writing this registry"
+    },
+    {
+      "id": "ted_open_data",
+      "name": "TED (Tenders Electronic Daily) Search API and Open Data",
+      "url": "https://ted.europa.eu",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": ["deployment", "governance_burden", "market_openness"],
+      "channels": ["digital", "physical"],
+      "geo": "EU/EEA above-threshold procurement",
+      "access": "open API, no key reported",
+      "licence": "confirm: notice metadata reported as CC0; Open Data service under CC BY 4.0",
+      "verified": true,
+      "caveats": "Only above-threshold tenders; AI classification of notice text must be built and sampled for accuracy"
+    },
+    {
+      "id": "hilma",
+      "name": "Hilma (Finnish public procurement notices)",
+      "url": "https://www.hankintailmoitukset.fi",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": ["deployment", "market_openness"],
+      "channels": ["digital"],
+      "geo": "Finland",
+      "access": "confirm API/open data terms",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Confirm below-threshold coverage and export"
+    },
+    {
+      "id": "ifr_world_robotics",
+      "name": "IFR World Robotics (industrial and service robots)",
+      "url": "https://ifr.org/worldrobotics/report-2025",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": ["deployment", "capital_intensity"],
+      "channels": ["physical"],
+      "geo": "Global, country, customer industry",
+      "access": "press summaries and executive summary free; full tables paid",
+      "licence": "restricted for tables; cite executive summary only",
+      "verified": true,
+      "caveats": "Counts industrial robots, not AI-driven robots; AI-specificity flag = proxy"
+    },
+    {
+      "id": "fda_ai_device_list",
+      "name": "FDA AI-Enabled Medical Device List",
+      "url": "https://www.fda.gov/medical-devices/artificial-intelligence-enabled-medical-devices/list-artificial-intelligence-enabled-medical-devices",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": ["deployment"],
+      "channels": ["physical", "digital"],
+      "geo": "US market",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": true,
+      "caveats": "FDA says list is not comprehensive; authorisation is not use; annual counts revised between updates"
+    },
+    {
+      "id": "cpuc_av_data",
+      "name": "California Public Utilities Commission: autonomous vehicle passenger service quarterly data",
+      "url": "https://www.cpuc.ca.gov",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": ["deployment"],
+      "channels": ["physical"],
+      "geo": "California",
+      "access": "download (confirm file locations)",
+      "licence": "California public data",
+      "verified": false,
+      "caveats": "Verified only through secondary reports; open primary files before logging; single state"
+    },
+    {
+      "id": "nhtsa_sgo",
+      "name": "NHTSA Standing General Order crash reports (ADS/ADAS)",
+      "url": "https://www.nhtsa.gov/laws-regulations/standing-general-order-crash-reporting",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": ["deployment", "governance_burden"],
+      "channels": ["physical"],
+      "geo": "US",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": false,
+      "caveats": "Crash reports, not exposure; pair with miles from company or CPUC data"
+    },
+    {
+      "id": "waymo_safety_hub",
+      "name": "Waymo Safety Impact Data Hub and company disclosures",
+      "url": "https://waymo.com/safety/impact/",
+      "tier": 4,
+      "grade": "B-Q",
+      "pillars": ["deployment"],
+      "channels": ["physical"],
+      "geo": "Company service areas",
+      "access": "web",
+      "licence": "company terms",
+      "verified": false,
+      "caveats": "Company-reported; use only alongside CPUC primary data"
+    },
+    {
+      "id": "epoch_ai_data",
+      "name": "Epoch AI: Frontier Data Centers, AI Models, AI Chip Sales, GPU Clusters",
+      "url": "https://epoch.ai/data",
+      "tier": 3,
+      "grade": "B-Q",
+      "pillars": ["capital_intensity", "energy_capacity", "ecological_balance", "market_openness"],
+      "channels": ["digital"],
+      "geo": "Global, strongest for largest US sites",
+      "access": "ZIP/CSV download",
+      "licence": "CC BY 4.0 (measurements; satellite images licensed separately)",
+      "verified": true,
+      "caveats": "Frontier Data Centers covered about 15% of delivered AI compute in Nov 2025; China under-represented; owner/user fields carry confidence markers"
+    },
+    {
+      "id": "iea_energy_ai",
+      "name": "IEA Energy and AI Observatory and Energy and AI report",
+      "url": "https://www.iea.org/news/as-energy-and-ai-links-grow-new-iea-observatory-provides-latest-data-and-analysis",
+      "tier": 2,
+      "grade": "B-Y",
+      "pillars": ["energy_capacity", "ecological_balance"],
+      "channels": ["digital"],
+      "geo": "Global and regions",
+      "access": "web tools and datasets",
+      "licence": "confirm per dataset",
+      "verified": true,
+      "caveats": "Modelled estimates and projections; separate observed from projected values"
+    },
+    {
+      "id": "oecd_ai",
+      "name": "OECD.AI Policy Observatory (national policies, AI Incidents Monitor, live data)",
+      "url": "https://oecd.ai/en/methodology",
+      "tier": 2,
+      "grade": "B-M",
+      "pillars": ["governance_burden", "human_capital"],
+      "channels": ["digital"],
+      "geo": "60+ countries",
+      "access": "web and downloads (confirm)",
+      "licence": "confirm per dataset",
+      "verified": true,
+      "caveats": "Incident monitor is media-derived; live data uses partner sources with their own terms"
+    },
+    {
+      "id": "eur_lex",
+      "name": "EUR-Lex / CELLAR: Regulation (EU) 2024/1689 and implementing acts",
+      "url": "https://eur-lex.europa.eu",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": ["governance_burden"],
+      "channels": ["digital", "physical"],
+      "geo": "EU",
+      "access": "open, SPARQL via CELLAR",
+      "licence": "EU reuse (CC BY 4.0)",
+      "verified": true,
+      "caveats": "Verified via Implementing Decision (EU) 2026/2274 (EN 18286:2026) in brief 2026-10-14; check application dates before logging counts"
+    },
+    {
+      "id": "incident_db",
+      "name": "AI Incident Database (Responsible AI Collaborative)",
+      "url": "https://incidentdatabase.ai",
+      "tier": 3,
+      "grade": "C-M",
+      "pillars": ["governance_burden"],
+      "channels": ["digital", "physical"],
+      "geo": "Global",
+      "access": "download",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Reporting-biased; diagnostic only"
+    },
+    {
+      "id": "sec_edgar",
+      "name": "SEC EDGAR (XBRL frames API, Form S-1, 10-K, 13F, proxy)",
+      "url": "https://www.sec.gov/edgar/sec-api-documentation",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": ["capital_intensity", "ownership_distribution", "market_openness"],
+      "channels": ["digital", "physical"],
+      "geo": "US-listed",
+      "access": "free API and filings",
+      "licence": "US public domain",
+      "verified": true,
+      "caveats": "Verified via Anthropic PBC Form S-1 (26 Oct 2026, brief 2026-10-28); hyperscaler capex not always split into AI vs other"
+    },
+    {
+      "id": "fed_dfa",
+      "name": "Federal Reserve Distributional Financial Accounts",
+      "url": "https://www.federalreserve.gov/releases/z1/dataviz/dfa/",
+      "tier": 1,
+      "grade": "A-Q",
+      "pillars": ["ownership_distribution"],
+      "channels": ["digital"],
+      "geo": "US",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": false,
+      "caveats": "Equity ownership by wealth group, not AI-specific; use as the retail/household share backbone"
+    },
+    {
+      "id": "ecb_dwa",
+      "name": "ECB Distributional Wealth Accounts",
+      "url": "https://www.ecb.europa.eu",
+      "tier": 1,
+      "grade": "A-Q",
+      "pillars": ["ownership_distribution"],
+      "channels": ["digital"],
+      "geo": "Euro area",
+      "access": "download",
+      "licence": "ECB reuse policy",
+      "verified": false,
+      "caveats": "Not AI-specific"
+    },
+    {
+      "id": "eurostat_lfs_labour",
+      "name": "Eurostat labour force survey, job vacancies, labour cost index, ICT specialists",
+      "url": "https://ec.europa.eu/eurostat",
+      "tier": 1,
+      "grade": "A-Q",
+      "pillars": ["labour_reorganisation", "human_capital", "cost_to_serve"],
+      "channels": ["digital", "physical"],
+      "geo": "EU-27",
+      "access": "download and API",
+      "licence": "Eurostat reuse policy",
+      "verified": false,
+      "caveats": "Dataset codes to be recorded per series"
+    },
+    {
+      "id": "indeed_hiring_lab",
+      "name": "Indeed Hiring Lab open data (job postings including AI mentions)",
+      "url": "https://github.com/hiring-lab",
+      "tier": 3,
+      "grade": "B-M",
+      "pillars": ["labour_reorganisation", "human_capital"],
+      "channels": ["digital"],
+      "geo": "Several countries",
+      "access": "GitHub CSV",
+      "licence": "confirm (CC BY 4.0 reported)",
+      "verified": false,
+      "caveats": "Single platform; postings not employment"
+    },
+    {
+      "id": "cedefop_ovate",
+      "name": "Cedefop Skills-OVATE online job advertisements",
+      "url": "https://www.cedefop.europa.eu",
+      "tier": 2,
+      "grade": "B-Q",
+      "pillars": ["human_capital", "labour_reorganisation"],
+      "channels": ["digital"],
+      "geo": "EU",
+      "access": "dashboard; confirm export",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Online ads only"
+    },
+    {
+      "id": "fingrid_open_data",
+      "name": "Fingrid open data",
+      "url": "https://data.fingrid.fi",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": ["energy_capacity", "ecological_balance"],
+      "channels": ["digital"],
+      "geo": "Finland",
+      "access": "API (free key)",
+      "licence": "CC BY 4.0 (confirm)",
+      "verified": false,
+      "caveats": "Confirm connection-request and data-centre series"
+    },
+    {
+      "id": "entsoe_transparency",
+      "name": "ENTSO-E Transparency Platform",
+      "url": "https://transparency.entsoe.eu",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": ["energy_capacity", "ecological_balance"],
+      "channels": ["digital"],
+      "geo": "Europe",
+      "access": "API (free token)",
+      "licence": "ENTSO-E terms",
+      "verified": false,
+      "caveats": "Generation and load; carbon intensity must be derived"
+    },
+    {
+      "id": "ember",
+      "name": "Ember electricity data",
+      "url": "https://ember-energy.org/data/",
+      "tier": 3,
+      "grade": "B-M",
+      "pillars": ["ecological_balance"],
+      "channels": ["digital"],
+      "geo": "Global",
+      "access": "download",
+      "licence": "CC BY 4.0",
+      "verified": false,
+      "caveats": "Grid carbon intensity at country level, not at the connection point"
+    },
+    {
+      "id": "lbnl_queued_up",
+      "name": "Lawrence Berkeley National Laboratory: Queued Up (interconnection queues)",
+      "url": "https://emp.lbl.gov/queues",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": ["energy_capacity"],
+      "channels": ["digital"],
+      "geo": "US",
+      "access": "download",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Generation queues; large-load queues from ERCOT/PJM to be added"
+    },
+    {
+      "id": "wri_aqueduct",
+      "name": "WRI Aqueduct water risk",
+      "url": "https://www.wri.org/aqueduct",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": ["ecological_balance"],
+      "channels": ["digital"],
+      "geo": "Global basins",
+      "access": "download",
+      "licence": "CC BY 4.0",
+      "verified": false,
+      "caveats": "Basin-level water stress to join to data-centre sites"
+    },
+    {
+      "id": "oecd_pmr",
+      "name": "OECD Product Market Regulation indicators",
+      "url": "https://www.oecd.org/economy/reform/indicators-of-product-market-regulation/",
+      "tier": 2,
+      "grade": "B-Y",
+      "pillars": ["market_openness"],
+      "channels": ["digital", "physical"],
+      "geo": "OECD",
+      "access": "download",
+      "licence": "OECD terms",
+      "verified": false,
+      "caveats": "Economy-wide, not AI-specific; context for entry_conditions"
+    },
+    {
+      "id": "hf_hub",
+      "name": "Hugging Face Hub API (model licences, open-weights flag, downloads)",
+      "url": "https://huggingface.co/docs/hub/api",
+      "tier": 3,
+      "grade": "C-M",
+      "pillars": ["market_openness"],
+      "channels": ["digital"],
+      "geo": "Global",
+      "access": "API",
+      "licence": "per model",
+      "verified": false,
+      "caveats": "Downloads are not use; open_interfaces proxy"
+    },
+    {
+      "id": "stanford_ai_index",
+      "name": "Stanford HAI AI Index 2026",
+      "url": "https://hai.stanford.edu/ai-index",
+      "tier": 5,
+      "grade": "C-Y",
+      "pillars": [],
+      "channels": ["digital", "physical"],
+      "geo": "Global",
+      "access": "report",
+      "licence": "CC BY-ND (confirm)",
+      "verified": true,
+      "caveats": "Compiles other sources (including non-probability surveys such as organisation-adoption figures); use to locate primaries, not as a source of cells"
+    },
+    {
+      "id": "gdpval",
+      "name": "OpenAI GDPval (task basket, rubrics and expert-graded quality; gold subset of 220 tasks)",
+      "url": "https://huggingface.co/datasets/openai/gdpval",
+      "tier": 4,
+      "grade": "C-Q",
+      "pillars": ["cost_to_serve"],
+      "channels": ["digital"],
+      "geo": "US occupations",
+      "access": "Hugging Face download (220 gold tasks, 2.29 GB); paper arXiv 2510.04374",
+      "licence": "not stated on dataset page; confirm before redistribution",
+      "verified": true,
+      "caveats": "Vendor-authored; one-shot knowledge-work tasks only; public tasks can be contaminated (canary string); automated grader experimental; headline 100x cost claim excludes oversight and integration, never log as a cell; use as task basket and quality anchor, not as a price series"
+    },
+    {
+      "id": "ramp_ai_index",
+      "name": "Ramp AI Index (card/invoice transactions; mirrored on FRED as RAMPAI* series)",
+      "url": "https://ramp.com/data/ai-index",
+      "tier": 4,
+      "grade": "B-M",
+      "pillars": ["deployment", "cost_to_serve"],
+      "channels": ["digital"],
+      "geo": "US businesses on Ramp",
+      "access": "web page; FRED monthly series e.g. RAMPAIOPENAI",
+      "licence": "page states none; FRED asks for citation, copyright Ramp Business Corporation; confirm",
+      "verified": true,
+      "caveats": "Paid AI use only (understates free/personal use); platform-skewed sample; level not comparable to Eurostat/BTOS; use for momentum and as candidate bridge across the BTOS Nov 2025 break; provider shares logged for concentration only"
+    },
+    {
+      "id": "charlotin_hallucination_cases",
+      "name": "AI Hallucination Cases database (Damien Charlotin)",
+      "url": "https://www.damiencharlotin.com/hallucinations/",
+      "tier": 3,
+      "grade": "C-M",
+      "pillars": ["governance_burden", "deployment"],
+      "channels": ["digital"],
+      "geo": "Global, US-heavy",
+      "access": "CSV download, updated daily",
+      "licence": "CC BY 4.0",
+      "verified": true,
+      "caveats": "Counts cases courts noticed and addressed; mostly self-represented litigants; inclusion is a judgement call; normalise by case volumes before using as penetration"
+    },
+    {
+      "id": "openrouter_rankings",
+      "name": "OpenRouter rankings and Data API",
+      "url": "https://openrouter.ai/rankings",
+      "tier": 4,
+      "grade": "C-M",
+      "pillars": ["market_openness", "deployment"],
+      "channels": ["digital"],
+      "geo": "Global (routed API traffic)",
+      "access": "JSON Data API; web",
+      "licence": "CC BY 4.0 per page",
+      "verified": true,
+      "caveats": "Routed traffic only, not users or spend; developer-skewed; market share counts requests; verbosity and tokenisation differ across models"
+    },
+    {
+      "id": "cloudflare_radar_ai",
+      "name": "Cloudflare Radar AI Insights",
+      "url": "https://blog.cloudflare.com/expanded-ai-insights-on-cloudflare-radar",
+      "tier": 4,
+      "grade": "C-M",
+      "pillars": ["deployment", "market_openness", "governance_burden"],
+      "channels": ["digital"],
+      "geo": "Global",
+      "access": "Radar API and Data Explorer",
+      "licence": "not found; confirm",
+      "verified": true,
+      "caveats": "Verified only from a Feb 2025 blog post; DNS popularity is not usage; robots.txt covers top 10,000 domains and declared directives only; check current datasets"
+    },
+    {
+      "id": "github_innovation_graph",
+      "name": "GitHub Innovation Graph and Octoverse",
+      "url": "https://innovationgraph.github.com",
+      "tier": 4,
+      "grade": "C-Y",
+      "pillars": ["deployment", "human_capital"],
+      "channels": ["digital"],
+      "geo": "By economy",
+      "access": "Innovation Graph downloads (confirm); Octoverse is a report",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Octoverse checked (4.3M+ AI repos; ~1.1M repos import an LLM SDK, +178% y/y) but is a report, not a dataset; public activity only; country from self-reported location; Innovation Graph not opened"
+    },
+    {
+      "id": "ercot_large_load_queue",
+      "name": "ERCOT / TCEQ data-centre interconnection and air-permit queue",
+      "url": "https://gov.texas.gov/uploads/files/press/TCEQ_Data_Center.pdf",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": ["energy_capacity"],
+      "channels": ["digital"],
+      "geo": "Texas",
+      "access": "public ERCOT / TCEQ filings",
+      "licence": "Texas public records",
+      "verified": true,
+      "caveats": "Verified in brief 2026-10-25 (Governor Abbott 21 Sept directive, TCEQ 19 Oct reply, 8.7 GW across 6 campuses, 400+ data centres in ERCOT audit due 10 Dec 2026)"
+    },
+    {
+      "id": "taiwan_moea_export_orders",
+      "name": "Taiwan MOEA monthly export orders",
+      "url": "https://focustaiwan.tw/business/202609220025",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": ["capital_intensity"],
+      "channels": ["digital", "physical"],
+      "geo": "Taiwan",
+      "access": "MOEA statistics (confirm)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Seen via Focus Taiwan only; industry-based (electronics, ICT), not AI-specific: proxy flag"
+    },
+    {
+      "id": "china_nbs_robot_output",
+      "name": "China NBS monthly industrial robot output",
+      "url": "https://www.stats.gov.cn/english/",
+      "tier": 1,
+      "grade": "A-M",
+      "pillars": ["deployment"],
+      "channels": ["physical"],
+      "geo": "China",
+      "access": "NBS monthly release (confirm table)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Aug 2026 +34.6% y/y seen via CGTN only; industrial robots, not AI-specific: proxy flag; some months reported from an industry federation rather than NBS"
+    },
+    {
+      "id": "swaa",
+      "name": "Survey of Working Arrangements and Attitudes (SWAA)",
+      "url": "https://wfhresearch.com/data/",
+      "tier": 3,
+      "grade": "B-M",
+      "pillars": ["deployment", "labour_reorganisation"],
+      "channels": ["digital"],
+      "geo": "US workers 20-64",
+      "access": "time series Excel/JSON; microdata on request",
+      "licence": "CC BY 4.0",
+      "verified": true,
+      "caveats": "Data page does not list AI items; Bick et al. report a Dec 2024 SWAA wave with generative-AI use; confirm AI series ids; online panel"
+    },
+    {
+      "id": "rps_bick_blandin_deming",
+      "name": "Real-Time Population Survey / The Rapid Adoption of Generative AI (NBER w32966)",
+      "url": "https://www.nber.org/system/files/working_papers/w32966/w32966.pdf",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": ["deployment"],
+      "channels": ["digital"],
+      "geo": "US adults 18-64",
+      "access": "NBER data appendix",
+      "licence": "confirm",
+      "verified": true,
+      "caveats": "Aug and Nov 2024 waves only; not peer-reviewed; online panel; self-reported; use as diffusion-speed benchmark against PCs and internet"
+    },
+    {
+      "id": "firm_data_on_ai",
+      "name": "Firm Data on AI (NBER w34836; Atlanta Fed, Bank of England, Bundesbank, Macquarie)",
+      "url": "https://www.nber.org/digest/202605/global-evidence-business-use-ai",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": ["deployment", "labour_reorganisation"],
+      "channels": ["digital"],
+      "geo": "US, UK, Germany, Australia",
+      "access": "working paper; microdata availability not stated",
+      "licence": "confirm",
+      "verified": true,
+      "caveats": "Single fielding Nov 2025-Jan 2026; executive-reported; useful convergent check against Eurostat and BTOS"
+    },
+    {
+      "id": "stackoverflow_survey_2026",
+      "name": "Stack Overflow Developer Survey 2026",
+      "url": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/",
+      "tier": 4,
+      "grade": "C-Y",
+      "pillars": ["deployment", "human_capital"],
+      "channels": ["digital"],
+      "geo": "Global developers",
+      "access": "dataset promised on GitHub 'in a few weeks'",
+      "licence": "not stated; confirm",
+      "verified": true,
+      "caveats": "Developer self-selected sample; software sector only"
+    },
+    {
+      "id": "src_planetary_boundaries",
+      "name": "Stockholm Resilience Centre: Planetary boundaries (nine boundaries, status, Planetary Health Check link)",
+      "url": "https://www.stockholmresilience.org/research/planetary-boundaries.html",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": ["ecological_balance"],
+      "channels": ["digital", "physical"],
+      "geo": "Global",
+      "access": "web page; papers; annual Planetary Health Check",
+      "licence": "graphics CC BY-NC-ND 3.0 (no alteration, non-commercial); cite values, redraw panel",
+      "verified": true,
+      "caveats": "Page says seven of nine transgressed but names neither the seven nor control variables; own figures inconsistent (six for 2023); build the panel from primary papers and the Planetary Health Check, print assessment year; reference frame, not an AI series"
+    },
+    {
+      "id": "richardson_2023_pb",
+      "name": "Richardson et al. 2023, Earth beyond six of nine planetary boundaries (control variables and values)",
+      "url": "https://www.science.org/doi/10.1126/sciadv.adh2458",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": ["ecological_balance"],
+      "channels": ["digital", "physical"],
+      "geo": "Global",
+      "access": "open access paper (not opened; fetch failed)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Values seen only via a French government statistics page presenting the 2023 revision; open the paper before logging; later updates supersede (2025 and 2026 Planetary Health Check)"
+    },
+    {
+      "id": "pik_planetary_health_check",
+      "name": "Planetary Health Check (PIK / Planetary Boundaries Science Lab), annual",
+      "url": "https://www.pik-potsdam.de",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": ["ecological_balance"],
+      "channels": ["digital", "physical"],
+      "geo": "Global",
+      "access": "annual report (not opened)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Linked from the SRC page and cited as the source of the 2025 count; find the 2025 and 2026 editions and record per-boundary status before use"
+    }
+  ],
+  "pace_layers": [
+    "fashion_attention",
+    "commerce",
+    "infrastructure",
+    "governance",
+    "culture",
+    "nature"
+  ],
+  "pace_layers_note": "Proposed mapping after Brand (2018); fashion_attention deliberately not scored; mapping to be tested in Delphi"
+}

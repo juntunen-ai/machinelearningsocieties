@@ -29,6 +29,12 @@ jobs:
           fi
       - uses: actions/checkout@v4
         if: steps.check.outputs.ready == 'true'
+      - name: Sync Daily Briefs and Compile Diffusion Index v0.6
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          python3 scripts/sync_briefs_to_index.py
+          python3 scripts/fetch_open_series.py
+          python3 scripts/compute_index.py
       - name: Prepare credentials
         if: steps.check.outputs.ready == 'true'
         run: |

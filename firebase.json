@@ -3,6 +3,7 @@
     "public": ".",
     "ignore": [
       ".github/**",
+      "scripts/**",
       "firebase.json",
       ".firebaserc",
       "README.md",
@@ -23,7 +24,7 @@
         ]
       },
       {
-        "source": "**/*.@(html|json|xml)",
+        "source": "**/*.@(html|json|xml|csv|md)",
         "headers": [
           {
             "key": "Cache-Control",
