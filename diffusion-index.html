@@ -891,24 +891,28 @@
     const tbody = document.getElementById('pb-tbody');
     const pbs = DATA.planetary_boundaries.boundaries || [];
     tbody.innerHTML = pbs.map(b => {
-      const isTransgressed = b.status === 'transgressed';
-      const aiShare = b.ai_load_share;
-      const isNotMeasured = aiShare === 'not measured';
+      const isTransgressed = (b.status_code || b.status) === 'transgressed';
+      const controlVar = t(b.control_variable_en || b.control_variable || '', b.control_variable_fi || b.control_variable || '');
+      const aiShare = t(b.ai_load_en || b.ai_load_share || '', b.ai_load_fi || b.ai_load_share || '');
+      const isNotMeasured = b.ai_measured === false || String(aiShare).toLowerCase().startsWith('not measured') || String(aiShare).toLowerCase().startsWith('ei mitattu');
       return `
         <tr>
-          <td><strong>${t(b.name_en, b.name_fi)}</strong></td>
+          <td>
+            <strong>${t(b.name_en, b.name_fi)}</strong>
+            ${b.boundary_value ? `<span style="display:block;font-size:11px;color:var(--muted)">${t('Safe limit:', 'Turvaraja:')} ${b.boundary_value}</span>` : ''}
+          </td>
           <td>
             <span class="di-badge ${isTransgressed ? 'di-badge-transgressed' : 'di-badge-safe'}">
               ${isTransgressed ? t('Limit Crossed (Transgressed)', 'Turvaraja ylitetty') : t('Within Safe Limit', 'Turvarajan sisällä')}
             </span>
+            ${b.current_status ? `<span style="display:block;font-size:11px;color:var(--muted);margin-top:3px">${b.current_status}</span>` : ''}
           </td>
-          <td style="font-size:12.5px">${b.control_variable}</td>
+          <td style="font-size:12.5px">${controlVar}</td>
           <td>${b.assessment_year}</td>
           <td style="font-size:12.5px">
             ${isNotMeasured
-              ? `<span class="di-badge di-badge-candidate">${t('not measured (never assumed to be 0)', 'ei mitattu (ei koskaan oleteta nollaksi)')}</span>`
-              : `<span class="di-badge di-badge-verified">${t('Measured share:', 'Mitattu osuus:')}</span> ${aiShare}`}
-            ${b.notes ? `<div style="font-size:11.5px;color:var(--muted);margin-top:3px">${b.notes}</div>` : ''}
+              ? `<span class="di-badge di-badge-candidate">${t('Not measured (never assumed to be 0)', 'Ei mitattu (ei koskaan oleteta nollaksi)')}</span> <span style="color:var(--muted)">${aiShare.replace(/^(not measured|ei mitattu)\s*/i, '')}</span>`
+              : `<span class="di-badge di-badge-verified">${t('Measured:', 'Mitattu:')} ${b.grade || ''}</span> ${aiShare}`}
           </td>
         </tr>
       `;
