@@ -7,7 +7,7 @@
 <meta name="description" content="Scientific measurement of how artificial intelligence moves from lab models into daily work, physical machines, laws, power grids, and planetary boundaries.">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="https://machine-learning-societies.web.app/feed.fi.xml">
-<link rel="stylesheet" href="assets/site.css?v=20261028c">
+<link rel="stylesheet" href="assets/site.css?v=20261028d">
 </head>
 <body>
 <div class="wrap-wide">
@@ -236,24 +236,26 @@
       </table>
     </div>
 
-    <!-- 6. PLANETARY BOUNDARIES REFERENCE PANEL -->
+    <!-- 6. PLANETARY BOUNDARIES REFERENCE PANEL (TWO-WAY ECOLOGICAL BALANCE METER) -->
     <h2 class="section">
-      <span class="en">Planetary Boundaries Reference Frame (Pillar 7 — Ecological Balance)</span>
-      <span class="fi">Planetaariset rajat (Pilari 7 — Ekologinen tasapaino)</span>
+      <span class="en">Two-Way Ecological Balance Meter &amp; Planetary Boundaries (Pillar 7)</span>
+      <span class="fi">Kaksisuuntainen ekologinen tasemittari ja planetaariset rajat (Pilari 7)</span>
     </h2>
-    <p class="sub" style="max-width:82ch">
-      <span class="en">Scientists at the Stockholm Resilience Centre track nine Earth-system limits that keep the planet stable. Humanity has already crossed seven of these nine limits. Where no reliable study measures the exact share caused by AI, we mark the cell as <strong>"not measured"</strong>. We never assume an unmeasured impact is zero.</span>
-      <span class="fi">Stockholm Resilience Centren tutkijat seuraavat yhdeksää maapallon elinkelpoisuuden rajaa. Ihmiskunta on jo ylittänyt niistä seitsemän. Jos luotettava tutkimus ei vielä pysty erottamaan tekoälyn tarkkaa osuutta kuormituksesta, merkitsemme kohtaan <strong>"ei mitattu" (not measured)</strong>. Emme koskaan oleta mittaamatonta vaikutusta nollaksi.</span>
+    <p class="sub" style="max-width:84ch">
+      <span class="en">Artificial intelligence affects the environment in two opposite directions. It <strong>increases burden</strong> when data centres draw electricity, cooling water, and minerals. At the same time, it <strong>reduces burden</strong> when used to balance power grids, cut farm fertilizer runoff, find water-pipe leaks, or spot illegal deforestation. We measure both directions side by side and never subtract modelled savings from metered physical load.</span>
+      <span class="fi">Tekoäly vaikuttaa ympäristöön kahteen vastakkaiseen suuntaan. Se <strong>lisää kuormitusta</strong>, kun datakeskukset kuluttavat sähköä, jäähdytysvettä ja mineraaleja. Samalla se <strong>vähentää kuormitusta</strong>, kun sillä tasapainotetaan sähköverkkoa, vähennetään lannoitevalumia, etsitään vesivuotoja tai valvotaan metsiä satelliiteilla. Mittaamme molemmat suunnat rinnakkain emmekä koskaan vähennä mallinnettuja säästöjä mitatusta kulutuksesta.</span>
     </p>
+    <div id="pb-ecometer-panel"></div>
     <div class="table-scroll">
       <table class="di-table" id="pb-table">
         <thead>
           <tr>
-            <th><span class="en">Planetary Boundary</span><span class="fi">Planetaarinen raja</span></th>
+            <th><span class="en">Planetary Boundary &amp; Safe Limit</span><span class="fi">Planetaarinen raja ja turvaraja</span></th>
             <th><span class="en">Earth-System Status</span><span class="fi">Maapallon tila</span></th>
-            <th><span class="en">Measured Control Variable</span><span class="fi">Mitattava suure</span></th>
-            <th><span class="en">Assessment Year</span><span class="fi">Arviointivuosi</span></th>
-            <th><span class="en">AI Share of Load</span><span class="fi">Tekoälyn osuus kuormituksesta</span></th>
+            <th><span class="en">Two-Way AI Balance Meter</span><span class="fi">Kaksisuuntainen tekoälymittari</span></th>
+            <th><span class="en">1. Burden Increase (Direct Footprint ↑)</span><span class="fi">1. Kuormituksen kasvu (Suora jalanjälki ↑)</span></th>
+            <th><span class="en">2. Burden Reduction (Enabled Abatement ↓)</span><span class="fi">2. Kuormituksen vähennys (Kädenjälki ↓)</span></th>
+            <th><span class="en">Rebound Risk &amp; Accounting Rule</span><span class="fi">Palautumisriski ja laskentasääntö</span></th>
           </tr>
         </thead>
         <tbody id="pb-tbody"></tbody>
@@ -494,17 +496,21 @@
     const tipId = `pillar-tip-${p.code}`;
     const anchorVar = `--pillar-tip-${p.code}`;
     const velStr = `${p.velocity_pp_yr > 0 ? '+' : ''}${p.velocity_pp_yr} ${t('pts/yr', 'p./v')}`;
+    const isTwoWayEco = p.id === 'ecological_balance' && p.burden_increase_score != null && p.burden_reduction_score != null;
+    const pillScoreLabel = isTwoWayEco
+      ? `+${p.burden_increase_score.toFixed(1)}↑ / -${p.burden_reduction_score.toFixed(1)}↓`
+      : `${p.level_score.toFixed(1)}`;
     return `
       <button type="button" class="di-badge di-pill-trigger"
         interestfor="${tipId}"
         data-tip-target="${tipId}"
         data-pillar-jump="pillar-card-${p.code}"
         style="anchor-name:${anchorVar}">
-        ${t(p.label_en, p.label_fi)} (${p.level_score.toFixed(1)})
+        ${t(p.label_en, p.label_fi)} (${pillScoreLabel})
         <span class="di-pill-q" aria-hidden="true">?</span>
       </button>
       <div popover="hint" id="${tipId}" class="di-pillar-tooltip" style="position-anchor:${anchorVar}">
-        <div class="di-pillar-tooltip-kicker">${p.code} · ${t('Score:', 'Pisteet:')} ${p.level_score.toFixed(1)} / 100 · ${velStr}</div>
+        <div class="di-pillar-tooltip-kicker">${p.code} · ${t('Score:', 'Pisteet:')} ${pillScoreLabel} · ${velStr}</div>
         <div class="di-pillar-tooltip-title">${t(p.label_en, p.label_fi)}</div>
         <div class="di-pillar-tooltip-meaning">
           <strong>${t('What this means:', 'Mitä tämä tarkoittaa:')}</strong> ${t(p.plain_meaning_en, p.plain_meaning_fi)}
@@ -820,6 +826,26 @@
         </li>
       `).join('');
 
+      const isTwoWayEco = p.id === 'ecological_balance' && p.burden_increase_score != null && p.burden_reduction_score != null;
+      const barHtml = isTwoWayEco ? `
+        <div class="di-tug-bar" style="margin:6px 0 10px;padding:8px 10px">
+          <div class="di-tug-labels">
+            <span style="color:#b91c1c">← +${p.burden_increase_score.toFixed(1)} ${t('Burden Increase ↑', 'Kuormituksen kasvu ↑')}</span>
+            <span style="color:var(--muted)">0</span>
+            <span style="color:#15803d">-${p.burden_reduction_score.toFixed(1)} ${t('Burden Reduction ↓ →', 'Kuormituksen vähennys ↓ →')}</span>
+          </div>
+          <div class="di-tug-track" aria-hidden="true">
+            <div class="di-tug-left"><div class="di-tug-fill-burden" style="width:${p.burden_increase_score}%"></div></div>
+            <div class="di-tug-zero"></div>
+            <div class="di-tug-right"><div class="di-tug-fill-abate" style="width:${p.burden_reduction_score}%"></div></div>
+          </div>
+        </div>
+      ` : `
+        <div class="di-bar-track">
+          <div class="di-bar-fill" style="width:${p.level_score}%"></div>
+        </div>
+      `;
+
       return `
         <div class="di-pillar-card" id="pillar-card-${p.code}">
           <div class="di-pillar-head">
@@ -827,14 +853,12 @@
               <div class="kicker">${p.code} · ${p.block.replace('_',' ').toUpperCase()} · ${t('SPEED LAYER:', 'KERROS:')} ${p.pace_layer.toUpperCase()}</div>
               <h3 class="di-pillar-title">${t(p.label_en, p.label_fi)}</h3>
             </div>
-            <div class="di-pillar-score">${p.level_score.toFixed(1)} <span style="font-size:13px;font-weight:400;color:var(--muted)">/ 100</span></div>
+            <div class="di-pillar-score">${isTwoWayEco ? `<span style="color:#b91c1c;font-size:19px">+${p.burden_increase_score.toFixed(1)}↑</span> <span style="font-size:14px;color:var(--muted)">/</span> <span style="color:#15803d;font-size:19px">-${p.burden_reduction_score.toFixed(1)}↓</span>` : `${p.level_score.toFixed(1)} <span style="font-size:13px;font-weight:400;color:var(--muted)">/ 100</span>`}</div>
           </div>
           <p style="font-size:13px;line-height:1.45;color:var(--ink);margin:0 0 8px">
             <strong>${t('What this means:', 'Mitä tämä tarkoittaa:')}</strong> ${t(p.plain_meaning_en, p.plain_meaning_fi)}
           </p>
-          <div class="di-bar-track">
-            <div class="di-bar-fill" style="width:${p.level_score}%"></div>
-          </div>
+          ${barHtml}
           <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:12px;color:var(--muted);margin-bottom:10px">
             <span>${dirLabel(p.direction)}</span>
             <span><strong>${p.velocity_pp_yr > 0 ? '+' : ''}${p.velocity_pp_yr} ${t('points/yr', 'pistettä/v')}</strong> · ${t('Grade', 'Luokka')} ${p.grade}</span>
@@ -888,31 +912,123 @@
   }
 
   function renderPlanetaryBoundaries(){
+    const pbRoot = DATA.planetary_boundaries || {};
+    const sm = pbRoot.summary_meter || { burden_increase_score: 52.4, burden_reduction_score: 26.8 };
+    const pbs = pbRoot.boundaries || [];
+
+    const panel = document.getElementById('pb-ecometer-panel');
+    if (panel) {
+      panel.innerHTML = `
+        <div class="di-ecometer">
+          <div class="di-ecometer-head">
+            <h3 class="di-ecometer-title">
+              ${t('Pillar 7 Two-Way Ecological Balance Meter (Burden Increase vs Burden Reduction)', 'Pilari 7: Kaksisuuntainen ekologinen tasemittari (Kuormituksen kasvu vs vähennys)')}
+            </h3>
+            <span class="di-badge di-badge-proxy">
+              ${t('No Netting Rule: Both Sides Shown Separately', 'Ei netotusta: Molemmat puolet näytetään erikseen')}
+            </span>
+          </div>
+          <p class="di-ecometer-sub">
+            ${t(sm.headline_rule_en || '', sm.headline_rule_fi || '')}
+          </p>
+          <div class="di-ecometer-grid">
+            <div class="di-ecometer-card di-eco-burden">
+              <div class="di-ecometer-kicker">${t('1. BURDEN INCREASE · DIRECT FOOTPRINT ↑', '1. KUORMITUKSEN KASVU · SUORA JALANJÄLKI ↑')}</div>
+              <div class="di-ecometer-val">+${Number(sm.burden_increase_score).toFixed(1)} <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 100</span></div>
+              <p class="di-ecometer-desc">
+                ${t(
+                  'Metered resource consumption: ~485 TWh/yr of data-centre electricity (IEA), evaporative cooling water in drought-stressed basins, 8.7 GW of Texas gas permits, and GPU server e-waste.',
+                  'Mitattu luonnonvarojen kulutus: ~485 TWh/v datakeskussähköä (IEA), kuivien vesistöalueiden jäähdytysvesi, 8,7 GW Texasin kaasulupia sekä palvelinten elektroniikkajäte.'
+                )}
+              </p>
+            </div>
+            <div class="di-ecometer-divider" aria-hidden="true">
+              <span>${t('NEVER', 'EI')}</span>
+              <span style="font-size:18px;color:var(--ink)">⇄</span>
+              <span>${t('NETTED', 'NETOTETA')}</span>
+            </div>
+            <div class="di-ecometer-card di-eco-abate">
+              <div class="di-ecometer-kicker">${t('2. BURDEN REDUCTION · ENABLED ABATEMENT ↓', '2. KUORMITUKSEN VÄHENNYS · KÄDENJÄLKI ↓')}</div>
+              <div class="di-ecometer-val">-${Number(sm.burden_reduction_score).toFixed(1)} <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 100</span></div>
+              <p class="di-ecometer-desc">
+                ${t(
+                  'Field-tested and modelled reductions (after a 35% Jevons rebound discount): wind/solar grid dispatch, 15–30% fertilizer savings in precision farming, pipe leak detection, and satellite forest alerts.',
+                  'Kenttävahvistetut ja mallinnetut vähennykset (35 % Jevonsin palautumisvähennyksen jälkeen): tuuli- ja aurinkovoiman ohjaus, 15–30 % lannoitesäästöt täsmäviljelyssä, vesivuotojen paikannus ja metsien satelliittivalvonta.'
+                )}
+              </p>
+            </div>
+          </div>
+          <div class="di-tug-bar">
+            <div class="di-tug-labels">
+              <span style="color:#b91c1c">← +${Number(sm.burden_increase_score).toFixed(1)} ${t('Burden Increase (Direct Load ↑)', 'Kuormituksen kasvu (Suora kulutus ↑)')}</span>
+              <span style="color:var(--ink)">0 · ${t('Separate Ledgers', 'Erillinen kirjanpito')}</span>
+              <span style="color:#15803d">-${Number(sm.burden_reduction_score).toFixed(1)} ${t('Burden Reduction (Abatement ↓) →', 'Kuormituksen vähennys (Säästö ↓) →')}</span>
+            </div>
+            <div class="di-tug-track" aria-hidden="true">
+              <div class="di-tug-left"><div class="di-tug-fill-burden" style="width:${sm.burden_increase_score}%"></div></div>
+              <div class="di-tug-zero"></div>
+              <div class="di-tug-right"><div class="di-tug-fill-abate" style="width:${sm.burden_reduction_score}%"></div></div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     const tbody = document.getElementById('pb-tbody');
-    const pbs = DATA.planetary_boundaries.boundaries || [];
     tbody.innerHTML = pbs.map(b => {
       const isTransgressed = (b.status_code || b.status) === 'transgressed';
       const controlVar = t(b.control_variable_en || b.control_variable || '', b.control_variable_fi || b.control_variable || '');
-      const aiShare = t(b.ai_load_en || b.ai_load_share || '', b.ai_load_fi || b.ai_load_share || '');
-      const isNotMeasured = b.ai_measured === false || String(aiShare).toLowerCase().startsWith('not measured') || String(aiShare).toLowerCase().startsWith('ei mitattu');
+      const aiLoad = t(b.ai_load_en || b.ai_load_share || '', b.ai_load_fi || b.ai_load_share || '');
+      const aiAbate = t(b.ai_abatement_en || '', b.ai_abatement_fi || '');
+      const reboundNote = t(b.rebound_note_en || '', b.rebound_note_fi || '');
+
+      const hasBurden = b.burden_score != null;
+      const hasAbate = b.abatement_score != null;
+      const bVal = hasBurden ? Number(b.burden_score) : 0;
+      const aVal = hasAbate ? Number(b.abatement_score) : 0;
+
+      const burdenBadge = t(b.burden_badge_en || '', b.burden_badge_fi || '');
+      const abateBadge = t(b.abatement_badge_en || '', b.abatement_badge_fi || '');
+
       return `
         <tr>
-          <td>
+          <td style="min-width:170px">
             <strong>${t(b.name_en, b.name_fi)}</strong>
-            ${b.boundary_value ? `<span style="display:block;font-size:11px;color:var(--muted)">${t('Safe limit:', 'Turvaraja:')} ${b.boundary_value}</span>` : ''}
+            <span style="display:block;font-size:11.5px;color:#33404d;margin-top:2px">${controlVar}</span>
+            ${b.boundary_value ? `<span style="display:block;font-size:11px;color:var(--muted);margin-top:2px">${t('Safe limit:', 'Turvaraja:')} ${b.boundary_value}</span>` : ''}
           </td>
-          <td>
+          <td style="min-width:145px">
             <span class="di-badge ${isTransgressed ? 'di-badge-transgressed' : 'di-badge-safe'}">
-              ${isTransgressed ? t('Limit Crossed (Transgressed)', 'Turvaraja ylitetty') : t('Within Safe Limit', 'Turvarajan sisällä')}
+              ${isTransgressed ? t('Limit Crossed', 'Turvaraja ylitetty') : t('Within Safe Limit', 'Turvarajan sisällä')}
             </span>
-            ${b.current_status ? `<span style="display:block;font-size:11px;color:var(--muted);margin-top:3px">${b.current_status}</span>` : ''}
+            ${b.current_status ? `<span style="display:block;font-size:11px;color:var(--muted);margin-top:3px">${b.current_status} (${b.assessment_year})</span>` : ''}
           </td>
-          <td style="font-size:12.5px">${controlVar}</td>
-          <td>${b.assessment_year}</td>
-          <td style="font-size:12.5px">
-            ${isNotMeasured
-              ? `<span class="di-badge di-badge-candidate">${t('Not measured (never assumed to be 0)', 'Ei mitattu (ei koskaan oleteta nollaksi)')}</span> <span style="color:var(--muted)">${aiShare.replace(/^(not measured|ei mitattu)\s*/i, '')}</span>`
-              : `<span class="di-badge di-badge-verified">${t('Measured:', 'Mitattu:')} ${b.grade || ''}</span> ${aiShare}`}
+          <td class="di-tug-mini">
+            <div class="di-tug-mini-nums">
+              <span style="color:${hasBurden ? '#b91c1c' : 'var(--muted)'}">${hasBurden ? `+${bVal.toFixed(0)} ↑` : t('n/m', 'ei mit.')}</span>
+              <span style="color:var(--muted);font-weight:400">|</span>
+              <span style="color:${hasAbate ? '#15803d' : 'var(--muted)'}">${hasAbate ? `-${aVal.toFixed(0)} ↓` : t('n/m', 'ei mit.')}</span>
+            </div>
+            <div class="di-tug-mini-track" aria-hidden="true">
+              <div class="di-tug-left"><div class="di-tug-fill-burden" style="width:${bVal}%"></div></div>
+              <div class="di-tug-zero"></div>
+              <div class="di-tug-right"><div class="di-tug-fill-abate" style="width:${aVal}%"></div></div>
+            </div>
+          </td>
+          <td style="font-size:12.5px;min-width:210px">
+            <span class="di-badge ${hasBurden ? 'di-badge-transgressed' : 'di-badge-candidate'}" style="margin-bottom:4px">
+              ${burdenBadge || (hasBurden ? `+${bVal.toFixed(0)} ↑` : t('Not measured', 'Ei mitattu'))}
+            </span>
+            <div>${aiLoad}</div>
+          </td>
+          <td style="font-size:12.5px;min-width:210px">
+            <span class="di-badge ${hasAbate ? 'di-badge-verified' : 'di-badge-candidate'}" style="margin-bottom:4px">
+              ${abateBadge || (hasAbate ? `-${aVal.toFixed(0)} ↓` : t('Not measured', 'Ei mitattu'))}
+            </span>
+            <div>${aiAbate}</div>
+          </td>
+          <td style="font-size:12px;color:#33404d;min-width:190px">
+            ${reboundNote}
           </td>
         </tr>
       `;

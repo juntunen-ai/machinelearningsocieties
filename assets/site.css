@@ -201,9 +201,38 @@ dialog.di-modal::backdrop{background:rgba(18,22,26,.45)}
 .di-modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px}
 .di-modal-close{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:4px 12px;font-size:12px;cursor:pointer}
 
+/* Two-Way Ecological Balance Meter (Pillar 7 & Planetary Boundaries) */
+.di-ecometer{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:0 0 20px}
+.di-ecometer-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.di-ecometer-title{font-family:Georgia,"Iowan Old Style",serif;font-size:19px;font-weight:700;color:var(--ink);margin:0}
+.di-ecometer-sub{font-size:13.5px;line-height:1.55;color:#33404d;margin:0 0 14px;max-width:86ch}
+.di-ecometer-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin:0 0 14px}
+.di-ecometer-card{border-radius:12px;padding:14px 16px;border:1px solid var(--line)}
+.di-ecometer-card.di-eco-burden{background:#fff5f5;border-color:#fecaca}
+.di-ecometer-card.di-eco-abate{background:#f0fdf4;border-color:#bbf7d0}
+.di-ecometer-kicker{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:0 0 4px}
+.di-eco-burden .di-ecometer-kicker{color:#b91c1c}
+.di-eco-abate .di-ecometer-kicker{color:#15803d}
+.di-ecometer-val{font-family:Georgia,"Iowan Old Style",serif;font-size:28px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums;margin:0 0 6px}
+.di-eco-burden .di-ecometer-val{color:#991b1b}
+.di-eco-abate .di-ecometer-val{color:#166534}
+.di-ecometer-desc{font-size:12.5px;line-height:1.45;color:#33404d;margin:0}
+.di-ecometer-divider{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 4px;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.di-tug-bar{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.di-tug-labels{display:flex;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.di-tug-track{display:grid;grid-template-columns:1fr 2px 1fr;height:12px;background:#e2e8f0;border-radius:999px;overflow:hidden;align-items:stretch}
+.di-tug-left{display:flex;justify-content:flex-end;background:#f8fafc}
+.di-tug-right{display:flex;justify-content:flex-start;background:#f8fafc}
+.di-tug-zero{background:var(--ink);width:2px}
+.di-tug-fill-burden{height:100%;background:linear-gradient(90deg,#ef4444 0%,#b91c1c 100%);border-radius:999px 0 0 999px}
+.di-tug-fill-abate{height:100%;background:linear-gradient(90deg,#15803d 0%,#22c55e 100%);border-radius:0 999px 999px 0}
+.di-tug-mini{min-width:155px}
+.di-tug-mini-nums{display:flex;justify-content:space-between;font-size:11px;font-weight:700;font-variant-numeric:tabular-nums;margin-bottom:4px}
+.di-tug-mini-track{display:grid;grid-template-columns:1fr 2px 1fr;height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden}
+
 @media (max-width:860px){
   .di-kpi-grid{grid-template-columns:repeat(2,1fr)}
-  .di-blocks-row,.di-pillar-grid,.di-scale-grid,.di-scale-terms{grid-template-columns:1fr}
+  .di-blocks-row,.di-pillar-grid,.di-scale-grid,.di-scale-terms,.di-ecometer-grid{grid-template-columns:1fr}
   .di-pace-row{grid-template-columns:120px 1fr 70px}
 }
 @media (max-width:520px){
