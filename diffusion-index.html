@@ -7,7 +7,7 @@
 <meta name="description" content="Scientific measurement of how artificial intelligence moves from lab models into daily work, physical machines, laws, power grids, and planetary boundaries.">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="https://machine-learning-societies.web.app/feed.fi.xml">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=20261028b">
 </head>
 <body>
 <div class="wrap-wide">
@@ -59,48 +59,79 @@
 
     <!-- HOW TO READ THE 0-100 SCALE -->
     <section class="di-scale-guide" aria-labelledby="scale-guide-title">
-      <h2 id="scale-guide-title">
-        <span class="en">How to Read the 0–100 Scale</span>
-        <span class="fi">Miten luet 0–100-asteikkoa</span>
-      </h2>
-      <p class="en">
+      <div class="di-scale-head">
+        <h2 id="scale-guide-title">
+          <span class="en">How to Read the 0–100 Scale</span>
+          <span class="fi">Miten luet 0–100-asteikkoa</span>
+        </h2>
+        <span class="di-badge">
+          <span class="en">Fixed 0–100 Goalpost Scale</span>
+          <span class="fi">Kiinteä 0–100-asteikko</span>
+        </span>
+      </div>
+      <p class="di-scale-intro en">
         Every score uses a fixed scale from <strong>0 to 100</strong>. The goalposts stay fixed over time so you can compare quarters directly. A score of 100 does not mean infinite growth. Instead, 100 means AI has become dependable everyday infrastructure, like electricity or the internet.
       </p>
-      <p class="fi">
+      <p class="di-scale-intro fi">
         Jokainen pisteluku käyttää kiinteää asteikkoa <strong>0–100</strong>. Asteikon rajat pysyvät samoina yli ajan, jotta voit verrata eri ajankohtia suoraan. Pistemäärä 100 ei tarkoita rajatonta kasvua. Se tarkoittaa, että tekoälystä on tullut luotettava arjen perusrakenne sähkön tai internetin tapaan.
       </p>
+
+      <div class="di-scale-ruler" aria-hidden="true">
+        <div class="di-scale-ruler-labels">
+          <span>0 · <span class="en">Start</span><span class="fi">Alku</span></span>
+          <span style="color:var(--ink)">▲ 42.7 · <span class="en">Today (2026-Q4)</span><span class="fi">Nyt (2026-Q4)</span></span>
+          <span>100 · <span class="en">Full Maturity</span><span class="fi">Täysi kypsyys</span></span>
+        </div>
+        <div class="di-scale-ruler-track">
+          <div class="di-scale-ruler-pin" style="left:42.7%"></div>
+        </div>
+      </div>
+
       <div class="di-scale-grid">
         <div class="di-scale-step">
-          <div class="di-scale-num">0 / 100 · <span class="en">Starting Point</span><span class="fi">Lähtötilanne</span></div>
+          <div class="di-scale-tag"><span class="en">Starting Point</span><span class="fi">Lähtötilanne</span></div>
+          <div class="di-scale-num">0 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 100</span></div>
           <p class="en">Almost no real-world use. Companies run only isolated tests, multi-step tasks fail often, and infrastructure investment is minimal.</p>
           <p class="fi">Ei juuri lainkaan todellista käyttöä. Yritykset tekevät vain yksittäisiä kokeiluja, monivaiheiset tehtävät epäonnistuvat usein ja investoinnit ovat pieniä.</p>
         </div>
         <div class="di-scale-step di-scale-now">
-          <div class="di-scale-num">42.7 / 100 · <span class="en">Today (2026-Q4)</span><span class="fi">Nyt (2026-Q4)</span></div>
+          <div class="di-scale-tag"><span class="en">Today (2026-Q4)</span><span class="fi">Nyt (2026-Q4)</span></div>
+          <div class="di-scale-num">42.7 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 100</span></div>
           <p class="en">AI is four-tenths of the way to everyday maturity. Capital investment (<strong>58.6</strong>) moves fast, but everyday company use (<strong>28.4</strong>) and reliable task completion (<strong>41.2</strong>) lag behind.</p>
           <p class="fi">Tekoäly on neljän kymmenesosan päässä arjen kypsyydestä. Pääomasitoumukset (<strong>58.6</strong>) kasvavat nopeasti, mutta yrityskäyttö (<strong>28.4</strong>) ja luotettava työnkulkujen suoritus (<strong>41.2</strong>) laahaavat perässä.</p>
         </div>
         <div class="di-scale-step">
-          <div class="di-scale-num">100 / 100 · <span class="en">Full Maturity</span><span class="fi">Täysi kypsyys</span></div>
+          <div class="di-scale-tag"><span class="en">Full Maturity</span><span class="fi">Täysi kypsyys</span></div>
+          <div class="di-scale-num">100 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 100</span></div>
           <p class="en">AI works like electricity. About 80% of organizations use AI in daily work, multi-step tasks finish reliably at one-tenth of today's cost, and all industries use it evenly.</p>
           <p class="fi">Tekoäly toimii kuin sähköverkko. Noin 80 % organisaatioista käyttää tekoälyä arjen työssä, monivaiheiset tehtävät valmistuvat luotettavasti kymmenesosalla nykykulusta ja toimialakuilu on kurottu umpeen.</p>
         </div>
       </div>
+
       <div class="di-scale-terms">
-        <div>
-          <strong><span class="en">90% Uncertainty Range [32.0 – 53.4]:</span><span class="fi">90 % epävarmuusväli [32.0 – 53.4]:</span></strong>
-          <span class="en">We recalculate the index 1,000 times with varied pillar weights and data noise. In 900 out of 1,000 runs, the score lands inside this range.</span>
-          <span class="fi">Laskemme indeksin 1 000 kertaa vaihtelevilla painoilla ja mittauskohinalla. 900 ajossa tuhannesta tulos osuu tälle välille.</span>
+        <div class="di-scale-term-card">
+          <span class="di-scale-term-title">
+            <span class="en">90% Uncertainty Range [32.0 – 53.4]</span>
+            <span class="fi">90 % epävarmuusväli [32.0 – 53.4]</span>
+          </span>
+          <p class="di-scale-term-body en">We recalculate the index 1,000 times with varied pillar weights and data noise. In 900 out of 1,000 runs, the score lands inside this range.</p>
+          <p class="di-scale-term-body fi">Laskemme indeksin 1 000 kertaa vaihtelevilla painoilla ja mittauskohinalla. 900 ajossa tuhannesta tulos osuu tälle välille.</p>
         </div>
-        <div>
-          <strong><span class="en">Bottleneck Score (Geometric Mean: 40.5):</span><span class="fi">Pullonkaulapiste (geometrinen keskiarvo: 40.5):</span></strong>
-          <span class="en">A stricter average that drops when any single pillar (such as company adoption at 28.4) lags behind capital spending.</span>
-          <span class="fi">Tiukempi keskiarvo, joka laskee heti, jos yksikin osa-alue (kuten yrityskäyttö 28.4) jää jälkeen pääomainvestoinneista.</span>
+        <div class="di-scale-term-card">
+          <span class="di-scale-term-title">
+            <span class="en">Bottleneck Score (Geometric Mean: 40.5)</span>
+            <span class="fi">Pullonkaulapiste (geometrinen keskiarvo: 40.5)</span>
+          </span>
+          <p class="di-scale-term-body en">A stricter average that drops when any single pillar (such as company adoption at 28.4) lags behind capital spending.</p>
+          <p class="di-scale-term-body fi">Tiukempi keskiarvo, joka laskee heti, jos yksikin osa-alue (kuten yrityskäyttö 28.4) jää jälkeen pääomainvestoinneista.</p>
         </div>
-        <div>
-          <strong><span class="en">Annual Speed (+8.9 points per year):</span><span class="fi">Vuosivauhti (+8.9 pistettä vuodessa):</span></strong>
-          <span class="en">Shows how many points a score gains or loses per year on the 0–100 scale at its current pace.</span>
-          <span class="fi">Kertoo, kuinka monta pistettä tulos nousee tai laskee vuodessa asteikolla 0–100 nykyisellä vauhdilla.</span>
+        <div class="di-scale-term-card">
+          <span class="di-scale-term-title">
+            <span class="en">Annual Speed (+8.9 points per year)</span>
+            <span class="fi">Vuosivauhti (+8.9 pistettä vuodessa)</span>
+          </span>
+          <p class="di-scale-term-body en">Shows how many points a score gains or loses per year on the 0–100 scale at its current pace.</p>
+          <p class="di-scale-term-body fi">Kertoo, kuinka monta pistettä tulos nousee tai laskee vuodessa asteikolla 0–100 nykyisellä vauhdilla.</p>
         </div>
       </div>
     </section>
