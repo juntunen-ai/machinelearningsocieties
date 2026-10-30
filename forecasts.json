@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29",
+  "updated": "2026-10-30",
   "forecasts": [
     {
       "id": "2026-10-14-01",
@@ -132,6 +132,17 @@
       "status": "open",
       "signal": "7/10",
       "source": "briefs/2026-10-29.html"
+    },
+    {
+      "id": "2026-10-30-01",
+      "made": "2026-10-30",
+      "claim_en": "By 30 June 2027 the European AI Office or a national market-surveillance authority will cite a developer's own monitoring or misalignment report in a published document (50 %).",
+      "claim_fi": "30.6.2027 mennessä Euroopan AI Office tai kansallinen markkinavalvontaviranomainen viittaa julkisessa asiakirjassa kehittäjän omaan valvonta- tai virhetoimintaraporttiin (50 %).",
+      "resolves": "2027-06-30",
+      "probability": 50,
+      "status": "open",
+      "signal": "4/10",
+      "source": "briefs/2026-10-30.html"
     }
   ]
 }
