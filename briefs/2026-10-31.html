@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The last safety fix a model receives is the one shipped with its weights - Machine Learning Societies</title>
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="../feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="../feed.fi.xml">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mast-left">
+      <a class="brand" href="../index.html">Machine Learning Societies</a>
+      <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></span>
+      <span class="toplinks"><a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a> &middot; <a href="../about.html">About this brief</a></span>
+    </div>
+    <div class="lang"><a href="2026-10-31.fi.html">FI</a><a href="2026-10-31.html" aria-current="true">EN</a></div>
+  </header>
+  <article class="brief">
+<p class="kicker">31 October 2026 - Machine Learning Societies</p>
+
+<h2>The last safety fix a model receives is the one shipped with its weights</h2>
+
+<p class="score">Signal 6/10 &middot; Stakes 7/10</p>
+
+<p>Mistral released the weights of Mistral Large 4 on 29 October, a model of about 1.05 trillion parameters that it sells for finding and fixing software flaws. Its own monitoring of preview traffic found a potential to help real attacks. The guardrail changes that follow reach the hosted service, not the copies a customer downloads.</p>
+
+<h3>Signal</h3>
+
+<p><strong>Observed.</strong> Mistral AI published the weights on 29 October, three weeks after a public preview. The model holds about 1.05 trillion parameters and runs about 52 billion of them on one task. Its context window holds one million tokens, the unit of text it reads at once. The weights sit on Hugging Face, and a customer can serve them on its own machines. The licence is a modified MIT licence: use, change and sell are allowed, but a company that sells the model as a service needs a separate commercial licence. Mistral trained it on 3,800 Nvidia chips in its own European data centres. The company reports 51 % on the Artificial Analysis Cyber Index, a test of finding and patching flaws. It says the model refuses 96.6 % of malicious cyber requests. The same post carries the sentence that matters: "we see a potential for uplift to conduct real attacks". Pierre Stock, vice president of science, told CSO that later safeguard updates "are applied to our managed API and future model releases, rather than automatically updating downloaded checkpoints". ENISA, the EU cyber agency, says it tests the model to find vulnerabilities and audit code. A cyber variant for penetration testing goes only to vetted partners such as Orange Cyberdefense.</p>
+
+<p><strong>Caveats.</strong> Every number above is the vendor's own, and no outside body has repeated the test. The refusal rate measures a test set, not a production system with a customer's data. The uplift finding is an assessment from live traffic, not a recorded attack. Under the EU AI Act a model trained above 10^25 floating-point operations is presumed to carry systemic risk. The post does not say whether Large 4 passes that line. A guardrail in the weights is a real control at release. What the vendor cannot do is change the file on someone else's disk.</p>
+
+<p><strong>Assessment.</strong> For a reader outside AI, safety stops being a service and becomes a shipment. A buyer of a self-hosted model keeps the guardrail of the release date, while the same model behind the vendor's API improves every month. A supervisor who asks in 2027 whether a bank's model refuses a request will test the version the bank froze. Stakes are 7 because the rule on whether a downloaded model is a regulated product is being written now. A model with acknowledged offensive use is already outside the vendor's reach.</p>
+
+<p><strong>Evidence 6/10.</strong></p>
+<ul>
+<li>P: 3 points. Primary documents exist: the release post, the model card, the licence and the Hugging Face page.</li>
+<li>N: 2 points. Two senders added a fact. CSO quoted Stock on update delivery and Hugging Face on who owns the deployment. TLDR AI named the licence condition and the self-hosting route.</li>
+<li>L: 1 point. Mistral published first, on 29 October, and the newsletters followed the next morning.</li>
+</ul>
+<p>Three plus two plus one is six. Most coverage repeated the release.</p>
+
+<p><strong>Stakes 7/10.</strong> A trillion-parameter model with a stated potential for offensive use is now a download. The rule that says who answers for it does not exist.</p>
+
+<h3>Thesis</h3>
+
+<p>Open weights turn safety into a one-time shipment. A vendor can improve the model it serves, and cannot improve the copy a customer runs, because the guardrail is inside the file. Within two years the same model will behave differently at the vendor, at a bank and at a ministry that hosts it. The supervisor who asks whether it is safe will get three answers and no way to tell them apart.</p>
+
+<h3>Antithesis</h3>
+
+<p>The alternative is worse. If weights stay closed, three American labs decide who may audit a defensive capability, and European ministries rent access to a model they cannot inspect. A frozen guardrail is not a new problem: every software release has it, and product liability already answers who pays. Attackers already hold open Chinese models with weaker refusals, so diffusion to defenders may cut more risk than it adds.</p>
+
+<h3>Forecast</h3>
+
+<p>By 29 April 2027 the European AI Office or ENISA will publish a document that names open-weight distribution and states what a provider must do about safety fixes that cannot reach downloaded copies. Resolution date: 29.4.2027. Scoring rule: the claim hits if a notice, a code annex, a guidance note or an agency statement sets such an obligation. Probability: 45 %.</p>
+
+<h3>Political consequences</h3>
+
+<p><strong>One to two years.</strong> The instrument is the AI Act obligation for general-purpose models and its code of practice. The actor is the European AI Office. The observable is a request for information or a code annex that asks a provider to describe post-release changes and how they reach deployed copies.</p>
+
+<p><strong>Three to four years.</strong> The instrument is the revised Product Liability Directive, which treats software as a product and applies from December 2026. The actors are national courts and the ministries that write the implementing law. The observable is the first judgment on whether a provider answers for a copy it no longer updates.</p>
+
+<p><strong>Market test: pro-market.</strong> The instrument is a near-MIT licence that lets any buyer download, change and self-host a frontier-class model. It lowers the cost of entry for a European vendor. The service clause protects Mistral's API revenue, but it does not stop a new entrant from competing on its own hardware.</p>
+
+<h3>What to watch</h3>
+
+<p>Does Mistral publish a guardrail patch, and does it reach the Hugging Face checkpoints? Does the company state the training compute against the 10^25 threshold? Does the first incident report name a self-hosted copy of Large 4? Does ENISA publish the test method, which would let a buyer check its own deployment?</p>
+<details class="method-box">
+<summary>How the Signal is scored</summary>
+<p>Every edition prints two numbers, and they are read together. The first measures the quality of the evidence. The second measures how much changes if the evidence holds.</p>
+<p><strong>Signal, 0â10: the evidence.</strong> The formula is <em>E = 3P + N + L</em>, and the maximum is ten.</p>
+<ul>
+<li><strong>P â primary source.</strong> Three points when the claim rests on the actor's own document, announcement or statement. Zero when it rests on reporting about the actor.</li>
+<li><strong>N â independent confirmation.</strong> One point for each newsletter or newsroom that adds a fact of its own. Repeating a press release adds nothing.</li>
+<li><strong>L â first publisher.</strong> One point when the party at the centre of the story published it first.</li>
+</ul>
+<p>A story with a primary document, one independent outlet that adds a fact, and the actor as first publisher scores five. The same story repeated ten times without a new fact still scores four.</p>
+<p><strong>Stakes, 1â10: the consequence.</strong></p>
+<ul>
+<li><strong>1</strong> â one team's experiment.</li>
+<li><strong>5</strong> â a workflow adopted across a sector.</li>
+<li><strong>7</strong> â a procurement rule or standard changes.</li>
+<li><strong>10</strong> â market structure changes.</li>
+</ul>
+<p>The anchors are steps, not a scale of effort: 3 is a change inside one organisation, 9 is a rule that binds most of a market. A low signal with high stakes is a thin claim about a large thing, and it is marked as such.</p>
+</details>
+<p class="kicker" style="margin-top:40px">Compiled by Harri Juntunen &amp; <a href="https://twin.so/">Twin</a></p>
+</article>
+  <footer><a href="https://github.com/juntunen-ai/machinelearningsocieties">source</a> &middot; <a href="../feed.xml">RSS</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
+</div>
+<script>(function(){try{localStorage.setItem('mls-lang','en');}catch(e){}})();</script>
+</body>
+</html>
