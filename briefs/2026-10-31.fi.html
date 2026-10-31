@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fi" data-lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viimeinen turvapäivitys, jonka malli saa, on se, joka lähtee painojen mukana - Machine Learning Societies</title>
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="../feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="../feed.fi.xml">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mast-left">
+      <a class="brand" href="../index.html">Machine Learning Societies</a>
+      <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></span>
+      <span class="toplinks"><a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a> &middot; <a href="../about.html">About this brief</a></span>
+    </div>
+    <div class="lang"><a href="2026-10-31.fi.html" aria-current="true">FI</a><a href="2026-10-31.html">EN</a></div>
+  </header>
+  <article class="brief">
+<p class="kicker">31. lokakuuta 2026 - Machine Learning Societies</p>
+
+<h2>Viimeinen turvapäivitys, jonka malli saa, on se, joka lähtee painojen mukana</h2>
+
+<p class="score">Signaali 6/10 &middot; Seuraus 7/10</p>
+
+<p>Mistral julkaisi Mistral Large 4 -mallin painot 29. lokakuuta. Mallissa on noin 1,05 biljoonaa parametria, ja sitä myydään ohjelmistovirheiden etsimiseen ja korjaamiseen. Yhtiön oma seuranta esikatseluvaiheen liikenteestä löysi mahdollisuuden auttaa todellisissa hyökkäyksissä. Seuraavat suojakaiteiden muutokset tulevat ylläpidettyyn palveluun, eivät asiakkaan lataamiin kopioihin.</p>
+
+<h3>Signaali</h3>
+
+<p><strong>Havaittu.</strong> Mistral julkaisi painot 29. lokakuuta, kolme viikkoa julkisen esikatselun jälkeen. Malli on multimodaalinen ja käyttää asiantuntijasekoitusta: parametreja on noin 1,05 biljoonaa, ja yhdessä tehtävässä niistä toimii noin 52 miljardia. Konteksti-ikkuna vetää miljoona tokenia, eli tekstiyksikköä, jotka malli lukee kerralla. Painot ovat Hugging Facessa, ja asiakas voi ajaa niitä omilla laitteillaan avoimilla työkaluilla, kuten vLLM tai SGLang. Lisenssi on muokattu MIT-lisenssi: käyttö, muuttaminen, hienosäätö ja myynti ovat sallittuja, mutta mallia palveluna myyvä yritys tarvitsee Mistralilta erillisen kaupallisen lisenssin. Mistral koulutti mallin 3 800 Nvidia Grace Blackwell -piirillä omissa eurooppalaisissa konesaleissaan. Yhtiö kertoo mallin saavan 51 % Artificial Analysis Cyber Index -testissä, joka mittaa virheiden löytämistä, toistamista ja korjaamista. Yhtiön mukaan malli kieltäytyy 96,6 %:sta haitallisia kyberpyyntöjä ja torjuu 97,1 % B3-agentin tietoturvatestin hyökkäyksistä. Samassa kirjoituksessa on olennainen virke: yhtiö näkee "potential for uplift to conduct real attacks". Tieteen johtaja Pierre Stock sanoi CSO:lle, että myöhemmät suojakaiteiden päivitykset "are applied to our managed API and future model releases, rather than automatically updating downloaded checkpoints". EU:n kybervirasto ENISA kertoo testaavansa mallia haavoittuvuuksien etsimiseen, koodin tarkastamiseen ja puolustuksellisten lokien lukemiseen. Tunkeutumistestaukseen tarkoitettu kyberversio annetaan vain tarkistetuille kumppaneille, kuten Orange Cyberdefenselle.</p>
+
+<p><strong>Huomiot.</strong> Jokainen luku on yhtiön oma. Mikään ulkopuolinen taho ei ole toistanut testiä eikä kieltäytymismittaria, ja kieltäytymisaste kuvaa testiaineistoa, ei tuotantoympäristöä asiakkaan aineistolla. Arvio hyökkäyshyödystä syntyy elävästä liikenteestä, ei kirjatusta hyökkäyksestä; Stock ei nimennyt hyökkäyksen vaiheita, joissa malli auttoi. EU:n tekoälyasetuksessa yli 10^25 liukulukuoperaatiolla koulutettu malli oletetaan järjestelmäriskiseksi, eikä kirjoitus kerro, ylittääkö Large 4 rajan tai millainen riskiarvio julkaisun edelsi. Painoihin rakennettu suojakaide on todellinen valvontakeino julkaisuhetkellä, ja yhtiö voi yhä perua lisenssin ja sulkea rajapintansa. Se ei voi muuttaa tiedostoa toisen levyllä.</p>
+
+<p><strong>Arvio.</strong> Muun alan lukijalle turvallisuus lakkasi olemasta palvelu ja muuttui toimituksesi. Itse ylläpidetyn mallin ostaja saa julkaisupäivän suojakaiteen ja pitää sen, kun taas saman mallin rajapintaversio paranee joka kuukausi. Valvoja, joka vuonna 2027 kysyy, kieltäytyykö pankin malli pyynnöstä, testaa version, jonka pankki jäädytti, ei versiota, jota yhtiö kuvailee. Seuraus on 7, koska sääntö siitä, onko ladattu malli säännelty tuote ja kuka vastaa sen virheistä, kirjoitetaan nyt, kun hyökkäyskäyttöön soveltuva malli on jo yhtiön ulottumattomissa.</p>
+
+<p><strong>Todisteet 6/10.</strong></p>
+<ul>
+<li>P: 3 pistettä. Ensisijaiset asiakirjat ovat olemassa: 29. lokakuuta julkaistu kirjoitus, mallikortti, lisenssi ja Hugging Facen isäntäsivu.</li>
+<li>N: 2 pistettä. Kaksi lähettäjää lisäsi oman faktan. CSO lainasi Stockia päivitysten jakelusta ja Hugging Facea siitä, kuka omistaa käyttöönoton. TLDR AI nimesi lisenssiehdon ja itse ylläpidon reitin.</li>
+<li>L: 1 piste. Mistral julkaisi ensin 29. lokakuuta, ja uutiskirjeet seurasivat seuraavana aamuna.</li>
+</ul>
+<p>Kolme plus kaksi plus yksi on kuusi. Suurin osa uutisoinnista toisti tiedotteen.</p>
+
+<p><strong>Seuraus 7/10.</strong> Biljoonan parametrin malli, jolla on ilmoitettu hyökkäyspotentiaali, on nyt lataus, eikä sääntöä siitä, kuka siitä vastaa, ole olemassa.</p>
+
+<h3>Teesi</h3>
+
+<p>Avoimet painot muuttavat turvallisuuden kertatoimitukseksi. Yhtiö voi parantaa mallia, jota se tarjoaa, mutta ei kopiota, jota asiakas ajaa, koska suojakaide on tiedoston sisällä. Kahden vuoden kuluessa sama malli käyttäytyy eri tavoin yhtiöllä, pankissa ja sen itse ylläpitävässä ministeriössä, ja valvoja, joka kysyy sen turvallisuutta, saa kolme vastausta eikä keinoa erottaa niitä. Ne yritykset voittavat, joilla on varaa ajaa ja päivittää oma kopionsa; ne häviävät, jotka ostavat yhtiön sanan.</p>
+
+<h3>Anti-teesi</h3>
+
+<p>Vaihtoehto on huonompi. Jos painot pysyvät suljettuina, kolme amerikkalaista laboratoriota päättää, kuka saa tarkastaa puolustuskyvyn, ja eurooppalaiset ministeriöt vuokraavat pääsyn malliin, jota ne eivät voi tutkia. Jäätynyt suojakaide ei ole uusi ongelma: jokaisessa ohjelmistojulkaisussa on sama piirre, ja tuotevastuu vastaa jo siihen, kuka maksaa. Mistral mittasi 96,6 %:n kieltäytymisasteen mallilleen, ja hyökkäysversio on tarkistettu. Hyökkääjillä on jo avoimia kiinalaisia malleja, joiden kieltäytyminen on heikompaa, joten lisäapu voi jäädä pieneksi. Levinneisyys puolustajille voi vähentää riskiä enemmän kuin lisätä sitä.</p>
+
+<h3>Ennuste</h3>
+
+<p>29.4.2027 mennessä Euroopan AI Office tai ENISA julkaisee asiakirjan, joka nimeää avoimien painojen jakelun ja kertoo, mitä tarjoajan on tehtävä suojakaiteiden korjauksille, jotka eivät yllä ladattuihin kopioihin. Ratkaisupäivä: 29.4.2027. Pisteytyssääntö: väite osuu, jos tiedote, käytännesääntöjen liite, ohje tai viraston lausunto asettaa tällaisen velvollisuuden avoimien painojen mallien tarjoajille. Todennäköisyys: 45 %.</p>
+
+<h3>Poliittiset vaikutukset</h3>
+
+<p><strong>Yhdestä kahteen vuoteen.</strong> Väline on tekoälyasetuksen velvollisuus yleiskäyttöisille malleille ja sen käytännesäännöt. Toimija on Euroopan AI Office. Havaittava asia on tietopyyntö tai käytännesääntöjen liite, joka pyytää tarjoajaa kuvaamaan julkaisun jälkeiset muutokset ja sen, miten ne yltävät käytössä oleviin kopioihin.</p>
+
+<p><strong>Kolmeen neljään vuoteen.</strong> Väline on uudistettu tuotevastuudirektiivi, joka pitää ohjelmistoa tuotteena ja tulee sovellettavaksi joulukuusta 2026. Toimijoita ovat kansalliset tuomioistuimet ja täytäntöönpanolain kirjoittavat ministeriöt. Havaittava asia on ensimmäinen ratkaisu, joka päättää, vastaako tarjoaja kopiosta, jota se ei enää päivitä.</p>
+
+<p><strong>Markkinatesti: markkinalähtöinen.</strong> Väline on lähes MIT-ehtoinen lisenssi, joka antaa kenen tahansa ladata, muuttaa ja ylläpitää huippuluokan mallia itse, mikä laskee eurooppalaisen tarjoajan aloituskynnystä. Mallia palveluna koskeva ehto suojaa Mistralin omaa rajapintatuottoa ja on yrityksiä suojaava poikkeus, mutta se ei estä uutta tulijaa kilpailemasta omalla laitteistollaan.</p>
+
+<h3>Mitä seurata</h3>
+
+<p>Julkaiseeko Mistral suojakaiteen korjauksen, ja yltääkö se Hugging Facen painoihin? Kertooko yhtiö koulutuslaskennan suhteessa 10^25:n kynnykseen? Nimeääkö ensimmäinen vahinkoraportti itse ylläpidetyn Large 4 -kopion? Julkaiseeko ENISA testimenetelmän, jolla ulkopuolinen ostaja voi tarkastaa oman käyttöönotto­nsa?</p>
+<details class="method-box">
+<summary>Miten signaali lasketaan</summary>
+<p>Jokaisessa julkaisussa annetaan kaksi lukua, ja ne luetaan yhdessÃ¤. EnsimmÃ¤inen mittaa todisteiden laatua. Toinen mittaa sitÃ¤, kuinka paljon muuttuu, jos todisteet pitÃ¤vÃ¤t.</p>
+<p><strong>Signaali, 0â10: todisteet.</strong> Kaava on <em>E = 3P + N + L</em>, ja enimmÃ¤ispisteet ovat kymmenen.</p>
+<ul>
+<li><strong>P â ensisijainen lÃ¤hde.</strong> Kolme pistettÃ¤, kun vÃ¤ite nojaa toimijan omaan asiakirjaan, ilmoitukseen tai lausuntoon. Nolla, kun vÃ¤ite nojaa vain toimijasta kertovaan uutisointiin.</li>
+<li><strong>N â riippumaton vahvistus.</strong> Yksi piste jokaisesta uutiskirjeestÃ¤ tai mediasta, joka lisÃ¤Ã¤ oman faktan. Saman tiedotteen toistaminen ei tuo pistettÃ¤.</li>
+<li><strong>L â ensimmÃ¤inen julkaisija.</strong> Yksi piste, kun tarinan keskiÃ¶ssÃ¤ oleva osapuoli julkaisi asian ensin.</li>
+</ul>
+<p>Tarina, joka nojaa toimijan omaan asiakirjaan, jonka yksi riippumaton media vahvistaa omalla faktallaan ja jonka toimija julkaisi ensin, saa viisi pistettÃ¤. Sama tarina kymmenenÃ¤ toistona ilman omaa faktaa saa edelleen neljÃ¤.</p>
+<p><strong>Seuraus, 1â10: vaikutus.</strong></p>
+<ul>
+<li><strong>1</strong> â yhden ryhmÃ¤n koe.</li>
+<li><strong>5</strong> â alalla kÃ¤yttÃ¶Ã¶n otettu tyÃ¶nkulku.</li>
+<li><strong>7</strong> â hankintasÃ¤Ã¤ntÃ¶ tai standardi muuttuu.</li>
+<li><strong>10</strong> â markkinarakenne muuttuu.</li>
+</ul>
+<p>Ankkurit ovat askelmia, eivÃ¤t tyÃ¶mÃ¤Ã¤rÃ¤n asteikko: 3 on muutos yhden organisaation sisÃ¤llÃ¤, 9 on sÃ¤Ã¤ntÃ¶, joka sitoo suurta osaa markkinasta. Korkea signaali ja matala seuraus tarkoittaa hyvin todistettua tapahtumaa, joka ei kulje. Matala signaali ja korkea seuraus tarkoittaa ohutta vÃ¤itettÃ¤ suuresta asiasta, ja se merkitÃ¤Ã¤n sellaiseksi.</p>
+</details>
+<p class="kicker" style="margin-top:40px">Compiled by Harri Juntunen &amp; <a href="https://twin.so/">Twin</a></p>
+</article>
+  <footer><a href="https://github.com/juntunen-ai/machinelearningsocieties">source</a> &middot; <a href="../feed.xml">RSS</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
+</div>
+<script>(function(){try{localStorage.setItem('mls-lang','fi');}catch(e){}})();</script>
+</body>
+</html>
