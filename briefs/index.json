@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-11-01",
+    "title": "Britain buys planning capacity with the committee's discretion",
+    "title_fi": "Britannia ostaa kaavoituskapasiteettia ja maksaa lautakunnan harkinnalla",
+    "score": "4/10 · Stakes 8/10",
+    "summary_en": "The government put a national scheme of delegation into force on 31 October and expanded PlanAssist, built with Google DeepMind, Google Cloud and Faculty, from three councils to fifteen. The tool writes the first assessment for householder applications, nearly 70 % of the total. Its 58 % saving is officer time on tasks, measured by the parties that built it.",
+    "summary_fi": "Hallitus pani 31. lokakuuta voimaan kansallisen delegointijärjestelmän ja laajensi PlanAssist-työkalun kolmesta kunnasta viiteentoista. Työkalu kirjoittaa ensimmäisen arvion kotitaloushakemuksista, joita on lähes 70 % kaikista. 58 %:n säästö on virkailijoiden työaikaa tehtävissä, ja sen ovat mitanneet työkalun rakentajat."
+  },
+  {
     "date": "2026-10-31",
     "title": "The last safety fix a model receives is the one shipped with its weights",
     "title_fi": "Viimeinen turvapäivitys, jonka malli saa, on se, joka lähtee painojen mukana",
