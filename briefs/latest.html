@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The last safety fix a model receives is the one shipped with its weights - Machine Learning Societies</title>
+<title>Britain buys planning capacity with the committee's discretion - Machine Learning Societies</title>
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="../feed.xml">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="../feed.fi.xml">
 <link rel="stylesheet" href="../assets/site.css">
@@ -16,58 +16,59 @@
       <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></span>
       <span class="toplinks"><a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a> &middot; <a href="../about.html">About this brief</a></span>
     </div>
-    <div class="lang"><a href="2026-10-31.fi.html">FI</a><a href="2026-10-31.html" aria-current="true">EN</a></div>
+    <div class="lang"><a href="2026-11-01.fi.html">FI</a><a href="2026-11-01.html" aria-current="true">EN</a></div>
   </header>
   <article class="brief">
-<p class="kicker">31 October 2026 - Machine Learning Societies</p>
+<p class="kicker">1 November 2026 - Machine Learning Societies</p>
 
-<h2>The last safety fix a model receives is the one shipped with its weights</h2>
+<h2>Britain buys planning capacity with the committee's discretion</h2>
 
-<p class="score">Signal 6/10 &middot; Stakes 7/10</p>
+<p class="score">Signal 4/10 &middot; Stakes 8/10</p>
 
-<p>Mistral released the weights of Mistral Large 4 on 29 October, a model of about 1.05 trillion parameters that it sells for finding and fixing software flaws. Its own monitoring of preview traffic found a potential to help real attacks. The guardrail changes that follow reach the hosted service, not the copies a customer downloads.</p>
+<p>On 30 October the government put a national scheme of delegation into force and expanded PlanAssist, a planning tool built with Google DeepMind, Google Cloud and Faculty, from three councils to fifteen. The tool writes the first assessment of a householder application, and those applications are nearly 70 % of the total.</p>
 
 <h3>Signal</h3>
 
-<p><strong>Observed.</strong> Mistral AI published the weights on 29 October, three weeks after a public preview. The model holds about 1.05 trillion parameters and runs about 52 billion of them on one task. Its context window holds one million tokens, the unit of text it reads at once. The weights sit on Hugging Face, and a customer can serve them on its own machines. The licence is a modified MIT licence: use, change and sell are allowed, but a company that sells the model as a service needs a separate commercial licence. Mistral trained it on 3,800 Nvidia chips in its own European data centres. The company reports 51 % on the Artificial Analysis Cyber Index, a test of finding and patching flaws. It says the model refuses 96.6 % of malicious cyber requests. The same post carries the sentence that matters: "we see a potential for uplift to conduct real attacks". Pierre Stock, vice president of science, told CSO that later safeguard updates "are applied to our managed API and future model releases, rather than automatically updating downloaded checkpoints". ENISA, the EU cyber agency, says it tests the model to find vulnerabilities and audit code. A cyber variant for penetration testing goes only to vetted partners such as Orange Cyberdefense.</p>
+<p><strong>Observed.</strong> The Ministry of Housing, Communities and Local Government published the change on 30 October. From Saturday 31 October, a national scheme of delegation gives planning officers, not committees, the decision on specified categories of straightforward applications. On the same day the department expanded PlanAssist from Camden, Barnet and Dorset to fifteen councils for twelve months. The tool gathers the application, the local policy and the site constraints in one workspace. It writes an evidence-backed first assessment, and an officer edits it and decides. The government says early testing cut officer time on key planning tasks by 58 %, and that this halves routine householder decisions from eight weeks to four. The software is not mandatory, and the aim is every council in England by the end of 2027.</p>
 
-<p><strong>Caveats.</strong> Every number above is the vendor's own, and no outside body has repeated the test. The refusal rate measures a test set, not a production system with a customer's data. The uplift finding is an assessment from live traffic, not a recorded attack. Under the EU AI Act a model trained above 10^25 floating-point operations is presumed to carry systemic risk. The post does not say whether Large 4 passes that line. A guardrail in the weights is a real control at release. What the vendor cannot do is change the file on someone else's disk.</p>
+<p><strong>Caveats.</strong> The 58 % figure is the government's own, and the vendor's. It covers selected tasks in a pilot of three councils, not the whole file, and no outside body has repeated the test. The claim of eight weeks to four is an inference from task time, not an observed queue. The scheme would exist without the software. An officer keeps the decision, and a decision that follows a summary is not the same task as one that follows a file, but no published study measures the gap.</p>
 
-<p><strong>Assessment.</strong> For a reader outside AI, safety stops being a service and becomes a shipment. A buyer of a self-hosted model keeps the guardrail of the release date, while the same model behind the vendor's API improves every month. A supervisor who asks in 2027 whether a bank's model refuses a request will test the version the bank froze. Stakes are 7 because the rule on whether a downloaded model is a regulated product is being written now. A model with acknowledged offensive use is already outside the vendor's reach.</p>
+<p><strong>Assessment.</strong> For a reader outside AI, the state has found the unit in which it will buy the technology: the officer-minute. The saving is real to a council budget and invisible to the applicant until the queue moves. What changes is where judgement sits. A committee of elected members decides a householder application today. From 31 October an officer decides, reading a draft that a vendor's model wrote. The accountability chain still ends at the council. The reasoning now starts inside a product the council did not build and cannot inspect. Stakes are 8: a statutory scheme changed who decides nearly 70 % of applications, and one supplier group is placed inside that workflow. That is more than a procurement rule and less than a new liability rule.</p>
 
-<p><strong>Evidence 6/10.</strong></p>
+<p><strong>Evidence 4/10.</strong></p>
 <ul>
-<li>P: 3 points. Primary documents exist: the release post, the model card, the licence and the Hugging Face page.</li>
-<li>N: 2 points. Two senders added a fact. CSO quoted Stock on update delivery and Hugging Face on who owns the deployment. TLDR AI named the licence condition and the self-hosting route.</li>
-<li>L: 1 point. Mistral published first, on 29 October, and the newsletters followed the next morning.</li>
+<li>P: 3 points. A primary document exists: the MHCLG release of 30 October, with the scheme, the numbers and the named councils.</li>
+<li>N: 0 points. No newsletter in this morning's sample carried the item. Four newsrooms repeated the release; none added a fact of its own.</li>
+<li>L: 1 point. The department published on 30 October, and Google DeepMind posted on 31 October, before the newsletters.</li>
 </ul>
-<p>Three plus two plus one is six. Most coverage repeated the release.</p>
+<p>Three plus zero plus one is four. The evidence is one official document: strong on facts, silent on effects.</p>
 
-<p><strong>Stakes 7/10.</strong> A trillion-parameter model with a stated potential for offensive use is now a download. The rule that says who answers for it does not exist.</p>
+<p><strong>Stakes 8/10.</strong> A statutory scheme moved the decision on most applications, and one supplier group is installed in the workflow that produces it.</p>
 
 <h3>Thesis</h3>
 
-<p>Open weights turn safety into a one-time shipment. A vendor can improve the model it serves, and cannot improve the copy a customer runs, because the guardrail is inside the file. Within two years the same model will behave differently at the vendor, at a bank and at a ministry that hosts it. The supervisor who asks whether it is safe will get three answers and no way to tell them apart.</p>
+<p>The state does not buy intelligence. It buys minutes. Once the unit is officer time, the cheapest saving is to move work from the officer to the tool, and the tool's output becomes the document the decision rests on. Within two years most householder decisions in England will be an officer's signature under a summary no councillor read. The AI arrives on the same day as the delegation and inherits the discretion that the committee lost.</p>
 
 <h3>Antithesis</h3>
 
-<p>The alternative is worse. If weights stay closed, three American labs decide who may audit a defensive capability, and European ministries rent access to a model they cannot inspect. A frozen guardrail is not a new problem: every software release has it, and product liability already answers who pays. Attackers already hold open Chinese models with weaker refusals, so diffusion to defenders may cut more risk than it adds.</p>
+<p>Committees were never the safeguard that the objection assumes. Most agendas follow the officer's recommendation, most applications are uncontested, and delay costs a household more than the review is worth. Delegation to professional officers is the norm in comparable systems. The officer can edit the draft, and the tool retrieves policies and site constraints that a junior officer would otherwise look up by hand. The real risk is a slower and more expensive service, not a quieter one.</p>
 
 <h3>Forecast</h3>
 
-<p>By 29 April 2027 the European AI Office or ENISA will publish a document that names open-weight distribution and states what a provider must do about safety fixes that cannot reach downloaded copies. Resolution date: 29.4.2027. Scoring rule: the claim hits if a notice, a code annex, a guidance note or an agency statement sets such an obligation. Probability: 45 %.</p>
+<p>By 31 October 2027 MHCLG publishes an evaluation of the fifteen-council beta that reports the change in end-to-end decision time for householder applications, and not only officer time on tasks. Resolution date: 31.10.2027. Scoring rule: the claim hits if the department, its evaluator or an independent body publishes end-to-end decision times. It misses if the only published measure stays officer time on tasks. Probability: 60 %.</p>
 
 <h3>Political consequences</h3>
 
-<p><strong>One to two years.</strong> The instrument is the AI Act obligation for general-purpose models and its code of practice. The actor is the European AI Office. The observable is a request for information or a code annex that asks a provider to describe post-release changes and how they reach deployed copies.</p>
+<p><strong>One to two years.</strong> The instrument is the National Scheme of Delegation, in force since 31 October. The actor is MHCLG, with the fifteen councils. The observable is the delegated-decision share in the quarterly planning application statistics for England: if officers decide most householder cases, the committee's discretion has gone before any evaluation reports.</p>
 
-<p><strong>Three to four years.</strong> The instrument is the revised Product Liability Directive, which treats software as a product and applies from December 2026. The actors are national courts and the ministries that write the implementing law. The observable is the first judgment on whether a provider answers for a copy it no longer updates.</p>
+<p><strong>Three to four years.</strong> The instrument is the duty to publish planning documents as open data, promised for the end of 2027, and the council contracts that follow the beta. The actors are councils as contracting authorities, under the Procurement Act 2023. The observable is the first tender for an AI assessment tool that names a vendor, or one that stays vendor-neutral.</p>
 
-<p><strong>Market test: pro-market.</strong> The instrument is a near-MIT licence that lets any buyer download, change and self-host a frontier-class model. It lowers the cost of entry for a European vendor. The service clause protects Mistral's API revenue, but it does not stop a new entrant from competing on its own hardware.</p>
+<p><strong>Market test: mixed, pro-business dominant.</strong> The instrument is the Incubator for AI route that builds the tool with named partners and then offers it to councils at no charge; the open-data duty is the pro-market counterweight. The named partners gain a reference deployment across England that a new entrant cannot match next quarter, and that effect lands first.</p>
 
 <h3>What to watch</h3>
 
-<p>Does Mistral publish a guardrail patch, and does it reach the Hugging Face checkpoints? Does the company state the training compute against the 10^25 threshold? Does the first incident report name a self-hosted copy of Large 4? Does ENISA publish the test method, which would let a buyer check its own deployment?</p>
+<p>Does MHCLG publish end-to-end decision times? Does a council procurement name a vendor? Does the delegated-decision share jump in the next quarterly statistics? Does an appeal argue that the officer's report was machine-drafted?</p>
+
 <details class="method-box">
 <summary>How the Signal is scored</summary>
 <p>Every edition prints two numbers, and they are read together. The first measures the quality of the evidence. The second measures how much changes if the evidence holds.</p>
