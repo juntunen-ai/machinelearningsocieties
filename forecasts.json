@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31",
+  "updated": "2026-11-01",
   "forecasts": [
     {
       "id": "2026-10-14-01",
@@ -154,6 +154,17 @@
       "status": "open",
       "signal": "6/10",
       "source": "briefs/2026-10-31.html"
+    },
+    {
+      "id": "2026-11-01-01",
+      "made": "2026-11-01",
+      "claim_en": "By 31 October 2027 MHCLG publishes an evaluation of the fifteen-council PlanAssist beta that reports the change in end-to-end decision time for householder applications, not only officer time on tasks (60 %).",
+      "claim_fi": "31.10.2027 mennessä MHCLG julkaisee viidentoista kunnan PlanAssist-beetan arvioinnin, joka kertoo kotitaloushakemusten päästä päähän -päätösajan muutoksen eikä vain virkailijoiden tehtäväaikaa (60 %).",
+      "resolves": "2027-10-31",
+      "probability": 60,
+      "status": "open",
+      "signal": "4/10",
+      "source": "briefs/2026-11-01.html"
     }
   ]
 }
