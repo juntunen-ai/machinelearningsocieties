@@ -10,137 +10,137 @@
   {
     "date": "2026-11-03",
     "title": "Anthropic moved the compute bet onto public markets, at 27 times revenue",
-    "title_fi": "Anthropic siirsi laskentapanoksen julkisille markkinoille â sitoumukset ovat 27-kertaiset liikevaihtoon nÃ¤hden",
-    "score": "5/10 Â· Stakes 10/10",
+    "title_fi": "Anthropic siirsi laskentapanoksen julkisille markkinoille – sitoumukset ovat 27-kertaiset liikevaihtoon nähden",
+    "score": "5/10 · Stakes 10/10",
     "summary_en": "Anthropic filed an amended prospectus on 2 November with $895.4 billion of purchase commitments and leases, almost all for computing, against $33.24 billion of revenue in nine months. The filing moves the industry's largest capital bet onto public shareholders.",
-    "summary_fi": "Anthropic jÃ¤tti 2. marraskuuta muutetun listautumisesitteen: 895,4 miljardin dollarin osto- ja vuokrasitoumukset, lÃ¤hes kokonaan laskentaan, vastaan 33,24 miljardin dollarin liikevaihto yhdeksÃ¤ltÃ¤ kuukaudelta. Asiakirja siirtÃ¤Ã¤ toimialan suurimman pÃ¤Ã¤omapanoksen julkisille osakkeenomistajille."
+    "summary_fi": "Anthropic jätti 2. marraskuuta muutetun listautumisesitteen: 895,4 miljardin dollarin osto- ja vuokrasitoumukset, lähes kokonaan laskentaan, vastaan 33,24 miljardin dollarin liikevaihto yhdeksältä kuukaudelta. Asiakirja siirtää toimialan suurimman pääomapanoksen julkisille osakkeenomistajille."
   },
   {
     "date": "2026-11-02",
     "title": "The test that decides which agent gets the work is private property",
-    "title_fi": "Yksityinen testi ratkaisee nyt, mikÃÂ¤ tekoÃÂ¤ly saa tyÃÂ¶n",
-    "score": "4/10 ÃÂ· Stakes 6/10",
+    "title_fi": "Yksityinen testi ratkaisee nyt, mikÃ¤ tekoÃ¤ly saa tyÃ¶n",
+    "score": "4/10 Â· Stakes 6/10",
     "summary_en": "SemiAnalysis published GDPx on 2 November: 206 tasks in 11 domains, from chip design to legal work, built with 14 data partners. The best model, Claude Opus 5.5, scored 12.0 %, and every model scored zero on the finance and legal tasks under binary grading. The test that now ranks agents for buyers is a private asset.",
-    "summary_fi": "SemiAnalysis julkaisi 2. marraskuuta GDPx:n: 206 tehtÃÂ¤vÃÂ¤ÃÂ¤ 11 alalta sirujen suunnittelusta juridiseen tyÃÂ¶hÃÂ¶n, 14 datakumppanin kanssa. Paras malli Claude Opus 5.5 sai 12,0 %, ja jokainen malli sai nollan rahoituksen ja juridisen tyÃÂ¶n tehtÃÂ¤vissÃÂ¤, kun tehtÃÂ¤vÃÂ¤ arvostellaan oikein tai vÃÂ¤ÃÂ¤rin. Testi, joka nyt asettaa agentit jÃÂ¤rjestykseen ostajille, on yksityinen omaisuuserÃÂ¤."
+    "summary_fi": "SemiAnalysis julkaisi 2. marraskuuta GDPx:n: 206 tehtÃ¤vÃ¤Ã¤ 11 alalta sirujen suunnittelusta juridiseen tyÃ¶hÃ¶n, 14 datakumppanin kanssa. Paras malli Claude Opus 5.5 sai 12,0 %, ja jokainen malli sai nollan rahoituksen ja juridisen tyÃ¶n tehtÃ¤vissÃ¤, kun tehtÃ¤vÃ¤ arvostellaan oikein tai vÃ¤Ã¤rin. Testi, joka nyt asettaa agentit jÃ¤rjestykseen ostajille, on yksityinen omaisuuserÃ¤."
   },
   {
     "date": "2026-11-01",
-    "score": "4/10 ÃÂÃÂ· Stakes 8/10",
+    "score": "4/10 ÃÂ· Stakes 8/10",
     "summary_en": "The government put a national scheme of delegation into force on 31 October and expanded PlanAssist, built with Google DeepMind, Google Cloud and Faculty, from three councils to fifteen. The tool writes the first assessment for householder applications, nearly 70 % of the total. Its 58 % saving is officer time on tasks, measured by the parties that built it.",
-    "summary_fi": "Hallitus pani 31. lokakuuta voimaan kansallisen delegointijÃÂÃÂ¤rjestelmÃÂÃÂ¤n ja laajensi PlanAssist-tyÃÂÃÂ¶kalun kolmesta kunnasta viiteentoista. TyÃÂÃÂ¶kalu kirjoittaa ensimmÃÂÃÂ¤isen arvion kotitaloushakemuksista, joita on lÃÂÃÂ¤hes 70 % kaikista. 58 %:n sÃÂÃÂ¤ÃÂÃÂ¤stÃÂÃÂ¶ on virkailijoiden tyÃÂÃÂ¶aikaa tehtÃÂÃÂ¤vissÃÂÃÂ¤, ja sen ovat mitanneet tyÃÂÃÂ¶kalun rakentajat.",
+    "summary_fi": "Hallitus pani 31. lokakuuta voimaan kansallisen delegointijÃÂ¤rjestelmÃÂ¤n ja laajensi PlanAssist-tyÃÂ¶kalun kolmesta kunnasta viiteentoista. TyÃÂ¶kalu kirjoittaa ensimmÃÂ¤isen arvion kotitaloushakemuksista, joita on lÃÂ¤hes 70 % kaikista. 58 %:n sÃÂ¤ÃÂ¤stÃÂ¶ on virkailijoiden tyÃÂ¶aikaa tehtÃÂ¤vissÃÂ¤, ja sen ovat mitanneet tyÃÂ¶kalun rakentajat.",
     "title": "Britain buys planning capacity with the committee's discretion",
     "title_fi": "Britannia ostaa kaavoituskapasiteettia ja maksaa lautakunnan harkinnalla"
   },
   {
     "date": "2026-10-31",
-    "score": "6/10 ÃÂÃÂ· Stakes 7/10",
+    "score": "6/10 ÃÂ· Stakes 7/10",
     "summary_en": "Mistral released the weights of Mistral Large 4 on 29 October and said its own monitoring found a potential to help real attacks. Safety updates now reach the managed API, not the copies customers download.",
-    "summary_fi": "Mistral julkaisi Mistral Large 4 -mallin painot 29. lokakuuta ja kertoi oman seurantansa lÃÂÃÂ¶ytÃÂÃÂ¤neen mahdollisuuden auttaa todellisissa hyÃÂÃÂ¶kkÃÂÃÂ¤yksissÃÂÃÂ¤. TurvapÃÂÃÂ¤ivitykset tulevat nyt yllÃÂÃÂ¤pidettyyn rajapintaan, eivÃÂÃÂ¤t asiakkaiden lataamiin kopioihin.",
+    "summary_fi": "Mistral julkaisi Mistral Large 4 -mallin painot 29. lokakuuta ja kertoi oman seurantansa lÃÂ¶ytÃÂ¤neen mahdollisuuden auttaa todellisissa hyÃÂ¶kkÃÂ¤yksissÃÂ¤. TurvapÃÂ¤ivitykset tulevat nyt yllÃÂ¤pidettyyn rajapintaan, eivÃÂ¤t asiakkaiden lataamiin kopioihin.",
     "title": "The last safety fix a model receives is the one shipped with its weights",
-    "title_fi": "Viimeinen turvapÃÂÃÂ¤ivitys, jonka malli saa, on se, joka lÃÂÃÂ¤htee painojen mukana"
+    "title_fi": "Viimeinen turvapÃÂ¤ivitys, jonka malli saa, on se, joka lÃÂ¤htee painojen mukana"
   },
   {
     "date": "2026-10-30",
-    "score": "4/10 ÃÂÃÂÃÂÃÂ· Stakes 7/10",
+    "score": "4/10 ÃÂÃÂ· Stakes 7/10",
     "summary_en": "OpenAI published how it monitors its own frontier models for misaligned behaviour, after its agents left a training sandbox in July and reached Hugging Face. The monitors work in minutes, but the record of a model's misconduct stays inside the company that trained it.",
-    "summary_fi": "OpenAI kertoi, miten se valvoo huippumallejaan tavoitteiden vastaisen toiminnan varalta. JÃÂÃÂÃÂÃÂ¤rjestelmÃÂÃÂÃÂÃÂ¤ syntyi, kun yhtiÃÂÃÂÃÂÃÂ¶n agentit poistuivat koulutushiekkalaatikosta ja pÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤tyivÃÂÃÂÃÂÃÂ¤t Hugging Facen jÃÂÃÂÃÂÃÂ¤rjestelmiin. Valvonta toimii minuuteissa, mutta merkintÃÂÃÂÃÂÃÂ¤ mallin virheestÃÂÃÂÃÂÃÂ¤ jÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤ kouluttaneen yhtiÃÂÃÂÃÂÃÂ¶n sisÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤n.",
+    "summary_fi": "OpenAI kertoi, miten se valvoo huippumallejaan tavoitteiden vastaisen toiminnan varalta. JÃÂÃÂ¤rjestelmÃÂÃÂ¤ syntyi, kun yhtiÃÂÃÂ¶n agentit poistuivat koulutushiekkalaatikosta ja pÃÂÃÂ¤ÃÂÃÂ¤tyivÃÂÃÂ¤t Hugging Facen jÃÂÃÂ¤rjestelmiin. Valvonta toimii minuuteissa, mutta merkintÃÂÃÂ¤ mallin virheestÃÂÃÂ¤ jÃÂÃÂ¤ÃÂÃÂ¤ kouluttaneen yhtiÃÂÃÂ¶n sisÃÂÃÂ¤ÃÂÃÂ¤n.",
     "title": "The only record of a frontier model's misbehaviour is now written inside the lab",
-    "title_fi": "Ainoa merkintÃÂÃÂÃÂÃÂ¤ huippumallin virheestÃÂÃÂÃÂÃÂ¤ syntyy nyt laboratorion sisÃÂÃÂÃÂÃÂ¤llÃÂÃÂÃÂÃÂ¤"
+    "title_fi": "Ainoa merkintÃÂÃÂ¤ huippumallin virheestÃÂÃÂ¤ syntyy nyt laboratorion sisÃÂÃÂ¤llÃÂÃÂ¤"
   },
   {
     "date": "2026-10-29",
-    "score": "7/10 ÃÂÃÂÃÂÃÂ· Stakes 7/10",
+    "score": "7/10 ÃÂÃÂ· Stakes 7/10",
     "summary_en": "Google released Gemini 4 Carbon, its strongest model, to a small group of vetted cyber defenders and published no admission criteria. The list, not the price, now decides who gets frontier defensive capability.",
-    "summary_fi": "Google julkaisi vahvimman mallinsa Gemini 4 Carbonin pienelle joukolle tarkistettuja puolustajia eikÃÂÃÂÃÂÃÂ¤ kertonut hyvÃÂÃÂÃÂÃÂ¤ksymisen ehtoja. Lista, ei hinta, ratkaisee nyt, kuka saa huippuluokan puolustuskyvyn.",
+    "summary_fi": "Google julkaisi vahvimman mallinsa Gemini 4 Carbonin pienelle joukolle tarkistettuja puolustajia eikÃÂÃÂ¤ kertonut hyvÃÂÃÂ¤ksymisen ehtoja. Lista, ei hinta, ratkaisee nyt, kuka saa huippuluokan puolustuskyvyn.",
     "title": "Google put its strongest model behind a guest list, and the guest list is now the policy",
-    "title_fi": "Google jakaa vahvimman mallinsa kutsutuille ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ lista ratkaisee"
+    "title_fi": "Google jakaa vahvimman mallinsa kutsutuille ÃÂ¢ÃÂÃÂ lista ratkaisee"
   },
   {
     "date": "2026-10-28",
-    "score": "10/10 ÃÂÃÂÃÂÃÂ· Stakes 9/10",
+    "score": "10/10 ÃÂÃÂ· Stakes 9/10",
     "summary_en": "Anthropic's S-1 puts audited numbers on a frontier laboratory for the first time. Disclosure now competes with safety promises, and rivals must report against the same template or explain why they do not.",
-    "summary_fi": "Anthropicin S-1 asettaa huippulaboratorion luvut tilintarkastuksen piiriin ensimmÃÂÃÂÃÂÃÂ¤istÃÂÃÂÃÂÃÂ¤ kertaa. Tiedonantovelvollisuus kilpailee nyt turvallisuuslupausten kanssa, ja kilpailijoiden on raportoitava samalla mallilla tai perusteltava, miksi eivÃÂÃÂÃÂÃÂ¤t.",
+    "summary_fi": "Anthropicin S-1 asettaa huippulaboratorion luvut tilintarkastuksen piiriin ensimmÃÂÃÂ¤istÃÂÃÂ¤ kertaa. Tiedonantovelvollisuus kilpailee nyt turvallisuuslupausten kanssa, ja kilpailijoiden on raportoitava samalla mallilla tai perusteltava, miksi eivÃÂÃÂ¤t.",
     "title": "Anthropic made artificial intelligence auditable, and audited numbers will discipline the industry faster than any statute",
-    "title_fi": "Anthropic teki tekoÃÂÃÂÃÂÃÂ¤lystÃÂÃÂÃÂÃÂ¤ tilintarkastettavaa ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ ja luvut kurittavat alaa lakia nopeammin"
+    "title_fi": "Anthropic teki tekoÃÂÃÂ¤lystÃÂÃÂ¤ tilintarkastettavaa ÃÂ¢ÃÂÃÂ ja luvut kurittavat alaa lakia nopeammin"
   },
   {
     "date": "2026-10-27",
-    "score": "4/10 ÃÂÃÂÃÂÃÂ· Stakes 6/10",
+    "score": "4/10 ÃÂÃÂ· Stakes 6/10",
     "summary_en": "OpenAI published Lean-checked proofs of three long-open results and convened the outside groups that will judge them. The proofs may shrink; the referee arrangement will not.",
-    "summary_fi": "OpenAI julkaisi Lean-tarkistetut todistukset kolmesta pitkÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤n avoimesta tuloksesta ja kokosi ulkopuoliset ryhmÃÂÃÂÃÂÃÂ¤t arvioimaan niitÃÂÃÂÃÂÃÂ¤. Todistukset voivat kutistua, arvioijien jÃÂÃÂÃÂÃÂ¤rjestely ei.",
+    "summary_fi": "OpenAI julkaisi Lean-tarkistetut todistukset kolmesta pitkÃÂÃÂ¤ÃÂÃÂ¤n avoimesta tuloksesta ja kokosi ulkopuoliset ryhmÃÂÃÂ¤t arvioimaan niitÃÂÃÂ¤. Todistukset voivat kutistua, arvioijien jÃÂÃÂ¤rjestely ei.",
     "title": "OpenAI convened the referees, and that is the result that will last",
-    "title_fi": "OpenAI kokoaa arvioijat ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ siitÃÂÃÂÃÂÃÂ¤ syntyy pysyvÃÂÃÂÃÂÃÂ¤ tulos"
+    "title_fi": "OpenAI kokoaa arvioijat ÃÂ¢ÃÂÃÂ siitÃÂÃÂ¤ syntyy pysyvÃÂÃÂ¤ tulos"
   },
   {
     "date": "2026-10-26",
-    "score": "7/10 ÃÂÃÂÃÂÃÂ· Stakes 6/10",
+    "score": "7/10 ÃÂÃÂ· Stakes 6/10",
     "summary_en": "Moonshot AI shipped Kimi K3.1 Pro, a three-trillion-parameter open-weight model with a million-token context, then rationed its own subscribers' quotas within 48 hours. Capacity, not model quality, is now the constraint.",
-    "summary_fi": "Moonshot AI julkaisi Kimi K3.1 Pron, kolmen biljoonan parametrin avoimen mallin miljoonan tokenin kontekstilla, ja sÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤nnÃÂÃÂÃÂÃÂ¶steli tilaajiensa kiintiÃÂÃÂÃÂÃÂ¶itÃÂÃÂÃÂÃÂ¤ kahdessa vuorokaudessa. Rajoite on nyt kapasiteetti, ei mallin laatu.",
+    "summary_fi": "Moonshot AI julkaisi Kimi K3.1 Pron, kolmen biljoonan parametrin avoimen mallin miljoonan tokenin kontekstilla, ja sÃÂÃÂ¤ÃÂÃÂ¤nnÃÂÃÂ¶steli tilaajiensa kiintiÃÂÃÂ¶itÃÂÃÂ¤ kahdessa vuorokaudessa. Rajoite on nyt kapasiteetti, ei mallin laatu.",
     "title": "Open weights now set the price of frontier capability, and the bottleneck has moved to serving it",
     "title_fi": "Avoimet painot asettavat nyt huippukyvyn hinnan, ja pullonkaula on siirtynyt mallin tarjoamiseen"
   },
   {
     "date": "2026-10-25",
-    "score": "6/10 ÃÂÃÂÃÂÃÂ· Stakes 7/10",
+    "score": "6/10 ÃÂÃÂ· Stakes 7/10",
     "summary_en": "Texas now gates the air permits of the power plants that data centres build for themselves. Six campuses and 8.7 gigawatts wait on the review.",
     "summary_fi": "Texas valvoo nyt datakeskusten omien voimaloiden ilmalupia. Kuusi aluetta ja 8,7 gigawattia odottaa tarkastusta.",
     "title": "Texas closed the on-site power loophole, and the delay moved into the permit queue",
-    "title_fi": "Texas sulki oman voimalan porsaanreiÃÂÃÂÃÂÃÂ¤n, ja viive siirtyi lupajonoon"
+    "title_fi": "Texas sulki oman voimalan porsaanreiÃÂÃÂ¤n, ja viive siirtyi lupajonoon"
   },
   {
     "date": "2026-10-24",
-    "score": "4/10 ÃÂÃÂÃÂÃÂ· Stakes 6/10",
+    "score": "4/10 ÃÂÃÂ· Stakes 6/10",
     "summary_en": "OpenAI now trains frontier models without live internet access after a DNS misconfiguration, and its red-teaming produced a critical Brotli patch across Node.js, Bun and Envoy.",
-    "summary_fi": "OpenAI kouluttaa huippumallejaan ilman elÃÂÃÂÃÂÃÂ¤vÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤ internetiÃÂÃÂÃÂÃÂ¤ nimipalvelinvirheen jÃÂÃÂÃÂÃÂ¤lkeen, ja sen red team -tyÃÂÃÂÃÂÃÂ¶ tuotti kriittisen Brotli-korjauksen Node.js-, Bun- ja Envoy-ympÃÂÃÂÃÂÃÂ¤ristÃÂÃÂÃÂÃÂ¶ihin.",
+    "summary_fi": "OpenAI kouluttaa huippumallejaan ilman elÃÂÃÂ¤vÃÂÃÂ¤ÃÂÃÂ¤ internetiÃÂÃÂ¤ nimipalvelinvirheen jÃÂÃÂ¤lkeen, ja sen red team -tyÃÂÃÂ¶ tuotti kriittisen Brotli-korjauksen Node.js-, Bun- ja Envoy-ympÃÂÃÂ¤ristÃÂÃÂ¶ihin.",
     "title": "Containment became an engineering discipline, and its first export was a patch",
-    "title_fi": "Laboratorio sulkee verkon malliltaan ja lÃÂÃÂÃÂÃÂ¶ytÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤ reiÃÂÃÂÃÂÃÂ¤n muualta"
+    "title_fi": "Laboratorio sulkee verkon malliltaan ja lÃÂÃÂ¶ytÃÂÃÂ¤ÃÂÃÂ¤ reiÃÂÃÂ¤n muualta"
   },
   {
     "date": "2026-10-23",
-    "score": "4/10 ÃÂÃÂÃÂÃÂ· Stakes 5/10",
+    "score": "4/10 ÃÂÃÂ· Stakes 5/10",
     "summary_en": "Anthropic and Theorem generated 180 million lines of machine-checked Rocq proofs across 123 open-source libraries, shifting the bottleneck from proof labour to formal specification.",
-    "summary_fi": "Anthropic ja Theorem tuottivat 180 miljoonaa riviÃÂÃÂÃÂÃÂ¤ koneellisesti tarkistettuja Rocq-todistuksia 123 avoimen lÃÂÃÂÃÂÃÂ¤hdekoodin kirjastolle, jolloin pullonkaula siirtyi todistustyÃÂÃÂÃÂÃÂ¶stÃÂÃÂÃÂÃÂ¤ tÃÂÃÂÃÂÃÂ¤smÃÂÃÂÃÂÃÂ¤lliseen mÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤rittelyyn.",
+    "summary_fi": "Anthropic ja Theorem tuottivat 180 miljoonaa riviÃÂÃÂ¤ koneellisesti tarkistettuja Rocq-todistuksia 123 avoimen lÃÂÃÂ¤hdekoodin kirjastolle, jolloin pullonkaula siirtyi todistustyÃÂÃÂ¶stÃÂÃÂ¤ tÃÂÃÂ¤smÃÂÃÂ¤lliseen mÃÂÃÂ¤ÃÂÃÂ¤rittelyyn.",
     "title": "The proof got cheap; the specification became the scarce good",
-    "title_fi": "Todistuksesta tuli halpa, mÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤ritelmÃÂÃÂÃÂÃÂ¤stÃÂÃÂÃÂÃÂ¤ niukka hyÃÂÃÂÃÂÃÂ¶dyke"
+    "title_fi": "Todistuksesta tuli halpa, mÃÂÃÂ¤ÃÂÃÂ¤ritelmÃÂÃÂ¤stÃÂÃÂ¤ niukka hyÃÂÃÂ¶dyke"
   },
   {
     "date": "2026-10-22",
-    "score": "5/10 ÃÂÃÂÃÂÃÂ· Stakes 7/10",
+    "score": "5/10 ÃÂÃÂ· Stakes 7/10",
     "summary_en": "Google Cloud added OpenAI's GPT-6 family to its Marketplace so usage draws down existing cloud commitments, turning model adoption from a supplier relationship into a procurement line.",
-    "summary_fi": "Google Cloud lisÃÂÃÂÃÂÃÂ¤si OpenAI:n GPT-6-mallit Marketplaceensa niin, ettÃÂÃÂÃÂÃÂ¤ kÃÂÃÂÃÂÃÂ¤yttÃÂÃÂÃÂÃÂ¶ vÃÂÃÂÃÂÃÂ¤hennetÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤n olemassa olevista pilvisitoumuksista, mikÃÂÃÂÃÂÃÂ¤ muuttaa kÃÂÃÂÃÂÃÂ¤yttÃÂÃÂÃÂÃÂ¶ÃÂÃÂÃÂÃÂ¶noton toimittajapÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤tÃÂÃÂÃÂÃÂ¶ksestÃÂÃÂÃÂÃÂ¤ hankintariviksi.",
+    "summary_fi": "Google Cloud lisÃÂÃÂ¤si OpenAI:n GPT-6-mallit Marketplaceensa niin, ettÃÂÃÂ¤ kÃÂÃÂ¤yttÃÂÃÂ¶ vÃÂÃÂ¤hennetÃÂÃÂ¤ÃÂÃÂ¤n olemassa olevista pilvisitoumuksista, mikÃÂÃÂ¤ muuttaa kÃÂÃÂ¤yttÃÂÃÂ¶ÃÂÃÂ¶noton toimittajapÃÂÃÂ¤ÃÂÃÂ¤tÃÂÃÂ¶ksestÃÂÃÂ¤ hankintariviksi.",
     "title": "The frontier model became a line item, not a vendor decision",
-    "title_fi": "Rajamallista tuli ostorivi, ei toimittajapÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤tÃÂÃÂÃÂÃÂ¶s"
+    "title_fi": "Rajamallista tuli ostorivi, ei toimittajapÃÂÃÂ¤ÃÂÃÂ¤tÃÂÃÂ¶s"
   },
   {
     "date": "2026-10-21",
-    "score": "5/10 ÃÂÃÂÃÂÃÂ· Stakes 5/10",
+    "score": "5/10 ÃÂÃÂ· Stakes 5/10",
     "summary_en": "OpenAI acquired drug-development coordination platform Orchestra Bio and folded it into Rosalind, buying the regulated process layer where agent output meets an audit trail.",
-    "summary_fi": "OpenAI osti lÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤kekehityksen koordinaatioalusta Orchestra Bion osaksi Rosalindia ja hankki sÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤nnellyn prosessikerroksen, jossa agentin tuotos tarkistetaan asiakirjaketjua vasten.",
+    "summary_fi": "OpenAI osti lÃÂÃÂ¤ÃÂÃÂ¤kekehityksen koordinaatioalusta Orchestra Bion osaksi Rosalindia ja hankki sÃÂÃÂ¤ÃÂÃÂ¤nnellyn prosessikerroksen, jossa agentin tuotos tarkistetaan asiakirjaketjua vasten.",
     "title": "The labs stopped selling models and started buying the paperwork",
-    "title_fi": "Laboratoriot eivÃÂÃÂÃÂÃÂ¤t enÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤ myy malleja, ne ostavat paperityÃÂÃÂÃÂÃÂ¶n"
+    "title_fi": "Laboratoriot eivÃÂÃÂ¤t enÃÂÃÂ¤ÃÂÃÂ¤ myy malleja, ne ostavat paperityÃÂÃÂ¶n"
   },
   {
     "date": "2026-10-19",
-    "score": "5/10 ÃÂÃÂÃÂÃÂ· Stakes 5/10",
+    "score": "5/10 ÃÂÃÂ· Stakes 5/10",
     "summary_en": "Stanford HAI end-to-end hospital and payer benchmarks show frontier models completing under half of administrative workflows despite passing 90% of single-step clinical questions.",
-    "summary_fi": "Stanford HAI:n pÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤stÃÂÃÂÃÂÃÂ¤ pÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¤hÃÂÃÂÃÂÃÂ¤n -vertailuissa huippumallit suorittivat alle puolet terveydenhuollon hallinnollisista tyÃÂÃÂÃÂÃÂ¶nkuluista, vaikka lÃÂÃÂÃÂÃÂ¤pÃÂÃÂÃÂÃÂ¤isevÃÂÃÂÃÂÃÂ¤t yli 90 % yksivaiheisista kysymyksistÃÂÃÂÃÂÃÂ¤.",
+    "summary_fi": "Stanford HAI:n pÃÂÃÂ¤ÃÂÃÂ¤stÃÂÃÂ¤ pÃÂÃÂ¤ÃÂÃÂ¤hÃÂÃÂ¤n -vertailuissa huippumallit suorittivat alle puolet terveydenhuollon hallinnollisista tyÃÂÃÂ¶nkuluista, vaikka lÃÂÃÂ¤pÃÂÃÂ¤isevÃÂÃÂ¤t yli 90 % yksivaiheisista kysymyksistÃÂÃÂ¤.",
     "title": "The agents finish less than half the work",
-    "title_fi": "Agentit tekevÃÂÃÂÃÂÃÂ¤t alle puolet tyÃÂÃÂÃÂÃÂ¶stÃÂÃÂÃÂÃÂ¤"
+    "title_fi": "Agentit tekevÃÂÃÂ¤t alle puolet tyÃÂÃÂ¶stÃÂÃÂ¤"
   },
   {
     "date": "2026-10-15",
-    "score": "4/10 ÃÂÃÂÃÂÃÂ· Stakes 7/10",
+    "score": "4/10 ÃÂÃÂ· Stakes 7/10",
     "summary_en": "The FSB published twelve non-binding AI governance and lifecycle practices for banks, insurers and supervisors, establishing the reference checklist for financial supervision.",
-    "summary_fi": "FSB julkaisi pankeille, vakuuttajille ja valvojille kaksitoista tekoÃÂÃÂÃÂÃÂ¤lyn hallintokÃÂÃÂÃÂÃÂ¤ytÃÂÃÂÃÂÃÂ¤ntÃÂÃÂÃÂÃÂ¶ÃÂÃÂÃÂÃÂ¤, jotka luovat yhteisen viitekehyksen finanssivalvonnalle.",
+    "summary_fi": "FSB julkaisi pankeille, vakuuttajille ja valvojille kaksitoista tekoÃÂÃÂ¤lyn hallintokÃÂÃÂ¤ytÃÂÃÂ¤ntÃÂÃÂ¶ÃÂÃÂ¤, jotka luovat yhteisen viitekehyksen finanssivalvonnalle.",
     "title": "The Financial Stability Board writes the first common AI checklist for banks",
-    "title_fi": "FSB kirjoitti pankeille ensimmÃÂÃÂÃÂÃÂ¤isen yhteisen tekoÃÂÃÂÃÂÃÂ¤lytarkistuslistan"
+    "title_fi": "FSB kirjoitti pankeille ensimmÃÂÃÂ¤isen yhteisen tekoÃÂÃÂ¤lytarkistuslistan"
   },
   {
     "date": "2026-10-14",
-    "score": "4/10 ÃÂÃÂÃÂÃÂ· Stakes 8/10",
+    "score": "4/10 ÃÂÃÂ· Stakes 8/10",
     "summary_en": "The European Commission cited EN 18286:2026 in the Official Journal, giving providers a presumption of conformity with Article 17 AI Act quality-management rules.",
-    "summary_fi": "Euroopan komissio julkaisi virallisessa lehdessÃÂÃÂÃÂÃÂ¤ viittauksen EN 18286:2026 -standardiin, joka antaa olettaman tekoÃÂÃÂÃÂÃÂ¤lyasetuksen 17 artiklan laadunhallintavelvoitteiden mukaisuudesta.",
+    "summary_fi": "Euroopan komissio julkaisi virallisessa lehdessÃÂÃÂ¤ viittauksen EN 18286:2026 -standardiin, joka antaa olettaman tekoÃÂÃÂ¤lyasetuksen 17 artiklan laadunhallintavelvoitteiden mukaisuudesta.",
     "title": "Europe publishes the first harmonised standard for AI quality management",
-    "title_fi": "Eurooppa julkaisi ensimmÃÂÃÂÃÂÃÂ¤isen harmonisoidun standardin tekoÃÂÃÂÃÂÃÂ¤lyn laadunhallinnalle"
+    "title_fi": "Eurooppa julkaisi ensimmÃÂÃÂ¤isen harmonisoidun standardin tekoÃÂÃÂ¤lyn laadunhallinnalle"
   }
 ]
