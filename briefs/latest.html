@@ -3,26 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anthropic can prove which model answered, and the auditor becomes the buyer - Machine Learning Societies</title>
+<title>OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck - Machine Learning Societies</title>
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="../feed.xml">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="../feed.fi.xml">
 <link rel="stylesheet" href="../assets/site.css">
 
-<link rel="canonical" href="https://machine-learning-societies.web.app/briefs/2026-11-04.html">
+<link rel="canonical" href="https://machine-learning-societies.web.app/briefs/latest.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Machine Learning Societies">
 <meta property="og:locale" content="en_GB">
-<meta property="og:title" content="Anthropic can prove which model answered, and the auditor becomes the buyer">
-<meta property="og:description" content="Anthropic published FlashProve on 3 November. It is an open-source prototype that proves one committed model produced one reply. On a 400-billion-parameter model, one H100 proves 110 tokens a second, and a CPU checks each proof in 17 seconds. The buyer it serves is the auditor, not the consumer.">
-<meta property="og:url" content="https://machine-learning-societies.web.app/briefs/2026-11-04.html">
-<meta property="og:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-04.png">
+<meta property="og:title" content="OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck">
+<meta property="og:description" content="OpenAI published a pipeline on 4 November that found and exploited 948 distinct local privilege-escalation flaws in the Linux kernel, each with a candidate patch, for $1.21 million in API credits. Ten days after the scan, 61 of the flaws were patched upstream, 43 had staging patches and 299 were in public discussion. The constraint in software security has moved from finding flaws to repairing them.">
+<meta property="og:url" content="https://machine-learning-societies.web.app/briefs/latest.html">
+<meta property="og:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-05.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="621">
-<meta property="og:image:alt" content="Anthropic can prove which model answered, and the auditor becomes the buyer">
+<meta property="og:image:alt" content="OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Anthropic can prove which model answered, and the auditor becomes the buyer">
-<meta name="twitter:description" content="Anthropic published FlashProve on 3 November. It is an open-source prototype that proves one committed model produced one reply. On a 400-billion-parameter model, one H100 proves 110 tokens a second, and a CPU checks each proof in 17 seconds. The buyer it serves is the auditor, not the consumer.">
-<meta name="twitter:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-04.png">
+<meta name="twitter:title" content="OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck">
+<meta name="twitter:description" content="OpenAI published a pipeline on 4 November that found and exploited 948 distinct local privilege-escalation flaws in the Linux kernel, each with a candidate patch, for $1.21 million in API credits. Ten days after the scan, 61 of the flaws were patched upstream, 43 had staging patches and 299 were in public discussion. The constraint in software security has moved from finding flaws to repairing them.">
+<meta name="twitter:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-05.png">
 </head>
 <body>
 <div class="wrap">
@@ -32,49 +32,49 @@
       <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></span>
       <span class="toplinks"><a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a> &middot; <a href="../about.html">About this brief</a></span>
     </div>
-    <div class="lang"><a href="2026-11-04.fi.html">FI</a><a href="2026-11-04.html" aria-current="true">EN</a></div>
+    <div class="lang"><a href="2026-11-05.fi.html">FI</a><a href="2026-11-05.html" aria-current="true">EN</a></div>
   </header>
   <article class="brief">
-<p class="kicker">4 November 2026 - Machine Learning Societies</p>
-<h2>Anthropic can prove which model answered, and the auditor becomes the buyer</h2>
-<p class="score">Signal 6/10 · Stakes 6/10</p>
-<p>Anthropic published FlashProve on 3 November. It is an open-source prototype that proves one committed model produced one reply. On a 400-billion-parameter model, one H100 proves 110 tokens a second, and a CPU checks each proof in 17 seconds. The buyer it serves is the auditor, not the consumer.</p>
+<p class="kicker">5 November 2026 - Machine Learning Societies</p>
+<h2>OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck</h2>
+<p class="score">Signal 6/10 · Stakes 7/10</p>
+<p>OpenAI published a pipeline on 4 November that found and exploited 948 distinct local privilege-escalation flaws in the Linux kernel, each with a candidate patch, for $1.21 million in API credits. Ten days after the scan, 61 of the flaws were patched upstream, 43 had staging patches and 299 were in public discussion. The constraint in software security has moved from finding flaws to repairing them.</p>
 
 <h3>Signal</h3>
-<p>On 3 November Anthropic published a research post, a technical report and a code repository for FlashProve. The system commits to one set of model weights. It then produces a proof that a given reply came from those weights. The commitment is a fingerprint of about 6.5 megabytes, and it does not reveal the weights. A user holds the commitment, the prompt and the reply. Anyone can check the proof without the weights and without a graphics processor.</p>
+<p>On 4 November OpenAI published a research post called "A thousand fewer paths to root". The post describes a prototype pipeline with five stages: find targets, validate findings, judge exploitability, write a patch, and send the result to a human reviewer. The company ran it against the latest Linux kernel in the middle of October 2026.</p>
 
-<p><strong>Observed.</strong> The test ran on Llama 4 Maverick, a model with 400 billion parameters that uses about 17 billion for each token. One proof covers a window of 1,024 tokens and file size is 18.78 megabytes. One H100 processor with 24 central processing units produces 110 tokens a second. A client checks a proof in 17 seconds on 24 threads, and in 21 seconds on one thread. The offline step takes 39 minutes per model and covers about 16 million requests. The code carries the Apache 2.0 licence. Anthropic states three properties in Lean, a proof assistant that checks mathematics by machine: completeness, soundness and zero knowledge. The post also lists the limits. Proofs cover integer arithmetic and greedy decoding only. The context stops at 1,024 tokens. The model architecture is not hidden. The team has done no work on side channels. A human must audit the Lean statements against their intent. The C++ verifier that a customer would run sits outside the proofs. Anthropic says that the paper, the Lean protocol and the code may not agree. The weights are not in the release, and the company plans no deployment.</p>
+<p><strong>Observed.</strong> The kernel holds more than 40 million lines of code. Scout agents chose 5,034 audit targets, about 2.8 million lines or 7 % of the total. Analyst agents produced 2,308 candidate findings in 12 hours. A validation stage reproduced 1,724 of them inside virtual machines with standard protections turned on. Exploit agents then built 1,169 working exploits for local privilege escalation, which let a normal user become root, and 291 proofs of concept for information leaks. Variant analysis grouped the results into 948 distinct vulnerabilities, each defined by the patch that closes it. The run cost $1,213,430 in API credits, or about $1,279 for each flaw. In July the same pipeline, with an earlier model, found 166 flaws for $513,690. Ten days after the October scan, 61 flaws were patched upstream, 43 had staging patches, and 299 were being reported and discussed in public. OpenAI says a human researcher reviews every exploit, patch and severity score before a report leaves the company, and that reports go out through its Patch the Planet partners.</p>
 
-<p><strong>Caveats.</strong> A proof costs compute. Per processor, FlashProve takes 72 to 94 times longer than vLLM, a standard inference engine, to process the same requests. That ratio decides the use case. A provider cannot prove all traffic at that price. It can prove a sample, or one high-value request, after the fact. The system also proves identity, not quality. A proof says which weights produced which tokens. It does not say that the answer is correct, safe or permitted. The prover has no formal verification, and no independent security audit exists. A provider holds both the commitment and the server, so it still chooses which requests to prove. The guarantee is real, and the sample remains a decision.</p>
+<p><strong>Caveats.</strong> A candidate patch is not a merged fix. The count of 948 rests on distinct patches, not on shipped code, and most of the queue had not reached users when the post appeared. The result is self-reported, and OpenAI sells the model that produced it. The company withheld technical detail on ten exploitation methods that its staff and outside specialists judged new. In an early test, 20 of 200 exploits gained root by triggering an unassigned zero-day instead of the target bug, which shows how easily an automated pipeline can produce a true but wrong result. The scan covers local privilege escalation only; it does not break into a machine from the network. The virtual machines ran a stock desktop system, which strengthens the finding but also limits it.</p>
 
-<p><strong>Assessment.</strong> The prototype changes one thing for a buyer outside AI. Until now a purchaser of a hosted model relied on the seller's word that the advertised model served the request. A routing service could send the request to a cheaper model, and the buyer would still see a fluent answer. FlashProve gives the buyer a check that takes 17 seconds of processor time and no trust in the seller. For a bank, a ministry or an evaluation laboratory, that is the first technical handle on a claim that audits now ask. It does not change what the buyer must do. No rule requires a proof today. The stakes are 6 because assurance already has a budget line in finance and public administration, and this prototype changes what that line can buy, not the rule that governs it.</p>
+<p><strong>Assessment.</strong> The useful number is not 948. It is $1,279, the credit cost of one validated kernel flaw. Finding a flaw has become cheap and repeatable. Fixing it has not. A patch must be read by a maintainer, tested against old hardware, and shipped to users who may never update. The Linux kernel is maintained largely by paid engineers at large vendors and by volunteers, and the queue in front of them just grew. For a reader outside AI, the change is this: a supplier can now scan more code than it can repair, so the promise "we keep our software patched" depends on someone else's capacity. The stakes are 7 because the new disclosure rate changes the standard a buyer can set: a contract can require proof of repair capacity, not only proof of scanning.</p>
 
 <p><strong>Evidence 6/10.</strong></p>
 <ul>
-<li><strong>P.</strong> The research post, the technical report and the Apache 2.0 repository are the actor's own documents. 3 points.</li>
-<li><strong>N.</strong> Two newsrooms added a fact of their own: TechCrunch reported that the lab has no deployment plan and that fingerprints could cover closed models; Help Net Security described the three artefacts and the gap between the Lean proofs and the production verifier. 2 points.</li>
-<li><strong>L.</strong> Anthropic published the post and the code before the coverage, and its account posted on X the same evening. 1 point.</li>
+<li><strong>P.</strong> The research post is the actor's own document, with stage costs and a dated scan. 3 points.</li>
+<li><strong>N.</strong> Two newsrooms added facts of their own: SiliconReport reported the $1,279 unit cost, the 3.1 % error rate and the zero-day incident; AI Weekly reported the cost of each stage and the ten-day patching snapshot. 2 points.</li>
+<li><strong>L.</strong> OpenAI published the post and its account posted on X before the coverage. 1 point.</li>
 </ul>
 <p>The sum is 3 + 2 + 1 = 6.</p>
 
-<p><strong>Stakes 6/10.</strong> Model assurance is an established workflow with a budget in finance and public buying, and this prototype changes what that workflow can require; no rule changes today.</p>
+<p><strong>Stakes 7/10.</strong> The volume changes what a security requirement can ask of a supplier, because repair capacity becomes the limit rather than scanning capacity.</p>
 
 <h3>Thesis</h3>
-<p>Verification becomes a product, and the audit moves from reputation to arithmetic. A proof costs the provider 72 times the compute of the answer. It costs the buyer 17 seconds of processor time. That asymmetry decides the market. The seller who can produce proofs can serve a supervised buyer. The buyer who can check a proof can change supplier without trusting the seller. Verification therefore arrives first as an audit tool, and later as a feature of the service.</p>
+<p>Artificial intelligence moves the queue in software security; it does not add hands to the queue. Discovery is now cheap, parallel and repeatable at about a thousand dollars a flaw. Repair stays serial, local and human. The scarce resource is the attention of a maintainer who can read a patch and sign it. Every organisation that ships software now depends on that attention, and no procurement rule measures it.</p>
 
 <h3>Antithesis</h3>
-<p>The strongest objection is that a proof answers a narrow question at a high price. Identity is not correctness. The 1,024-token window excludes most real work. At 72 to 94 times the cost, only a sample of traffic can carry a proof, and the provider picks the sample. The paper, the Lean protocol and the verifier are not yet shown to agree. Anthropic runs no deployment. A supervisor who requires proofs would also build a barrier: a large provider can afford to prove, and a small entrant cannot. On this reading the release is a research signal, and its first practical effect is a new cost of compliance.</p>
+<p>The strongest objection is that a big number is not a security outcome. A candidate patch may be wrong, incomplete or irrelevant, and the count of 948 rewards volume. Linux is the best-maintained open code base in the world, with a disclosure process that already works; a flood of automated reports may slow it down rather than help it. The same pipeline serves an attacker, who needs one flaw and no patch. And the seller of the model has an interest in a dramatic headline. On this reading the post shows a capability, and the security gain depends on processes that the post does not touch.</p>
 
 <h3>Forecast</h3>
-<p>By 30 September 2027, at least one European public buyer or market surveillance authority names a cryptographic proof of model identity in a published tender condition, audit template or supervisory guidance (35 %). Resolution date: 30 September 2027. Scoring rule: a hit requires a published document that names the technique; a mention of assurance in general does not count.</p>
+<p>By 31 December 2027, the Linux kernel's stable process or one major distributor (Canonical, Red Hat or SUSE) publishes a written policy that limits, batches or filters vulnerability reports produced by automated agents (40 %). Resolution date: 31 December 2027. Scoring rule: a hit requires a published policy document that names automated or AI-generated reports; a general statement about report quality does not count.</p>
 
 <h3>Political consequences</h3>
-<p><strong>One to two years.</strong> Instrument: public procurement, including the Commission's Public Procurement Act proposal of 9 September 2026 and the reporting duty in Article 33 of the proposed Cloud and AI Development Act. Actor: the Commission and national contracting authorities. Observable: one framework contract or tender that asks for a weight commitment and for proofs on a sample of requests.</p>
-<p><strong>Three to four years.</strong> Instrument: market surveillance and conformity assessment under the AI Act, with Article 49 registration and Article 74 supervision, and the harmonised standards of CEN-CENELEC JTC 21. Actor: the European AI Office and national market surveillance authorities. Observable: a standard or guidance that lists cryptographic attestation as evidence that the model placed on the market is the model that answered.</p>
-<p>Market test: pro-market, narrowly. The protocol is public, the licence permits reuse, and the verifier runs on an ordinary processor. A small provider can prove parity to a buyer without revealing its weights. The cost of proving favours large providers, and that effect is real. The public interface dominates, because no one owns the check.</p>
+<p><strong>One to two years.</strong> Instrument: public procurement of software and the reporting duties of the Cyber Resilience Act. Actor: the European Commission, ENISA and national contracting authorities. Observable: one tender or framework contract that requires a supplier to state its repair capacity and its handling of machine-generated vulnerability reports.</p>
+<p><strong>Three to four years.</strong> Instrument: the vulnerability-handling and reporting obligations of the Cyber Resilience Act, with market surveillance by national authorities. Actor: ENISA, market surveillance bodies and national cybersecurity centres. Observable: guidance that sets a maximum interval between report and patch, or a register that separates machine-generated reports from human ones.</p>
+<p>Market test: mixed, and the pro-business effect dominates. The scanner is a closed product of one lab, and the repair cost falls on the open-source commons and on every buyer of devices. Nothing in the release lowers entry for a new maintainer or a new security vendor.</p>
 
 <h3>What to watch</h3>
-<p>Five observables. A weight commitment published for a closed frontier model. A proof overhead below ten times the cost of plain inference. One public buyer that writes a proof into a tender. An independent audit of the C++ verifier. The next update of Anthropic's Frontier Safety Roadmap, which set a prototype of provable inference as a goal for 30 September 2026.</p>
+<p>Four observables. How many of the 948 patches reach the mainline kernel by the end of the year. Whether the kernel community changes its reporting rules. Whether a second lab publishes a comparable run, which would show a price for the capability. The first Cyber Resilience Act guidance that mentions machine-generated reports.</p>
 <details class="method-box">
 <summary>How the Signal is scored</summary>
 <p>Every edition prints two numbers, and they are read together. The first measures the quality of the evidence. The second measures how much changes if the evidence holds.</p>
