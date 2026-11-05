@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck - Machine Learning Societies</title>
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="../feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="../feed.fi.xml">
+<link rel="stylesheet" href="../assets/site.css">
+
+<link rel="canonical" href="https://machine-learning-societies.web.app/briefs/2026-11-05.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Machine Learning Societies">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck">
+<meta property="og:description" content="OpenAI published a pipeline on 4 November that found and exploited 948 distinct local privilege-escalation flaws in the Linux kernel, each with a candidate patch, for $1.21 million in API credits. Ten days after the scan, 61 of the flaws were patched upstream, 43 had staging patches and 299 were in public discussion. The constraint in software security has moved from finding flaws to repairing them.">
+<meta property="og:url" content="https://machine-learning-societies.web.app/briefs/2026-11-05.html">
+<meta property="og:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-05.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="621">
+<meta property="og:image:alt" content="OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck">
+<meta name="twitter:description" content="OpenAI published a pipeline on 4 November that found and exploited 948 distinct local privilege-escalation flaws in the Linux kernel, each with a candidate patch, for $1.21 million in API credits. Ten days after the scan, 61 of the flaws were patched upstream, 43 had staging patches and 299 were in public discussion. The constraint in software security has moved from finding flaws to repairing them.">
+<meta name="twitter:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-05.png">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mast-left">
+      <a class="brand" href="../index.html">Machine Learning Societies</a>
+      <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></span>
+      <span class="toplinks"><a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a> &middot; <a href="../about.html">About this brief</a></span>
+    </div>
+    <div class="lang"><a href="2026-11-05.fi.html">FI</a><a href="2026-11-05.html" aria-current="true">EN</a></div>
+  </header>
+  <article class="brief">
+<p class="kicker">5 November 2026 - Machine Learning Societies</p>
+<h2>OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck</h2>
+<p class="score">Signal 6/10 · Stakes 7/10</p>
+<p>OpenAI published a pipeline on 4 November that found and exploited 948 distinct local privilege-escalation flaws in the Linux kernel, each with a candidate patch, for $1.21 million in API credits. Ten days after the scan, 61 of the flaws were patched upstream, 43 had staging patches and 299 were in public discussion. The constraint in software security has moved from finding flaws to repairing them.</p>
+
+<h3>Signal</h3>
+<p>On 4 November OpenAI published a research post called "A thousand fewer paths to root". The post describes a prototype pipeline with five stages: find targets, validate findings, judge exploitability, write a patch, and send the result to a human reviewer. The company ran it against the latest Linux kernel in the middle of October 2026.</p>
+
+<p><strong>Observed.</strong> The kernel holds more than 40 million lines of code. Scout agents chose 5,034 audit targets, about 2.8 million lines or 7 % of the total. Analyst agents produced 2,308 candidate findings in 12 hours. A validation stage reproduced 1,724 of them inside virtual machines with standard protections turned on. Exploit agents then built 1,169 working exploits for local privilege escalation, which let a normal user become root, and 291 proofs of concept for information leaks. Variant analysis grouped the results into 948 distinct vulnerabilities, each defined by the patch that closes it. The run cost $1,213,430 in API credits, or about $1,279 for each flaw. In July the same pipeline, with an earlier model, found 166 flaws for $513,690. Ten days after the October scan, 61 flaws were patched upstream, 43 had staging patches, and 299 were being reported and discussed in public. OpenAI says a human researcher reviews every exploit, patch and severity score before a report leaves the company, and that reports go out through its Patch the Planet partners.</p>
+
+<p><strong>Caveats.</strong> A candidate patch is not a merged fix. The count of 948 rests on distinct patches, not on shipped code, and most of the queue had not reached users when the post appeared. The result is self-reported, and OpenAI sells the model that produced it. The company withheld technical detail on ten exploitation methods that its staff and outside specialists judged new. In an early test, 20 of 200 exploits gained root by triggering an unassigned zero-day instead of the target bug, which shows how easily an automated pipeline can produce a true but wrong result. The scan covers local privilege escalation only; it does not break into a machine from the network. The virtual machines ran a stock desktop system, which strengthens the finding but also limits it.</p>
+
+<p><strong>Assessment.</strong> The useful number is not 948. It is $1,279, the credit cost of one validated kernel flaw. Finding a flaw has become cheap and repeatable. Fixing it has not. A patch must be read by a maintainer, tested against old hardware, and shipped to users who may never update. The Linux kernel is maintained largely by paid engineers at large vendors and by volunteers, and the queue in front of them just grew. For a reader outside AI, the change is this: a supplier can now scan more code than it can repair, so the promise "we keep our software patched" depends on someone else's capacity. The stakes are 7 because the new disclosure rate changes the standard a buyer can set: a contract can require proof of repair capacity, not only proof of scanning.</p>
+
+<p><strong>Evidence 6/10.</strong></p>
+<ul>
+<li><strong>P.</strong> The research post is the actor's own document, with stage costs and a dated scan. 3 points.</li>
+<li><strong>N.</strong> Two newsrooms added facts of their own: SiliconReport reported the $1,279 unit cost, the 3.1 % error rate and the zero-day incident; AI Weekly reported the cost of each stage and the ten-day patching snapshot. 2 points.</li>
+<li><strong>L.</strong> OpenAI published the post and its account posted on X before the coverage. 1 point.</li>
+</ul>
+<p>The sum is 3 + 2 + 1 = 6.</p>
+
+<p><strong>Stakes 7/10.</strong> The volume changes what a security requirement can ask of a supplier, because repair capacity becomes the limit rather than scanning capacity.</p>
+
+<h3>Thesis</h3>
+<p>Artificial intelligence moves the queue in software security; it does not add hands to the queue. Discovery is now cheap, parallel and repeatable at about a thousand dollars a flaw. Repair stays serial, local and human. The scarce resource is the attention of a maintainer who can read a patch and sign it. Every organisation that ships software now depends on that attention, and no procurement rule measures it.</p>
+
+<h3>Antithesis</h3>
+<p>The strongest objection is that a big number is not a security outcome. A candidate patch may be wrong, incomplete or irrelevant, and the count of 948 rewards volume. Linux is the best-maintained open code base in the world, with a disclosure process that already works; a flood of automated reports may slow it down rather than help it. The same pipeline serves an attacker, who needs one flaw and no patch. And the seller of the model has an interest in a dramatic headline. On this reading the post shows a capability, and the security gain depends on processes that the post does not touch.</p>
+
+<h3>Forecast</h3>
+<p>By 31 December 2027, the Linux kernel's stable process or one major distributor (Canonical, Red Hat or SUSE) publishes a written policy that limits, batches or filters vulnerability reports produced by automated agents (40 %). Resolution date: 31 December 2027. Scoring rule: a hit requires a published policy document that names automated or AI-generated reports; a general statement about report quality does not count.</p>
+
+<h3>Political consequences</h3>
+<p><strong>One to two years.</strong> Instrument: public procurement of software and the reporting duties of the Cyber Resilience Act. Actor: the European Commission, ENISA and national contracting authorities. Observable: one tender or framework contract that requires a supplier to state its repair capacity and its handling of machine-generated vulnerability reports.</p>
+<p><strong>Three to four years.</strong> Instrument: the vulnerability-handling and reporting obligations of the Cyber Resilience Act, with market surveillance by national authorities. Actor: ENISA, market surveillance bodies and national cybersecurity centres. Observable: guidance that sets a maximum interval between report and patch, or a register that separates machine-generated reports from human ones.</p>
+<p>Market test: mixed, and the pro-business effect dominates. The scanner is a closed product of one lab, and the repair cost falls on the open-source commons and on every buyer of devices. Nothing in the release lowers entry for a new maintainer or a new security vendor.</p>
+
+<h3>What to watch</h3>
+<p>Four observables. How many of the 948 patches reach the mainline kernel by the end of the year. Whether the kernel community changes its reporting rules. Whether a second lab publishes a comparable run, which would show a price for the capability. The first Cyber Resilience Act guidance that mentions machine-generated reports.</p>
+<details class="method-box">
+<summary>How the Signal is scored</summary>
+<p>Every edition prints two numbers, and they are read together. The first measures the quality of the evidence. The second measures how much changes if the evidence holds.</p>
+<p><strong>Signal, 0&ndash;10: the evidence.</strong> The formula is <em>E = 3P + N + L</em>, and the maximum is ten.</p>
+<ul>
+<li><strong>P &mdash; primary source.</strong> Three points when the claim rests on the actor's own document, announcement or statement. Zero when it rests on reporting about the actor.</li>
+<li><strong>N &mdash; independent confirmation.</strong> One point for each newsletter or newsroom that adds a fact of its own. Repeating a press release adds nothing.</li>
+<li><strong>L &mdash; first publisher.</strong> One point when the party at the centre of the story published it first.</li>
+</ul>
+<p>A story with a primary document, one independent outlet that adds a fact, and the actor as first publisher scores five. The same story repeated ten times without a new fact still scores four.</p>
+<p><strong>Stakes, 1&ndash;10: the consequence.</strong></p>
+<ul>
+<li><strong>1</strong> &mdash; one team's experiment.</li>
+<li><strong>5</strong> &mdash; a workflow adopted across a sector.</li>
+<li><strong>7</strong> &mdash; a procurement rule or standard changes.</li>
+<li><strong>10</strong> &mdash; market structure changes.</li>
+</ul>
+<p>The anchors are steps, not a scale of effort: 3 is a change inside one organisation, 9 is a rule that binds most of a market. A low signal with high stakes is a thin claim about a large thing, and it is marked as such.</p>
+</details>
+<p class="kicker" style="margin-top:40px">Compiled by Harri Juntunen &amp; <a href="https://twin.so/">Twin</a></p>
+</article>
+  <footer><a href="https://github.com/juntunen-ai/machinelearningsocieties">source</a> &middot; <a href="../feed.xml">RSS</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
+</div>
+<script>(function(){try{localStorage.setItem('mls-lang','en');}catch(e){}})();</script>
+</body>
+</html>
