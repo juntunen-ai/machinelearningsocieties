@@ -197,6 +197,17 @@
       "status": "open",
       "signal": "6/10",
       "source": "briefs/2026-11-04.html"
+    },
+    {
+      "id": "2026-11-05-01",
+      "made": "2026-11-05",
+      "claim_en": "By 31 December 2027 the Linux kernel stable process, or one of Canonical, Red Hat or SUSE, publishes a written policy that limits, batches or filters vulnerability reports produced by automated agents (40 %).",
+      "claim_fi": "31.12.2027 mennessä Linux-ytimen stable-prosessi tai jokin jakelijoista Canonical, Red Hat tai SUSE julkaisee kirjallisen käytännön, joka rajaa, erottaa eriin tai suodattaa automaattisten agenttien tuottamia haavoittuvuusraportteja (40 %).",
+      "resolves": "2027-12-31",
+      "probability": 40,
+      "status": "open",
+      "signal": "6/10",
+      "source": "briefs/2026-11-05.html"
     }
   ]
 }
