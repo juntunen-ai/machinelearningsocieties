@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-11-05",
+    "title": "OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck",
+    "title_fi": "OpenAI löysi 948 tapaa saada root Linuxiin – pullonkaulaksi jäivät ylläpitäjät",
+    "score": "6/10 · Stakes 7/10",
+    "summary_en": "OpenAI published a pipeline on 4 November that found and exploited 948 distinct local privilege-escalation flaws in the Linux kernel, each with a candidate patch, for $1.21 million in API credits. Ten days after the scan, 61 of the flaws were patched upstream, 43 had staging patches and 299 were in public discussion. The constraint in software security has moved from finding flaws to repairing them.",
+    "summary_fi": "OpenAI julkaisi 4. marraskuuta putken, joka löysi ja hyödynsi 948 erillistä paikallisen oikeuksien korotuksen haavoittuvuutta Linux-ytimestä, jokaisen kanssa ehdotettu korjaus, 1,21 miljoonan dollarin API-kustannuksella. Kymmenen päivää skannauksen jälkeen 61 oli korjattu ylävirrassa, 43 oli kokeiltavana ja 299 oli julkisessa keskustelussa. Ohjelmistoturvan pullonkaula siirtyi löytämisestä korjaamiseen."
+  },
+  {
     "date": "2026-11-04",
     "title": "Anthropic can prove which model answered, and the auditor becomes the buyer",
     "title_fi": "Anthropic todistaa nyt, mikä malli vastasi – ostajana auditoija",
