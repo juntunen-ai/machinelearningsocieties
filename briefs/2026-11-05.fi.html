@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fi" data-lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenAI löysi 948 tapaa saada root Linuxiin – pullonkaulaksi jäivät ylläpitäjät - Machine Learning Societies</title>
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="../feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="../feed.fi.xml">
+<link rel="stylesheet" href="../assets/site.css">
+
+<link rel="canonical" href="https://machine-learning-societies.web.app/briefs/2026-11-05.fi.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Machine Learning Societies">
+<meta property="og:locale" content="fi_FI">
+<meta property="og:title" content="OpenAI löysi 948 tapaa saada root Linuxiin – pullonkaulaksi jäivät ylläpitäjät">
+<meta property="og:description" content="OpenAI julkaisi 4. marraskuuta putken, joka löysi ja hyödynsi 948 erillistä paikallisen oikeuksien korotuksen haavoittuvuutta Linux-ytimestä, jokaisen kanssa ehdotettu korjaus, 1,21 miljoonan dollarin API-kustannuksella. Kymmenen päivää skannauksen jälkeen 61 oli korjattu ylävirrassa, 43 oli kokeiltavana ja 299 oli julkisessa keskustelussa. Ohjelmistoturvan pullonkaula siirtyi löytämisestä korjaamiseen.">
+<meta property="og:url" content="https://machine-learning-societies.web.app/briefs/2026-11-05.fi.html">
+<meta property="og:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-05.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="621">
+<meta property="og:image:alt" content="OpenAI löysi 948 tapaa saada root Linuxiin – pullonkaulaksi jäivät ylläpitäjät">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenAI löysi 948 tapaa saada root Linuxiin – pullonkaulaksi jäivät ylläpitäjät">
+<meta name="twitter:description" content="OpenAI julkaisi 4. marraskuuta putken, joka löysi ja hyödynsi 948 erillistä paikallisen oikeuksien korotuksen haavoittuvuutta Linux-ytimestä, jokaisen kanssa ehdotettu korjaus, 1,21 miljoonan dollarin API-kustannuksella. Kymmenen päivää skannauksen jälkeen 61 oli korjattu ylävirrassa, 43 oli kokeiltavana ja 299 oli julkisessa keskustelussa. Ohjelmistoturvan pullonkaula siirtyi löytämisestä korjaamiseen.">
+<meta name="twitter:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-05.png">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mast-left">
+      <a class="brand" href="../index.html">Machine Learning Societies</a>
+      <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></span>
+      <span class="toplinks"><a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a> &middot; <a href="../about.html">About this brief</a></span>
+    </div>
+    <div class="lang"><a href="2026-11-05.fi.html" aria-current="true">FI</a><a href="2026-11-05.html">EN</a></div>
+  </header>
+  <article class="brief">
+<p class="kicker">5. marraskuuta 2026 - Machine Learning Societies</p>
+<h2>OpenAI löysi 948 tapaa saada root Linuxiin – pullonkaulaksi jäivät ylläpitäjät</h2>
+<p class="score">Signaali 6/10 · Seuraus 7/10</p>
+<p>OpenAI julkaisi 4. marraskuuta putken, joka löysi ja hyödynsi 948 erillistä paikallisen oikeuksien korotuksen haavoittuvuutta Linux-ytimestä, jokaisen kanssa ehdotettu korjaus, 1,21 miljoonan dollarin API-kustannuksella. Kymmenen päivää skannauksen jälkeen 61 oli korjattu ylävirrassa, 43 oli kokeiltavana ja 299 oli julkisessa keskustelussa. Ohjelmistoturvan pullonkaula siirtyi löytämisestä korjaamiseen.</p>
+
+<h3>Signaali</h3>
+<p>OpenAI julkaisi 4. marraskuuta tutkimuspostauksen "A thousand fewer paths to root". Postaus kuvaa prototyypin, jossa on viisi vaihetta: etsi kohteet, vahvista löydökset, arvioi hyödynnettävyys, kirjoita korjaus ja anna tulos ihmisen tarkistettavaksi. Yhtiö ajoi putken Linux-ytimen uusinta versiota vastaan lokakuun 2026 puolivälissä.</p>
+
+<p><strong>Havaittu.</strong> Ytimessä on yli 40 miljoonaa koodiriviä. Scout-agentit valitsivat 5 034 tarkistuskohdetta, noin 2,8 miljoonaa riviä eli 7 % kokonaisuudesta. Analyst-agentit tuottivat 2 308 ehdokaslöydöstä 12 tunnissa. Vahvistusvaihe toisti niistä 1 724 virtuaalikoneissa, joissa vakiosuojaukset olivat päällä. Exploit-agentit rakensivat 1 169 toimivaa hyökkäystä paikalliseen oikeuksien korotukseen, jossa tavallinen käyttäjä saa root-oikeudet, ja 291 todistekappaletta tietovuodoista. Varianttianalyysi ryhmitteli tulokset 948 erilliseksi haavoittuvuudeksi, joista jokainen määrittyy sen korjaavan korjauksen kautta. Ajo maksoi 1 213 430 dollaria API-krediitteinä eli noin 1 279 dollaria haavoittuvuutta kohden. Heinäkuussa sama putki aikaisemmalla mallilla löysi 166 haavoittuvuutta 513 690 dollarilla. Kymmenen päivää lokakuun skannauksen jälkeen 61 oli korjattu ylävirrassa, 43 oli kokeiltavana ja 299 oli raportoitu ja julkisessa keskustelussa. OpenAI kertoo, että ihmistutkija tarkistaa jokaisen hyökkäyksen, korjauksen ja vakavuusarvion ennen raportin lähtöä, ja että raportit kulkevat Patch the Planet -kumppanien kautta.</p>
+
+<p><strong>Huomiot.</strong> Ehdotettu korjaus ei ole yhdistetty korjaus. Luku 948 perustuu erillisiin korjauksiin, ei toimitettuun koodiin, ja suurin osa jonosta ei ollut käyttäjillä postauksen ilmestyessä. Tulos on yhtiön oma ilmoitus, ja OpenAI myy mallin, joka sen tuotti. Yhtiö pidätti tekniset yksityiskohdat kymmenestä hyökkäystavasta, joita sen oma väki ja ulkopuoliset asiantuntijat pitivät uusina. Varhaisessa testissä 20 hyökkäystä 200:sta sai root-oikeudet laukaisemalla nimeämättömän nollapäivähaavoittuvuuden kohdehaavan sijaan, mikä osoittaa, miten helposti automaattinen putki tuottaa toden mutta väärän tuloksen. Skannaus kattaa vain paikallisen oikeuksien korotuksen; se ei murtaudu koneeseen verkosta. Virtuaalikoneissa oli vakioasukokoonpano, mikä vahvistaa tulosta mutta myös rajaa sitä.</p>
+
+<p><strong>Arvio.</strong> Hyödyllinen luku ei ole 948 vaan 1 279 dollaria, yhden vahvistetun ydinhaavoittuvuuden krediittihinta. Haavoittuvuuden löytämisestä on tullut halpaa ja toistettavaa. Korjaaminen ei ole. Korjauksen lukee ylläpitäjä, se testataan vanhalla laitteistolla ja toimitetaan käyttäjille, jotka eivät ehkä koskaan päivitä. Linux-ydintä ylläpitävät pääosin suurten toimittajien palkatut insinöörit ja vapaaehtoiset, ja heidän jononsa kasvoi juuri. Tekoälyn ulkopuoliselle lukijalle muutos on tämä: toimittaja voi nyt skannata enemmän koodia kuin pystyy korjaamaan, joten lupaus "pidämme ohjelmistomme korjattuna" riippuu jonkun toisen kapasiteetista. Seuraus on 7, koska uusi paljastustahti muuttaa standardia, jonka ostaja voi asettaa: sopimuksessa voidaan vaatia näyttö korjauskapasiteetista, ei vain skannauksesta.</p>
+
+<p><strong>Todiste 6/10.</strong></p>
+<ul>
+<li><strong>P.</strong> Tutkimuspostaus on toimijan oma asiakirja, jossa on vaiheiden kustannukset ja päivätty skannaus. 3 pistettä.</li>
+<li><strong>N.</strong> Kaksi toimitetta lisäsi oman faktansa: SiliconReport kertoi 1 279 dollarin yksikköhinnan, 3,1 %:n virheasteen ja nollapäivätapauksen; AI Weekly kertoi vaiheiden kustannukset ja kymmenen päivän korjaustilanteen. 2 pistettä.</li>
+<li><strong>L.</strong> OpenAI julkaisi postauksen ja sen tili viestin X:ssä ennen uutisointia. 1 piste.</li>
+</ul>
+<p>Summa on 3 + 2 + 1 = 6.</p>
+
+<p><strong>Seuraus 7/10.</strong> Volyymi muuttaa sitä, mitä turvavaatimus voi vaatia toimittajalta, koska korjauskapasiteetista tulee raja skannauskapasiteetin sijaan.</p>
+
+<h3>Teesi</h3>
+<p>Tekoäly siirtää jonoa ohjelmistoturvassa; se ei lisää käsiä jonoon. Löytäminen on nyt halpaa, rinnakkaista ja toistettavaa noin tuhannella dollarilla haavoittuvuutta kohden. Korjaaminen pysyy sarjallisena, paikallisena ja inhimillisenä. Niukka resurssi on sen ylläpitäjän huomio, joka osaa lukea korjauksen ja allekirjoittaa sen. Jokainen ohjelmistoja toimittava organisaatio riippuu siitä huomiosta, eikä mikään hankintasääntö mittaa sitä.</p>
+
+<h3>Anti-teesi</h3>
+<p>Vahvin vastaväite on, että suuri luku ei ole turvatulos. Ehdotettu korjaus voi olla väärä, puutteellinen tai merkityksetön, ja luku 948 palkitsee volyymin. Linux on maailman parhaiten ylläpidetty avoin koodikanta, jonka paljastusprosessi toimii jo; automaattisten raporttien tulva voi hidastaa sitä enemmän kuin auttaa. Sama putki palvelee hyökkääjää, jolle riittää yksi haavoittuvuus eikä korjausta tarvita. Ja mallin myyjällä on intressi dramaattiseen otsikkoon. Tällä lukemisella postaus osoittaa kyvyn, ja turvahyöty riippuu prosesseista, joihin postaus ei koske.</p>
+
+<h3>Ennuste</h3>
+<p>31.12.2027 mennessä Linux-ytimen stable-prosessi tai yksi suuri jakelija (Canonical, Red Hat tai SUSE) julkaisee kirjallisen käytännön, joka rajaa, erottaa eriin tai suodattaa automaattisten agenttien tuottamia haavoittuvuusraportteja (40 %). Ratkaisupäivä: 31.12.2027. Pisteytys: osuma vaatii julkaistun käytäntöasiakirjan, joka nimeää automaattiset tai tekoälyn tuottamat raportit; yleinen lausuma raporttien laadusta ei riitä.</p>
+
+<h3>Poliittiset vaikutukset</h3>
+<p><strong>Yhdestä kahteen vuoteen.</strong> Väline: ohjelmistojen julkinen hankinta ja kyberturvallisuusasetuksen (CRA) raportointivelvoitteet. Toimija: Euroopan komissio, ENISA ja kansalliset hankintaviranomaiset. Havaittava: yksi tarjous tai puitejärjestely, joka vaatii toimittajaa ilmoittamaan korjauskapasiteettinsa ja tapansa käsitellä koneellisesti tuotettuja haavoittuvuusraportteja.</p>
+<p><strong>Kolmesta neljään vuoteen.</strong> Väline: kyberturvallisuusasetuksen haavoittuvuuksien käsittelyä ja raportointia koskevat velvoitteet sekä kansallinen markkinavalvonta. Toimija: ENISA, markkinavalvontaviranomaiset ja kansalliset kyberturvakeskukset. Havaittava: ohje, joka asettaa enimmäisajan raportin ja korjauksen välille, tai rekisteri, joka erottaa koneelliset raportit ihmisten raporteista.</p>
+<p>Markkinatesti: sekava, ja yritysmyönteinen vaikutus on vallitseva. Skanneri on yhden laboratorion suljettu tuote, ja korjauskustannus lankeaa avoimen lähdekoodin yhteisölle ja jokaiselle laiteostajalle. Mikään julkaisussa ei alenna uuden ylläpitäjän tai uuden turvatoimittajan kynnystä.</p>
+
+<h3>Mitä seurata</h3>
+<p>Neljä havaintoa. Kuinka moni 948 korjauksesta päätyy ydinhaaraan vuoden loppuun mennessä. Muuttaako ydinyhteisö raportointisääntöjään. Julkaiseeko toinen laboratorio vastaavan ajon, mikä osoittaisi kyvylle hinnan. Ensimmäinen kyberturvallisuusasetuksen ohje, joka mainitsee koneellisesti tuotetut raportit.</p>
+<details class="method-box">
+<summary>Miten Signaali lasketaan</summary>
+<p>Jokainen katsaus painaa kaksi lukua, ja ne luetaan yhdessä. Ensimmäinen mittaa todisteen laatua. Toinen mittaa, kuinka paljon muuttuu, jos todiste pitää.</p>
+<p><strong>Signaali, 0&ndash;10: todiste.</strong> Kaava on <em>E = 3P + N + L</em>, ja enimmäisarvo on kymmenen.</p>
+<ul>
+<li><strong>P &mdash; ensisijainen lähde.</strong> Kolme pistettä, kun väite nojaa toimijan omaan asiakirjaan, ilmoitukseen tai lausuntoon. Nolla, kun se nojaa toimijasta kertovaan uutisointiin.</li>
+<li><strong>N &mdash; riippumaton vahvistus.</strong> Yksi piste jokaisesta uutiskirjeestä tai toimituksesta, joka lisää oman faktan. Tiedotteen toistaminen ei lisää mitään.</li>
+<li><strong>L &mdash; ensimmäinen julkaisija.</strong> Yksi piste, kun tarinan keskiössä oleva osapuoli julkaisi sen ensimmäisenä.</li>
+</ul>
+<p>Tarina, jossa on ensisijainen asiakirja, yhden oman faktan lisäävä riippumaton media ja toimija ensimmäisenä julkaisijana, saa viisi. Sama tarina kymmenen kertaa ilman uutta faktaa saa edelleen neljä.</p>
+<p><strong>Seuraus, 1&ndash;10: vaikutus.</strong></p>
+<ul>
+<li><strong>1</strong> &mdash; yhden ryhmän koe.</li>
+<li><strong>5</strong> &mdash; työnkulku, joka on otettu käyttöön koko sektorilla.</li>
+<li><strong>7</strong> &mdash; hankintasääntö tai standardi muuttuu.</li>
+<li><strong>10</strong> &mdash; markkinarakenne muuttuu.</li>
+</ul>
+<p>Ankkurit ovat askelmia, eivät työn mitta: 3 on muutos yhden organisaation sisällä, 9 on sääntö, joka sitoo suurta osaa markkinasta. Matala signaali ja korkea seuraus tarkoittaa ohutta väitettä suuresta asiasta, ja se merkitään sellaiseksi.</p>
+</details>
+<p class="kicker" style="margin-top:40px">Compiled by Harri Juntunen &amp; <a href="https://twin.so/">Twin</a></p>
+</article>
+  <footer><a href="https://github.com/juntunen-ai/machinelearningsocieties">source</a> &middot; <a href="../feed.xml">RSS</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
+</div>
+<script>(function(){try{localStorage.setItem('mls-lang','en');}catch(e){}})();</script>
+</body>
+</html>
