@@ -3,26 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck - Machine Learning Societies</title>
+<title>Voters now price AI compute, and OpenAI writes its own permit - Machine Learning Societies</title>
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="../feed.xml">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="../feed.fi.xml">
 <link rel="stylesheet" href="../assets/site.css">
 
-<link rel="canonical" href="https://machine-learning-societies.web.app/briefs/latest.html">
+<link rel="canonical" href="https://machine-learning-societies.web.app/briefs/2026-11-06.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Machine Learning Societies">
 <meta property="og:locale" content="en_GB">
-<meta property="og:title" content="OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck">
-<meta property="og:description" content="OpenAI published a pipeline on 4 November that found and exploited 948 distinct local privilege-escalation flaws in the Linux kernel, each with a candidate patch, for $1.21 million in API credits. Ten days after the scan, 61 of the flaws were patched upstream, 43 had staging patches and 299 were in public discussion. The constraint in software security has moved from finding flaws to repairing them.">
-<meta property="og:url" content="https://machine-learning-societies.web.app/briefs/latest.html">
-<meta property="og:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-05.png">
+<meta property="og:title" content="Voters now price AI compute, and OpenAI writes its own permit">
+<meta property="og:description" content="Voters decided 47 local measures on data centres on 3 November: 45 backed a restriction and one allowed construction. Two days later OpenAI published a compact to pay for grid upgrades, publish water and power data and end non-disclosure agreements with officials. The constraint on AI buildout has moved from capital to local consent.">
+<meta property="og:url" content="https://machine-learning-societies.web.app/briefs/2026-11-06.html">
+<meta property="og:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-06.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="621">
-<meta property="og:image:alt" content="OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck">
+<meta property="og:image:alt" content="Voters now price AI compute, and OpenAI writes its own permit">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck">
-<meta name="twitter:description" content="OpenAI published a pipeline on 4 November that found and exploited 948 distinct local privilege-escalation flaws in the Linux kernel, each with a candidate patch, for $1.21 million in API credits. Ten days after the scan, 61 of the flaws were patched upstream, 43 had staging patches and 299 were in public discussion. The constraint in software security has moved from finding flaws to repairing them.">
-<meta name="twitter:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-05.png">
+<meta name="twitter:title" content="Voters now price AI compute, and OpenAI writes its own permit">
+<meta name="twitter:description" content="Voters decided 47 local measures on data centres on 3 November: 45 backed a restriction and one allowed construction. Two days later OpenAI published a compact to pay for grid upgrades, publish water and power data and end non-disclosure agreements with officials. The constraint on AI buildout has moved from capital to local consent.">
+<meta name="twitter:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-06.png">
 </head>
 <body>
 <div class="wrap">
@@ -32,49 +32,49 @@
       <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></span>
       <span class="toplinks"><a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a> &middot; <a href="../about.html">About this brief</a></span>
     </div>
-    <div class="lang"><a href="2026-11-05.fi.html">FI</a><a href="2026-11-05.html" aria-current="true">EN</a></div>
+    <div class="lang"><a href="2026-11-06.fi.html">FI</a><a href="2026-11-06.html" aria-current="true">EN</a></div>
   </header>
   <article class="brief">
-<p class="kicker">5 November 2026 - Machine Learning Societies</p>
-<h2>OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck</h2>
-<p class="score">Signal 6/10 · Stakes 7/10</p>
-<p>OpenAI published a pipeline on 4 November that found and exploited 948 distinct local privilege-escalation flaws in the Linux kernel, each with a candidate patch, for $1.21 million in API credits. Ten days after the scan, 61 of the flaws were patched upstream, 43 had staging patches and 299 were in public discussion. The constraint in software security has moved from finding flaws to repairing them.</p>
+<p class="kicker">6 November 2026 - Machine Learning Societies</p>
+<h2>Voters now price AI compute, and OpenAI writes its own permit</h2>
+<p class="score">Signal 7/10 &middot; Stakes 7/10</p>
+<p>Voters decided 47 local measures on data centres on 3 November: 45 backed a restriction and one allowed construction. Two days later OpenAI published a compact to pay for grid upgrades, publish water and power data and end non-disclosure agreements with officials. The constraint on AI buildout has moved from capital to local consent.</p>
 
 <h3>Signal</h3>
-<p>On 4 November OpenAI published a research post called "A thousand fewer paths to root". The post describes a prototype pipeline with five stages: find targets, validate findings, judge exploitability, write a patch, and send the result to a human reviewer. The company ran it against the latest Linux kernel in the middle of October 2026.</p>
+<p>Twenty-one measures were in Ohio. The tracker Data Centers on the Ballot counts 45 restricting results, one allowing result and one undecided. Officials must certify the counts.</p>
 
-<p><strong>Observed.</strong> The kernel holds more than 40 million lines of code. Scout agents chose 5,034 audit targets, about 2.8 million lines or 7 % of the total. Analyst agents produced 2,308 candidate findings in 12 hours. A validation stage reproduced 1,724 of them inside virtual machines with standard protections turned on. Exploit agents then built 1,169 working exploits for local privilege escalation, which let a normal user become root, and 291 proofs of concept for information leaks. Variant analysis grouped the results into 948 distinct vulnerabilities, each defined by the patch that closes it. The run cost $1,213,430 in API credits, or about $1,279 for each flaw. In July the same pipeline, with an earlier model, found 166 flaws for $513,690. Ten days after the October scan, 61 flaws were patched upstream, 43 had staging patches, and 299 were being reported and discussed in public. OpenAI says a human researcher reviews every exploit, patch and severity score before a report leaves the company, and that reports go out through its Patch the Planet partners.</p>
+<p><strong>Observed.</strong> Sunbury, Ohio, banned campuses above 25 megawatts with 78 % of the vote; Granville banned all data-centre construction with 82 %. In Piqua, Ohio, voters recalled the mayor and two council members over a Meta-backed project. Texas changed too: James Talarico won a Senate seat and Gina Hinojosa the governor's race; Democrats took the state House for the first time in 24 years. An NBC News exit poll found that 56 % of voters called data centres a crucial or major factor in their congressional vote. Democratic candidates spent more than <article class="brief">00 million on ads that tied opponents to data centres. Markets read the result as a slowdown: Microsoft rose 6.7 %, Amazon 6.1 % and Alphabet 3.3 % the next day. OpenAI answered on 5 November with a National Community Compact. It promises to pay the full cost of electricity and grid work, publish site water, power and noise data, avoid non-disclosure agreements with officials, and report hiring each year.</p>
 
-<p><strong>Caveats.</strong> A candidate patch is not a merged fix. The count of 948 rests on distinct patches, not on shipped code, and most of the queue had not reached users when the post appeared. The result is self-reported, and OpenAI sells the model that produced it. The company withheld technical detail on ten exploitation methods that its staff and outside specialists judged new. In an early test, 20 of 200 exploits gained root by triggering an unassigned zero-day instead of the target bug, which shows how easily an automated pipeline can produce a true but wrong result. The scan covers local privilege escalation only; it does not break into a machine from the network. The virtual machines ran a stock desktop system, which strengthens the finding but also limits it.</p>
+<p><strong>Caveats.</strong> A local vote is not a certified national statistic. The 45&ndash;1 count comes from a private tracker, other tallies give 43 of 44, and the undecided measure can change the total. Many measures are advisory, temporary or written for one project. State legislatures can preempt local zoning, and a court can strike a charter amendment. The compact is voluntary, covers only OpenAI-owned sites and carries no penalty. Investors read the vote as slower spending, not as a stop.</p>
 
-<p><strong>Assessment.</strong> The useful number is not 948. It is $1,279, the credit cost of one validated kernel flaw. Finding a flaw has become cheap and repeatable. Fixing it has not. A patch must be read by a maintainer, tested against old hardware, and shipped to users who may never update. The Linux kernel is maintained largely by paid engineers at large vendors and by volunteers, and the queue in front of them just grew. For a reader outside AI, the change is this: a supplier can now scan more code than it can repair, so the promise "we keep our software patched" depends on someone else's capacity. The stakes are 7 because the new disclosure rate changes the standard a buyer can set: a contract can require proof of repair capacity, not only proof of scanning.</p>
+<p><strong>Assessment.</strong> The useful number is not 45. It is the cost of consent. A 25-megawatt threshold is now the line at which a hyperscale campus needs a local majority, and 45 communities have priced that majority at a referendum. For a reader outside AI: a data centre is no longer an industrial project approved in a hearing room. It is a political campaign with a budget. The constraint has moved from transformers and turbines to the ballot box. OpenAI's compact is the first attempt to write the permit before a legislature does. The stakes are 7 because the permitting standard now changes across a sector.</p>
 
-<p><strong>Evidence 6/10.</strong></p>
+<p><strong>Evidence 7/10.</strong></p>
 <ul>
-<li><strong>P.</strong> The research post is the actor's own document, with stage costs and a dated scan. 3 points.</li>
-<li><strong>N.</strong> Two newsrooms added facts of their own: SiliconReport reported the $1,279 unit cost, the 3.1 % error rate and the zero-day incident; AI Weekly reported the cost of each stage and the ten-day patching snapshot. 2 points.</li>
-<li><strong>L.</strong> OpenAI published the post and its account posted on X before the coverage. 1 point.</li>
+<li><strong>P.</strong> County tallies and OpenAI's compact are primary records: vote counts and the company's own commitments. 3 points.</li>
+<li><strong>N.</strong> MIT Technology Review named the Texas races. The Deep View reported the exit poll and the ad sum. Axios reported the rally with named price moves. 3 points.</li>
+<li><strong>L.</strong> OpenAI published the compact before the newsletters. 1 point.</li>
 </ul>
-<p>The sum is 3 + 2 + 1 = 6.</p>
+<p>The sum is 3 + 3 + 1 = 7.</p>
 
-<p><strong>Stakes 7/10.</strong> The volume changes what a security requirement can ask of a supplier, because repair capacity becomes the limit rather than scanning capacity.</p>
+<p><strong>Stakes 7/10.</strong> The votes change a planning rule for every developer in the sector, and the compact sets a private standard that rivals must answer.</p>
 
 <h3>Thesis</h3>
-<p>Artificial intelligence moves the queue in software security; it does not add hands to the queue. Discovery is now cheap, parallel and repeatable at about a thousand dollars a flaw. Repair stays serial, local and human. The scarce resource is the attention of a maintainer who can read a patch and sign it. Every organisation that ships software now depends on that attention, and no procurement rule measures it.</p>
+<p>AI buildout is now a permitting problem, and permission is won locally. The ballot box has become the siting authority for compute. A laboratory can buy chips, land and power. It cannot buy a majority in a town of 9,000. OpenAI's compact is an attempt to answer that fact with a private permit. The scarce resource is a host community that says yes.</p>
 
 <h3>Antithesis</h3>
-<p>The strongest objection is that a big number is not a security outcome. A candidate patch may be wrong, incomplete or irrelevant, and the count of 948 rewards volume. Linux is the best-maintained open code base in the world, with a disclosure process that already works; a flood of automated reports may slow it down rather than help it. The same pipeline serves an attacker, who needs one flaw and no patch. And the seller of the model has an interest in a dramatic headline. On this reading the post shows a capability, and the security gain depends on processes that the post does not touch.</p>
+<p>The strongest objection is that a local vote is not a national rule. Forty-five small towns do not stop a hyperscaler that can move to another county. State legislatures can preempt them. The compact covers only campuses OpenAI owns; Oracle and other partners own much of the capacity. A voluntary standard with no penalty is marketing until a buyer adopts it. The market read the election as bullish for Big Tech, which suggests investors expect the buildout to continue.</p>
 
 <h3>Forecast</h3>
-<p>By 31 December 2027, the Linux kernel's stable process or one major distributor (Canonical, Red Hat or SUSE) publishes a written policy that limits, batches or filters vulnerability reports produced by automated agents (40 %). Resolution date: 31 December 2027. Scoring rule: a hit requires a published policy document that names automated or AI-generated reports; a general statement about report quality does not count.</p>
+<p>By 30 June 2027, at least one US state legislature enacts a statute that limits local bans or moratoriums on data centres (55 %). Resolution date: 30 June 2027. Scoring rule: a hit requires an enacted statute that names data centres and limits a local restriction. A bill or a general statement on permitting does not count.</p>
 
 <h3>Political consequences</h3>
-<p><strong>One to two years.</strong> Instrument: public procurement of software and the reporting duties of the Cyber Resilience Act. Actor: the European Commission, ENISA and national contracting authorities. Observable: one tender or framework contract that requires a supplier to state its repair capacity and its handling of machine-generated vulnerability reports.</p>
-<p><strong>Three to four years.</strong> Instrument: the vulnerability-handling and reporting obligations of the Cyber Resilience Act, with market surveillance by national authorities. Actor: ENISA, market surveillance bodies and national cybersecurity centres. Observable: guidance that sets a maximum interval between report and patch, or a register that separates machine-generated reports from human ones.</p>
-<p>Market test: mixed, and the pro-business effect dominates. The scanner is a closed product of one lab, and the repair cost falls on the open-source commons and on every buyer of devices. Nothing in the release lowers entry for a new maintainer or a new security vendor.</p>
+<p><strong>One to two years.</strong> Instrument: state preemption statutes and zoning law. Actor: the legislatures and governors of Ohio, Texas and Georgia. Observable: one enacted state law that limits local data-centre moratoriums or requires a host-community agreement.</p>
+<p><strong>Three to four years.</strong> Instrument: cost-allocation tariffs for large electricity loads. Actor: FERC and state utility commissions. Observable: a rate case that makes data centres pay for network upgrades, plus a public register of host-community payments.</p>
+<p>Market test: pro-business, and that effect dominates. Instrument: a voluntary corporate compact beside local permitting; actor: OpenAI. The beneficiary is the incumbent with a legal team and a balance sheet.</p>
 
 <h3>What to watch</h3>
-<p>Four observables. How many of the 948 patches reach the mainline kernel by the end of the year. Whether the kernel community changes its reporting rules. Whether a second lab publishes a comparable run, which would show a price for the capability. The first Cyber Resilience Act guidance that mentions machine-generated reports.</p>
+<p>The certification of the undecided measure. The first state bill that would preempt a local data-centre ban. OpenAI's first annual report. And the nearest forecast in the ledger: on 31 January 2027, the group led by Impagliazzo, Paturi and Williams must publish its promised verdict.</p>
 <details class="method-box">
 <summary>How the Signal is scored</summary>
 <p>Every edition prints two numbers, and they are read together. The first measures the quality of the evidence. The second measures how much changes if the evidence holds.</p>
