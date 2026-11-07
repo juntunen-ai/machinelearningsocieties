@@ -219,6 +219,17 @@
       "signal": "7/10",
       "source": "briefs/2026-11-06.html",
       "status": "open"
+    },
+    {
+      "claim_en": "By 30 June 2027, the European AI Office will publish qualification requirements for independent external evaluators of general-purpose models with systemic risk, and the document will state an access right to provider evidence or a closed list of redaction categories (55 %).",
+      "claim_fi": "30.6.2027 mennessä Euroopan tekoälytoimisto julkaisee pätevyysvaatimukset järjestelmällisen riskin yleiskäyttöisten mallien riippumattomille ulkopuolisille arvioijille, ja asiakirja kirjaa pääsyoikeuden tarjoajan todisteisiin tai suljetun luettelon peittoluokista (55 %).",
+      "id": "2026-11-07-01",
+      "made": "2026-11-07",
+      "probability": 55,
+      "resolves": "2027-06-30",
+      "signal": "7/10",
+      "source": "briefs/2026-11-07.html",
+      "status": "open"
     }
   ]
 }
