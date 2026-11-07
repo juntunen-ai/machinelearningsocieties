@@ -1,0 +1,54 @@
+# Machine Learning Societies
+
+> Daily analytical brief on technological diffusion: how machine learning spreads through politics, the economy, work and law. Every edition carries one signal, one thesis, one antithesis and one falsifiable dated forecast, in English and Finnish.
+
+- Canonical site: https://machine-learning-societies.web.app/
+- Editor: Harri Juntunen (https://www.linkedin.com/in/hjuntunen), compiled with Twin (https://twin.so)
+- Languages: English at /briefs/YYYY-MM-DD.html, Finnish at /briefs/YYYY-MM-DD.fi.html
+- Cadence: one edition per day, about 07:30 Europe/Helsinki
+- Machine-readable: /index.json (edition index), /forecasts.json (forecast ledger and scores), /index/series.csv (diffusion series), /feed.xml and /feed.fi.xml (RSS), /sitemap.xml
+
+## How to read an edition
+
+Each page states the date and running head, a headline, a line in the form "Signal x/10 · Stakes y/10", the finding, the thesis, the antithesis, and a dated forecast with a probability. Evidence is scored E = 3P + N + L, where P counts primary documents, N named reporting, L independent corroboration. Forecasts are scored in public after their resolution date.
+
+## Latest edition
+
+- [2026-11-07, English](https://machine-learning-societies.web.app/briefs/2026-11-07.html): AI now does part of AI research, and the proof is redacted (7/10 · Stakes 6/10)
+- [2026-11-07, Finnish](https://machine-learning-societies.web.app/briefs/2026-11-07.fi.html): Tekoäly tekee jo osan tutkimuksesta – todisteet on peitetty
+
+## Core pages
+
+- [About this brief](https://machine-learning-societies.web.app/about.html): purpose, method, analytical lenses and scoring rules.
+- [Forecasts](https://machine-learning-societies.web.app/forecasts.html): every open and resolved forecast; JSON ledger at https://machine-learning-societies.web.app/forecasts.json
+- [Diffusion Index](https://machine-learning-societies.web.app/diffusion-index.html): diffusion scores across ten pillars and ten sectors, 0-100.
+- [Diffusion method](https://machine-learning-societies.web.app/diffusion-method.html): how each series is defined and graded.
+- [Archive](https://machine-learning-societies.web.app/index.html): all editions, newest first.
+
+## Editions
+
+- 2026-11-07: [EN](https://machine-learning-societies.web.app/briefs/2026-11-07.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-11-07.fi.html) — AI now does part of AI research, and the proof is redacted
+- 2026-11-06: [EN](https://machine-learning-societies.web.app/briefs/2026-11-06.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-11-06.fi.html) — Voters now price AI compute, and OpenAI writes its own permit
+- 2026-11-05: [EN](https://machine-learning-societies.web.app/briefs/2026-11-05.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-11-05.fi.html) — OpenAI found 948 ways to root Linux, and the maintainers become the bottleneck
+- 2026-11-04: [EN](https://machine-learning-societies.web.app/briefs/2026-11-04.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-11-04.fi.html) — Anthropic can prove which model answered, and the auditor becomes the buyer
+- 2026-11-03: [EN](https://machine-learning-societies.web.app/briefs/2026-11-03.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-11-03.fi.html) — Anthropic moved the compute bet onto public markets, at 27 times revenue
+- 2026-11-02: [EN](https://machine-learning-societies.web.app/briefs/2026-11-02.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-11-02.fi.html) — The test that decides which agent gets the work is private property
+- 2026-11-01: [EN](https://machine-learning-societies.web.app/briefs/2026-11-01.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-11-01.fi.html) — Britain buys planning capacity with the committee's discretion
+- 2026-10-31: [EN](https://machine-learning-societies.web.app/briefs/2026-10-31.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-31.fi.html) — The last safety fix a model receives is the one shipped with its weights
+- 2026-10-30: [EN](https://machine-learning-societies.web.app/briefs/2026-10-30.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-30.fi.html) — The only record of a frontier model's misbehaviour is now written inside the lab
+- 2026-10-29: [EN](https://machine-learning-societies.web.app/briefs/2026-10-29.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-29.fi.html) — Google put its strongest model behind a guest list, and the guest list is now the policy
+- 2026-10-28: [EN](https://machine-learning-societies.web.app/briefs/2026-10-28.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-28.fi.html) — Anthropic made artificial intelligence auditable, and audited numbers will discipline the industry faster than any statute
+- 2026-10-27: [EN](https://machine-learning-societies.web.app/briefs/2026-10-27.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-27.fi.html) — OpenAI convened the referees, and that is the result that will last
+- 2026-10-26: [EN](https://machine-learning-societies.web.app/briefs/2026-10-26.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-26.fi.html) — Open weights now set the price of frontier capability, and the bottleneck has moved to serving it
+- 2026-10-25: [EN](https://machine-learning-societies.web.app/briefs/2026-10-25.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-25.fi.html) — Texas closed the on-site power loophole, and the delay moved into the permit queue
+- 2026-10-24: [EN](https://machine-learning-societies.web.app/briefs/2026-10-24.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-24.fi.html) — Containment became an engineering discipline, and its first export was a patch
+- 2026-10-23: [EN](https://machine-learning-societies.web.app/briefs/2026-10-23.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-23.fi.html) — The proof got cheap; the specification became the scarce good
+- 2026-10-22: [EN](https://machine-learning-societies.web.app/briefs/2026-10-22.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-22.fi.html) — The frontier model became a line item, not a vendor decision
+- 2026-10-21: [EN](https://machine-learning-societies.web.app/briefs/2026-10-21.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-21.fi.html) — The labs stopped selling models and started buying the paperwork
+- 2026-10-19: [EN](https://machine-learning-societies.web.app/briefs/2026-10-19.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-19.fi.html) — The agents finish less than half the work
+- 2026-10-15: [EN](https://machine-learning-societies.web.app/briefs/2026-10-15.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-15.fi.html) — The Financial Stability Board writes the first common AI checklist for banks
+- 2026-10-14: [EN](https://machine-learning-societies.web.app/briefs/2026-10-14.html) · [FI](https://machine-learning-societies.web.app/briefs/2026-10-14.fi.html) — Europe publishes the first harmonised standard for AI quality management
+
+## Citation
+
+Cite as: Juntunen, Harri. "Headline." Machine Learning Societies, date, URL. The thesis, antithesis and forecast are the editor's analysis; the underlying sources are linked inside each edition and should be cited separately.
