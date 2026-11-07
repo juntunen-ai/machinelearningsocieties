@@ -19,7 +19,7 @@ BRIEFS = os.path.join(ROOT, "briefs")
 PAGE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})(?:\.fi)?\.html$")
 
 
-def patched(html, day, path):
+def patched(html, day, name):
     head_end = html.find("</head>")
     if head_end == -1:
         return html
@@ -31,6 +31,8 @@ def patched(html, day, path):
             add.append('<meta name="description" content="' + match.group(1) + '">')
     if 'name="robots"' not in head:
         add.append('<meta name="robots" content="index,follow,max-image-preview:large">')
+    if 'rel="canonical"' not in head:
+        add.append('<link rel="canonical" href="' + BASE + '/briefs/' + name + '">')
     if 'hreflang="x-default"' not in head:
         en = BASE + "/briefs/" + day + ".html"
         fi = BASE + "/briefs/" + day + ".fi.html"
@@ -54,7 +56,7 @@ def main():
         try:
             with open(path, encoding="utf-8") as handle:
                 html = handle.read()
-            updated = patched(html, match.group(1), path)
+            updated = patched(html, match.group(1), name)
             if updated != html:
                 with open(path, "w", encoding="utf-8") as handle:
                     handle.write(updated)
