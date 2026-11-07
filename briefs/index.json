@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-11-07",
+    "title": "AI now does part of AI research, and the proof is redacted",
+    "title_fi": "Tekoäly tekee jo osan tutkimuksesta – todisteet on peitetty",
+    "score": "7/10 · Stakes 6/10",
+    "summary_en": "METR spent eleven weeks inside Anthropic and found that capability growth on well-specified tasks now runs at about twice the historical rate, with AI itself the likely main cause. Anthropic redacted most of the evidence behind the finding, so the public must trust the evaluator's judgement.",
+    "summary_fi": "METR työskenteli yksitoista viikkoa Anthropicin sisällä. Sen mukaan kykyjen kasvu täsmällisissä tehtävissä on nyt noin kaksinkertainen historialliseen vauhtiin verrattuna, ja tekoäly on todennäköisesti pääsyy. Anthropic peitti suurimman osan löydön todisteista, joten yleisön on luotettava arvioijan harkintaan."
+  },
+  {
     "date": "2026-11-06",
     "title": "Voters now price AI compute, and OpenAI writes its own permit",
     "title_fi": "Äänestäjät hinnoittelevat nyt tekoälylaskennan – OpenAI kirjoittaa oman lupansa",
