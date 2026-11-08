@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-11-08",
+    "title": "Britain gives ministers power to investigate AI agents that escape control",
+    "title_fi": "Britannia antaa ministereille vallan tutkia karanneita tekoälyagentteja",
+    "score": "5/10 · Stakes 9/10",
+    "summary_en": "The House of Lords agreed a clause to the Cyber Security and Resilience Bill on 26 October. It lets ministers make rules for organisations that lose control of an AI agent, and investigate the incident. The duty falls on the deployer, not the model developer, and every measure still needs secondary legislation.",
+    "summary_fi": "Ylähuone hyväksyi 26.10.2026 lausekkeen kyberturvallisuus- ja resilienssilakiesitykseen. Se antaa ministereille vallan säätää velvoitteista organisaatioille, jotka menettävät tekoälyagentin hallinnan, ja tutkia tapauksen. Velvoite kohdistuu käyttöönottajaan, ei mallin kehittäjään, ja jokainen toimenpide tarvitsee vielä asetuksen."
+  },
+  {
     "date": "2026-11-07",
     "title": "AI now does part of AI research, and the proof is redacted",
     "title_fi": "Tekoäly tekee jo osan tutkimuksesta – todisteet on peitetty",
