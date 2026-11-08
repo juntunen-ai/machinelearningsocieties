@@ -230,6 +230,17 @@
       "signal": "7/10",
       "source": "briefs/2026-11-07.html",
       "status": "open"
+    },
+    {
+      "id": "2026-11-08-01",
+      "made": "2026-11-08",
+      "claim_en": "By 6 February 2027 the UK government will publish its consultation on agentic loss of control, and the document will name at least one specific incident or near miss as a reason for the measures (65 %).",
+      "claim_fi": "6.2.2027 mennessä Britannian hallitus julkaisee kuulemisensa agenttien hallinnan menetyksestä, ja asiakirja nimeää vähintään yhden yksittäisen tapauksen tai läheltä piti -tilanteen syyksi toimenpiteille (65 %).",
+      "resolves": "2027-02-06",
+      "probability": 65,
+      "status": "open",
+      "signal": "5/10",
+      "source": "briefs/2026-11-08.html"
     }
   ]
 }
