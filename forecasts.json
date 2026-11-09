@@ -241,6 +241,17 @@
       "status": "open",
       "signal": "5/10",
       "source": "briefs/2026-11-08.html"
+    },
+    {
+      "claim_en": "By 30 April 2027 the Ministry of Industry and Information Technology, or one provincial communications administration, will publish at least one rectification or delisting notice against an app distribution platform that listed agents without adaptation verification (60 %).",
+      "claim_fi": "30.4.2027 mennessä teollisuus- ja tietotekniikkaministeriö tai yksi maakunnan tietoliikennehallinto julkaisee vähintään yhden korjaus- tai poistamismääräyksen sovellusjakelualustalle, joka listasi agentteja ilman yhteensopivuustestausta (60 %).",
+      "id": "2026-11-09-01",
+      "made": "2026-11-09",
+      "probability": 60,
+      "resolves": "2027-04-30",
+      "signal": "5/10",
+      "source": "briefs/2026-11-09.html",
+      "status": "open"
     }
   ]
 }
