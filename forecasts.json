@@ -1,6 +1,17 @@
 {
   "forecasts": [
     {
+      "id": "2026-11-15-01",
+      "made": "2026-11-15",
+      "claim_en": "By 31 March 2027 the Government Accountability Office will accept, or the Department of Transportation's Inspector General will open, a review whose scope covers the SMART rollout and names the safety risk assessment or the controller's role in testing (60 %).",
+      "claim_fi": "31.3.2027 mennessä yleinen tilintarkastusvirasto (GAO) ottaa käsittelyyn tai liikenneministeriön tarkastusvirasto avaa selvityksen, jonka rajaus kattaa SMART-käyttöönoton ja nimeää turvallisuusarvion tai lennonjohtajien roolin testauksessa (60 %).",
+      "resolves": "2027-03-31",
+      "probability": 60,
+      "status": "open",
+      "signal": "9/10",
+      "source": "briefs/2026-11-15.html"
+    },
+    {
       "id": "2026-11-14-01",
       "made": "2026-11-14",
       "claim_en": "By 30 June 2027 the Federal Reserve or another G7 central bank will name AI-related credit as a monitored vulnerability in a formal supervisory document and start a named data collection on it (60 %).",
