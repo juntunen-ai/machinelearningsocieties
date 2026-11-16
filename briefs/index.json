@@ -1,83 +1,91 @@
 [
-{
-  "date": "2026-11-15",
-  "title": "The FAA switched on an AI planner and left the safety questions open",
-  "title_fi": "FAA otti tekoälyn lentosuunnitteluun ja jätti turvakysymykset auki",
-  "score": "9/10 · Stakes 9/10",
-  "summary_en": "The Federal Aviation Administration stopped every departure in the United States for four hours on Friday 13 November. Three days earlier it had switched on an AI-supported planning system at all 22 en route centres. No published finding links the two events, and Congress's October questions on testing and training are unanswered.",
-  "summary_fi": "Yhdysvaltain ilmailuviranomainen FAA pysäytti kaikki lähdöt maassa neljäksi tunniksi perjantaina 13.11. Kolme päivää aiemmin se oli ottanut tekoälyavusteisen suunnittelujärjestelmän käyttöön kaikissa 22 lennonjohtokeskuksessa. Mikään julkinen selvitys ei yhdistä tapahtumia, ja kongressin lokakuussa esittämiin kysymyksiin testauksesta ja koulutuksesta ei ole vastattu."
-},
+  {
+    "date": "2026-11-16",
+    "title": "OpenAI's own blog now certifies a physics proof",
+    "title_fi": "Fysiikan todistus siirtyi yhtiön omalle kanavalle",
+    "score": "7/10 · Stakes 6/10",
+    "summary_en": "OpenAI opened a science blog on 15 November. Its first guest post, by the physicist Nathaniel Craig, says GPT-6 Astra took the lead on the detailed proof of a candidate lattice definition of the Standard Model. The preprint went to arXiv on 6 October, and no journal stands between the claim and the public.",
+    "summary_fi": "OpenAI avasi tiedeblogin 15.11.2026. Fyysikko Nathaniel Craig kertoo ensimmäisessä vieraskirjoituksessa, että GPT-6 Astra johti standardimallin hilamuotoisen ehdokasmääritelmän yksityiskohtaisen todistuksen laatimista. Esijulkaisu toimitettiin arXiviin 6.10.2026, eikä mikään tiedelehti seiso väitteen ja yleisön välissä."
+  },
+  {
+    "date": "2026-11-15",
+    "score": "9/10 · Stakes 9/10",
+    "summary_en": "The Federal Aviation Administration stopped every departure in the United States for four hours on Friday 13 November. Three days earlier it had switched on an AI-supported planning system at all 22 en route centres. No published finding links the two events, and Congress's October questions on testing and training are unanswered.",
+    "summary_fi": "Yhdysvaltain ilmailuviranomainen FAA pysäytti kaikki lähdöt maassa neljäksi tunniksi perjantaina 13.11. Kolme päivää aiemmin se oli ottanut tekoälyavusteisen suunnittelujärjestelmän käyttöön kaikissa 22 lennonjohtokeskuksessa. Mikään julkinen selvitys ei yhdistä tapahtumia, ja kongressin lokakuussa esittämiin kysymyksiin testauksesta ja koulutuksesta ei ole vastattu.",
+    "title": "The FAA switched on an AI planner and left the safety questions open",
+    "title_fi": "FAA otti tekoälyn lentosuunnitteluun ja jätti turvakysymykset auki"
+  },
   {
     "date": "2026-11-14",
-    "title": "The Fed names AI debt as a stability risk",
-    "title_fi": "Fed nosti tekoälyvelan vakausriskiin",
     "score": "7/10 · Stakes 9/10",
     "summary_en": "The Federal Reserve puts artificial intelligence at the top of its November risk list, with 87 per cent of contacts naming it against 50 per cent in May. Advanced-computing debt reached USD 680 billion by October, nearly a third of nonfinancial investment-grade bond issuance.",
-    "summary_fi": "Yhdysvaltain keskuspankki nostaa tekoälyn marraskuisen riskilistansa kärkeen: 87 % kyselyn yhteyshenkilöistä mainitsee sen, kun toukokuussa osuus oli 50 %. Teholaskennan velkaa oli lokakuuhun mennessä 680 miljardia dollaria, lähes kolmannes ei-finanssialan investointiluokan yrityslainoista."
+    "summary_fi": "Yhdysvaltain keskuspankki nostaa tekoälyn marraskuisen riskilistansa kärkeen: 87 % kyselyn yhteyshenkilöistä mainitsee sen, kun toukokuussa osuus oli 50 %. Teholaskennan velkaa oli lokakuuhun mennessä 680 miljardia dollaria, lähes kolmannes ei-finanssialan investointiluokan yrityslainoista.",
+    "title": "The Fed names AI debt as a stability risk",
+    "title_fi": "Fed nosti tekoälyvelan vakausriskiin"
   },
   {
     "date": "2026-11-13",
-    "title": "The AI bottleneck loses its founder and gains a security gate",
-    "title_fi": "Nvidian johtaja kaatui, valtio otti portinvartijan roolin",
     "score": "7/10 · Stakes 10/10",
     "summary_en": "NVIDIA has replaced its founder as CEO with CFO Colette Kress on an interim basis, while opening a permanent search. The transfer comes amid a security investigation, congressional demands and a parallel push to restrict GPU exports to China.",
-    "summary_fi": "Jensen Huangin äkillinen ero nostaa NVIDIA:n johtoon siirtymän samaan aikaan, kun yhtiön hallitus tutkii ulkomaisen tiedustelun kohteeksi joutumista ja kongressi vaatii Huangia kuultavaksi. Kysymys ei ole vain siitä, kuka johtaa yhtiötä, vaan siitä, ketkä saavat hallita tekoälylaskennan keskeistä tarjontaporttia."
+    "summary_fi": "Jensen Huangin äkillinen ero nostaa NVIDIA:n johtoon siirtymän samaan aikaan, kun yhtiön hallitus tutkii ulkomaisen tiedustelun kohteeksi joutumista ja kongressi vaatii Huangia kuultavaksi. Kysymys ei ole vain siitä, kuka johtaa yhtiötä, vaan siitä, ketkä saavat hallita tekoälylaskennan keskeistä tarjontaporttia.",
+    "title": "The AI bottleneck loses its founder and gains a security gate",
+    "title_fi": "Nvidian johtaja kaatui, valtio otti portinvartijan roolin"
   },
   {
     "date": "2026-11-12",
-    "title": "The export border moves from the crate to the login",
-    "title_fi": "Vientiraja siirtyy laatikosta kirjautumiseen",
     "score": "5/10 · Stakes 8/10",
     "summary_en": "The US Commerce Department is finishing a rule that would require export licences before Chinese AI firms rent advanced Nvidia chips in data centres in seven more countries. The department already treats overseas use by a China-headquartered buyer as licensable.",
-    "summary_fi": "Yhdysvaltain kauppaministeriö viimeistelee sääntöä, joka vaatisi vientiluvan ennen kuin kiinalaiset tekoäly-yhtiöt vuokraavat Nvidian huippusiruja datakeskuksissa seitsemässä uudessa maassa. Ministeriö pitää jo nyt kiinalaisomistaisen ostajan ulkomaista käyttöä luvanvaraisena."
+    "summary_fi": "Yhdysvaltain kauppaministeriö viimeistelee sääntöä, joka vaatisi vientiluvan ennen kuin kiinalaiset tekoäly-yhtiöt vuokraavat Nvidian huippusiruja datakeskuksissa seitsemässä uudessa maassa. Ministeriö pitää jo nyt kiinalaisomistaisen ostajan ulkomaista käyttöä luvanvaraisena.",
+    "title": "The export border moves from the crate to the login",
+    "title_fi": "Vientiraja siirtyy laatikosta kirjautumiseen"
   },
   {
     "date": "2026-11-11",
-    "title": "Anthropic's suppliers buy the shares, and the invoice stays",
-    "title_fi": "Anthropic ottaa laskuttajansa omistajikseen",
     "score": "4/10 Â· Stakes 10/10",
     "summary_en": "Anthropic filed the second amendment to its listing document on 10 November. Seven chip and cloud suppliers will buy $26 billion of its non-voting stock at the offer price. The same suppliers are owed $900.9 billion for compute.",
-    "summary_fi": "Anthropic jÃ¤tti listautumisasiakirjansa toisen muutoksen 10. marraskuuta. SeitsemÃ¤n siru- ja pilvitoimittajaa ostaa yhtiÃ¶n Ã¤Ã¤nivallattomia osakkeita 26 miljardilla dollarilla. Samat toimittajat laskuttavat Anthropicia 900,9 miljardilla dollarilla laskentatehosta."
+    "summary_fi": "Anthropic jÃ¤tti listautumisasiakirjansa toisen muutoksen 10. marraskuuta. SeitsemÃ¤n siru- ja pilvitoimittajaa ostaa yhtiÃ¶n Ã¤Ã¤nivallattomia osakkeita 26 miljardilla dollarilla. Samat toimittajat laskuttavat Anthropicia 900,9 miljardilla dollarilla laskentatehosta.",
+    "title": "Anthropic's suppliers buy the shares, and the invoice stays",
+    "title_fi": "Anthropic ottaa laskuttajansa omistajikseen"
   },
   {
     "date": "2026-11-10",
-    "title": "Anthropic sells one model twice, and the second copy needs the company's permission",
-    "title_fi": "Anthropic myy saman mallin kahdessa ovessa",
     "score": "6/10 ÃÂ· Stakes 7/10",
     "summary_en": "Anthropic released Claude Fable 5.2 and Claude Mythos 5.2 on 9 November. Both run on the same model. Fable is open to all customers behind safety filters, and Mythos goes only to organisations that pass Anthropic's own verification programmes.",
-    "summary_fi": "Anthropic julkaisi 9. marraskuuta mallit Claude Fable 5.2 ja Claude Mythos 5.2. Molemmat perustuvat samaan malliin. Fable on avoin kaikille asiakkaille suodattimien takana, ja Mythoksen saavat vain Anthropicin omat varmennusohjelmat lÃÂ¤pÃÂ¤isseet organisaatiot."
+    "summary_fi": "Anthropic julkaisi 9. marraskuuta mallit Claude Fable 5.2 ja Claude Mythos 5.2. Molemmat perustuvat samaan malliin. Fable on avoin kaikille asiakkaille suodattimien takana, ja Mythoksen saavat vain Anthropicin omat varmennusohjelmat lÃÂ¤pÃÂ¤isseet organisaatiot.",
+    "title": "Anthropic sells one model twice, and the second copy needs the company's permission",
+    "title_fi": "Anthropic myy saman mallin kahdessa ovessa"
   },
   {
     "date": "2026-11-09",
-    "title": "China licenses the agent, and the licence covers every update",
-    "title_fi": "Kiina vaatii luvan jokaiselle agentin pÃÂÃÂ¤ivitykselle",
     "score": "5/10 ÃÂÃÂ· Stakes 9/10",
     "summary_en": "China's Ministry of Industry and Information Technology published Notice No. 42 on 6 November. Phones, tablets and wearables with a preinstalled agent must pass new tests before they connect, and each agent update needs a ministry review before users receive it.",
-    "summary_fi": "Kiinan teollisuus- ja tietotekniikkaministeriÃÂÃÂ¶ julkaisi tiedotteen numero 42 6.11.2026. Agentin valmiiksi sisÃÂÃÂ¤ltÃÂÃÂ¤vien puhelimien, tablettien ja puettavien laitteiden on lÃÂÃÂ¤pÃÂÃÂ¤istÃÂÃÂ¤vÃÂÃÂ¤ uudet testit ennen verkkoliityntÃÂÃÂ¤ÃÂÃÂ¤, ja jokainen agentin pÃÂÃÂ¤ivitys tarvitsee ministeriÃÂÃÂ¶n tarkastuksen ennen kÃÂÃÂ¤yttÃÂÃÂ¤jiÃÂÃÂ¤."
+    "summary_fi": "Kiinan teollisuus- ja tietotekniikkaministeriÃÂÃÂ¶ julkaisi tiedotteen numero 42 6.11.2026. Agentin valmiiksi sisÃÂÃÂ¤ltÃÂÃÂ¤vien puhelimien, tablettien ja puettavien laitteiden on lÃÂÃÂ¤pÃÂÃÂ¤istÃÂÃÂ¤vÃÂÃÂ¤ uudet testit ennen verkkoliityntÃÂÃÂ¤ÃÂÃÂ¤, ja jokainen agentin pÃÂÃÂ¤ivitys tarvitsee ministeriÃÂÃÂ¶n tarkastuksen ennen kÃÂÃÂ¤yttÃÂÃÂ¤jiÃÂÃÂ¤.",
+    "title": "China licenses the agent, and the licence covers every update",
+    "title_fi": "Kiina vaatii luvan jokaiselle agentin pÃÂÃÂ¤ivitykselle"
   },
   {
     "date": "2026-11-08",
-    "title": "Britain gives ministers power to investigate AI agents that escape control",
-    "title_fi": "Britannia antaa ministereille vallan tutkia karanneita tekoÃÂÃÂ¤lyagentteja",
     "score": "5/10 ÃÂÃÂ· Stakes 9/10",
     "summary_en": "The House of Lords agreed a clause to the Cyber Security and Resilience Bill on 26 October. It lets ministers make rules for organisations that lose control of an AI agent, and investigate the incident. The duty falls on the deployer, not the model developer, and every measure still needs secondary legislation.",
-    "summary_fi": "YlÃÂÃÂ¤huone hyvÃÂÃÂ¤ksyi 26.10.2026 lausekkeen kyberturvallisuus- ja resilienssilakiesitykseen. Se antaa ministereille vallan sÃÂÃÂ¤ÃÂÃÂ¤tÃÂÃÂ¤ÃÂÃÂ¤ velvoitteista organisaatioille, jotka menettÃÂÃÂ¤vÃÂÃÂ¤t tekoÃÂÃÂ¤lyagentin hallinnan, ja tutkia tapauksen. Velvoite kohdistuu kÃÂÃÂ¤yttÃÂÃÂ¶ÃÂÃÂ¶nottajaan, ei mallin kehittÃÂÃÂ¤jÃÂÃÂ¤ÃÂÃÂ¤n, ja jokainen toimenpide tarvitsee vielÃÂÃÂ¤ asetuksen."
+    "summary_fi": "YlÃÂÃÂ¤huone hyvÃÂÃÂ¤ksyi 26.10.2026 lausekkeen kyberturvallisuus- ja resilienssilakiesitykseen. Se antaa ministereille vallan sÃÂÃÂ¤ÃÂÃÂ¤tÃÂÃÂ¤ÃÂÃÂ¤ velvoitteista organisaatioille, jotka menettÃÂÃÂ¤vÃÂÃÂ¤t tekoÃÂÃÂ¤lyagentin hallinnan, ja tutkia tapauksen. Velvoite kohdistuu kÃÂÃÂ¤yttÃÂÃÂ¶ÃÂÃÂ¶nottajaan, ei mallin kehittÃÂÃÂ¤jÃÂÃÂ¤ÃÂÃÂ¤n, ja jokainen toimenpide tarvitsee vielÃÂÃÂ¤ asetuksen.",
+    "title": "Britain gives ministers power to investigate AI agents that escape control",
+    "title_fi": "Britannia antaa ministereille vallan tutkia karanneita tekoÃÂÃÂ¤lyagentteja"
   },
   {
     "date": "2026-11-07",
-    "title": "AI now does part of AI research, and the proof is redacted",
-    "title_fi": "TekoÃÂÃÂ¤ly tekee jo osan tutkimuksesta ÃÂ¢ÃÂÃÂ todisteet on peitetty",
     "score": "7/10 ÃÂÃÂ· Stakes 6/10",
     "summary_en": "METR spent eleven weeks inside Anthropic and found that capability growth on well-specified tasks now runs at about twice the historical rate, with AI itself the likely main cause. Anthropic redacted most of the evidence behind the finding, so the public must trust the evaluator's judgement.",
-    "summary_fi": "METR tyÃÂÃÂ¶skenteli yksitoista viikkoa Anthropicin sisÃÂÃÂ¤llÃÂÃÂ¤. Sen mukaan kykyjen kasvu tÃÂÃÂ¤smÃÂÃÂ¤llisissÃÂÃÂ¤ tehtÃÂÃÂ¤vissÃÂÃÂ¤ on nyt noin kaksinkertainen historialliseen vauhtiin verrattuna, ja tekoÃÂÃÂ¤ly on todennÃÂÃÂ¤kÃÂÃÂ¶isesti pÃÂÃÂ¤ÃÂÃÂ¤syy. Anthropic peitti suurimman osan lÃÂÃÂ¶ydÃÂÃÂ¶n todisteista, joten yleisÃÂÃÂ¶n on luotettava arvioijan harkintaan."
+    "summary_fi": "METR tyÃÂÃÂ¶skenteli yksitoista viikkoa Anthropicin sisÃÂÃÂ¤llÃÂÃÂ¤. Sen mukaan kykyjen kasvu tÃÂÃÂ¤smÃÂÃÂ¤llisissÃÂÃÂ¤ tehtÃÂÃÂ¤vissÃÂÃÂ¤ on nyt noin kaksinkertainen historialliseen vauhtiin verrattuna, ja tekoÃÂÃÂ¤ly on todennÃÂÃÂ¤kÃÂÃÂ¶isesti pÃÂÃÂ¤ÃÂÃÂ¤syy. Anthropic peitti suurimman osan lÃÂÃÂ¶ydÃÂÃÂ¶n todisteista, joten yleisÃÂÃÂ¶n on luotettava arvioijan harkintaan.",
+    "title": "AI now does part of AI research, and the proof is redacted",
+    "title_fi": "TekoÃÂÃÂ¤ly tekee jo osan tutkimuksesta ÃÂ¢ÃÂÃÂ todisteet on peitetty"
   },
   {
     "date": "2026-11-06",
-    "title": "Voters now price AI compute, and OpenAI writes its own permit",
-    "title_fi": "ÃÂÃÂÃÂÃÂ¤nestÃÂÃÂ¤jÃÂÃÂ¤t hinnoittelevat nyt tekoÃÂÃÂ¤lylaskennan ÃÂ¢ÃÂÃÂ OpenAI kirjoittaa oman lupansa",
     "score": "7/10 ÃÂÃÂ· Stakes 7/10",
     "summary_en": "Voters decided 47 local measures on data centres on 3 November: 45 backed a restriction and one allowed construction. Two days later OpenAI published a compact to pay for grid upgrades, publish water and power data and end non-disclosure agreements with officials. The constraint on AI buildout has moved from capital to local consent.",
-    "summary_fi": "ÃÂÃÂÃÂÃÂ¤nestÃÂÃÂ¤jÃÂÃÂ¤t ratkaisivat 3. marraskuuta 47 paikallista datakeskuskysymystÃÂÃÂ¤: 45 rajoitti rakentamista ja yksi salli sen. Kaksi pÃÂÃÂ¤ivÃÂÃÂ¤ÃÂÃÂ¤ myÃÂÃÂ¶hemmin OpenAI julkaisi sopimuksen, jossa se lupaa maksaa verkkoliitÃÂÃÂ¤nnÃÂÃÂ¤t, julkaista vesi- ja sÃÂÃÂ¤hkÃÂÃÂ¶tiedot ja lopettaa salassapitosopimukset viranomaisten kanssa. TekoÃÂÃÂ¤lyn rakentamisen rajoite siirtyi pÃÂÃÂ¤ÃÂÃÂ¤omasta paikalliseen suostumukseen."
+    "summary_fi": "ÃÂÃÂÃÂÃÂ¤nestÃÂÃÂ¤jÃÂÃÂ¤t ratkaisivat 3. marraskuuta 47 paikallista datakeskuskysymystÃÂÃÂ¤: 45 rajoitti rakentamista ja yksi salli sen. Kaksi pÃÂÃÂ¤ivÃÂÃÂ¤ÃÂÃÂ¤ myÃÂÃÂ¶hemmin OpenAI julkaisi sopimuksen, jossa se lupaa maksaa verkkoliitÃÂÃÂ¤nnÃÂÃÂ¤t, julkaista vesi- ja sÃÂÃÂ¤hkÃÂÃÂ¶tiedot ja lopettaa salassapitosopimukset viranomaisten kanssa. TekoÃÂÃÂ¤lyn rakentamisen rajoite siirtyi pÃÂÃÂ¤ÃÂÃÂ¤omasta paikalliseen suostumukseen.",
+    "title": "Voters now price AI compute, and OpenAI writes its own permit",
+    "title_fi": "ÃÂÃÂÃÂÃÂ¤nestÃÂÃÂ¤jÃÂÃÂ¤t hinnoittelevat nyt tekoÃÂÃÂ¤lylaskennan ÃÂ¢ÃÂÃÂ OpenAI kirjoittaa oman lupansa"
   },
   {
     "date": "2026-11-05",
