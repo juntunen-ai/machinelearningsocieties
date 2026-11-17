@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-11-17",
+    "title": "Accountability moved from the answer to the click",
+    "title_fi": "Vastuu siirtyi vastauksesta klikkaukseen",
+    "score": "4/10 · Stakes 5/10",
+    "summary_en": "OpenAI shipped computer-use agents into clinical and administrative work, with named production deployments at CVS Health and Cigna Healthcare. The agent now performs the step that no API records, and the only log of it belongs to the customer and the vendor.",
+    "summary_fi": "OpenAI julkaisi 16.11.2026 tietokoneenkäyttöagentit terveydenhuollon työhön, ja CVS Health sekä Cigna Healthcare kuvaavat tuotantokäyttöä. Agentti tekee askeleen, jota mikään rajapinta ei kirjaa, ja ainoa jälki siitä on asiakkaan ja toimittajan lokissa."
+  },
+  {
     "date": "2026-11-16",
     "title": "OpenAI's own blog now certifies a physics proof",
     "title_fi": "Fysiikan todistus siirtyi yhtiön omalle kanavalle",
