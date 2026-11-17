@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accountability moved from the answer to the click - Machine Learning Societies</title>
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="../feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="../feed.fi.xml">
+<link rel="stylesheet" href="../assets/site.css">
+
+<link rel="canonical" href="https://machine-learning-societies.web.app/briefs/2026-11-17.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Machine Learning Societies">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Accountability moved from the answer to the click">
+<meta property="og:description" content="OpenAI shipped computer-use agents into clinical and administrative work, with named production deployments at CVS Health and Cigna Healthcare. The agent now performs the step that no API records, and the only log of it belongs to the customer and the vendor.">
+<meta property="og:url" content="https://machine-learning-societies.web.app/briefs/2026-11-17.html">
+<meta property="og:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-17.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="621">
+<meta property="og:image:alt" content="Accountability moved from the answer to the click">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Accountability moved from the answer to the click">
+<meta name="twitter:description" content="OpenAI shipped computer-use agents into clinical and administrative work, with named production deployments at CVS Health and Cigna Healthcare. The agent now performs the step that no API records, and the only log of it belongs to the customer and the vendor.">
+<meta name="twitter:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-17.png">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mast-left">
+      <a class="brand" href="../index.html">Machine Learning Societies</a>
+      <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></span>
+      <span class="toplinks"><a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a> &middot; <a href="../about.html">About this brief</a></span>
+    </div>
+    <div class="lang"><a href="2026-11-17.fi.html">FI</a><a href="2026-11-17.html" aria-current="true">EN</a></div>
+  </header>
+  <article class="brief">
+<p class="kicker">17 November 2026 - Machine Learning Societies</p>
+<h2>Accountability moved from the answer to the click</h2>
+<p class="score">Signal 4/10 &middot; Stakes 5/10</p>
+<p>OpenAI put computer-use agents into clinical and administrative work in the United States on 16 November. The agents read screens, click and type in systems that have no machine interface. A clinician still approves the decision. Nobody outside the customer and the vendor records the click, and supervision now rests on that record.</p>
+<h3>Signal</h3>
+<p><strong>Observed.</strong> OpenAI published two healthcare announcements on 16 November 2026. A computer-use agent is a model that operates software as a person does: it reads the screen, clicks, types and moves between applications. OpenAI states that this work reaches electronic health records and payer portals that application programming interfaces (APIs), the machine-to-machine connections, do not reach. The capability ships in ChatGPT for Healthcare, ChatGPT for Clinicians, the OpenAI API, ChatGPT Work and Codex, subject to workspace settings. OpenAI added more than 20 healthcare plugins, including Elation Health, Infinitus, Aiva, Amion, Assort Health, Ferry Health and Turquoise.</p>
+<p>Four customers describe production use. CVS Health sends documents, processes referrals and supports specialist consults with agents. One workflow cleared a months-long document-sending backlog over a weekend, and another handles the system steps for tens of thousands of consults each day. Cigna Healthcare case managers previously worked across more than 10 separate clinical and administrative systems, and the agents now gather that context in seconds. Abridge plans an inpatient use case for discharge barriers, medication access and home-health coordination. Ambience prepares a prior-authorisation request, a payer's advance approval before payment, on an insurer's website from chart evidence. Controls are role-based access, audit logs, and a customer choice of which applications agents reach and which steps need human review. A HIPAA-compliant workflow needs services covered by a business associate agreement (BAA) with OpenAI; HIPAA is the United States health-privacy statute.</p>
+<p><strong>Caveats.</strong> Every figure above comes from the vendor or from the customer's own account. No independent audit of the agents' error rate in production is published. The clinical evaluation is a blind review of more than 1,300 physician reviews, in which physicians preferred the updated experience on eight dimensions, including factual correctness and safety; preference measures are not error rates. The public demonstration used synthetic patient data. The physical constraint is not compute but attention: each agent step that needs review consumes a clinician's or a specialist's minute, and that minute is the scarce input.</p>
+<p><strong>Assessment.</strong> The unit of delegation moved from the answer to the click. A named clinician still owns the visible clinical decision, and the clerical transport between systems now runs without a person. The payer's transaction record does not say that a machine performed the step. An API would have carried an identity; a screen session carries only a user session. The only complete record is the customer's audit log and the vendor's log, and both belong to the parties that supervision must check. This changes nothing for a patient today. It changes who can prove what happened after an error. Stakes are five because one workflow now runs in production across a sector's organisations, on both the provider and the payer side, and no budget line or rule changes yet. No candidate today reached six on the stakes ladder; this item reached five, the highest verified.</p>
+<p><strong>Evidence 4/10.</strong></p>
+<ul><li>P = 1: two primary announcements from the party that shipped the capability, on 16 November 2026.</li><li>N = 0: no monitored newsletter sender covered the announcements inside the window with a fact of its own.</li><li>L = 1: OpenAI posted the release at 20:02 UTC on 16 November, before any newsletter went out.</li></ul>
+<p>The sum is 3 &times; 1 + 0 + 1 = 4.</p>
+<p><strong>Stakes 5/10.</strong> One workflow type, clerical transport between clinical and payer systems, now runs in production across several organisations in one sector.</p>
+<h3>Thesis</h3>
+<p>Accountability in healthcare automation has moved from the model to the audit log. When a model answers, the answer sits in a record the clinician writes. When an agent clicks, the action sits in a session the vendor and the customer log, and the payer sees only the result.</p>
+<p>Supervision therefore rests on a document that the supervised organisation writes about itself. That is a weaker chain than it looks, because the first dispute will ask not what the model said but which session performed which step, and the payer holds no copy.</p>
+<h3>Antithesis</h3>
+<p>The workflow the agent replaces left no usable record at all. A clerk retyped between screens, or a fax arrived without an identity, and no one could reconstruct the sequence afterwards. An agent's log is more complete than the paper it replaces, and every clinical decision still needs a named approver. A liability rule written before any documented harm would slow the removal of delay, and delay already harms patients who wait for an authorisation.</p>
+<p>The stronger version of the objection is that nothing new happened. The payer portal is a normal interface, and automating it is a macro with better judgement. If the standard for a new supervision regime is that a machine touched a screen, then every robotic process automation deployment of the past decade qualified, and none of them needed a statute.</p>
+<h3>Forecast</h3>
+<p>Horizon: to 30 June 2027. Probability: 50 %. By that date, the Centers for Medicare and Medicaid Services, a state insurance regulator or a state legislature will publish guidance, open an inquiry or adopt a rule that names automated agents as submitters of prior-authorisation requests, or requires a submitter to disclose that an agent, not a person, filed the request. The claim resolves as a hit when such a document is public and names the agent as the acting party; otherwise it resolves as a miss. The wording stays frozen after publication.</p>
+<h3>Political consequences</h3>
+<p><strong>1-2 years.</strong> The instrument is the CMS prior-authorisation rule and the HIPAA Security Rule. The actors are the CMS Administrator and state insurance commissioners working through the National Association of Insurance Commissioners. The observable is a guidance note, an FAQ or an enforcement letter that names agent-submitted requests or requires the submitter to identify itself as automated. Evidence tier: Assessment. Market test: mixed, pro-business dominates. The instrument is the BAA-gated plugin marketplace, the actor is OpenAI, and the gain goes to the incumbents that already hold the portals and to the named plugin vendors, because a small practice competes on equal terms only if every payer portal accepts any BAA holder.</p>
+<p><strong>3-4 years.</strong> The instrument is a liability rule, either a state statute or a model act of the National Association of Insurance Commissioners, that assigns responsibility for an agent's clerical error among provider, payer and vendor. The actors are state legislatures and the association. The observable is a text that names an automated submitter and states who bears the error when the record disagrees. Evidence tier: Assessment.</p>
+<h3>What to watch</h3>
+<ul><li>A payer's terms of use that bar automated portal access, or require disclosure that a session is automated.</li><li>An audited volume from CVS Health or Cigna Healthcare, rather than a vendor description of one workflow.</li><li>A claim dispute in which a customer's audit log becomes evidence, which would settle whether the log is a record or a marketing artefact.</li><li>Whether any state insurance department adds agent-submitted requests to its market-conduct examination list.</li></ul>
+
+<details class="method-box">
+<summary>How the Signal is scored</summary>
+<p>Every edition prints two numbers, and they are read together. The first measures the quality of the evidence. The second measures how much changes if the evidence holds.</p>
+<p><strong>Signal, 0&ndash;10: the evidence.</strong> The formula is <em>E = 3P + N + L</em>, and the maximum is ten.</p>
+<ul>
+<li><strong>P &mdash; primary source.</strong> Three points when the claim rests on the actor's own document, announcement or statement. Zero when it rests on reporting about the actor.</li>
+<li><strong>N &mdash; independent confirmation.</strong> One point for each newsletter or newsroom that adds a fact of its own. Repeating a press release adds nothing.</li>
+<li><strong>L &mdash; first publisher.</strong> One point when the party at the centre of the story published it first.</li>
+</ul>
+<p><strong>Stakes, 1&ndash;10: the consequence.</strong> 1 is one team's experiment. 3 is one workflow in one organisation. 5 is a workflow adopted across a sector. 7 is a procurement rule or standard that changes. 9 is a statute, a liability rule or a supervision rule. 10 is a change in market structure. The even steps are the cases between them.</p>
+</details>
+<p class="kicker" style="margin-top:40px">Compiled by Harri Juntunen &amp; <a href="https://twin.so/">Twin</a></p>
+
+  <footer><a href="https://github.com/juntunen-ai/machinelearningsocieties">source</a> &middot; <a href="../feed.xml">RSS</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
+</div>
+<script>(function(){try{localStorage.setItem('mls-lang','en');}catch(e){}})();</script>
+</body>
+</html>
