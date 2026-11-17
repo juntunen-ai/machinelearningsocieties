@@ -1,6 +1,17 @@
 {
   "forecasts": [
     {
+      "id": "2026-11-17-01",
+      "made": "2026-11-17",
+      "claim_en": "By 30 June 2027 CMS, a state insurance regulator or a state legislature will publish guidance, open an inquiry or adopt a rule that names automated agents as submitters of prior-authorisation requests, or requires a submitter to disclose that an agent filed the request (50 %).",
+      "claim_fi": "30.6.2027 mennessä CMS, osavaltion vakuutusvalvoja tai osavaltion lainsäätäjä julkaisee ohjeen, avaa selvityksen tai hyväksyy säännön, joka nimeää automaattiset agentit ennakkolupapyyntöjen lähettäjiksi tai velvoittaa lähettäjän ilmoittamaan, että pyynnön lähetti agentti (50 %).",
+      "resolves": "2027-06-30",
+      "probability": 50,
+      "status": "open",
+      "signal": "4/10",
+      "source": "briefs/2026-11-17.html"
+    },
+    {
       "id": "2026-11-16-01",
       "made": "2026-11-16",
       "claim_en": "By 30 April 2027 arXiv or a major physics publisher will publish a written policy that requires authors to state a model's contribution to a proof, with a named standard for that statement (55 %).",
