@@ -1,35 +1,43 @@
 [
   {
+    "date": "2026-11-20",
+    "title": "Agents built a working journal in twelve weeks, and its referee runs the code",
+    "title_fi": "Agentit perustivat tiedelehden – arvioija ajaa koodin",
+    "score": "4/10 · Stakes 3/5",
+    "summary_en": "Thirty-five university laboratories gave 936 software agents twelve weeks on one shared preprint server. The agents wrote 936 studies, published their code, and founded a journal that re-runs the code before it accepts a claim. The record is public, and no funder or regulator asked for it.",
+    "summary_fi": "Kolmekymmentäviisi yliopistolaboratoriota antoi 936 ohjelma-agentille kaksitoista viikkoa yhdellä jaetulla palvelimella. Agentit kirjoittivat 936 tutkimusta, julkaisivat koodinsa ja perustivat lehden, joka ajaa koodin ennen kuin hyväksyy väitteen. Tallenne on julkinen, eikä kukaan rahoittaja tai viranomainen pyytänyt sitä."
+  },
+  {
     "date": "2026-11-19",
-    "title": "Anthropic floats, and the frontier's supervisor becomes the securities lawyer",
-    "title_fi": "Anthropic listautuu – valvojaksi tulee arvopaperilakimies",
     "score": "5/10 · Stakes 10/10",
     "summary_en": "Anthropic priced its first public offering at USD 83 a share on 18 November. The company sold 980 million Class A shares, raised about USD 81 billion, and the stock starts trading on Nasdaq as ANT on 19 November. From that morning the company answers to securities disclosure, quarterly reports and index funds, not only to the AI Act.",
-    "summary_fi": "Anthropic hinnoitteli ensimmäisen julkisen osakeantinsa 83 dollariin osakkeelta 18.11.2026. Yhtiö myi 980 miljoonaa A-sarjan osaketta, keräsi noin 81 miljardia dollaria, ja osake aloittaa kaupankäynnin Nasdaqissa tunnuksella ANT 19.11.2026. Siitä aamusta yhtiö raportoi neljännesvuosittain julkisesti ja vastaa sijoittajille, ei vain tekoälyasetukselle."
+    "summary_fi": "Anthropic hinnoitteli ensimmäisen julkisen osakeantinsa 83 dollariin osakkeelta 18.11.2026. Yhtiö myi 980 miljoonaa A-sarjan osaketta, keräsi noin 81 miljardia dollaria, ja osake aloittaa kaupankäynnin Nasdaqissa tunnuksella ANT 19.11.2026. Siitä aamusta yhtiö raportoi neljännesvuosittain julkisesti ja vastaa sijoittajille, ei vain tekoälyasetukselle.",
+    "title": "Anthropic floats, and the frontier's supervisor becomes the securities lawyer",
+    "title_fi": "Anthropic listautuu – valvojaksi tulee arvopaperilakimies"
   },
   {
     "date": "2026-11-18",
-    "title": "The answer replaced the index, and the meter starts on 3 December",
-    "title_fi": "Google siirsi vastauksen hakemiston tilalle â klikkitiedot erÃ¤Ã¤ntyvÃ¤t 3.12.",
     "score": "6/10 Â· Stakes 7/10",
     "summary_en": "Google said on 17 November that Gemini 4 Hydrogen is live in Google Search for all users worldwide, and called it the biggest model upgrade to Search yet. Search now answers, runs several searches at once, and returns tables, images and tools. On 3 December Google must give British publishers the click data that shows what those answers removed.",
-    "summary_fi": "Google kertoi 17.11.2026, ettÃ¤ Gemini 4 Hydrogen on kÃ¤ytÃ¶ssÃ¤ Google-haussa kaikkialla maailmassa, ja kutsui sitÃ¤ haun suurimmaksi mallipÃ¤ivitykseksi. Haku vastaa nyt itse, tekee useita hakuja samalla kertaa ja palauttaa taulukoita, kuvia ja tyÃ¶kaluja. Joulukuun 3. pÃ¤ivÃ¤nÃ¤ Googlen on annettava brittilÃ¤isille kustantajille klikkitiedot siitÃ¤, mitÃ¤ vastaukset veivÃ¤t."
+    "summary_fi": "Google kertoi 17.11.2026, ettÃ¤ Gemini 4 Hydrogen on kÃ¤ytÃ¶ssÃ¤ Google-haussa kaikkialla maailmassa, ja kutsui sitÃ¤ haun suurimmaksi mallipÃ¤ivitykseksi. Haku vastaa nyt itse, tekee useita hakuja samalla kertaa ja palauttaa taulukoita, kuvia ja tyÃ¶kaluja. Joulukuun 3. pÃ¤ivÃ¤nÃ¤ Googlen on annettava brittilÃ¤isille kustantajille klikkitiedot siitÃ¤, mitÃ¤ vastaukset veivÃ¤t.",
+    "title": "The answer replaced the index, and the meter starts on 3 December",
+    "title_fi": "Google siirsi vastauksen hakemiston tilalle â klikkitiedot erÃ¤Ã¤ntyvÃ¤t 3.12."
   },
   {
     "date": "2026-11-17",
-    "title": "Accountability moved from the answer to the click",
-    "title_fi": "Vastuu siirtyi vastauksesta klikkaukseen",
     "score": "4/10 Â· Stakes 5/10",
     "summary_en": "OpenAI shipped computer-use agents into clinical and administrative work, with named production deployments at CVS Health and Cigna Healthcare. The agent now performs the step that no API records, and the only log of it belongs to the customer and the vendor.",
-    "summary_fi": "OpenAI julkaisi 16.11.2026 tietokoneenkÃ¤yttÃ¶agentit terveydenhuollon tyÃ¶hÃ¶n, ja CVS Health sekÃ¤ Cigna Healthcare kuvaavat tuotantokÃ¤yttÃ¶Ã¤. Agentti tekee askeleen, jota mikÃ¤Ã¤n rajapinta ei kirjaa, ja ainoa jÃ¤lki siitÃ¤ on asiakkaan ja toimittajan lokissa."
+    "summary_fi": "OpenAI julkaisi 16.11.2026 tietokoneenkÃ¤yttÃ¶agentit terveydenhuollon tyÃ¶hÃ¶n, ja CVS Health sekÃ¤ Cigna Healthcare kuvaavat tuotantokÃ¤yttÃ¶Ã¤. Agentti tekee askeleen, jota mikÃ¤Ã¤n rajapinta ei kirjaa, ja ainoa jÃ¤lki siitÃ¤ on asiakkaan ja toimittajan lokissa.",
+    "title": "Accountability moved from the answer to the click",
+    "title_fi": "Vastuu siirtyi vastauksesta klikkaukseen"
   },
   {
     "date": "2026-11-16",
-    "title": "OpenAI's own blog now certifies a physics proof",
-    "title_fi": "Fysiikan todistus siirtyi yhtiÃ¶n omalle kanavalle",
     "score": "7/10 Â· Stakes 6/10",
     "summary_en": "OpenAI opened a science blog on 15 November. Its first guest post, by the physicist Nathaniel Craig, says GPT-6 Astra took the lead on the detailed proof of a candidate lattice definition of the Standard Model. The preprint went to arXiv on 6 October, and no journal stands between the claim and the public.",
-    "summary_fi": "OpenAI avasi tiedeblogin 15.11.2026. Fyysikko Nathaniel Craig kertoo ensimmÃ¤isessÃ¤ vieraskirjoituksessa, ettÃ¤ GPT-6 Astra johti standardimallin hilamuotoisen ehdokasmÃ¤Ã¤ritelmÃ¤n yksityiskohtaisen todistuksen laatimista. Esijulkaisu toimitettiin arXiviin 6.10.2026, eikÃ¤ mikÃ¤Ã¤n tiedelehti seiso vÃ¤itteen ja yleisÃ¶n vÃ¤lissÃ¤."
+    "summary_fi": "OpenAI avasi tiedeblogin 15.11.2026. Fyysikko Nathaniel Craig kertoo ensimmÃ¤isessÃ¤ vieraskirjoituksessa, ettÃ¤ GPT-6 Astra johti standardimallin hilamuotoisen ehdokasmÃ¤Ã¤ritelmÃ¤n yksityiskohtaisen todistuksen laatimista. Esijulkaisu toimitettiin arXiviin 6.10.2026, eikÃ¤ mikÃ¤Ã¤n tiedelehti seiso vÃ¤itteen ja yleisÃ¶n vÃ¤lissÃ¤.",
+    "title": "OpenAI's own blog now certifies a physics proof",
+    "title_fi": "Fysiikan todistus siirtyi yhtiÃ¶n omalle kanavalle"
   },
   {
     "date": "2026-11-15",
