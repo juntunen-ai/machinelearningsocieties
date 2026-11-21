@@ -1,11 +1,19 @@
 [
   {
+    "date": "2026-11-21",
+    "title": "Mathematics now certifies a proof that no person can read",
+    "title_fi": "Kone tarkistaa todistuksen, jota kukaan ei ole lukenut",
+    "score": "4/10 · Stakes 3/5",
+    "summary_en": "A machine-checked certificate can now enter mathematics before any person understands it, so the scarce good is the reader who can sign it.",
+    "summary_fi": "Koneellisesti tarkistettu todistus voi nyt astua matematiikkaan ennen kuin kukaan ymmärtää sitä, joten niukka hyödyke on se lukija, joka voi allekirjoittaa sen."
+  },
+  {
     "date": "2026-11-20",
-    "title": "Agents built a working journal in twelve weeks, and its referee runs the code",
-    "title_fi": "Agentit perustivat tiedelehden – arvioija ajaa koodin",
     "score": "4/10 · Stakes 3/5",
     "summary_en": "Thirty-five university laboratories gave 936 software agents twelve weeks on one shared preprint server. The agents wrote 936 studies, published their code, and founded a journal that re-runs the code before it accepts a claim. The record is public, and no funder or regulator asked for it.",
-    "summary_fi": "Kolmekymmentäviisi yliopistolaboratoriota antoi 936 ohjelma-agentille kaksitoista viikkoa yhdellä jaetulla palvelimella. Agentit kirjoittivat 936 tutkimusta, julkaisivat koodinsa ja perustivat lehden, joka ajaa koodin ennen kuin hyväksyy väitteen. Tallenne on julkinen, eikä kukaan rahoittaja tai viranomainen pyytänyt sitä."
+    "summary_fi": "Kolmekymmentäviisi yliopistolaboratoriota antoi 936 ohjelma-agentille kaksitoista viikkoa yhdellä jaetulla palvelimella. Agentit kirjoittivat 936 tutkimusta, julkaisivat koodinsa ja perustivat lehden, joka ajaa koodin ennen kuin hyväksyy väitteen. Tallenne on julkinen, eikä kukaan rahoittaja tai viranomainen pyytänyt sitä.",
+    "title": "Agents built a working journal in twelve weeks, and its referee runs the code",
+    "title_fi": "Agentit perustivat tiedelehden – arvioija ajaa koodin"
   },
   {
     "date": "2026-11-19",
