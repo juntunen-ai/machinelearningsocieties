@@ -11,20 +11,18 @@ data/
     series.csv                # curated observations (copy of index/series.csv)
     series.seed.csv           # must match series.csv at snapshot time
     brief_signals.csv
-    registry.v0.6.json        # method registry in force when snapshotted
+    registry.v1.0.json        # method registry in force when snapshotted
     planetary_boundaries.json
-    method.v0.6.md
-    computed.v0.6.json
-    SHA256SUMS                # checksums of the files above (except this file)
+    method.v1.0.json          # authoritative method parameters
+    method.v1.0.md
+    computed.v1.0.json
+    SHA256SUMS                # checksums of every file in the snapshot except this file
+    raw/<source_id>/          # optional frozen API responses plus *.meta.json sidecars
 ```
 
-When live fetches against Eurostat or Statistics Finland are implemented, raw API responses belong in:
+The 1.0.0-dev snapshot may also keep the v0.6 companions (`registry.v0.6.json`, `method.v0.6.md`, `computed.v0.6.json`) for comparison. Live scoring uses the v1.0 files.
 
-```
-data/snapshots/<VERSION>/raw/<source_id>/<downloaded-at>-<filename>
-```
-
-Each raw file should record the request URL, retrieval time (UTC), and HTTP status in a sidecar `*.meta.json`. `scripts/fetch_open_series.py` currently validates registry links and can optionally ping Eurostat; it does not yet snapshot raw responses.
+Each raw file should record the request URL, retrieval time (UTC), and HTTP status in a sidecar `*.meta.json`.
 
 ## Commands
 
