@@ -107,28 +107,33 @@ def test_golden_computed_json_matches_except_generated_at(computed: dict):
 
 
 def test_headline_figures_and_statuses(computed: dict):
+    """1.0.0-rc.3: the headline is the deployment pillar alone (Harri's decision, option (a)+(c));
+    the interval includes digital channel weight ~ U[0.25, 0.75] (method monte_carlo.channel_weights)."""
     eu = computed["populations"]["EU27"]["headline"]
     fi = computed["populations"]["FI"]["headline"]
-    assert eu["score"] == 21.7
-    assert eu["display"] == 22
-    assert eu["geometric_mean"] == 17.8
-    assert eu["status"] == "scored"
-    assert eu["median"] == 21.6
-    assert eu["p2_5"] == 16.7
-    assert eu["p97_5"] == 27.0
-    assert eu["variance_decomposition"]["share_data_pct"] == 5
-    assert eu["variance_decomposition"]["share_weights_pct"] == 61
-    assert eu["variance_decomposition"]["share_aggregation_pct"] == 34
-    assert fi["score"] == 28.3
-    assert fi["display"] == 28
-    assert fi["geometric_mean"] == 26.1
-    assert fi["status"] == "scored"
-    # FI interval after the TP1 review: pace draws use their own stream (method monte_carlo.pace_stream_offset).
-    assert fi["p2_5"] == 23.8
-    assert fi["p97_5"] == 33.3
-    assert fi["variance_decomposition"]["share_data_pct"] == 11
-    assert fi["variance_decomposition"]["share_weights_pct"] == 72
-    assert fi["variance_decomposition"]["share_aggregation_pct"] == 17
+    for h in (eu, fi):
+        assert h["status"] == "scored"
+        assert h["eligible_pillars"] == ["deployment"]
+        assert h["weights"] == {"deployment": 1.0}
+        # One eligible pillar: H = G, so the aggregation spread is zero.
+        assert h["geometric_mean"] == h["score"]
+        assert h["variance_decomposition"]["share_aggregation_pct"] == 0
+    assert eu["score"] == 9.3
+    assert eu["display"] == 9
+    assert eu["geometric_mean"] == 9.3
+    assert eu["median"] == 9.4
+    assert eu["p2_5"] == 5.6
+    assert eu["p97_5"] == 13.2
+    assert eu["variance_decomposition"]["share_data_pct"] == 1
+    assert eu["variance_decomposition"]["share_weights_pct"] == 99
+    assert fi["score"] == 17.3
+    assert fi["display"] == 17
+    assert fi["geometric_mean"] == 17.3
+    assert fi["median"] == 17.3
+    assert fi["p2_5"] == 10.4
+    assert fi["p97_5"] == 24.4
+    assert fi["variance_decomposition"]["share_data_pct"] == 1
+    assert fi["variance_decomposition"]["share_weights_pct"] == 99
     # Channel weights are a single JSON parameter (default 50/50).
     assert computed["channel_weights"]["digital"] == 0.5
     assert computed["channel_weights"]["physical"] == 0.5
@@ -200,10 +205,10 @@ def test_pace_history_ignores_staleness_but_respects_segments(computed: dict):
 
 
 def test_proxy_flags_follow_channel_inputs(computed: dict):
-    """method block_a.dai_pai: DAI is a proxy mix (K1); PAI uses only AI-specific D4."""
+    """method block_a.dai_pai: since rc.3 Block A has only AI-specific inputs, so neither flag is set."""
     for pop in ("EU27", "FI"):
         block = computed["populations"][pop]
-        assert block["dai"]["proxy"] is True
+        assert block["dai"]["proxy"] is False
         assert block["pai"]["proxy"] is False
 
 
@@ -357,3 +362,16 @@ def test_context_only_registry_sources_never_feed_a_score(repo_root: Path):
     with (index_dir / "series.csv").open(encoding="utf-8") as handle:
         bad = [r["obs_id"] for r in csv.DictReader(handle) if r["source_id"] in context_only and r["indicator_id"]]
     assert bad == []
+
+
+def test_capital_intensity_is_block_b_and_still_scored(computed: dict):
+    """K1 moved to Block B (rc.3): computed and shown with an interval, never in the headline."""
+    expected = {"EU27": (34.0, 31.0, 37.0), "FI": (39.3, 35.8, 42.8)}
+    for pop, (score, lo, hi) in expected.items():
+        block = computed["populations"][pop]
+        cap = {p["id"]: p for p in block["pillars"]}["capital_intensity"]
+        assert cap["block"] == "B_conditions"
+        assert cap["status"] == "scored"
+        assert cap["score"] == score
+        assert cap["interval"] == {"p2_5": lo, "median": score, "p97_5": hi}
+        assert "capital_intensity" not in block["headline"]["eligible_pillars"]

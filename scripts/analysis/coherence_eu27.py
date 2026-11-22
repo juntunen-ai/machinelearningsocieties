@@ -3,7 +3,7 @@
 Appendix only: reads the Eurostat 2025 member-state files in
 docs/analysis/data/eurostat_ms_2025/ and the goalposts in index/method.v1.0.json,
 scores every member state with the v1.0 Block A rules (channel weights and
-nominal weights from the method file, cost_to_serve absent) and prints the
+the rc.2 equal deployment/capital weighting, cost_to_serve absent) and prints the
 correlation matrix, indicator->pillar and pillar->headline correlations and the
 K1 share of the headline. It never writes index/computed.v1.0.json.
 """
@@ -44,8 +44,10 @@ def main() -> None:
     method = json.loads((ROOT / "index" / "method.v1.0.json").read_text(encoding="utf-8"))
     inds = {i["id"][:2]: i for p in method["pillars"] for i in p["indicators"] if i["id"][:2] in {"D1", "D2", "D3", "D4", "K1"} and not i["id"].startswith("K1x")}
     cw = method["scoring"]["within_pillar_aggregation"]["channel_weights"]
-    nominal = method["block_a"]["nominal_weights"]
-    w_dep = nominal["deployment"] / (nominal["deployment"] + nominal["capital_intensity"])
+    # The coherence check evaluates the rc.2 structure that motivated the rc.3 decision:
+    # deployment and capital_intensity at equal effective weight. In rc.3 the headline
+    # is deployment alone, so its pillar->headline correlation is 1 by construction.
+    w_dep = 0.5
 
     data = {c: {} for c in MS}
     for k, v in jsonstat(DATA / "eb.json"):

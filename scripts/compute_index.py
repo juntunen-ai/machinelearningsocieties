@@ -350,6 +350,10 @@ def compute(
     channel_weights = method["scoring"]["within_pillar_aggregation"]["channel_weights"]
     w_digital = float(channel_weights["digital"])
     w_physical = float(channel_weights["physical"])
+    # Current channel weights used by aggregate_pillar. The point estimate uses
+    # the scoring parameters; Monte Carlo weight draws overwrite them per draw
+    # (method monte_carlo.channel_weights) and restore them afterwards.
+    CHW = {"d": w_digital, "p": w_physical}
     mc = method["monte_carlo"]
     block_a_ids = list(method["block_a"]["pillars"])
     nominal = {k: float(v) for k, v in method["block_a"]["nominal_weights"].items()}
@@ -507,7 +511,7 @@ def compute(
             pillar_score = None
             coverage_note = "digital_none"
         elif "digital" in channels and "physical" in channels:
-            pillar_score = w_digital * channels["digital"]["score"] + w_physical * channels["physical"]["score"]
+            pillar_score = CHW["d"] * channels["digital"]["score"] + CHW["p"] * channels["physical"]["score"]
             coverage_note = "both"
         elif "digital" in channels:
             pillar_score = channels["digital"]["score"]
@@ -606,6 +610,13 @@ def compute(
     # Pace draws use their own stream (method monte_carlo.pace_stream) so level
     # intervals never depend on how many pace points another population has.
     rng_pace = np.random.Generator(np.random.PCG64(int(mc["seed"]) + int(mc.get("pace_stream_offset", 1))))
+    # Channel-weight draws (method monte_carlo.channel_weights) use a third stream.
+    mc_cw = mc.get("channel_weights")
+    rng_ch = (
+        np.random.Generator(np.random.PCG64(int(mc["seed"]) + int(mc_cw.get("stream_offset", 2))))
+        if mc_cw
+        else None
+    )
     r_weight = float(mc["weights"]["r"])
     n_draws = int(mc["draws"])
     warning_messages: list[str] = []
@@ -675,9 +686,11 @@ def compute(
         dai = aggregate_channel("digital")
         pai = aggregate_channel("physical")
 
-        # Indicator values used in scored Block A pillars (for MC)
+        # Indicator values entering any pillar score for this population (for MC).
+        # Block B/C pillars are included so they get data-noise intervals
+        # (method monte_carlo.draw_order); the headline uses only eligible Block A pillars.
         used_measured = []
-        for pid in eligible_ids:
+        for pid in pillars_spec:
             used_measured.extend(pillar_aggs[pid]["measured"])
         used_measured.sort(key=lambda m: m["indicator_id"])
         indicator_ids_sorted = [m["indicator_id"] for m in used_measured]
@@ -689,6 +702,11 @@ def compute(
         n_w = max(len(eligible_ids), 1)
         Z = rng.standard_normal((n_draws, n_ind))
         U = rng.uniform(1.0 - r_weight, 1.0 + r_weight, (n_draws, n_w))
+        CW = (
+            rng_ch.uniform(float(mc_cw["digital_min"]), float(mc_cw["digital_max"]), n_draws)
+            if rng_ch is not None
+            else None
+        )
 
         def headline_from_raw(raws: dict[str, float], weight_vec: dict[str, float] | None = None) -> tuple[float | None, float | None, float | None, float | None]:
             # returns H, G, DAI, PAI
@@ -753,11 +771,16 @@ def compute(
                     for j, iid in enumerate(indicator_ids_sorted):
                         raws[iid] = base_raw[iid] * (1.0 + base_sigma[iid] * float(Z[k, j]))
                 ww = weights_from_factors(U[k]) if random_weights else weights
+                if random_weights and CW is not None:
+                    CHW["d"], CHW["p"] = float(CW[k]), 1.0 - float(CW[k])
+                else:
+                    CHW["d"], CHW["p"] = w_digital, w_physical
                 h, g, d, p = headline_from_raw(raws, ww)
                 Hs[k] = h if h is not None else np.nan
                 Gs[k] = g if g is not None else np.nan
                 Dais[k] = d if d is not None else np.nan
                 Pais[k] = p if p is not None else np.nan
+            CHW["d"], CHW["p"] = w_digital, w_physical
             return {"H": Hs, "G": Gs, "DAI": Dais, "PAI": Pais}
 
         mc_out = None

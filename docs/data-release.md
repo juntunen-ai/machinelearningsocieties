@@ -1,6 +1,6 @@
 # Data release layout
 
-This describes the payload for a versioned data release. The current pipeline version is `1.0.0-rc.2`. **Do not create a GitHub Release or git tag from the `release/1.0.0` branch** until publication is separately approved. The scripts below only prepare files.
+This describes the payload for a versioned data release. The current pipeline version is `1.0.0-rc.3`. **Do not create a GitHub Release or git tag from the `release/1.0.0` branch** until publication is separately approved. The scripts below only prepare files.
 
 ## Directory layout
 

@@ -2,8 +2,8 @@
   "schema_version": "1.0.0",
   "method_version": "1.0",
   "index_version": "1.0.0",
-  "pipeline_version": "1.0.0-rc.2",
-  "generated_at": "2026-11-22T14:49:59Z",
+  "pipeline_version": "1.0.0-rc.3",
+  "generated_at": "2026-11-22T16:22:09Z",
   "range_level": "95%",
   "quarter_label": "2026-Q4",
   "scope_label": "EU27 and Finland, published separately",
@@ -13,7 +13,7 @@
   "channel_weights": {
     "digital": 0.5,
     "physical": 0.5,
-    "decision_status": "PROVISIONAL pending a decision by Harri Juntunen (requested 2026-11-22). Values are the v0.6 equal digital/physical split already stated in pillar_score; exposing them as a parameter changed no number."
+    "decision_status": "DECIDED by Harri Juntunen 2026-11-22 18:15: the point estimate keeps the equal split 0.5 / 0.5 (centre of the decided range) and the digital weight is drawn from U[0.25, 0.75] in the Monte Carlo (monte_carlo.channel_weights). Was PROVISIONAL (requested 2026-11-22)."
   },
   "vintage": {
     "cut_off": "2026-12-31",
@@ -21,7 +21,7 @@
     "hashes": {
       "series.csv": "65ac3b61ec4f0ea52c7d439bf64428a86751e55f7f853ce201972f70559cdbf4",
       "registry.v1.0.json": "d1a429d3d926a563b44137a0af8cb20057820f6bcb7e382dd08939deccaeb5b5",
-      "method.v1.0.json": "3a1ad4e719df8c856b36595e515649b7b239cad17810d6f5bd287c229918a3ac",
+      "method.v1.0.json": "782e3855963900ec08b9ee3abddd1fc839594ca6a02447e16fe8506c65952428",
       "brief_signals.csv": "08b55ee1757b56c1d890b6879a4978d398ee8b46b4738e7c794cc61c5c6a204a",
       "planetary_boundaries.json": "c8cfc23e105fc8d67f6da1f262c5da2ffc693ac76f6f7ef34b638ea5111f067b"
     }
@@ -56,41 +56,39 @@
       "id": "EU27",
       "label": "European Union (27 member states)",
       "headline": {
-        "score": 21.7,
-        "geometric_mean": 17.8,
+        "score": 9.3,
+        "geometric_mean": 9.3,
         "status": "scored",
         "weights": {
-          "deployment": 0.5,
-          "capital_intensity": 0.5
+          "deployment": 1.0
         },
         "eligible_pillars": [
-          "deployment",
-          "capital_intensity"
+          "deployment"
         ],
-        "median": 21.6,
-        "p2_5": 16.7,
-        "p97_5": 27.0,
+        "median": 9.4,
+        "p2_5": 5.6,
+        "p97_5": 13.2,
         "variance_decomposition": {
-          "V_total": 7.272226707748449,
-          "V_data": 0.5838308316711962,
-          "V_weights": 6.635276872412418,
-          "V_aggregation": 3.7041223655655036,
-          "share_data_pct": 5,
-          "share_weights_pct": 61,
-          "share_aggregation_pct": 34,
-          "interaction": 0.05311900366483524
+          "V_total": 5.277991705839078,
+          "V_data": 0.034972944605075725,
+          "V_weights": 5.237172911740015,
+          "V_aggregation": 0.0,
+          "share_data_pct": 1,
+          "share_weights_pct": 99,
+          "share_aggregation_pct": 0,
+          "interaction": 0.005845849493987032
         },
-        "score_unrounded": 21.670624999999998,
-        "display": 22
+        "score_unrounded": 9.34125,
+        "display": 9
       },
       "dai": {
-        "score": 25.6,
+        "score": 17.3,
         "status": "scored",
-        "proxy": true,
-        "median": 25.6,
-        "p2_5": 24.1,
-        "p97_5": 27.2,
-        "score_unrounded": 25.646249999999995
+        "proxy": false,
+        "median": 17.3,
+        "p2_5": 16.6,
+        "p97_5": 18.0,
+        "score_unrounded": 17.2925
       },
       "pai": {
         "score": 1.4,
@@ -233,7 +231,7 @@
         {
           "id": "capital_intensity",
           "code": "P3",
-          "block": "A_diffusion",
+          "block": "B_conditions",
           "direction": 1,
           "score": 34.0,
           "score_unrounded": 33.99999999999999,
@@ -1652,41 +1650,39 @@
       "id": "FI",
       "label": "Finland",
       "headline": {
-        "score": 28.3,
-        "geometric_mean": 26.1,
+        "score": 17.3,
+        "geometric_mean": 17.3,
         "status": "scored",
         "weights": {
-          "deployment": 0.5,
-          "capital_intensity": 0.5
+          "deployment": 1.0
         },
         "eligible_pillars": [
-          "deployment",
-          "capital_intensity"
+          "deployment"
         ],
-        "median": 28.3,
-        "p2_5": 23.8,
-        "p97_5": 33.3,
+        "median": 17.3,
+        "p2_5": 10.4,
+        "p97_5": 24.4,
         "variance_decomposition": {
-          "V_total": 6.254971482412437,
-          "V_data": 0.8155511037159152,
-          "V_weights": 5.348017732477815,
-          "V_aggregation": 1.2361207538661727,
-          "share_data_pct": 11,
-          "share_weights_pct": 72,
-          "share_aggregation_pct": 17,
-          "interaction": 0.09140264621870742
+          "V_total": 17.98323690323298,
+          "V_data": 0.17785812687459357,
+          "V_weights": 17.795132504438428,
+          "V_aggregation": 3.1554436208840472e-30,
+          "share_data_pct": 1,
+          "share_weights_pct": 99,
+          "share_aggregation_pct": 0,
+          "interaction": 0.010246271919960748
         },
-        "score_unrounded": 28.331041666666668,
-        "display": 28
+        "score_unrounded": 17.32875,
+        "display": 17
       },
       "dai": {
-        "score": 35.6,
+        "score": 31.9,
         "status": "scored",
-        "proxy": true,
-        "median": 35.6,
-        "p2_5": 33.7,
-        "p97_5": 37.5,
-        "score_unrounded": 35.63041666666667
+        "proxy": false,
+        "median": 31.9,
+        "p2_5": 30.3,
+        "p97_5": 33.6,
+        "score_unrounded": 31.927500000000002
       },
       "pai": {
         "score": 2.7,
@@ -1829,7 +1825,7 @@
         {
           "id": "capital_intensity",
           "code": "P3",
-          "block": "A_diffusion",
+          "block": "B_conditions",
           "direction": 1,
           "score": 39.3,
           "score_unrounded": 39.333333333333336,
@@ -1875,7 +1871,7 @@
             }
           ],
           "interval": {
-            "p2_5": 35.9,
+            "p2_5": 35.8,
             "median": 39.3,
             "p97_5": 42.8
           }

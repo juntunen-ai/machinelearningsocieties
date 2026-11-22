@@ -4,12 +4,30 @@ All notable changes to the Machine Learning Societies – Diffusion Index are do
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and version numbers follow the policy in `docs/semver.md`.
 
-The pipeline version in the `VERSION` file is the single source of truth. Method v1.0 is frozen on this branch (`index/method.v1.0.json` is authoritative). The current pipeline version is **1.0.0-rc.2**. This is a release candidate on `release/1.0.0`, not a GitHub Release or git tag.
+The pipeline version in the `VERSION` file is the single source of truth. Method v1.0 is frozen on this branch (`index/method.v1.0.json` is authoritative). The current pipeline version is **1.0.0-rc.3**. This is a release candidate on `release/1.0.0`, not a GitHub Release or git tag.
 
-## [Unreleased] — after 1.0.0-rc.2 on `release/1.0.0`
+## [1.0.0-rc.3] — 2026-11-22
+
+Release candidate on branch `release/1.0.0`. Not tagged and not deployed. **Method change before the 1.0.0 tag**, by Harri Juntunen's decision (22 November 2026, 18:15, rc review option (a)+(c)).
 
 ### Changed
 
+- **Headline impact (method change):** the headline is now the deployment pillar alone. Capital intensity (K1, ICT equipment + IPP investment, % of GDP) is a national-accounts proxy, not AI-specific. It made up 69–78 % of the rc.2 headline and correlated 0.98 with it across the 27 member states, so it moves from Block A to Block B (context/enablers). It is still computed and shown with n, grade, interval and pace, but never enters the headline.
+
+  | | rc.2 | rc.3 |
+  |---|---|---|
+  | EU27 headline (95 %) | 21.7 (16.7–27.0), display 22 | **9.3 (5.6–13.2)**, display 9 |
+  | EU27 geometric / median | 17.8 / 21.6 | 9.3 / 9.4 |
+  | Finland headline (95 %) | 28.3 (23.8–33.3), display 28 | **17.3 (10.4–24.4)**, display 17 |
+  | Finland geometric / median | 26.1 / 28.3 | 17.3 / 17.3 |
+  | Variance shares data / weights / aggregation | EU27 5/61/34, FI 11/72/17 | 1/99/0 in both |
+  | K1 capital (Block B) | in headline: EU27 34.0, FI 39.3 | not in headline: EU27 34.0 (31.0–37.0), FI 39.3 (35.8–42.8) |
+
+- Evidence rule: the headline needs at least 1 eligible Block A pillar, not 2. Block A is now deployment and cost_to_serve (nominal 1/2 each). While cost_to_serve is experimental, deployment alone is a valid headline.
+- Channel weights decided: the point estimate stays digital 0.5 / physical 0.5, and the Monte Carlo draws the digital weight from U[0.25, 0.75] (`monte_carlo.channel_weights`, generator PCG64(seed + 2)). The headline interval now includes the channel choice. Its variance is 99 % channel weights and 1 % data in both populations.
+- The noise matrix covers every indicator that enters any pillar score, so Block B pillars such as capital_intensity get data-noise intervals.
+- DAI is no longer proxy-flagged: Block A has only AI-specific inputs. EU27 DAI 17.3, PAI 1.4; Finland DAI 31.9, PAI 2.7.
+- Paces are unchanged (separate generator).
 - The public name of the index is now “Machine Learning Societies – Diffusion Index” (en dash). It previously appeared as “AI Diffusion Index”.
 - Added an internal appendix, `docs/analysis/1.0.0-sensitivity-and-coherence.md`, with reproducible scripts in `scripts/analysis/` and Eurostat 2025 member-state inputs. It covers sensitivity scenarios (channel weights, goalposts, K1 placement and weight, cost_to_serve bounds, D5, the 2025 break bound) and a coherence matrix across the 27 member states. It is not linked from the pages and no published number changes.
 - Registry licences applied from the TP3 licence audit (2026-11-22): every source now has `licence`, `licence_url`, `licence_checked`, `reuse_class`, `redistribution` and `attribution`. `gdpval` and `ramp_ai_index` are marked `use: context_only` (no open licence). `iea_energy_ai` is split into the Energy and AI report (CC BY 4.0, stays a possible score input) and `iea_energy_ai_observatory` (IEA non-CC terms, context only); OBS-051 retagged to the Observatory. No score changes.

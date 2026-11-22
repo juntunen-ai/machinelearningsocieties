@@ -71,8 +71,8 @@
       "channel_weights": {
         "digital": 0.5,
         "physical": 0.5,
-        "decision_status": "PROVISIONAL pending a decision by Harri Juntunen (requested 2026-11-22). Values are the v0.6 equal digital/physical split already stated in pillar_score; exposing them as a parameter changed no number.",
-        "sensitivity_note": "Digital-only deployment (weights 1.0/0.0) would raise the EU27 headline from 21.67 to 25.6 (method.v1.0.md section 13).",
+        "decision_status": "DECIDED by Harri Juntunen 2026-11-22 18:15: the point estimate keeps the equal split 0.5 / 0.5 (centre of the decided range) and the digital weight is drawn from U[0.25, 0.75] in the Monte Carlo (monte_carlo.channel_weights). Was PROVISIONAL (requested 2026-11-22).",
+        "sensitivity_note": "With the deployment-only headline (1.0.0-rc.3), digital weight 0.25 / 0.75 gives EU27 deployment 5.4 / 13.3 and FI 10.0 / 24.6; digital only gives 17.3 / 31.9 (docs/analysis/1.0.0-sensitivity-and-coherence.md).",
         "version_note": "Making the existing 0.5/0.5 rule an explicit parameter is a documentation change before the 1.0.0 tag: no version bump, recorded under [1.0.0-dev] in CHANGELOG.md. If Harri chooses different values before the tag, record them under [1.0.0-dev] with the old and new headline. Any change after the 1.0.0 tag is a MINOR change (method v1.1) with full back-series recomputation."
       }
     },
@@ -228,7 +228,8 @@
     {
       "id": "capital_intensity",
       "code": "P3",
-      "block": "A_diffusion",
+      "block": "B_conditions",
+      "block_note": "Moved from Block A to Block B (context/enablers) in 1.0.0-rc.3 by Harri Juntunen's decision of 2026-11-22: computed, shown with n, grade, interval and pace, never aggregated into the headline.",
       "direction": 1,
       "headline_eligible_by_design": true,
       "ai_specificity": "proxy",
@@ -443,8 +444,9 @@
       "staleness": "The 36-month staleness limit applies to cell levels as to population levels."
     },
     "headline": {
-      "min_eligible_block_a_pillars": 2,
-      "rule": "If fewer than 2 Block A pillars are eligible for a population, the headline for that population is null with status 'incomplete'; eligible and experimental pillar scores are still published."
+      "min_eligible_block_a_pillars": 1,
+      "rule": "If no Block A pillar is eligible for a population, the headline for that population is null with status 'incomplete'; eligible and experimental pillar scores are still published. Since 1.0.0-rc.3 Block A is deployment and cost_to_serve; with cost_to_serve experimental the headline equals the deployment pillar (one eligible pillar is a valid headline).",
+      "decision": "Harri Juntunen, 2026-11-22 18:15 (option (a)+(c) of the rc review): capital_intensity (K1, a national-accounts proxy that carried 69-78 % of the rc.2 headline) moved to Block B as a context/enabler pillar, still computed and shown, never in the headline. Was min 2 eligible Block A pillars."
     },
     "not_measured_display": "Unmeasured values are shown as the text 'not measured' (never 0, never blank, never a colour that implies a score). Every published number carries n (observations) and coverage (measured indicators / defined indicators)."
   },
@@ -478,15 +480,13 @@
   "block_a": {
     "pillars": [
       "deployment",
-      "cost_to_serve",
-      "capital_intensity"
+      "cost_to_serve"
     ],
     "nominal_weights": {
-      "deployment": 0.3333,
-      "cost_to_serve": 0.3333,
-      "capital_intensity": 0.3333
+      "deployment": 0.5,
+      "cost_to_serve": 0.5
     },
-    "missing_or_grade_c_rule": "Weights are renormalised over the eligible pillars only: w_i = nominal_i / sum(nominal_j for eligible j). With cost_to_serve experimental the effective weights are deployment 0.5000, capital_intensity 0.5000.",
+    "missing_or_grade_c_rule": "Weights are renormalised over the eligible pillars only: w_i = nominal_i / sum(nominal_j for eligible j). With cost_to_serve experimental the effective weight is deployment 1.0000 (the headline equals the deployment pillar until a second AI-specific Block A pillar is eligible).",
     "headline_aggregation": "arithmetic: H = sum_i w_i * s_i",
     "sensitivity_aggregation": {
       "name": "geometric (weakest-link) sensitivity",
@@ -494,14 +494,14 @@
       "floor": 1.0,
       "label": "Always labelled 'sensitivity check: geometric mean (weakest link)'; never called the headline, never mixed into the headline interval."
     },
-    "dai_pai": "DAI = Block A aggregation applied to digital-channel pillar scores; PAI = same for physical-channel scores (pillars without that channel are omitted and renormalised). DAI and PAI each carry the proxy flag whenever an indicator or pillar with ai_specificity=proxy contributes to that channel. In v1.0 DAI is flagged (K1 capital_intensity is a national-accounts proxy) and PAI is not (its only scored input is D4 E_AI_TAR, AI-specific); v0.6 flagged PAI because it used IFR robot density, which is sensitivity-only in v1.0.",
+    "dai_pai": "DAI = Block A aggregation applied to digital-channel pillar scores; PAI = same for physical-channel scores (pillars without that channel are omitted and renormalised). DAI and PAI each carry the proxy flag whenever an indicator or pillar with ai_specificity=proxy contributes to that channel. Since 1.0.0-rc.3 Block A contains only AI-specific inputs (D1-D3 digital, D4 physical), so neither DAI nor PAI is flagged; in rc.1/rc.2 DAI was flagged because K1 contributed. v0.6 flagged PAI because it used IFR robot density, which is sensitivity-only in v1.0.",
     "blocks_b_c": "Blocks B and C are dashboards: pillar scores with n, grade and coverage; no block composite is published in 1.0.0 (their direction 0 pillars are diagnostic by definition)."
   },
   "monte_carlo": {
     "seed": 20261028,
     "draws": 20000,
     "rng": "numpy.random.Generator(numpy.random.PCG64(20261028))",
-    "draw_order": "1) noise matrix Z of shape (draws, n_indicators) = rng.standard_normal, indicators sorted by indicator id; 2) weight factor matrix U of shape (draws, n_eligible_block_a_pillars) = rng.uniform(1-r, 1+r), pillars in block_a.pillars order. Draws are generated once per population in the order EU27, FI. Pace draws (section pace) use a separate generator numpy.random.Generator(numpy.random.PCG64(seed + pace_stream_offset)) = PCG64(20261029), consumed in the order: population (EU27, FI), pillar (method order), indicator (method order), segment (chronological), draw, point; one standard_normal per point per draw. Level intervals therefore never depend on pace history.",
+    "draw_order": "1) noise matrix Z of shape (draws, n_indicators) = rng.standard_normal, over every indicator value that enters any pillar score for the population (Block A and Blocks B/C, sector ALL), sorted by indicator id, so Block B pillars such as capital_intensity get data-noise intervals too; 2) weight factor matrix U of shape (draws, n_eligible_block_a_pillars) = rng.uniform(1-r, 1+r), pillars in block_a.pillars order. Draws are generated once per population in the order EU27, FI. Pace draws (section pace) use a separate generator numpy.random.Generator(numpy.random.PCG64(seed + pace_stream_offset)) = PCG64(20261029), consumed in the order: population (EU27, FI), pillar (method order), indicator (method order), segment (chronological), draw, point; one standard_normal per point per draw. Level intervals therefore never depend on pace history. 3) Channel weights (monte_carlo.channel_weights) come from a third generator PCG64(seed + 2) = PCG64(20261030), one uniform vector per population in the order EU27, FI.",
     "monte_carlo_error_note": "At N = 1,000 the v0.6 interval bounds moved by up to 0.6 points between seeds; at N = 20,000 the Monte Carlo standard error of a 2.5 % / 97.5 % quantile is below about 0.2 points for intervals of the v0.6 width.",
     "weights": {
       "distribution": "independent multiplicative uniform factors on the nominal weights, then renormalised",
@@ -513,6 +513,15 @@
         "It is reported as its own variance component, so readers can see how much of the interval is weight choice rather than data."
       ],
       "not_used": "Dirichlet(1,...,1) (v0.6) is abolished."
+    },
+    "channel_weights": {
+      "distribution": "uniform",
+      "digital_min": 0.25,
+      "digital_max": 0.75,
+      "stream_offset": 2,
+      "rule": "In every draw with random weights, the digital channel weight w_d is drawn from U[0.25, 0.75] and the physical weight is 1 - w_d; the same draw applies to every pillar that has both channels. Draws come from numpy.random.Generator(numpy.random.PCG64(seed + 2)), one vector of length draws per population (order EU27, FI), reused by the joint and weights-only runs. The point estimate keeps scoring.within_pillar_aggregation.channel_weights (0.5 / 0.5).",
+      "decision": "Harri Juntunen, 2026-11-22 18:15. Channel weights are the largest single lever on the deployment-only headline, so their uncertainty is part of the published interval.",
+      "added": "1.0.0-rc.3"
     },
     "data_noise": {
       "model": "x_draw = x * (1 + sigma_rel * z) for each indicator value, z ~ N(0,1); the score is recomputed from x_draw through the goalpost and clipping. One z per indicator value (not shared across indicators).",
@@ -537,15 +546,15 @@
         0.5,
         0.975
       ],
-      "headline_interval": "Quantiles of H over the joint draws of data noise and weights (arithmetic aggregation).",
+      "headline_interval": "Quantiles of H over the joint draws of data noise, Block A pillar weights and channel weights (arithmetic aggregation).",
       "point_vs_median": "The published point is H at nominal effective weights and unperturbed data; the MC median is published next to it. If |median - point| > 1.0 the compiler emits a warning."
     },
     "variance_decomposition": {
       "runs": {
-        "V_total": "variance of H with data noise and weights both random",
+        "V_total": "variance of H with data noise and weights (Block A pillar weights and channel weights) both random",
         "V_data": "variance of H with data noise only (weights fixed at effective nominal)",
-        "V_weights": "variance of H with weights only (data fixed)",
-        "V_aggregation": "variance over the 50/50 mixture of H and G at fixed data and weights = ((H - G)/2)^2"
+        "V_weights": "variance of H with weights only (data fixed). With deployment as the only eligible Block A pillar this is the channel-weight component (digital weight U[0.25, 0.75] within deployment); Block A pillar weights then have no effect.",
+        "V_aggregation": "variance over the 50/50 mixture of H and G at fixed data and weights = ((H - G)/2)^2. A deterministic spread, not a sampled variance; zero when one pillar is eligible (H = G)."
       },
       "outputs": [
         "V_total",
@@ -671,6 +680,18 @@
         "Evidence rule counted per population instead of across all geographies (evidence_rules.pillar_headline_eligibility.counting).",
         "Second official source for K1 added as cross-check indicator K1x (OECD SNA Table 1), never scored; role 'cross_check' defined.",
         "block_a.dai_pai: proxy flag applies to DAI and PAI alike; v1.0 flags DAI (K1), not PAI."
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "by": "Massi, implementing Harri Juntunen's decision of 2026-11-22 18:15 (relayed by Perikles)",
+      "version_effect": "1.0.0-rc.3 (method change before the 1.0.0 tag; headline numbers change)",
+      "items": [
+        "capital_intensity (K1) moved from Block A to Block B (context/enablers); still computed with interval and pace, never in the headline.",
+        "Block A = deployment, cost_to_serve (nominal 1/2 each); evidence_rules.headline.min_eligible_block_a_pillars 2 -> 1, so deployment alone is a valid headline while cost_to_serve is experimental.",
+        "monte_carlo.channel_weights added: digital weight ~ U[0.25, 0.75] per draw (stream PCG64(seed + 2)); channel_weights point 0.5 / 0.5 marked decided.",
+        "Noise matrix Z now covers every indicator entering any pillar score, so Block B pillars get data-noise intervals.",
+        "Headline: EU27 21.7 [16.7-27.0] -> 9.3 [5.6-13.2]; FI 28.3 [23.8-33.3] -> 17.3 [10.4-24.4]."
       ]
     }
   ]

@@ -10,7 +10,12 @@ REPO=Path(__file__).resolve().parents[2]; sys.path.insert(0,str(REPO/'scripts'))
 import compute_index as ci
 base=json.load(open(REPO/'index/method.v1.0.json'))
 def run(name, mutate):
-    m=copy.deepcopy(base); mutate(m)
+    m=copy.deepcopy(base)
+    try:
+        mutate(m)
+    except (ValueError, KeyError) as exc:  # scenario assumes rc.2 structure (K1 in Block A)
+        print(f"{name:42s} n/a under the current method ({exc!r})", flush=True)
+        return None
     p=Path(tempfile.mkdtemp())/'m.json'; p.write_text(json.dumps(m))
     c=ci.compute(method_path=p)
     out={}

@@ -24,7 +24,7 @@ An internal review on 22 November 2026 found that the v0.6 numbers did not come 
 | Physical indicator | IFR robot density (not AI-specific, restricted licence) | Eurostat share of enterprises using autonomous robots, vehicles or drones (`E_AI_TAR`); IFR is a sensitivity only |
 | Capital intensity | One company's S-1 commitments, global | Eurostat gross fixed capital formation in ICT equipment and intellectual property, % of GDP (proxy, official); filings are context |
 | cost_to_serve | Graded A-Q without a price index | Grade C, experimental, outside the headline until the Task Price Index exists |
-| Block A weights | Implicit 1/3 | Nominal 1/3 written down; renormalised over eligible pillars |
+| Block A weights | Implicit 1/3 | Block A = deployment and cost_to_serve, nominal 1/2 each, renormalised over eligible pillars; with cost_to_serve experimental the headline is deployment alone (since 1.0.0-rc.3) |
 | Headline | Arithmetic; "bottleneck score" was the median of randomly weighted geometric draws | Arithmetic headline; geometric mean only as a labelled sensitivity with floor 1.0 |
 | Monte Carlo | 1,000 draws, Dirichlet(1,1,1) weights, hand-set noise, 70/30 arithmetic/geometric mix, 90 % band | 20,000 draws, seed 20261028, ±50 % weights, noise from source standard errors, 95 % interval, three-way variance decomposition |
 | Velocity | Hard-coded; Block A 8.9 = mean of three typed numbers in mixed units | Pace in index points per year from at least 3 comparable points, with its own 95 % interval |
@@ -69,11 +69,11 @@ EU27 and Finland are computed and published separately and never averaged togeth
 
 | Block | Pillars | In headline? |
 |---|---|---|
-| **A. Diffusion proper** | deployment (P1), cost_to_serve (P2), capital_intensity (P3) | **Yes** (eligible pillars only, section 6) |
-| **B. Conditions** | energy_capacity (P8), governance_burden (P5), human_capital (P6), market_openness (P10) | Dashboard, never blended |
+| **A. Diffusion proper** | deployment (P1), cost_to_serve (P2) | **Yes** (eligible pillars only, section 7) |
+| **B. Conditions** | capital_intensity (P3, context/enabler), energy_capacity (P8), governance_burden (P5), human_capital (P6), market_openness (P10) | Dashboard, never blended |
 | **C. Consequences and distribution** | labour_reorganisation (P4), ownership_distribution (P9), ecological_balance (P7) | Dashboard, never blended |
 
-The headline is Block A only. Blocks B and C are published beside it as pillar scores with their observation count, grade and coverage; 1.0 publishes no Block B or Block C composite. The direction of every pillar is fixed in the specification: +1 means more is more diffusion, −1 means less is more diffusion, and 0 means diagnostic only (scored but never aggregated).
+The headline is Block A only. **Capital intensity moved to Block B in 1.0.0-rc.3** (Harri Juntunen's decision, 22 November 2026, 18:15). K1 is a national-accounts proxy that is not AI-specific, yet it carried 69–78 % of the rc.2 headline, and across the 27 member states it correlated 0.98 with that headline. It is still computed and shown with n, grade, interval and pace, as a context/enabler pillar, but it never enters the headline. Blocks B and C are published beside it as pillar scores with their observation count, grade and coverage; 1.0 publishes no Block B or Block C composite. The direction of every pillar is fixed in the specification: +1 means more is more diffusion, −1 means less is more diffusion, and 0 means diagnostic only (scored but never aggregated).
 
 ### 2.1 Pace layers: why the blocks move at different speeds
 
@@ -84,7 +84,7 @@ The essay is conceptual: it has no data and no method, and it says nothing about
 | Pace layer | Index pillars | Block | Typical speed of change |
 |---|---|---|---|
 | Fashion / attention | not measured on purpose (the index refuses to score hype) | — | days to months |
-| Commerce | deployment, cost_to_serve, capital_intensity | A (headline) | months to years |
+| Commerce | deployment, cost_to_serve (A, headline); capital_intensity (B, context) | A / B | months to years |
 | Infrastructure | energy_capacity | B | years to decades |
 | Governance | governance_burden, market_openness, ownership_distribution | B / C | years to decades |
 | Culture | human_capital; labour_reorganisation | B / C | decades |
@@ -119,7 +119,7 @@ If the pillar's direction is −1, the score is 100 − *s*. After normalisation
 
 - **Layer score** = arithmetic mean of the measured indicators in that layer.
 - **Channel score** = arithmetic mean of the measured layers in that channel.
-- **Pillar score** = weighted mean of the measured channels, with weights from the parameter `channel_weights`: digital 0.5, physical 0.5 (the v0.6 equal split). **Provisional, pending Harri Juntunen's decision.** Making the existing rule an explicit parameter changed no number and needs no version bump before the 1.0.0 tag; it is recorded under [1.0.0-dev] in CHANGELOG.md. A different value chosen before the tag is recorded there with the old and new headline. Any change after the tag is a MINOR change (method v1.1). If only one channel is measured, the pillar score is that channel and carries `channel_coverage = digital_only` or `physical_only`.
+- **Pillar score** = weighted mean of the measured channels, with weights from the parameter `channel_weights`: digital 0.5, physical 0.5 (the v0.6 equal split). **Decided by Harri Juntunen on 22 November 2026:** the point estimate keeps 0.5 / 0.5, the centre of the decided range. The Monte Carlo draws the digital weight from U[0.25, 0.75] (section 8), so the headline interval includes the channel choice. Any change after the 1.0.0 tag is a MINOR change (method v1.1). If only one channel is measured, the pillar score is that channel and carries `channel_coverage = digital_only` or `physical_only`.
 - Unmeasured indicators, layers and channels are omitted and listed. They are never imputed and never scored as zero.
 
 ### 3.3 Rounding
@@ -182,7 +182,7 @@ Observations and sources are counted **per pillar and per population**: only row
 
 **Experimental pillars.** A pillar with at least one scored indicator value that fails the eligibility test is published as "experimental", with n and grade, and excluded from the headline.
 
-**Headline completeness.** The headline for a population needs at least **2 eligible Block A pillars**. Otherwise it is null with status "incomplete", and the pillar scores are still published.
+**Headline completeness.** The headline for a population needs at least **1 eligible Block A pillar**. Otherwise it is null with status "incomplete", and the pillar scores are still published. Since 1.0.0-rc.3, Block A has two pillars (deployment and cost_to_serve). While cost_to_serve is experimental, an eligible deployment pillar alone is a valid headline. Until rc.2 the rule required 2 eligible pillars, which deployment and capital_intensity met together.
 
 **Grid cells.** The grid is 10 sectors (NACE sections, as in the registry) × 10 pillars, per population. A cell is scored only from at least **1 verified observation whose sector matches the cell's NACE section(s)** and whose geography matches the population, within the 36-month staleness limit. Observations for all sectors ("ALL") never fill a sector cell. Otherwise the cell's score and grade are null and its status is "not measured". The source rule (section 1) applies to cells as well.
 
@@ -211,15 +211,15 @@ Provenance grades: **A** official or administrative register or filing; **B** ac
 
 ## 7. Block A weights and aggregation
 
-**Nominal weights:** deployment 1/3, cost_to_serve 1/3, capital_intensity 1/3.
+**Nominal weights:** deployment 1/2, cost_to_serve 1/2. (Until rc.2: deployment, cost_to_serve and capital_intensity, 1/3 each.)
 
-**Missing or grade-C pillar:** weights are renormalised over the eligible pillars only, *w*ᵢ = nominalᵢ / Σ nominalⱼ (eligible *j*). With cost_to_serve experimental, the effective weights are **deployment 0.5000, capital_intensity 0.5000**.
+**Missing or grade-C pillar:** weights are renormalised over the eligible pillars only, *w*ᵢ = nominalᵢ / Σ nominalⱼ (eligible *j*). With cost_to_serve experimental, the effective weight is **deployment 1.0000**: the headline equals the deployment pillar, and *H* = *G*. Renormalisation over the eligible pillars is equivalent to imputing the missing pillar with the mean of the eligible ones. With one eligible pillar that mean is deployment itself.
 
 **Headline (arithmetic):** *H* = Σ *w*ᵢ *s*ᵢ.
 
 **Sensitivity check, geometric mean (weakest link):** *G* = exp(Σ *w*ᵢ ln max(*s*ᵢ, 1.0)). The floor of 1.0 keeps a near-zero pillar from sending *G* to zero. *G* is always labelled "sensitivity check: geometric mean (weakest link)", is never called the headline, and is never mixed into the headline interval. It shows how much a weak pillar would pull the score down if pillars could not compensate for each other. For example, with v0.6's typed-in pillars, a deployment score of 10 instead of 28.4 would have moved *H* to 36.6 and *G* to 28.9.
 
-**DAI and PAI** apply the same aggregation to the digital and physical channel scores of each pillar; pillars without that channel are omitted and the weights renormalised. DAI and PAI each carry the proxy flag whenever an indicator or pillar marked as a proxy (not AI-specific) contributes to that channel. In v1.0, DAI is flagged because K1 capital is a national-accounts proxy. PAI is not flagged: its only scored input is D4 (E_AI_TAR), which is AI-specific. v0.6 flagged PAI because it used IFR robot density, which is sensitivity-only in v1.0.
+**DAI and PAI** apply the same aggregation to the digital and physical channel scores of each pillar; pillars without that channel are omitted and the weights renormalised. DAI and PAI each carry the proxy flag whenever an indicator or pillar marked as a proxy (not AI-specific) contributes to that channel. Since 1.0.0-rc.3, Block A contains only AI-specific inputs (D1–D3 digital, D4 physical), so neither DAI nor PAI is flagged. DAI is the digital channel of deployment and PAI its physical channel. In rc.1 and rc.2, DAI was flagged because K1 contributed. v0.6 flagged PAI because it used IFR robot density, which is sensitivity-only in v1.0.
 
 ---
 
@@ -230,10 +230,10 @@ Provenance grades: **A** official or administrative register or filing; **B** ac
 | Seed | 20261028 |
 | Draws | 20,000 per population |
 | Generator | `numpy.random.Generator(numpy.random.PCG64(20261028))` |
-| Draw order | (1) noise matrix *Z* (draws × indicators) from `standard_normal`, indicators sorted by id; (2) weight factors *U* (draws × eligible Block A pillars) from `uniform(0.5, 1.5)`, pillars in Block A order; populations in the order EU27, FI. Pace draws use a separate generator PCG64(20261029) (section 10) |
-| Weights | independent multiplicative factors uniform on [0.5, 1.5] (±50 %), then renormalised |
+| Draw order | (1) noise matrix *Z* (draws × indicators) from `standard_normal`, over every indicator value that enters any pillar score for the population (Block A and Blocks B/C), sorted by id; (2) weight factors *U* (draws × eligible Block A pillars) from `uniform(0.5, 1.5)`, pillars in Block A order; populations in the order EU27, FI. Pace draws use a separate generator PCG64(20261029) (section 10); channel-weight draws use PCG64(20261030) |
+| Weights | Block A pillar weights: independent multiplicative factors uniform on [0.5, 1.5] (±50 %), then renormalised. Channel weights: digital weight uniform on [0.25, 0.75], physical = 1 − digital, the same draw for every pillar with both channels (since 1.0.0-rc.3) |
 | Data noise | *x*ᵈʳᵃʷ = *x* (1 + σʳᵉˡ *z*), one *z* per indicator value; the score is recomputed through goalpost and clipping |
-| Interval | 95 %: 2.5 %, 50 % and 97.5 % quantiles of *H* over joint data and weight draws |
+| Interval | 95 %: 2.5 %, 50 % and 97.5 % quantiles of *H* over joint data, pillar-weight and channel-weight draws |
 | Aggregation | separate component, *H* − *G*; not mixed into the interval |
 
 **Why ±50 % weights and not ±20 %.** Equal weights have no empirical basis in a formative index, so the plausible range should be wide. ±20 % would understate how arbitrary the weights are and would make the interval mostly data noise. ±50 % is also what method v0.6 promised. The v0.6 code instead drew weights from Dirichlet(1,1,1), which allows weights near 0 and 1. In the review's replication that made the interval about 2.5 times wider: 32.0–53.4 versus 38.0–46.5 under ±50 %. Weight uncertainty is reported as its own variance component, so readers can see how much of the interval comes from weight choice rather than data. Dirichlet sampling is abolished.
@@ -254,16 +254,16 @@ Each observation row records `sigma` and `sigma_basis` (published, binomial, fal
 
 | Output | Definition |
 |---|---|
-| V_total | variance of *H*, data noise and weights both random |
+| V_total | variance of *H*, data noise and weights (pillar and channel) both random |
 | V_data | variance of *H*, data noise only (weights fixed) |
-| V_weights | variance of *H*, weights only (data fixed) |
-| V_aggregation | variance of a 50/50 mix of *H* and *G* at fixed data and weights = ((*H* − *G*)/2)² |
+| V_weights | variance of *H*, weights only (data fixed). With deployment as the only eligible pillar this is the channel-weight component within deployment |
+| V_aggregation | ((*H* − *G*)/2)²: a deterministic spread, not a sampled variance; zero when one pillar is eligible |
 | share_data, share_weights, share_aggregation | each V ÷ (V_data + V_weights + V_aggregation), whole per cent |
 | interaction | V_total − V_data − V_weights |
 
 The data component is also run for DAI, PAI and every pillar score.
 
-For reference, the v0.6 replication split its 90 % band 95 % weights and 5 % data noise. Under v1.0 the weight share falls, and the aggregation share becomes visible whenever pillars diverge.
+For reference, the v0.6 replication split its 90 % band 95 % weights and 5 % data noise. In 1.0.0-rc.3 the headline variance is 1 % data and 99 % channel weights in both populations, with aggregation at 0 %. The channel split is the choice that matters, and the interval now shows it.
 
 ---
 
@@ -357,7 +357,7 @@ The index uses semantic versioning **MAJOR.MINOR.PATCH**. The method file carrie
 
 ## 13. Worked example (illustrative, not a published number)
 
-Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. The v1.0 compiler (`scripts/compute_index.py`) reproduces these levels; its published values after the TP1 review are EU27 21.7 (median 21.6, 95 % 16.7–27.0) and Finland 28.3 (median 28.3, 95 % 23.8–33.3). Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2); fallback A (4.5 %) otherwise. Script: `/workspace/adi-review/work/worked_example.py` (outside the repo; Kernelio's compiler replaces it).
+Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. The compiler (`scripts/compute_index.py`) reproduces these levels. Its values for 1.0.0-rc.3 are EU27 9.3 (median 9.4, 95 % 5.6–13.2) and Finland 17.3 (median 17.3, 95 % 10.4–24.4). Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2), fallback A (4.5 %) otherwise. Channel weights: digital weight uniform on [0.25, 0.75] in the Monte Carlo.
 
 | | EU27 | Finland |
 |---|---|---|
@@ -365,21 +365,22 @@ Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. T
 | D2 generative AI (individuals) | 32.66 | 46.27 |
 | D3 ≥3 AI technologies | 8.28 | 21.81 |
 | D4 autonomous robots, vehicles or drones | 1.39 | 2.73 |
-| Digital channel = mean(reach mean(D1, D2), depth D3) | 17.29 | 31.93 |
-| Physical channel = D4 | 1.39 | 2.73 |
-| **Deployment** = 0.5 digital + 0.5 physical | **9.34** | **17.33** |
-| K1 capital (ICT equipment + IPP, % of GDP) | 5.1 → **34.00** | 5.9 → **39.33** |
-| **Headline *H*** (0.5 / 0.5) | **21.67** | **28.33** |
-| Geometric sensitivity *G* | 17.82 | 26.11 |
-| Monte Carlo median; 95 % interval | 21.61; 16.71–26.98 | 28.29; 23.78–33.32 |
-| Variance shares data / weights / aggregation | 5 % / 61 % / 34 % | 11 % / 72 % / 17 % |
+| Digital channel = mean(reach mean(D1, D2), depth D3) = DAI | 17.29 | 31.93 |
+| Physical channel = D4 = PAI | 1.39 | 2.73 |
+| **Deployment** = 0.5 digital + 0.5 physical = **headline *H*** | **9.34** | **17.33** |
+| Geometric sensitivity *G* (one pillar, so *G* = *H*) | 9.34 | 17.33 |
+| Monte Carlo median; 95 % interval (data + channel weights) | 9.4; 5.6–13.2 | 17.3; 10.4–24.4 |
+| Deployment data-only interval | 9.0–9.7 | 16.5–18.2 |
+| Variance shares data / weights / aggregation | 1 % / 99 % / 0 % | 1 % / 99 % / 0 % |
+| *Block B, not in the headline:* K1 capital (ICT equipment + IPP, % of GDP) | 5.1 → 34.0 (95 % 31.0–37.0) | 5.9 → 39.3 (95 % 35.8–42.8) |
 
 What the example shows:
 
-- Built from data, the headline falls far below v0.6's 42.7.
-- Capital clearly exceeds use, so the "money has arrived, use has not" message survives.
-- The equal digital/physical split inside deployment is the single choice that moves the number most: with digital only, deployment would be 17.3 for EU27 and the headline 25.6.
-- These numbers change once K1 and the 2026 Eurostat data are logged; they must not be reused on any page.
+- Built from data and limited to AI-specific use, the headline is far below v0.6's 42.7 and below rc.2's capital-weighted 21.7 / 28.3.
+- Capital (Block B) clearly exceeds use (Block A). The "money has arrived, use has not" message now comes from setting the two side by side, not from blending them.
+- The digital/physical split inside deployment is the dominant uncertainty. With digital weight 0.25 or 0.75, EU27 deployment is 5.4 or 13.3 and Finland's 10.0 or 24.6. With digital only it is 17.3 and 31.9. That is why the split is drawn in the Monte Carlo.
+- These numbers change once the 2026 Eurostat data are logged; they must not be reused on any page.
+- The rc.2 numbers and the alternatives (K1 weights, goalposts, cost_to_serve bounds) are in `docs/analysis/1.0.0-sensitivity-and-coherence.md`.
 
 ---
 
@@ -428,12 +429,13 @@ Source status: **[V]** checked live in primary form; **[K]** known source, URL o
 
 ## 16. Known limitations of 1.0
 
-- K1 capital is a national-accounts proxy (ICT hardware, software, databases and R&D), not AI-specific.
+- K1 capital is a national-accounts proxy (ICT hardware, software, databases and R&D), not AI-specific. Since 1.0.0-rc.3 it is a Block B context pillar, outside the headline.
+- The headline rests on one pillar (deployment) and on one provider (Eurostat, two surveys) until cost_to_serve becomes eligible.
 - Embeddedness is not measured anywhere in the headline.
 - The physical channel rests on one indicator (`E_AI_TAR`), which scores low and pulls deployment down by design.
 - Most Block B and C pillars and most grid cells will be experimental or not measured.
 - The 2025 Eurostat definition extension is bounded but not identified.
-- Weights are a convention; their effect is shown, not removed.
+- Weights are a convention; their effect is shown, not removed. The channel split dominates the headline interval (99 % of its variance).
 
 ---
 

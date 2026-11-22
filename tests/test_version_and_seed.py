@@ -17,7 +17,7 @@ def _csv_rows(path: Path) -> list[dict]:
 
 def test_version_file_is_single_line(repo_root: Path):
     version = (repo_root / "VERSION").read_text(encoding="utf-8").strip()
-    assert version == "1.0.0-rc.2"
+    assert version == "1.0.0-rc.3"
     assert "\n" not in (repo_root / "VERSION").read_text(encoding="utf-8").strip()
 
 
