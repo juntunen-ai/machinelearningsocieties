@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Validate, test, and package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install dependencies
+        run: python3 -m pip install --upgrade pip && python3 -m pip install -r requirements.txt
+
+      - name: Check VERSION consistency
+        run: python3 scripts/check_version.py
+
+      - name: Validate series and brief_signals (Pandera + JSON Schema)
+        run: python3 scripts/validate_data.py
+
+      - name: Validate series against the source registry
+        run: python3 scripts/fetch_open_series.py
+
+      - name: Run pytest
+        run: python3 -m pytest -q
+
+      - name: Verify snapshot checksums
+        run: python3 scripts/make_checksums.py --verify data/snapshots/1.0.0-dev
+
+      - name: Package the site artifact
+        run: python3 scripts/package_site_artifact.py
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist/
+          if-no-files-found: error
