@@ -31,6 +31,13 @@ PB_PATH = INDEX_DIR / "planetary_boundaries.json"
 SERIES_CSV = INDEX_DIR / "series.csv"
 BRIEF_SIGNALS_CSV = INDEX_DIR / "brief_signals.csv"
 OUTPUT_JSON = INDEX_DIR / "computed.v0.6.json"
+VERSION_PATH = ROOT / "VERSION"
+MC_SEED = 20261028
+N_DRAWS = 1000
+
+
+def read_pipeline_version(version_path: Path = VERSION_PATH) -> str:
+    return version_path.read_text(encoding="utf-8").strip()
 
 
 def clamp(val: float, lo: float = 0.0, hi: float = 100.0) -> float:
@@ -55,14 +62,21 @@ def dirichlet_uniform(rng: random.Random, k: int):
     return [s / total for s in samples]
 
 
-def main():
-    registry = json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
-    pb_data = json.loads(PB_PATH.read_text(encoding="utf-8"))
+def compute(
+    *,
+    registry_path: Path = REGISTRY_PATH,
+    pb_path: Path = PB_PATH,
+    series_path: Path = SERIES_CSV,
+    brief_path: Path = BRIEF_SIGNALS_CSV,
+    version_path: Path = VERSION_PATH,
+) -> dict:
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    pb_data = json.loads(pb_path.read_text(encoding="utf-8"))
 
-    with SERIES_CSV.open("r", encoding="utf-8") as f:
+    with series_path.open("r", encoding="utf-8") as f:
         series_rows = list(csv.DictReader(f))
 
-    with BRIEF_SIGNALS_CSV.open("r", encoding="utf-8") as f:
+    with brief_path.open("r", encoding="utf-8") as f:
         brief_rows = list(csv.DictReader(f))
 
     sources_by_id = {s["id"]: s for s in registry["sources"]}
@@ -297,8 +311,8 @@ def main():
     block_c_pillars = registry["blocks"]["C_consequences"]    # labour_reorganisation, ownership_distribution, ecological_balance
 
     # Compute Block A, DAI, PAI and 1,000-draw Monte Carlo simulation (§7)
-    rng = random.Random(20261028)
-    n_draws = 1000
+    rng = random.Random(MC_SEED)
+    n_draws = N_DRAWS
 
     block_a_draws = []
     dai_draws = []
@@ -534,6 +548,7 @@ def main():
 
     computed = {
         "schema_version": "0.6.0",
+        "pipeline_version": read_pipeline_version(version_path),
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "reference_period": "2026-Q4 (as of 2026-10-28)",
         "strict_verification_enforced": True,
@@ -635,11 +650,23 @@ def main():
         "sources": registry["sources"]
     }
 
-    OUTPUT_JSON.write_text(json.dumps(computed, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return computed
+
+
+def write_computed(computed: dict, output_path: Path = OUTPUT_JSON) -> None:
+    output_path.write_text(json.dumps(computed, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def main() -> None:
+    computed = compute()
+    write_computed(computed)
+    headline = computed["headline"]["block_a_diffusion_core"]
     print(
         f"[OK] Wrote {OUTPUT_JSON.relative_to(ROOT)} "
-        f"(Block A={block_a_equal} [{round(percentile(block_a_draws, 0.05), 1)}–{round(percentile(block_a_draws, 0.95), 1)}], "
-        f"DAI={dai_equal}, PAI={pai_equal}, Sector Gap={sector_gap_pp} pts)"
+        f"(Block A={headline['score']} [{headline['p5']}–{headline['p95']}], "
+        f"DAI={computed['headline']['dai_digital']['score']}, "
+        f"PAI={computed['headline']['pai_physical']['score']}, "
+        f"Sector Gap={computed['headline']['sector_gap']['gap_points']} pts)"
     )
 
 

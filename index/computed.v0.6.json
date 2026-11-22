@@ -1,9 +1,10 @@
 {
   "schema_version": "0.6.0",
-  "generated_at": "2026-10-28T20:18:48Z",
+  "pipeline_version": "1.0.0-dev",
+  "generated_at": "2026-11-22T13:44:22Z",
   "reference_period": "2026-Q4 (as of 2026-10-28)",
   "strict_verification_enforced": true,
-  "Verified_Observation_Count": 56,
+  "Verified_Observation_Count": 57,
   "Registered_Source_Count": 49,
   "Verified_Source_Count": 27,
   "Unverified_Candidate_Source_Count": 22,
@@ -364,7 +365,7 @@
       "headline_unit": "official EU standard and banking rules",
       "ai_specificity": "specific",
       "grade": "A-M",
-      "observation_count": 3,
+      "observation_count": 4,
       "brief_signal_count": 3,
       "recent_briefs": [
         {
@@ -940,7 +941,9 @@
       "embeddedness": 66.6,
       "grade": "A",
       "ai_specificity": "specific",
-      "obs_ids": [],
+      "obs_ids": [
+        "OBS-057"
+      ],
       "brief_dates": [
         "2026-10-24"
       ]
@@ -3278,11 +3281,7 @@
       "bridge_factor": "1.0",
       "ai_specificity": "specific",
       "brief_ref": "2026-10-28",
-      "notes": "Anthropic S-1: 48% of frontier lab revenue flows through 3 hyperscaler cloud marketplaces (Amazon",
-      "null": [
-        " Google",
-        " Microsoft)"
-      ]
+      "notes": "Anthropic S-1: 48% of frontier lab revenue flows through 3 hyperscaler cloud marketplaces (Amazon, Google, Microsoft)"
     },
     {
       "obs_id": "OBS-055",
@@ -3327,6 +3326,28 @@
       "ai_specificity": "specific",
       "brief_ref": "2026-10-26",
       "notes": "OpenRouter Data API: share of routed inference tokens served by open-weight model families"
+    },
+    {
+      "obs_id": "OBS-057",
+      "date_logged": "2026-11-13",
+      "period": "2026-11",
+      "pillar": "governance_burden",
+      "sector": "software",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "geo": "US",
+      "value": "1.0",
+      "unit": "count_8k_leadership",
+      "source_id": "sec_edgar",
+      "series_id": "NVDA-8K-LEADERSHIP-2026",
+      "series_version": "2026-11",
+      "grade": "A-Y",
+      "trust_tier": "1",
+      "break_flag": "false",
+      "bridge_factor": "1.0",
+      "ai_specificity": "specific",
+      "brief_ref": "2026-11-13",
+      "notes": "NVIDIA Form 8-K filed 12.11.2026 disclosing CEO resignation and interim appointment"
     }
   ],
   "brief_signals": [
