@@ -38,6 +38,11 @@ POPULATION_GEO = {
     "FI": {"FI"},
 }
 
+# Indicator roles that never enter a score (method pillars[].indicators[].role).
+# context_only and cross_check rows still count toward evidence; sensitivity_only
+# rows do not (method evidence_rules.pillar_headline_eligibility.counting).
+NON_SCORING_ROLES = frozenset({"sensitivity_only", "context_only", "cross_check"})
+
 
 def read_pipeline_version(version_path: Path = VERSION_PATH) -> str:
     return version_path.read_text(encoding="utf-8").strip()
@@ -328,23 +333,30 @@ def compute(
                 continue
             if sector is not None and row["sector"] != sector:
                 continue
-            if indicators[indicator_id].get("role") in {"sensitivity_only", "context_only"}:
+            if indicators[indicator_id].get("role") in NON_SCORING_ROLES:
                 continue
             if indicators[indicator_id].get("exists") is False:
                 continue
             out.append(row)
         return out
 
-    def evidence_for_pillar(pillar_id: str) -> dict:
-        """Count observations and sources across all geographies (plan 2.3)."""
+    def evidence_for_pillar(pillar_id: str, pop_id: str) -> dict:
+        """Count observations and sources for one pillar and one population.
+
+        Method evidence_rules.pillar_headline_eligibility.counting: only rows
+        whose geo belongs to the population count (changed from all
+        geographies, plan 2.3, in the rc review).
+        """
+        geos = POPULATION_GEO[pop_id]
         obs = [
             r
             for r in classified
             if r["pillar"] == pillar_id
+            and r["geo"] in geos
             and r.get("indicator_id")
             and indicators.get(r["indicator_id"], {}).get("role") not in {"sensitivity_only"}
         ]
-        # context_only still counts toward evidence (they are verified observations on the pillar)
+        # context_only and cross_check rows still count toward evidence (verified observations on the pillar)
         source_ids = {r["source_id"] for r in obs}
         official = {r["source_id"] for r in obs if int(r["trust_tier"]) == 1}
         return {
@@ -381,13 +393,13 @@ def compute(
             "source_id": row["source_id"],
         }
 
-    def aggregate_pillar(pillar: dict, measured: list[dict]) -> dict:
+    def aggregate_pillar(pillar: dict, measured: list[dict], pop_id: str) -> dict:
         """measured: list of scored indicator records for one population (sector ALL)."""
         pid = pillar["id"]
         defined = [
             ind
             for ind in pillar["indicators"]
-            if ind.get("role") not in {"sensitivity_only", "context_only"} and ind.get("exists") is not False
+            if ind.get("role") not in NON_SCORING_ROLES and ind.get("exists") is not False
         ]
         measured_ids = {m["indicator_id"] for m in measured}
         unmeasured = [ind["id"] for ind in defined if ind["id"] not in measured_ids]
@@ -434,7 +446,7 @@ def compute(
         grades = [it["grade"] for it in measured if it.get("grade")]
         grade = weakest_grade(grades)
         grade = apply_caps(grade, sector="ALL", pillar=pid, indicator=None, caps=caps)
-        evd = evidence_for_pillar(pid)
+        evd = evidence_for_pillar(pid, pop_id)
         n_defined = len(defined)
         n_measured = len(measured)
         coverage = f"{n_measured}/{n_defined}"
@@ -490,14 +502,14 @@ def compute(
     def values_from_measured(measured: list[dict]) -> dict[str, dict]:
         return {m["indicator_id"]: m for m in measured}
 
-    def score_from_values(pillar: dict, values: dict[str, float]) -> float | None:
+    def score_from_values(pillar: dict, values: dict[str, float], pop_id: str) -> float | None:
         """Recompute a pillar score from a dict of indicator_id -> raw x (for MC draws)."""
         measured = []
         direction = pillar["direction"]
         for ind in pillar["indicators"]:
             if ind["id"] not in values:
                 continue
-            if ind.get("role") in {"sensitivity_only", "context_only"} or ind.get("exists") is False:
+            if ind.get("role") in NON_SCORING_ROLES or ind.get("exists") is False:
                 continue
             dummy = {
                 "_value": values[ind["id"]],
@@ -512,7 +524,7 @@ def compute(
                 "source_id": "",
             }
             measured.append(score_indicator(indicators[ind["id"]], dummy, direction))
-        agg = aggregate_pillar(pillar, measured)
+        agg = aggregate_pillar(pillar, measured, pop_id)
         return agg["score"]
 
     # --- Build per-population levels ---
@@ -531,14 +543,14 @@ def compute(
         for pid, pillar in pillars_spec.items():
             measured = []
             for ind in pillar["indicators"]:
-                if ind.get("role") in {"sensitivity_only", "context_only"} or ind.get("exists") is False:
+                if ind.get("role") in NON_SCORING_ROLES or ind.get("exists") is False:
                     continue
                 cands = rows_for(pop_id, ind["id"], sector="ALL")
                 chosen = pick_level_value(cands, ind)
                 if chosen is None:
                     continue
                 measured.append(score_indicator(indicators[ind["id"]], chosen, pillar["direction"]))
-            pillar_aggs[pid] = aggregate_pillar(pillar, measured)
+            pillar_aggs[pid] = aggregate_pillar(pillar, measured, pop_id)
 
         eligible_ids = [pid for pid in block_a_ids if pillar_aggs[pid]["eligible"] and pillar_aggs[pid]["score"] is not None]
         # Effective weights
@@ -611,7 +623,7 @@ def compute(
             local = {}
             for pid, pillar in pillars_spec.items():
                 vals = {iid: raws[iid] for iid in (m["indicator_id"] for m in pillar_aggs[pid]["measured"]) if iid in raws}
-                local[pid] = score_from_values(pillar, vals)
+                local[pid] = score_from_values(pillar, vals, pop_id)
             if not eligible_ids or any(local[pid] is None for pid in eligible_ids):
                 return None, None, None, None
             ww = weight_vec if weight_vec is not None else weights
@@ -737,7 +749,7 @@ def compute(
                             raws[m["indicator_id"]] = m["raw"]
                         else:
                             raws[m["indicator_id"]] = m["raw"] * (1.0 + m["sigma"] * float(Z[k, j]))
-                    samples.append(score_from_values(pillars_spec[pid], raws))
+                    samples.append(score_from_values(pillars_spec[pid], raws, pop_id))
                 arr = np.array([s for s in samples if s is not None], dtype=float)
                 if arr.size:
                     pq = np.quantile(arr, quantiles)
@@ -753,7 +765,7 @@ def compute(
             for pid, pillar in pillars_spec.items():
                 cell_measured = []
                 for ind in pillar["indicators"]:
-                    if ind.get("role") in {"sensitivity_only", "context_only"} or ind.get("exists") is False:
+                    if ind.get("role") in NON_SCORING_ROLES or ind.get("exists") is False:
                         continue
                     cands = rows_for(pop_id, ind["id"], sector=sid)
                     chosen = pick_level_value(cands, ind)
@@ -769,7 +781,7 @@ def compute(
                         "status": "not measured",
                         "grade": None,
                         "n": 0,
-                        "coverage": f"0/{len([i for i in pillar['indicators'] if i.get('role') not in {'sensitivity_only','context_only'} and i.get('exists') is not False])}",
+                        "coverage": f"0/{len([i for i in pillar['indicators'] if i.get('role') not in NON_SCORING_ROLES and i.get('exists') is not False])}",
                         "obs_ids": [],
                     })
                     continue
@@ -786,7 +798,7 @@ def compute(
                     "status": "scored",
                     "grade": grade,
                     "n": len(cell_measured),
-                    "coverage": f"{len(cell_measured)}/{len([i for i in pillar['indicators'] if i.get('role') not in {'sensitivity_only','context_only'} and i.get('exists') is not False])}",
+                    "coverage": f"{len(cell_measured)}/{len([i for i in pillar['indicators'] if i.get('role') not in NON_SCORING_ROLES and i.get('exists') is not False])}",
                     "obs_ids": [m["obs_id"] for m in cell_measured],
                     "clipped": any(m["clipped"] for m in cell_measured),
                 })
@@ -839,7 +851,7 @@ def compute(
 
         for pid, pillar in pillars_spec.items():
             for ind in pillar["indicators"]:
-                if ind.get("role") in {"sensitivity_only", "context_only"} or ind.get("exists") is False:
+                if ind.get("role") in NON_SCORING_ROLES or ind.get("exists") is False:
                     continue
                 cands = rows_for(pop_id, ind["id"], sector="ALL", include_stale=True)
                 # Group by segment; do not cross segments

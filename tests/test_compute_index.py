@@ -205,3 +205,26 @@ def test_proxy_flags_follow_channel_inputs(computed: dict):
         block = computed["populations"][pop]
         assert block["dai"]["proxy"] is True
         assert block["pai"]["proxy"] is False
+
+
+def test_evidence_is_counted_per_population(computed: dict):
+    """method evidence_rules counting: only the population's own geo rows count.
+
+    capital_intensity passes the two-source test in EU27 and FI through the
+    OECD cross-check (K1x), not through US/GLOBAL K2 context rows.
+    """
+    for pop in ("EU27", "FI"):
+        pillars = {p["id"]: p for p in computed["populations"][pop]["pillars"]}
+        cap = pillars["capital_intensity"]
+        assert cap["source_ids"] == ["eurostat_nama_10_an6", "oecd_sna_table1"]
+        assert cap["n_official_sources"] == 2 and cap["n"] >= 5
+        assert cap["eligible"] is True
+        assert "sec_edgar" not in cap["source_ids"] and "epoch_ai_data" not in cap["source_ids"]
+        assert pillars["deployment"]["eligible"] is True
+
+
+def test_cross_check_indicator_is_never_scored(computed: dict):
+    for pop in ("EU27", "FI"):
+        for p in computed["populations"][pop]["pillars"]:
+            assert all(m["indicator_id"] != "K1x_gfcf_ict_ipp_gdp_oecd" for m in p.get("observations", []))
+        assert all(x["indicator_id"] != "K1x_gfcf_ict_ipp_gdp_oecd" for x in computed["populations"][pop]["paces"])

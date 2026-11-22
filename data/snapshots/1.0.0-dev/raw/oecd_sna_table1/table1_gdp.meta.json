@@ -1,0 +1,8 @@
+{
+  "url": "https://sdmx.oecd.org/public/rest/data/OECD.SDD.NAD,DSD_NAMAIN10@DF_TABLE1_EXPENDITURE,/A.EU27_2020+FIN.S1.S1.B1GQ._Z._Z._Z.XDC.V.N.?startPeriod=2019&dimensionAtObservation=AllDimensions",
+  "accept": "application/vnd.sdmx.data+csv; charset=utf-8",
+  "retrieved_at_utc": "2026-11-22T14:32:14Z",
+  "http_status": 200,
+  "bytes": 1988,
+  "content_type": "text/csv"
+}

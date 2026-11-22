@@ -192,7 +192,8 @@
         "src_planetary_boundaries",
         "richardson_2023_pb",
         "pik_planetary_health_check",
-        "anthropic_research_formal_verification"
+        "anthropic_research_formal_verification",
+        "oecd_sna_table1"
       ]
     },
     "quant_metric": {

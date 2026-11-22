@@ -12,4 +12,4 @@ python3 scripts/make_checksums.py data/snapshots/1.0.0-dev
 
 `series.csv` and `series.seed.csv` must be identical in this snapshot.
 
-Raw Eurostat API responses for `isoc_eb_ai`, `isoc_ai_iaiu` and `nama_10_an6` (retrieved 2026-11-22) sit under `raw/<source_id>/` with a `*.meta.json` sidecar.
+Raw Eurostat API responses for `isoc_eb_ai`, `isoc_ai_iaiu` and `nama_10_an6` (retrieved 2026-11-22) sit under `raw/<source_id>/` with a `*.meta.json` sidecar. OECD national accounts Table 1 responses (GFCF by asset and GDP, SDMX CSV, retrieved 2026-11-22) for the K1x cross-check sit under `raw/oecd_sna_table1/`.

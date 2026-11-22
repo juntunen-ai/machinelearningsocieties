@@ -3,7 +3,7 @@
   "method_version": "1.0",
   "index_version": "1.0.0",
   "pipeline_version": "1.0.0-rc.1",
-  "generated_at": "2026-11-22T14:35:48Z",
+  "generated_at": "2026-11-22T14:37:20Z",
   "range_level": "95%",
   "quarter_label": "2026-Q4",
   "scope_label": "EU27 and Finland, published separately",
@@ -19,9 +19,9 @@
     "cut_off": "2026-12-31",
     "proposed_1_0_0_cut_off": "2026-12-31 (2026-Q4): captures Eurostat's planned December 2026 isoc_eb_ai release; publication proposed January 2027.",
     "hashes": {
-      "series.csv": "4d077818e8a68ffa0312a5f05ac1bc97cbc8ddcfb8493b89503ddeda7ba0d11a",
-      "registry.v1.0.json": "4f1085f5f6de2bad33e4d1a0ec7fe320c901f50c4d93b866ea156d9203f6a0e6",
-      "method.v1.0.json": "dbb1058d13641529162045ff5e394c204b220e5a1b0a9bc9bf44ecd1b6fb9775",
+      "series.csv": "bbd3569a0196dcf70778d4352c8761940181210bb6f010176d1564ebe44fd2ad",
+      "registry.v1.0.json": "ff7ac08c71cecac1d9eccee5a505181ea54c6acd959f8b6ef4e22e4ebb611d25",
+      "method.v1.0.json": "9ee45900e9e3025a1d475ba7c423e2290ad79ba1d92679ad71edb23d70d1584f",
       "brief_signals.csv": "08b55ee1757b56c1d890b6879a4978d398ee8b46b4738e7c794cc61c5c6a204a",
       "planetary_boundaries.json": "2819a77b83757566b941d562ad583739c9dbbb098abb69b94d3be11076fb7046"
     }
@@ -41,7 +41,15 @@
     "OBS-084",
     "OBS-085",
     "OBS-086",
-    "OBS-087"
+    "OBS-087",
+    "OBS-091",
+    "OBS-092",
+    "OBS-093",
+    "OBS-094",
+    "OBS-097",
+    "OBS-098",
+    "OBS-099",
+    "OBS-100"
   ],
   "populations": {
     "EU27": {
@@ -103,7 +111,7 @@
           "score_unrounded": 9.34125,
           "status": "scored",
           "grade": "A",
-          "n": 31,
+          "n": 14,
           "n_sources": 2,
           "n_official_sources": 2,
           "coverage": "4/4",
@@ -231,18 +239,17 @@
           "score_unrounded": 33.99999999999999,
           "status": "scored",
           "grade": "A",
-          "n": 9,
-          "n_sources": 3,
-          "n_official_sources": 1,
+          "n": 5,
+          "n_sources": 2,
+          "n_official_sources": 2,
           "coverage": "1/1",
           "channel_coverage": "digital_only",
           "unmeasured_indicators": [],
           "clipped": false,
           "eligible": true,
           "source_ids": [
-            "epoch_ai_data",
             "eurostat_nama_10_an6",
-            "sec_edgar"
+            "oecd_sna_table1"
           ],
           "channels": {
             "digital": {
@@ -1700,7 +1707,7 @@
           "score_unrounded": 17.32875,
           "status": "scored",
           "grade": "A",
-          "n": 31,
+          "n": 11,
           "n_sources": 2,
           "n_official_sources": 2,
           "coverage": "4/4",
@@ -1828,18 +1835,17 @@
           "score_unrounded": 39.333333333333336,
           "status": "scored",
           "grade": "A",
-          "n": 9,
-          "n_sources": 3,
-          "n_official_sources": 1,
+          "n": 6,
+          "n_sources": 2,
+          "n_official_sources": 2,
           "coverage": "1/1",
           "channel_coverage": "digital_only",
           "unmeasured_indicators": [],
           "clipped": false,
           "eligible": true,
           "source_ids": [
-            "epoch_ai_data",
             "eurostat_nama_10_an6",
-            "sec_edgar"
+            "oecd_sna_table1"
           ],
           "channels": {
             "digital": {
@@ -4673,6 +4679,26 @@
       "verified": true,
       "verified_date": "2026-11-22",
       "caveats": "K1 is N1132G (ICT equipment) + N117G (intellectual property products) as % of GDP. National-accounts proxy for capital that AI diffusion needs; not AI-specific. Retrieved 2026-11-22 (dataset updated 2026-11-05)."
+    },
+    {
+      "id": "oecd_sna_table1",
+      "name": "OECD National Accounts, Table 1: GFCF by asset (DSD_NAMAIN10@DF_TABLE1_EXPENDITURE_GFCF_ASSET) and GDP (DF_TABLE1_EXPENDITURE)",
+      "url": "https://data-explorer.oecd.org/",
+      "api_url": "https://sdmx.oecd.org/public/rest/data/OECD.SDD.NAD,DSD_NAMAIN10@DF_TABLE1_EXPENDITURE_GFCF_ASSET,/",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": [
+        "capital_intensity"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "EU-27 (EU27_2020) and Finland (FIN); 2025 N1132G not yet published for EU27_2020",
+      "access": "SDMX API (CSV/JSON)",
+      "licence": "OECD terms and conditions (CC BY 4.0)",
+      "verified": true,
+      "verified_date": "2026-11-22",
+      "caveats": "Cross-check source for K1 only (indicator K1x_gfcf_ict_ipp_gdp_oecd, role cross_check, never scored). (N1132G + N117G) / B1GQ at current prices, national currency. OECD republishes the same ESA 2010 national accounts that Eurostat and Statistics Finland compile, so it verifies the K1 values (agreement within 0.1 percentage point, 2019-2025, retrieved 2026-11-22) but is not an independent measurement. Raw responses in data/snapshots/1.0.0-dev/raw/oecd_sna_table1/."
     },
     {
       "id": "anthropic_research_formal_verification",

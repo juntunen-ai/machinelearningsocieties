@@ -38,7 +38,7 @@
       "staleness_rule": "Applies to level selection only: an indicator value whose period ended more than 36 months before the cut-off is never used as the current level (it is listed as stale). The staleness limit does not shorten pace history: see pace.history."
     },
     "source_rule": {
-      "rule": "One designated source per indicator, identical for every population: the series named in the indicator definition (Eurostat for D1-D4 and K1, for both EU27 and FI). Values from other sources for a similar concept (e.g. Statistics Finland table 13vg, CSO Ireland) are logged without indicator_id as context or cross-checks and never replace, average with or fill gaps in the designated series. If the designated source has no value for a population, period or sector, the value is 'not measured'.",
+      "rule": "One designated source per indicator, identical for every population: the series named in the indicator definition (Eurostat for D1-D4 and K1, for both EU27 and FI). Values from other sources for a similar concept (e.g. Statistics Finland table 13vg, CSO Ireland) are logged without indicator_id as context, or under a method indicator with role 'cross_check' (e.g. K1x, OECD), and never replace, average with or fill gaps in the designated series. If the designated source has no value for a population, period or sector, the value is 'not measured'.",
       "rationale": "Cross-population comparability (EU27 vs FI on the same harmonised questionnaire and definition) and one segment structure per series. Example: FI D1 2025 uses Eurostat 37.82, not Statistics Finland 38.0 (rounded national release of the same survey).",
       "added": "2026-11-22 (TP1 review)"
     }
@@ -237,6 +237,22 @@
           "caveat": "National-accounts proxy for the capital that AI diffusion needs (ICT hardware, software, databases, R&D); not AI-specific. Source must be added to the registry as [V] and logged before rc1."
         },
         {
+          "id": "K1x_gfcf_ict_ipp_gdp_oecd",
+          "channel": "digital",
+          "layer": "reach",
+          "source_id": "oecd_sna_table1",
+          "role": "cross_check",
+          "cross_check_of": "K1_gfcf_ict_ipp_gdp",
+          "series": "OECD SNA Table 1 (DSD_NAMAIN10): (P51G N1132G + P51G N117G) / B1GQ, current prices, national currency",
+          "unit": "% of GDP",
+          "scale": "linear",
+          "floor": 0.0,
+          "ceiling": 15.0,
+          "goalpost_source": "Same as K1 (never scored).",
+          "goalpost_date": "2026-11-22",
+          "caveat": "Second official verification of K1 per population (EU27_2020 2019-2024, FIN 2019-2025; agrees with Eurostat within 0.1 pp). Never scored, never replaces or averages with K1 (target.source_rule). Same ESA 2010 national accounts republished by OECD, so it verifies the values but is not an independent measurement."
+        },
+        {
           "id": "K2_ai_capex_commitments",
           "channel": "digital",
           "layer": "reach",
@@ -402,7 +418,8 @@
       "official_definition": "registry trust tier 1 (official statistics)",
       "min_derived_grade": "B",
       "population_rule": "The pillar must also have at least one scored indicator value for the population and reference period in question.",
-      "counting": "Observations and sources are counted per pillar across all geographies (as in plan section 2.3); the score itself uses only the target population's values."
+      "counting": "Observations and sources are counted per pillar and per population: only rows whose geo belongs to the population being scored (EU27: EU27/EU27_2020; FI: FI) count, so context rows for other geographies (e.g. US or GLOBAL K2 rows) never make a pillar eligible for EU27 or FI. Rows of scored, context_only and cross_check indicators count; sensitivity_only rows and rows without indicator_id do not. A cross_check row counts as a verified observation and its source as a distinct verified source; its value is never scored.",
+      "counting_note": "Changed 2026-11-22 from counting across all geographies (plan section 2.3) after the rc review: under the old rule capital_intensity met the two-source test only through US/GLOBAL context rows. With the OECD cross-check (K1x) the per-population rule leaves every score, eligibility and headline unchanged."
     },
     "experimental": "A pillar with >= 1 scored indicator value that fails pillar_headline_eligibility is published as 'experimental' with n and grade, and excluded from the headline.",
     "grid_cell": {
@@ -627,6 +644,16 @@
         "channel_weights marked provisional pending Harri's decision; version note added.",
         "Pace interval: OLS t-interval now computed from n >= 3 (was n >= 4); with n = 3 the Monte Carlo interval alone ignored lack of fit and labelled S1 adoption paces 'rising'.",
         "Pace Monte Carlo moved to its own generator stream PCG64(seed + 1) so level intervals do not depend on pace history length."
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "by": "Massi (rc review follow-up, Hansei)",
+      "version_effect": "none (pre-tag; no score, interval, eligibility or headline changes)",
+      "items": [
+        "Evidence rule counted per population instead of across all geographies (evidence_rules.pillar_headline_eligibility.counting).",
+        "Second official source for K1 added as cross-check indicator K1x (OECD SNA Table 1), never scored; role 'cross_check' defined.",
+        "block_a.dai_pai: proxy flag applies to DAI and PAI alike; v1.0 flags DAI (K1), not PAI."
       ]
     }
   ]
