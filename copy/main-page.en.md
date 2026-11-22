@@ -122,17 +122,15 @@ Three small cards:
 
 **H3:** Who makes this
 
-**HARRI JUNTUNEN & IMAGINARY FRIENDS** · [x.com/hjuntunen](https://x.com/hjuntunen) · [linkedin.com/in/hjuntunen](https://www.linkedin.com/in/hjuntunen)
+**{{PUBLISHER_LINE}}**
 
 AI Diffusion Index 1.0.0 · {{reference_period}} · Prepared with the help of AI tools.
-
-Disclosure: Harri Juntunen is a political candidate. This index is independent work. It is not Liberaalipuolue material.
 
 ---
 
 ## 7. Footer
 
-Machine Learning Societies · AI Diffusion Index 1.0.0 · HARRI JUNTUNEN & IMAGINARY FRIENDS · Daily Briefs · Methodology · Forecasts · About · RSS
+Machine Learning Societies · AI Diffusion Index 1.0.0 · {{PUBLISHER_LINE}} · Daily Briefs · Methodology · Forecasts · About · RSS
 
 *Build note: the main page has no open-data / replication section (Harri, 22 Nov 2026). Data files stay in `index/`; the methodology page links them.*
 
@@ -156,9 +154,11 @@ Key paths refer to `index/computed.*.json` (checked against `computed.v0.6.json`
 | `{{RANGE_LEVEL}}` | **no** | Range level label, e.g. "95%" | (90% in v0.6) |
 | `{{SCOPE_LABEL}}` | **no** | Population covered, e.g. "EU27 and Finland" (plan §2.4) | – |
 | `{{NEXT_UPDATE_DATE}}` | **no** | Next fixed quarterly update, e.g. "13 April 2027" | – |
+| `{{PUBLISHER_LINE}}` | **no** | Publisher / author credit line (name not decided yet); static text, not from JSON | – |
 
 Notes on missing or mismatched keys:
 - `RANGE_LEVEL`: v0.6 gives `p5`/`p95`, which is a 90% range. Plan TP1/TP4 asks for a 95% range. If the method moves to 95%, the keys will change (e.g. `p2_5`/`p97_5`), and the label must match them. Suggest adding a key such as `range_level`.
 - `reference_period` in v0.6 carries extra text "(as of 2026-10-28)". For the kicker and og:title a short quarter label (e.g. `2026-Q4`) reads better. Suggest a separate key such as `quarter_label`.
 - `SCOPE_LABEL` and `NEXT_UPDATE_DATE`: no key in v0.6. Suggest adding `scope_label` and `next_update` to the computed JSON, or keeping them as static text.
+- `PUBLISHER_LINE`: publisher name is still undecided (22 Nov 2026). No disclosure or candidacy line on the page: the transparency section is out of scope (Harri, 22 Nov 2026).
 - Version "1.0.0" is written as text, not taken from `schema_version`.
