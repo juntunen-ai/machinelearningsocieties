@@ -233,7 +233,7 @@ Provenance grades: **A** official or administrative register or filing; **B** ac
 | Draw order | (1) noise matrix *Z* (draws × indicators) from `standard_normal`, over every indicator value that enters any pillar score for the population (Block A and Blocks B/C), sorted by id; (2) weight factors *U* (draws × eligible Block A pillars) from `uniform(0.5, 1.5)`, pillars in Block A order; populations in the order EU27, FI. Pace draws use a separate generator PCG64(20261029) (section 10); channel-weight draws use PCG64(20261030) |
 | Weights | Block A pillar weights: independent multiplicative factors uniform on [0.5, 1.5] (±50 %), then renormalised. Channel weights: digital weight uniform on [0.25, 0.75], physical = 1 − digital, the same draw for every pillar with both channels (since 1.0.0-rc.3) |
 | Data noise | *x*ᵈʳᵃʷ = *x* (1 + σʳᵉˡ *z*), one *z* per indicator value; the score is recomputed through goalpost and clipping |
-| Interval | 95 %: 2.5 %, 50 % and 97.5 % quantiles of *H* over joint data, pillar-weight and channel-weight draws |
+| Interval | 95 % percentile range: 2.5 %, 50 % and 97.5 % quantiles of *H* over joint data, pillar-weight and channel-weight draws. In 1.0.0 this is in practice a weight-sensitivity range ("range by weighting"), not a measurement-error interval: about 99 % of its variance comes from the pillar and channel weights |
 | Aggregation | separate component, *H* − *G*; not mixed into the interval |
 
 **Why ±50 % weights and not ±20 %.** Equal weights have no empirical basis in a formative index, so the plausible range should be wide. ±20 % would understate how arbitrary the weights are and would make the interval mostly data noise. ±50 % is also what method v0.6 promised. The v0.6 code instead drew weights from Dirichlet(1,1,1), which allows weights near 0 and 1. In the review's replication that made the interval about 2.5 times wider: 32.0–53.4 versus 38.0–46.5 under ±50 %. Weight uncertainty is reported as its own variance component, so readers can see how much of the interval comes from weight choice rather than data. Dirichlet sampling is abolished.
@@ -263,7 +263,7 @@ Each observation row records `sigma` and `sigma_basis` (published, binomial, fal
 
 The data component is also run for DAI, PAI and every pillar score.
 
-For reference, the v0.6 replication split its 90 % band 95 % weights and 5 % data noise. In 1.0.0-rc.3 the headline variance is 1 % data and 99 % channel weights in both populations, with aggregation at 0 %. The channel split is the choice that matters, and the interval now shows it.
+For reference, the v0.6 replication split its 90 % band 95 % weights and 5 % data noise. In 1.0.0-rc.3 the headline variance is 1 % data and 99 % channel weights in both populations, with aggregation at 0 %. The channel split is the choice that matters, and the interval now shows it. **In 1.0.0 the headline interval is therefore in practice a weight sensitivity, and is labelled "range by weighting":** it is still technically the 95 % percentile range of the joint draws, but about 99 % of its variance comes from the pillar and channel weights. Data noise alone gives only 9.0–9.7 (EU27) and 16.5–18.2 (Finland).
 
 ---
 
@@ -357,7 +357,7 @@ The index uses semantic versioning **MAJOR.MINOR.PATCH**. The method file carrie
 
 ## 13. Worked example (illustrative, not a published number)
 
-Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. The compiler (`scripts/compute_index.py`) reproduces these levels. Its values for 1.0.0-rc.3 are EU27 9.3 (median 9.4, 95 % 5.6–13.2) and Finland 17.3 (median 17.3, 95 % 10.4–24.4). Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2), fallback A (4.5 %) otherwise. Channel weights: digital weight uniform on [0.25, 0.75] in the Monte Carlo.
+Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. The compiler (`scripts/compute_index.py`) reproduces these levels. Its values for 1.0.0-rc.3 are EU27 9.3 (median 9.4, range 5.6–13.2 by weighting) and Finland 17.3 (median 17.3, range 10.4–24.4 by weighting); both ranges are the 95 % percentile range of the joint Monte Carlo. In 1.0.0 that range is in practice weight sensitivity: about 99 % of its variance comes from the pillar and channel weights, and the data-only range is 9.0–9.7 / 16.5–18.2. Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2), fallback A (4.5 %) otherwise. Channel weights: digital weight uniform on [0.25, 0.75] in the Monte Carlo.
 
 | | EU27 | Finland |
 |---|---|---|
@@ -369,8 +369,8 @@ Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. T
 | Physical channel = D4 = PAI | 1.39 | 2.73 |
 | **Deployment** = 0.5 digital + 0.5 physical = **headline *H*** | **9.34** | **17.33** |
 | Geometric sensitivity *G* (one pillar, so *G* = *H*) | 9.34 | 17.33 |
-| Monte Carlo median; 95 % interval (data + channel weights) | 9.4; 5.6–13.2 | 17.3; 10.4–24.4 |
-| Deployment data-only interval | 9.0–9.7 | 16.5–18.2 |
+| Monte Carlo median; range by weighting (95 % percentile range, data + pillar and channel weights) | 9.4; 5.6–13.2 | 17.3; 10.4–24.4 |
+| Deployment data-only range (95 %, measurement noise only) | 9.0–9.7 | 16.5–18.2 |
 | Variance shares data / weights / aggregation | 1 % / 99 % / 0 % | 1 % / 99 % / 0 % |
 | *Block B, not in the headline:* K1 capital (ICT equipment + IPP, % of GDP) | 5.1 → 34.0 (95 % 31.0–37.0) | 5.9 → 39.3 (95 % 35.8–42.8) |
 
@@ -435,7 +435,7 @@ Source status: **[V]** checked live in primary form; **[K]** known source, URL o
 - The physical channel rests on one indicator (`E_AI_TAR`), which scores low and pulls deployment down by design.
 - Most Block B and C pillars and most grid cells will be experimental or not measured.
 - The 2025 Eurostat definition extension is bounded but not identified.
-- Weights are a convention; their effect is shown, not removed. The channel split dominates the headline interval (99 % of its variance).
+- Weights are a convention; their effect is shown, not removed. The channel split dominates the headline range (about 99 % of its variance), so in 1.0.0 the range is read as "range by weighting", not as measurement error; the data-only range is 9.0–9.7 (EU27) and 16.5–18.2 (Finland).
 
 ---
 

@@ -546,7 +546,7 @@
         0.5,
         0.975
       ],
-      "headline_interval": "Quantiles of H over the joint draws of data noise, Block A pillar weights and channel weights (arithmetic aggregation).",
+      "headline_interval": "Quantiles of H over the joint draws of data noise, Block A pillar weights and channel weights (arithmetic aggregation). Technically the 95 % percentile range; in 1.0.0 it is in practice weight sensitivity (about 99 % of its variance comes from the pillar and channel weights; data-only range EU27 9.0-9.7, FI 16.5-18.2), so it is labelled 'range ... by weighting' (e.g. EU27 range 5.6-13.2 by weighting), not a measurement-error interval.",
       "point_vs_median": "The published point is H at nominal effective weights and unperturbed data; the MC median is published next to it. If |median - point| > 1.0 the compiler emits a warning."
     },
     "variance_decomposition": {

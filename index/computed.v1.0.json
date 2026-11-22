@@ -3,7 +3,7 @@
   "method_version": "1.0",
   "index_version": "1.0.0",
   "pipeline_version": "1.0.0-rc.3",
-  "generated_at": "2026-11-22T16:22:09Z",
+  "generated_at": "2026-11-22T17:28:25Z",
   "range_level": "95%",
   "quarter_label": "2026-Q4",
   "scope_label": "EU27 and Finland, published separately",
@@ -21,7 +21,7 @@
     "hashes": {
       "series.csv": "65ac3b61ec4f0ea52c7d439bf64428a86751e55f7f853ce201972f70559cdbf4",
       "registry.v1.0.json": "d1a429d3d926a563b44137a0af8cb20057820f6bcb7e382dd08939deccaeb5b5",
-      "method.v1.0.json": "782e3855963900ec08b9ee3abddd1fc839594ca6a02447e16fe8506c65952428",
+      "method.v1.0.json": "769c6f5b13ef63f2f70e345f174403b4164e0ea6e1c1979432fd2c0ddb9e5074",
       "brief_signals.csv": "08b55ee1757b56c1d890b6879a4978d398ee8b46b4738e7c794cc61c5c6a204a",
       "planetary_boundaries.json": "c8cfc23e105fc8d67f6da1f262c5da2ffc693ac76f6f7ef34b638ea5111f067b"
     }
