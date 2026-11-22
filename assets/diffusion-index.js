@@ -7,7 +7,7 @@
   const PILLAR_LABELS = {
     deployment: "Company adoption",
     cost_to_serve: "Reliable task completion",
-    capital_intensity: "Capital commitments",
+    capital_intensity: "Capital commitments (context)",
     labour_reorganisation: "Labour reorganisation",
     governance_burden: "Governance burden",
     human_capital: "Human capital",
@@ -18,8 +18,8 @@
   };
   const PILLAR_ORDER = Object.keys(PILLAR_LABELS);
   const BLOCKS = {
-    A: ["deployment", "cost_to_serve", "capital_intensity"],
-    B: ["energy_capacity", "governance_burden", "human_capital", "market_openness"],
+    A: ["deployment", "cost_to_serve"],
+    B: ["capital_intensity", "energy_capacity", "governance_burden", "human_capital", "market_openness"],
     C: ["labour_reorganisation", "ownership_distribution", "ecological_balance"],
   };
   const SECTOR_LABELS = {
@@ -232,13 +232,13 @@ function formatNumber(value, places) {
           <div class="di-kpi-val">${escapeHtml(String(h.display ?? formatNumber(h.score, 0)))} <span style="font-size:15px;font-weight:400;color:var(--muted)">/ 100</span></div>
           <div class="di-kpi-band">${escapeHtml(range)} · median ${formatNumber(h.median, 1)} ${statusBadge(h.status)}</div>
         </div>
-        <div class="di-kpi-foot">Combines only the measured headline pillars: company adoption and capital commitments, equally weighted. Reliable task completion is experimental and stays out of this number.</div>
+        <div class="di-kpi-foot">Company adoption alone (Block A). Capital commitments are shown as context, not in this number. Reliable task completion is experimental and stays out of this number. The range mainly reflects how digital and physical adoption are weighed (digital share 25–75 %).</div>
       </div>
       <div class="di-kpi-card">
         <div>
           <div class="di-kpi-kicker">Digital AI (DAI)</div>
           <div class="di-kpi-val">${dai.score === null || dai.score === undefined ? "—" : formatNumber(dai.score, 1)}</div>
-          <div class="di-kpi-band">${DATA.range_level} ${formatNumber(dai.p2_5, 1)}–${formatNumber(dai.p97_5, 1)} ${statusBadge(dai.status)}${dai.proxy ? " · proxy mix" : ""}</div>
+          <div class="di-kpi-band">${DATA.range_level} ${formatNumber(dai.p2_5, 1)}–${formatNumber(dai.p97_5, 1)} ${statusBadge(dai.status)}</div>
         </div>
       </div>
       <div class="di-kpi-card">

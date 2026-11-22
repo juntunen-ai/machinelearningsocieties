@@ -6,7 +6,7 @@ The file `VERSION` at the repository root is the **single source of truth** for 
 
 ## How numbers are assigned
 
-This project follows [Semantic Versioning 2.0.0](https://semver.org/). During development the version is `MAJOR.MINOR.PATCH-dev`. A release candidate uses a pre-release suffix such as `1.0.0-rc.2` (currently `1.0.0-rc.2`). Drop the pre-release suffix only when a GitHub Release and tag are created, which requires a separate publication approval. This branch must not create that tag.
+This project follows [Semantic Versioning 2.0.0](https://semver.org/). During development the version is `MAJOR.MINOR.PATCH-dev`. A release candidate uses a pre-release suffix such as `1.0.0-rc.3` (currently `1.0.0-rc.3`). Drop the pre-release suffix only when a GitHub Release and tag are created, which requires a separate publication approval. This branch must not create that tag.
 
 | Change | Bump | Examples |
 | --- | --- | --- |

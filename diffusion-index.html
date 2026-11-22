@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Machine Learning Societies – Diffusion Index 1.0.0</title>
+<title>Machine Learning Societies – Diffusion Index 1.0.0-rc.3</title>
 <meta name="description" content="The Machine Learning Societies – Diffusion Index measures how far AI has moved from the lab into everyday work, machines and society. Updated every quarter.">
 <meta property="og:title" content="Machine Learning Societies – Diffusion Index">
-<meta property="og:description" content="The money has arrived. The use hasn't. How far AI has moved from the lab into everyday work, machines and society.">
+<meta property="og:description" content="Company adoption of AI remains limited: 9 out of 100 in the EU27 and 17 in Finland.">
 <meta property="og:site_name" content="Machine Learning Societies – Diffusion Index">
 <meta name="twitter:title" content="Machine Learning Societies – Diffusion Index">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/site.css?v=20261122e">
+<link rel="stylesheet" href="assets/site.css?v=20261122g">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -40,7 +40,7 @@
     </noscript>
 
     <section class="di-hero di-section" id="summary">
-      <p class="kicker">Machine Learning Societies – Diffusion Index 1.0.0 · <span data-bind="quarter_label">{{quarter_label}}</span> · <span data-bind="scope_label">{{scope_label}}</span></p>
+      <p class="kicker">Machine Learning Societies – Diffusion Index 1.0.0-rc.3 · <span data-bind="quarter_label">{{quarter_label}}</span> · <span data-bind="scope_label">{{scope_label}}</span></p>
       <h1>Machine Learning Societies – Diffusion Index</h1>
       <p class="di-sub">What we measure: how far AI has moved from the lab into everyday work, machines and society.</p>
       <p><strong>The result</strong> in <span data-bind="quarter_label">{{quarter_label}}</span> (<span data-bind="scope_label">{{scope_label}}</span>):</p>
@@ -58,7 +58,7 @@
           <span class="di-status" data-status="populations.FI.headline.status">{{populations.FI.headline.status}}</span>
         </li>
       </ul>
-      <p><strong>What it means:</strong> AI is not yet everyday infrastructure. The money is far ahead of real use. EU27 and Finland are published separately and are never averaged together.</p>
+      <p><strong>What it means:</strong> Company adoption of AI remains limited: 9 out of 100 in the EU27 and 17 in Finland. The width of the range comes almost entirely from how digital and physical adoption are weighed (digital share 25–75 %), not from the data. EU27 and Finland are published separately and are never averaged together.</p>
       <div class="di-actions">
         <a class="btn" href="#gap">See the gap</a>
         <a class="btn" href="diffusion-method.html">How we calculate it →</a>
@@ -69,7 +69,7 @@
       <h2>The money has arrived. The use hasn't.</h2>
       <p>Companies and investors are committing large sums to AI. Far fewer companies use AI in their daily work.</p>
       <div class="di-gap-chart" id="gap-chart"></div>
-      <p class="di-caption">Two of the index’s measures, <span data-bind="quarter_label">{{quarter_label}}</span>. Both on the same 0–100 scale. Reliable task completion is experimental in 1.0.0 and is not in this chart or the headline, until a Task Price Index exists. Sources and data: <a href="diffusion-method.html">methodology page</a>.</p>
+      <p class="di-caption">Capital commitments (context, outside the headline) vs company adoption (the headline), <span data-bind="quarter_label">{{quarter_label}}</span>. Both on the same 0–100 scale. Reliable task completion is experimental in 1.0.0 and is not in this chart or the headline, until a Task Price Index exists. Sources and data: <a href="diffusion-method.html">methodology page</a>.</p>
     </section>
 
     <section class="di-section di-scale-guide" id="scale" aria-labelledby="scale-guide-title">
@@ -81,7 +81,7 @@
         <strong>Finland: <span data-bind="populations.FI.headline.display">{{populations.FI.headline.display}}</span>/100</strong>
         (<span data-bind="range_level">{{range_level}}</span> range
         <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span>).
-        The range shows our uncertainty. The true value is most likely inside it.
+        The range shows our uncertainty. The true value is most likely inside it. The width of that range comes almost entirely from the digital-versus-physical channel weighting (the digital share is drawn from 25–75 %), not from the data.
       </p>
       <p>100 is not “good” and 0 is not “bad”. The index measures how widely AI is used, not whether that is desirable. 100 means AI has become dependable everyday infrastructure, like electricity.</p>
 
@@ -104,7 +104,7 @@
           <span class="di-status" data-status="populations.EU27.headline.status"></span>.
           Finland: <span data-bind="populations.FI.headline.geometric_mean" data-round="1">{{populations.FI.headline.geometric_mean}}</span>/100
           <span class="di-status" data-status="populations.FI.headline.status"></span>.
-          A stricter version of the score. It falls when any one part lags behind the others.
+          A stricter version of the score. With one headline pillar (company adoption) it equals the headline.
         </div>
         <div class="di-info-card">
           <strong>Updated every quarter</strong>
@@ -127,8 +127,8 @@
       <h2>For journalists</h2>
       <p><strong>Quotable findings (<span data-bind="quarter_label">{{quarter_label}}</span>):</strong></p>
       <ul>
-        <li>The Machine Learning Societies – Diffusion Index stands at <span data-bind="populations.EU27.headline.display">{{populations.EU27.headline.display}}</span> out of 100 for the EU27 (<span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.EU27.headline.p2_5" data-round="0">{{populations.EU27.headline.p2_5}}</span>–<span data-bind="populations.EU27.headline.p97_5" data-round="0">{{populations.EU27.headline.p97_5}}</span>) and at <span data-bind="populations.FI.headline.display">{{populations.FI.headline.display}}</span> out of 100 for Finland (<span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span>). The two scores are published separately and are not averaged.</li>
-        <li>For the EU27, capital commitments score <span data-bind="populations.EU27.pillars.capital_intensity.score" data-round="1">{{populations.EU27.pillars.capital_intensity.score}}</span> (<span class="di-status" data-status="populations.EU27.pillars.capital_intensity.status"></span>). Company adoption scores <span data-bind="populations.EU27.pillars.deployment.score" data-round="1">{{populations.EU27.pillars.deployment.score}}</span> (<span class="di-status" data-status="populations.EU27.pillars.deployment.status"></span>). For Finland the figures are <span data-bind="populations.FI.pillars.capital_intensity.score" data-round="1">{{populations.FI.pillars.capital_intensity.score}}</span> and <span data-bind="populations.FI.pillars.deployment.score" data-round="1">{{populations.FI.pillars.deployment.score}}</span>. Reliable task completion is experimental in 1.0.0 and is not in the headline.</li>
+        <li>The Machine Learning Societies – Diffusion Index stands at <span data-bind="populations.EU27.headline.display">{{populations.EU27.headline.display}}</span> out of 100 for the EU27 (<span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.EU27.headline.p2_5" data-round="0">{{populations.EU27.headline.p2_5}}</span>–<span data-bind="populations.EU27.headline.p97_5" data-round="0">{{populations.EU27.headline.p97_5}}</span>) and at <span data-bind="populations.FI.headline.display">{{populations.FI.headline.display}}</span> out of 100 for Finland (<span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span>). The two scores are published separately and are not averaged. The headline is the deployment pillar (company adoption) alone. The width of the range comes almost entirely from the digital-versus-physical channel weighting, not from the data.</li>
+        <li>For the EU27, capital commitments score <span data-bind="populations.EU27.pillars.capital_intensity.score" data-round="0">{{populations.EU27.pillars.capital_intensity.score}}</span> (context, not in the headline), while company adoption, the headline, is <span data-bind="populations.EU27.headline.display">{{populations.EU27.headline.display}}</span> (<span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.EU27.headline.p2_5" data-round="0">{{populations.EU27.headline.p2_5}}</span>–<span data-bind="populations.EU27.headline.p97_5" data-round="0">{{populations.EU27.headline.p97_5}}</span>). For Finland, capital commitments score <span data-bind="populations.FI.pillars.capital_intensity.score" data-round="0">{{populations.FI.pillars.capital_intensity.score}}</span> (context) and the headline is <span data-bind="populations.FI.headline.display">{{populations.FI.headline.display}}</span> (<span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span>). Reliable task completion is experimental in 1.0.0 and is not in the headline.</li>
         <li>100 would mean AI works like electricity: dependable, everyday infrastructure. A high score is not a judgement that AI is good.</li>
       </ul>
       <p><strong>Chart images:</strong> not yet created for this candidate. They will be added before publication.</p>
@@ -139,7 +139,7 @@
     <section class="di-section di-credit" id="credit">
       <h2>Who makes this</h2>
       <p><strong class="di-placeholder">{{PUBLISHER_LINE}}</strong></p>
-      <p>Machine Learning Societies – Diffusion Index 1.0.0 · <span data-bind="quarter_label">{{quarter_label}}</span> · Prepared with the help of AI tools.</p>
+      <p>Machine Learning Societies – Diffusion Index 1.0.0-rc.3 · <span data-bind="quarter_label">{{quarter_label}}</span> · Prepared with the help of AI tools.</p>
     </section>
 
     <section class="di-section" id="dashboard" aria-labelledby="dashboard-title">
@@ -266,7 +266,7 @@
 
   <footer>
     <div>
-      Machine Learning Societies – Diffusion Index 1.0.0 · <span class="di-placeholder">{{PUBLISHER_LINE}}</span> ·
+      Machine Learning Societies – Diffusion Index 1.0.0-rc.3 · <span class="di-placeholder">{{PUBLISHER_LINE}}</span> ·
       <a href="index.html">Daily Briefs</a> ·
       <a href="diffusion-method.html">Methodology</a> ·
       <a href="forecasts.html">Forecasts</a> ·
@@ -275,6 +275,6 @@
     </div>
   </footer>
 </div>
-<script src="assets/diffusion-index.js?v=20261122f"></script>
+<script src="assets/diffusion-index.js?v=20261122g"></script>
 </body>
 </html>

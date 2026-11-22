@@ -118,7 +118,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <tr>
 <td>Block A weights</td>
 <td>Implicit 1/3</td>
-<td>Nominal 1/3 written down; renormalised over eligible pillars</td>
+<td>Block A = deployment and cost_to_serve, nominal 1/2 each, renormalised over eligible pillars; with cost_to_serve experimental the headline is deployment alone (since 1.0.0-rc.3)</td>
 </tr>
 <tr>
 <td>Headline</td>
@@ -219,12 +219,12 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <tbody>
 <tr>
 <td><strong>A. Diffusion proper</strong></td>
-<td>deployment (P1), cost_to_serve (P2), capital_intensity (P3)</td>
-<td><strong>Yes</strong> (eligible pillars only, section 6)</td>
+<td>deployment (P1), cost_to_serve (P2)</td>
+<td><strong>Yes</strong> (eligible pillars only, section 7)</td>
 </tr>
 <tr>
 <td><strong>B. Conditions</strong></td>
-<td>energy_capacity (P8), governance_burden (P5), human_capital (P6), market_openness (P10)</td>
+<td>capital_intensity (P3, context/enabler), energy_capacity (P8), governance_burden (P5), human_capital (P6), market_openness (P10)</td>
 <td>Dashboard, never blended</td>
 </tr>
 <tr>
@@ -234,7 +234,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 </tr>
 </tbody>
 </table></div>
-<p>The headline is Block A only. Blocks B and C are published beside it as pillar scores with their observation count, grade and coverage; 1.0 publishes no Block B or Block C composite. The direction of every pillar is fixed in the specification: +1 means more is more diffusion, −1 means less is more diffusion, and 0 means diagnostic only (scored but never aggregated).</p>
+<p>The headline is Block A only. <strong>Capital intensity moved to Block B in 1.0.0-rc.3</strong> (Harri Juntunen&rsquo;s decision, 22 November 2026, 18:15). K1 is a national-accounts proxy that is not AI-specific, yet it carried 69–78 % of the rc.2 headline, and across the 27 member states it correlated 0.98 with that headline. It is still computed and shown with n, grade, interval and pace, as a context/enabler pillar, but it never enters the headline. Blocks B and C are published beside it as pillar scores with their observation count, grade and coverage; 1.0 publishes no Block B or Block C composite. The direction of every pillar is fixed in the specification: +1 means more is more diffusion, −1 means less is more diffusion, and 0 means diagnostic only (scored but never aggregated).</p>
 <h3 id="2-1-pace-layers-why-the-blocks-move-at-different-speeds">2.1 Pace layers: why the blocks move at different speeds</h3>
 <p>Stewart Brand&rsquo;s pace-layering essay (<em>Journal of Design and Science</em>, 2018, from <em>The Clock of the Long Now</em>, 1999) gives the theoretical reason for the A/B/C split: a system stays resilient when layers move at different speeds, the fast layers learning and the slow layers remembering. &ldquo;Fast learns, slow remembers.&rdquo; &ldquo;Fast proposes, slow disposes.&rdquo; &ldquo;Fast gets all our attention, slow has all the power.&rdquo; His six layers, fast to slow, are fashion/art, commerce, infrastructure, governance, culture and nature.</p>
 <p>The essay is conceptual: it has no data and no method, and it says nothing about AI. The mapping below is <strong>our proposal, not Brand&rsquo;s finding</strong>.</p>
@@ -256,8 +256,8 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 </tr>
 <tr>
 <td>Commerce</td>
-<td>deployment, cost_to_serve, capital_intensity</td>
-<td>A (headline)</td>
+<td>deployment, cost_to_serve (A, headline); capital_intensity (B, context)</td>
+<td>A / B</td>
 <td>months to years</td>
 </tr>
 <tr>
@@ -310,7 +310,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <ul>
 <li><strong>Layer score</strong> = arithmetic mean of the measured indicators in that layer.</li>
 <li><strong>Channel score</strong> = arithmetic mean of the measured layers in that channel.</li>
-<li><strong>Pillar score</strong> = weighted mean of the measured channels, with weights from the parameter <code>channel_weights</code>: digital 0.5, physical 0.5 (the v0.6 equal split). <strong>Provisional, pending Harri Juntunen&rsquo;s decision.</strong> Making the existing rule an explicit parameter changed no number and needs no version bump before the 1.0.0 tag; it is recorded under [1.0.0-dev] in CHANGELOG.md. A different value chosen before the tag is recorded there with the old and new headline. Any change after the tag is a MINOR change (method v1.1). If only one channel is measured, the pillar score is that channel and carries <code>channel_coverage = digital_only</code> or <code>physical_only</code>.</li>
+<li><strong>Pillar score</strong> = weighted mean of the measured channels, with weights from the parameter <code>channel_weights</code>: digital 0.5, physical 0.5 (the v0.6 equal split). <strong>Decided by Harri Juntunen on 22 November 2026:</strong> the point estimate keeps 0.5 / 0.5, the centre of the decided range. The Monte Carlo draws the digital weight from U[0.25, 0.75] (section 8), so the headline interval includes the channel choice. Any change after the 1.0.0 tag is a MINOR change (method v1.1). If only one channel is measured, the pillar score is that channel and carries <code>channel_coverage = digital_only</code> or <code>physical_only</code>.</li>
 <li>Unmeasured indicators, layers and channels are omitted and listed. They are never imputed and never scored as zero.</li>
 </ul>
 <h3 id="3-3-rounding">3.3 Rounding</h3>
@@ -534,7 +534,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 </ul>
 <p>Observations and sources are counted <strong>per pillar and per population</strong>: only rows whose geography belongs to the population being scored count (EU27: EU27/EU27_2020; Finland: FI). Context rows for other geographies, such as the US and global K2 rows, never make a pillar eligible for EU27 or Finland. Rows of scored, <code>context_only</code> and <code>cross_check</code> indicators count; <code>sensitivity_only</code> rows and rows without an indicator id do not. A <code>cross_check</code> row counts as a verified observation and its source as a distinct verified source, but its value is never scored. (Until 22 November 2026 the count ran across all geographies, as in plan section 2.3. The change leaves every score, eligibility and headline unchanged.)</p>
 <p><strong>Experimental pillars.</strong> A pillar with at least one scored indicator value that fails the eligibility test is published as &ldquo;experimental&rdquo;, with n and grade, and excluded from the headline.</p>
-<p><strong>Headline completeness.</strong> The headline for a population needs at least <strong>2 eligible Block A pillars</strong>. Otherwise it is null with status &ldquo;incomplete&rdquo;, and the pillar scores are still published.</p>
+<p><strong>Headline completeness.</strong> The headline for a population needs at least <strong>1 eligible Block A pillar</strong>. Otherwise it is null with status &ldquo;incomplete&rdquo;, and the pillar scores are still published. Since 1.0.0-rc.3, Block A has two pillars (deployment and cost_to_serve). While cost_to_serve is experimental, an eligible deployment pillar alone is a valid headline. Until rc.2 the rule required 2 eligible pillars, which deployment and capital_intensity met together.</p>
 <p><strong>Grid cells.</strong> The grid is 10 sectors (NACE sections, as in the registry) × 10 pillars, per population. A cell is scored only from at least <strong>1 verified observation whose sector matches the cell&rsquo;s NACE section(s)</strong> and whose geography matches the population, within the 36-month staleness limit. Observations for all sectors (&ldquo;ALL&rdquo;) never fill a sector cell. Otherwise the cell&rsquo;s score and grade are null and its status is &ldquo;not measured&rdquo;. The source rule (section 1) applies to cells as well.</p>
 <ul>
 <li><strong>Sectors spanning several NACE sections.</strong> energy_utilities (D+E) and retail_logistics (G+H) are scored only if the designated source publishes the combined aggregate. Eurostat publishes D_E but not G+H. Section values are never averaged, because their enterprise weights are unknown.</li>
@@ -556,11 +556,11 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 </ul>
 <hr>
 <h2 id="7-block-a-weights-and-aggregation">7. Block A weights and aggregation</h2>
-<p><strong>Nominal weights:</strong> deployment 1/3, cost_to_serve 1/3, capital_intensity 1/3.</p>
-<p><strong>Missing or grade-C pillar:</strong> weights are renormalised over the eligible pillars only, <em>w</em>ᵢ = nominalᵢ / Σ nominalⱼ (eligible <em>j</em>). With cost_to_serve experimental, the effective weights are <strong>deployment 0.5000, capital_intensity 0.5000</strong>.</p>
+<p><strong>Nominal weights:</strong> deployment 1/2, cost_to_serve 1/2. (Until rc.2: deployment, cost_to_serve and capital_intensity, 1/3 each.)</p>
+<p><strong>Missing or grade-C pillar:</strong> weights are renormalised over the eligible pillars only, <em>w</em>ᵢ = nominalᵢ / Σ nominalⱼ (eligible <em>j</em>). With cost_to_serve experimental, the effective weight is <strong>deployment 1.0000</strong>: the headline equals the deployment pillar, and <em>H</em> = <em>G</em>. Renormalisation over the eligible pillars is equivalent to imputing the missing pillar with the mean of the eligible ones. With one eligible pillar that mean is deployment itself.</p>
 <p><strong>Headline (arithmetic):</strong> <em>H</em> = Σ <em>w</em>ᵢ <em>s</em>ᵢ.</p>
 <p><strong>Sensitivity check, geometric mean (weakest link):</strong> <em>G</em> = exp(Σ <em>w</em>ᵢ ln max(<em>s</em>ᵢ, 1.0)). The floor of 1.0 keeps a near-zero pillar from sending <em>G</em> to zero. <em>G</em> is always labelled &ldquo;sensitivity check: geometric mean (weakest link)&rdquo;, is never called the headline, and is never mixed into the headline interval. It shows how much a weak pillar would pull the score down if pillars could not compensate for each other. For example, with v0.6&rsquo;s typed-in pillars, a deployment score of 10 instead of 28.4 would have moved <em>H</em> to 36.6 and <em>G</em> to 28.9.</p>
-<p><strong>DAI and PAI</strong> apply the same aggregation to the digital and physical channel scores of each pillar; pillars without that channel are omitted and the weights renormalised. DAI and PAI each carry the proxy flag whenever an indicator or pillar marked as a proxy (not AI-specific) contributes to that channel. In v1.0, DAI is flagged because K1 capital is a national-accounts proxy. PAI is not flagged: its only scored input is D4 (E_AI_TAR), which is AI-specific. v0.6 flagged PAI because it used IFR robot density, which is sensitivity-only in v1.0.</p>
+<p><strong>DAI and PAI</strong> apply the same aggregation to the digital and physical channel scores of each pillar; pillars without that channel are omitted and the weights renormalised. DAI and PAI each carry the proxy flag whenever an indicator or pillar marked as a proxy (not AI-specific) contributes to that channel. Since 1.0.0-rc.3, Block A contains only AI-specific inputs (D1–D3 digital, D4 physical), so neither DAI nor PAI is flagged. DAI is the digital channel of deployment and PAI its physical channel. In rc.1 and rc.2, DAI was flagged because K1 contributed. v0.6 flagged PAI because it used IFR robot density, which is sensitivity-only in v1.0.</p>
 <hr>
 <h2 id="8-uncertainty-monte-carlo-specification">8. Uncertainty: Monte Carlo specification</h2>
 <div class="table-scroll"><table class="di-table">
@@ -585,11 +585,11 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 </tr>
 <tr>
 <td>Draw order</td>
-<td>(1) noise matrix <em>Z</em> (draws × indicators) from <code>standard_normal</code>, indicators sorted by id; (2) weight factors <em>U</em> (draws × eligible Block A pillars) from <code>uniform(0.5, 1.5)</code>, pillars in Block A order; populations in the order EU27, FI. Pace draws use a separate generator PCG64(20261029) (section 10)</td>
+<td>(1) noise matrix <em>Z</em> (draws × indicators) from <code>standard_normal</code>, over every indicator value that enters any pillar score for the population (Block A and Blocks B/C), sorted by id; (2) weight factors <em>U</em> (draws × eligible Block A pillars) from <code>uniform(0.5, 1.5)</code>, pillars in Block A order; populations in the order EU27, FI. Pace draws use a separate generator PCG64(20261029) (section 10); channel-weight draws use PCG64(20261030)</td>
 </tr>
 <tr>
 <td>Weights</td>
-<td>independent multiplicative factors uniform on [0.5, 1.5] (±50 %), then renormalised</td>
+<td>Block A pillar weights: independent multiplicative factors uniform on [0.5, 1.5] (±50 %), then renormalised. Channel weights: digital weight uniform on [0.25, 0.75], physical = 1 − digital, the same draw for every pillar with both channels (since 1.0.0-rc.3)</td>
 </tr>
 <tr>
 <td>Data noise</td>
@@ -597,7 +597,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 </tr>
 <tr>
 <td>Interval</td>
-<td>95 %: 2.5 %, 50 % and 97.5 % quantiles of <em>H</em> over joint data and weight draws</td>
+<td>95 %: 2.5 %, 50 % and 97.5 % quantiles of <em>H</em> over joint data, pillar-weight and channel-weight draws</td>
 </tr>
 <tr>
 <td>Aggregation</td>
@@ -626,7 +626,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <tbody>
 <tr>
 <td>V_total</td>
-<td>variance of <em>H</em>, data noise and weights both random</td>
+<td>variance of <em>H</em>, data noise and weights (pillar and channel) both random</td>
 </tr>
 <tr>
 <td>V_data</td>
@@ -634,11 +634,11 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 </tr>
 <tr>
 <td>V_weights</td>
-<td>variance of <em>H</em>, weights only (data fixed)</td>
+<td>variance of <em>H</em>, weights only (data fixed). With deployment as the only eligible pillar this is the channel-weight component within deployment</td>
 </tr>
 <tr>
 <td>V_aggregation</td>
-<td>variance of a 50/50 mix of <em>H</em> and <em>G</em> at fixed data and weights = ((<em>H</em> − <em>G</em>)/2)²</td>
+<td>((<em>H</em> − <em>G</em>)/2)²: a deterministic spread, not a sampled variance; zero when one pillar is eligible</td>
 </tr>
 <tr>
 <td>share_data, share_weights, share_aggregation</td>
@@ -651,7 +651,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 </tbody>
 </table></div>
 <p>The data component is also run for DAI, PAI and every pillar score.</p>
-<p>For reference, the v0.6 replication split its 90 % band 95 % weights and 5 % data noise. Under v1.0 the weight share falls, and the aggregation share becomes visible whenever pillars diverge.</p>
+<p>For reference, the v0.6 replication split its 90 % band 95 % weights and 5 % data noise. In 1.0.0-rc.3 the headline variance is 1 % data and 99 % channel weights in both populations, with aggregation at 0 %. The width of the published range comes almost entirely from the digital-versus-physical channel weighting (the digital share is drawn from U[0.25, 0.75]), not from the data. The channel split is the choice that matters, and the interval now shows it.</p>
 <hr>
 <h2 id="9-series-breaks">9. Series breaks</h2>
 <p><strong>Default: segments.</strong> A break (definition, question wording, population or classification change) starts a new segment. Levels may use the latest segment; paces and any chaining never cross a segment boundary.</p>
@@ -765,7 +765,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <p><code>CHANGELOG.md</code> follows the Keep a Changelog format. Every release lists method changes, data vintage (cut-off), hashes and the effect on the headline (old value against new). There is one VERSION source and a git tag <code>vX.Y.Z</code> per release. Once 1.0.0 is tagged, nothing in <code>method.v1.0.json</code> changes without a version bump and a CHANGELOG entry.</p>
 <hr>
 <h2 id="13-worked-example-illustrative-not-a-published-number">13. Worked example (illustrative, not a published number)</h2>
-<p>Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. The v1.0 compiler (<code>scripts/compute_index.py</code>) reproduces these levels; its published values after the TP1 review are EU27 21.7 (median 21.6, 95 % 16.7–27.0) and Finland 28.3 (median 28.3, 95 % 23.8–33.3). Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2); fallback A (4.5 %) otherwise. Script: <code>/workspace/adi-review/work/worked_example.py</code> (outside the repo; Kernelio&rsquo;s compiler replaces it).</p>
+<p>Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. The compiler (<code>scripts/compute_index.py</code>) reproduces these levels. Its values for 1.0.0-rc.3 are EU27 9.3 (median 9.4, 95 % 5.6–13.2) and Finland 17.3 (median 17.3, 95 % 10.4–24.4). Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2), fallback A (4.5 %) otherwise. Channel weights: digital weight uniform on [0.25, 0.75] in the Monte Carlo.</p>
 <div class="table-scroll"><table class="di-table">
 <thead>
 <tr>
@@ -796,53 +796,54 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <td>2.73</td>
 </tr>
 <tr>
-<th scope="row">Digital channel = mean(reach mean(D1, D2), depth D3)</th>
+<th scope="row">Digital channel = mean(reach mean(D1, D2), depth D3) = DAI</th>
 <td>17.29</td>
 <td>31.93</td>
 </tr>
 <tr>
-<th scope="row">Physical channel = D4</th>
+<th scope="row">Physical channel = D4 = PAI</th>
 <td>1.39</td>
 <td>2.73</td>
 </tr>
 <tr>
-<th scope="row"><strong>Deployment</strong> = 0.5 digital + 0.5 physical</th>
+<th scope="row"><strong>Deployment</strong> = 0.5 digital + 0.5 physical = <strong>headline <em>H</em></strong></th>
 <td><strong>9.34</strong></td>
 <td><strong>17.33</strong></td>
 </tr>
 <tr>
-<th scope="row">K1 capital (ICT equipment + IPP, % of GDP)</th>
-<td>5.1 → <strong>34.00</strong></td>
-<td>5.9 → <strong>39.33</strong></td>
+<th scope="row">Geometric sensitivity <em>G</em> (one pillar, so <em>G</em> = <em>H</em>)</th>
+<td>9.34</td>
+<td>17.33</td>
 </tr>
 <tr>
-<th scope="row"><strong>Headline <em>H</em></strong> (0.5 / 0.5)</th>
-<td><strong>21.67</strong></td>
-<td><strong>28.33</strong></td>
+<th scope="row">Monte Carlo median; 95 % interval (data + channel weights)</th>
+<td>9.4; 5.6–13.2</td>
+<td>17.3; 10.4–24.4</td>
 </tr>
 <tr>
-<th scope="row">Geometric sensitivity <em>G</em></th>
-<td>17.82</td>
-<td>26.11</td>
-</tr>
-<tr>
-<th scope="row">Monte Carlo median; 95 % interval</th>
-<td>21.61; 16.71–26.98</td>
-<td>28.29; 23.78–33.32</td>
+<th scope="row">Deployment data-only interval</th>
+<td>9.0–9.7</td>
+<td>16.5–18.2</td>
 </tr>
 <tr>
 <th scope="row">Variance shares data / weights / aggregation</th>
-<td>5 % / 61 % / 34 %</td>
-<td>11 % / 72 % / 17 %</td>
+<td>1 % / 99 % / 0 %</td>
+<td>1 % / 99 % / 0 %</td>
+</tr>
+<tr>
+<th scope="row"><em>Block B, not in the headline:</em> K1 capital (ICT equipment + IPP, % of GDP)</th>
+<td>5.1 → 34.0 (95 % 31.0–37.0)</td>
+<td>5.9 → 39.3 (95 % 35.8–42.8)</td>
 </tr>
 </tbody>
 </table></div>
 <p>What the example shows:</p>
 <ul>
-<li>Built from data, the headline falls far below v0.6&rsquo;s 42.7.</li>
-<li>Capital clearly exceeds use, so the &ldquo;money has arrived, use has not&rdquo; message survives.</li>
-<li>The equal digital/physical split inside deployment is the single choice that moves the number most: with digital only, deployment would be 17.3 for EU27 and the headline 25.6.</li>
-<li>These numbers change once K1 and the 2026 Eurostat data are logged; they must not be reused on any page.</li>
+<li>Built from data and limited to AI-specific use, the headline is far below v0.6&rsquo;s 42.7 and below rc.2&rsquo;s capital-weighted 21.7 / 28.3.</li>
+<li>Capital (Block B) clearly exceeds use (Block A). The &ldquo;money has arrived, use has not&rdquo; message now comes from setting the two side by side, not from blending them.</li>
+<li>The digital/physical split inside deployment is the dominant uncertainty. With digital weight 0.25 or 0.75, EU27 deployment is 5.4 or 13.3 and Finland&rsquo;s 10.0 or 24.6. With digital only it is 17.3 and 31.9. That is why the split is drawn in the Monte Carlo. The width of the published range comes almost entirely from this channel weighting (U[0.25, 0.75]), not from the data.</li>
+<li>These numbers change once the 2026 Eurostat data are logged; they must not be reused on any page.</li>
+<li>The rc.2 numbers and the alternatives (K1 weights, goalposts, cost_to_serve bounds) are in <code>docs/analysis/1.0.0-sensitivity-and-coherence.md</code>.</li>
 </ul>
 <hr>
 <h2 id="14-compiler-contract-for-tp2">14. Compiler contract (for TP2)</h2>
@@ -873,12 +874,13 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <hr>
 <h2 id="16-known-limitations-of-1-0">16. Known limitations of 1.0</h2>
 <ul>
-<li>K1 capital is a national-accounts proxy (ICT hardware, software, databases and R&amp;D), not AI-specific.</li>
+<li>K1 capital is a national-accounts proxy (ICT hardware, software, databases and R&amp;D), not AI-specific. Since 1.0.0-rc.3 it is a Block B context pillar, outside the headline.</li>
+<li>The headline rests on one pillar (deployment) and on one provider (Eurostat, two surveys) until cost_to_serve becomes eligible.</li>
 <li>Embeddedness is not measured anywhere in the headline.</li>
 <li>The physical channel rests on one indicator (<code>E_AI_TAR</code>), which scores low and pulls deployment down by design.</li>
 <li>Most Block B and C pillars and most grid cells will be experimental or not measured.</li>
 <li>The 2025 Eurostat definition extension is bounded but not identified.</li>
-<li>Weights are a convention; their effect is shown, not removed.</li>
+<li>Weights are a convention; their effect is shown, not removed. The channel split dominates the headline interval (99 % of its variance). The width of the range comes almost entirely from the digital-versus-physical weighting (U[0.25, 0.75]), not from the data.</li>
 </ul>
 <hr>
 <h2 id="17-references">17. References</h2>
@@ -903,7 +905,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 
   <footer>
     <div>
-      Machine Learning Societies – Diffusion Index v1.0 · By Harri Juntunen ·
+      Machine Learning Societies – Diffusion Index 1.0.0-rc.3 · By Harri Juntunen ·
       <a href="index.html">Daily Briefs</a> ·
       <a href="diffusion-index.html">Diffusion Index</a> ·
       <a href="forecasts.html">Forecasts</a> ·
