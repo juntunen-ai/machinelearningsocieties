@@ -1,4 +1,6 @@
-# AI Diffusion Index — Methodology v1.0
+# Machine Learning Societies – Diffusion Index: Methodology v1.0
+
+Short form in this document: the Diffusion Index.
 
 Machine Learning Societies · method version 1.0 (covers index releases 1.0.x) · frozen candidate, 22 November 2026 · owner: Harri Juntunen · method freeze (work package TP1): Massi
 
