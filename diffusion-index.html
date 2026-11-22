@@ -23,6 +23,7 @@
       <nav class="toplinks" aria-label="Site links">
         <a href="about.html">About</a> ·
         <a href="diffusion-method.html">Methodology</a> ·
+        <a href="diffusion-sources.html">Sources</a> ·
         <a href="feed.xml">RSS</a>
       </nav>
     </div>
@@ -118,7 +119,7 @@
       <ul class="di-doors">
         <li><strong>Policymakers and officials:</strong> <a href="#summary">the result in three lines</a>.</li>
         <li><strong>Journalists:</strong> <a href="#press">quotable findings and contact</a>.</li>
-        <li><strong>Researchers and analysts:</strong> <a href="diffusion-method.html">full methodology, data and sources</a>.</li>
+        <li><strong>Researchers and analysts:</strong> <a href="diffusion-method.html">full methodology</a> and <a href="diffusion-sources.html">checked observations and sources</a>.</li>
         <li><strong>Investors and companies:</strong> <a href="#industry-matrix">AI use by industry</a>.</li>
       </ul>
     </section>
@@ -213,42 +214,7 @@
       </div>
     </section>
 
-    <section class="di-section" id="observations" aria-labelledby="obs-title">
-      <h2 id="obs-title">Checked observations</h2>
-      <p><span data-bind="vintage.n_series" id="obs-count"></span> logged rows in <a href="index/series.csv"><code>index/series.csv</code></a>. Stale values are listed but excluded from scores.</p>
-      <div class="table-scroll">
-        <table class="di-table" id="obs-table">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Period</th>
-              <th scope="col">Geo</th>
-              <th scope="col">Indicator</th>
-              <th scope="col">Value</th>
-              <th scope="col">Status</th>
-            </tr>
-          </thead>
-          <tbody id="obs-tbody"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="di-section" id="sources" aria-labelledby="sources-title">
-      <h2 id="sources-title">Sources</h2>
-      <p>Checked [V] sources may enter the series. Candidate [K] sources cannot. Details and licences: <a href="diffusion-method.html">methodology page</a>.</p>
-      <div class="table-scroll">
-        <table class="di-table" id="sources-table">
-          <thead>
-            <tr>
-              <th scope="col">Source</th>
-              <th scope="col">Status</th>
-              <th scope="col">Pillars</th>
-            </tr>
-          </thead>
-          <tbody id="sources-tbody"></tbody>
-        </table>
-      </div>
-    </section>
+    <p class="di-sources-link" id="observations"><a id="sources"></a>Checked observations and sources are on a <a href="diffusion-sources.html">separate page</a>.</p>
   </main>
 
   <dialog class="di-modal" id="cell-modal" closedby="any" aria-labelledby="modal-title">
@@ -269,6 +235,7 @@
       Machine Learning Societies – Diffusion Index 1.0.0-rc.3 · <span class="di-placeholder">{{PUBLISHER_LINE}}</span> ·
       <a href="index.html">Daily Briefs</a> ·
       <a href="diffusion-method.html">Methodology</a> ·
+      <a href="diffusion-sources.html">Sources</a> ·
       <a href="forecasts.html">Forecasts</a> ·
       <a href="about.html">About</a> ·
       <a href="feed.xml">RSS</a>

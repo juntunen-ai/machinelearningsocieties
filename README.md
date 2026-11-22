@@ -14,6 +14,7 @@ Compiled by **Harri Juntunen** & [Twin](https://twin.so).
 - `forecasts.html` & `forecasts.json` — Public ledger of dated, probabilistic forecasts
 - `diffusion-index.html` — Machine Learning Societies – Diffusion Index (English dashboard)
 - `diffusion-method.html` — Methodology for the Machine Learning Societies – Diffusion Index
+- `diffusion-sources.html` — Checked observations and sources for the Machine Learning Societies – Diffusion Index
 - `briefs/index.json` — Archive index (newest first, with EN/FI titles, scores, and summaries)
 - `briefs/YYYY-MM-DD.html` & `briefs/YYYY-MM-DD.fi.html` — Archived daily editions
 - `briefs/latest.html` & `briefs/latest.fi.html` — Most recent edition

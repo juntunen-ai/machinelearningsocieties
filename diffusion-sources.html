@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checked observations and sources – Machine Learning Societies – Diffusion Index</title>
+<meta name="description" content="Checked observations and sources for the Machine Learning Societies – Diffusion Index. Verified sources may enter the series; candidate sources cannot.">
+<meta property="og:title" content="Checked observations and sources – Machine Learning Societies – Diffusion Index">
+<meta property="og:description" content="Logged observations and the source list for the Machine Learning Societies – Diffusion Index.">
+<meta property="og:site_name" content="Machine Learning Societies – Diffusion Index">
+<meta name="twitter:title" content="Checked observations and sources – Machine Learning Societies – Diffusion Index">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css?v=20261122h">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div class="wrap-wide">
+  <header class="masthead">
+    <div class="mast-left">
+      <a class="brand" href="index.html">Machine Learning Societies</a>
+      <nav class="toplinks" aria-label="Site links">
+        <a href="about.html">About</a> ·
+        <a href="diffusion-method.html">Methodology</a> ·
+        <a href="diffusion-sources.html" aria-current="page">Sources</a> ·
+        <a href="feed.xml">RSS</a>
+      </nav>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <a class="btn" href="index.html">Daily Briefs</a>
+      <a class="btn" href="diffusion-index.html">Diffusion Index</a>
+      <a class="btn" href="forecasts.html">Forecasts</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <p class="di-preliminary" role="status">Preliminary, data cut-off 31 Dec 2026. Figures will be recomputed before release.</p>
+    <noscript>
+      <p class="di-js-required">This page needs JavaScript to fill the observation and source tables from the data files. You can still download <a href="index/series.csv">index/series.csv</a> and <a href="index/computed.v1.0.json">computed.v1.0.json</a>, and read the <a href="diffusion-method.html">methodology</a>.</p>
+    </noscript>
+
+    <section class="di-section" id="summary">
+      <p class="kicker">Machine Learning Societies – Diffusion Index 1.0.0-rc.3 · <span data-bind="quarter_label">{{quarter_label}}</span> · <span data-bind="scope_label">{{scope_label}}</span></p>
+      <h1>Checked observations and sources</h1>
+      <p>The tables below are the logged observations and the source list that sit behind the <a href="diffusion-index.html">Diffusion Index</a>. Scoring rules and licences are on the <a href="diffusion-method.html">methodology page</a>.</p>
+    </section>
+
+    <section class="di-section" id="observations" aria-labelledby="obs-title">
+      <h2 id="obs-title">Checked observations</h2>
+      <p><span data-bind="vintage.n_series" id="obs-count"></span> logged rows in <a href="index/series.csv"><code>index/series.csv</code></a>. Stale values are listed but excluded from scores.</p>
+      <div class="table-scroll">
+        <table class="di-table" id="obs-table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Period</th>
+              <th scope="col">Geo</th>
+              <th scope="col">Indicator</th>
+              <th scope="col">Value</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="obs-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="di-section" id="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">Sources</h2>
+      <p>Checked [V] sources may enter the series. Candidate [K] sources cannot. Details and licences: <a href="diffusion-method.html">methodology page</a>.</p>
+      <div class="table-scroll">
+        <table class="di-table" id="sources-table">
+          <thead>
+            <tr>
+              <th scope="col">Source</th>
+              <th scope="col">Status</th>
+              <th scope="col">Pillars</th>
+            </tr>
+          </thead>
+          <tbody id="sources-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      Machine Learning Societies – Diffusion Index 1.0.0-rc.3 · <span class="di-placeholder">{{PUBLISHER_LINE}}</span> ·
+      <a href="index.html">Daily Briefs</a> ·
+      <a href="diffusion-method.html">Methodology</a> ·
+      <a href="diffusion-sources.html" aria-current="page">Sources</a> ·
+      <a href="forecasts.html">Forecasts</a> ·
+      <a href="about.html">About</a> ·
+      <a href="feed.xml">RSS</a>
+    </div>
+  </footer>
+</div>
+<script src="assets/diffusion-index.js?v=20261122h"></script>
+</body>
+</html>

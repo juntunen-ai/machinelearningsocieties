@@ -19,6 +19,7 @@ STATIC_PAGES = [
     ("forecasts.html", "0.8"),
     ("diffusion-index.html", "0.8"),
     ("diffusion-method.html", "0.5"),
+    ("diffusion-sources.html", "0.5"),
 ]
 
 

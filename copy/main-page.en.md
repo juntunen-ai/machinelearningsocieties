@@ -92,7 +92,7 @@ Three small cards:
 
 - **Policymakers and officials:** [the result in three lines](#summary).
 - **Journalists:** [quotable findings, chart images and contact](#press).
-- **Researchers and analysts:** [full methodology, data and sources](diffusion-method.html).
+- **Researchers and analysts:** [full methodology](diffusion-method.html) and [checked observations and sources](diffusion-sources.html).
 - **Investors and companies:** [AI use by industry](#industry-matrix).
 
 *Build note: `#industry-matrix` = id on the existing "10 Industries × 10 Pillars" heading. The data sections that follow (KPI cards, blocks, matrix, pillars, ledgers) are Kernelio's and Massi's; their headings still carry v0.6 numbers.*
@@ -129,9 +129,13 @@ Machine Learning Societies – Diffusion Index 1.0.0-rc.3 · {{reference_period}
 
 ---
 
-## 7. Footer
+## 7. Checked observations and sources
 
-Machine Learning Societies – Diffusion Index 1.0.0-rc.3 · {{PUBLISHER_LINE}} · Daily Briefs · Methodology · Forecasts · About · RSS
+The checked observations table and the source list are not on the main page. They are on a separate page, [`diffusion-sources.html`](diffusion-sources.html) (title: Checked observations and sources), linked from the main page, the nav, and the methodology page. Anchors `#observations` and `#sources` live on that page (`diffusion-sources.html#observations`, `diffusion-sources.html#sources`). The main page keeps a short link line, with `#observations` and `#sources` pointing readers to it.
+
+## 8. Footer
+
+Machine Learning Societies – Diffusion Index 1.0.0-rc.3 · {{PUBLISHER_LINE}} · Daily Briefs · Methodology · Sources · Forecasts · About · RSS
 
 *Build note: the main page has no open-data / replication section (Harri, 22 Nov 2026). Data files stay in `index/`; the methodology page links them.*
 
