@@ -1,0 +1,600 @@
+{
+  "method_id": "adi-method",
+  "method_version": "1.0",
+  "index_version_target": "1.0.0",
+  "status": "frozen-candidate",
+  "frozen_by": "Massi (TP1), plan suunnitelma_1.0.0.md, approved for implementation by Harri Juntunen 2026-11-22",
+  "date": "2026-11-22",
+  "supersedes": "index/method.v0.6.md + index/registry.v0.6.json (0.6-proposed)",
+  "human_readable": "index/method.v1.0.md",
+  "references": {
+    "oecd_jrc_2008": "OECD/JRC (2008) Handbook on Constructing Composite Indicators",
+    "eurostat_esms_isoc_e": "https://ec.europa.eu/eurostat/cache/metadata/en/isoc_e_esms.htm",
+    "eurostat_api_isoc_eb_ai": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/isoc_eb_ai",
+    "eurostat_se_ai_enterprises": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Use_of_artificial_intelligence_in_enterprises",
+    "eurostat_api_nama_10_an6": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nama_10_an6"
+  },
+  "target": {
+    "populations": [
+      {
+        "id": "EU27",
+        "geo_codes": [
+          "EU27_2020"
+        ],
+        "label": "European Union (27 member states)"
+      },
+      {
+        "id": "FI",
+        "geo_codes": [
+          "FI"
+        ],
+        "label": "Finland"
+      }
+    ],
+    "rule": "Every published score belongs to exactly one population and one reference period. EU27 and FI are computed and published separately and never averaged together. Observations for other geographies (US, GLOBAL, other member states) are context: they may be shown, but never enter a population score.",
+    "reference_period": {
+      "rule": "Reference period of an edition = the calendar quarter whose last day is the data cut-off. For each indicator the latest period with period_end <= cut-off is used.",
+      "staleness_limit_months": 36,
+      "staleness_rule": "An indicator value whose period ended more than 36 months before the cut-off is excluded from scores and listed as stale."
+    }
+  },
+  "scoring": {
+    "chain": "observation -> indicator value (population, period) -> goalpost normalisation -> indicator score 0-100 -> layer -> channel -> pillar -> block A headline",
+    "normalisation": {
+      "linear": "s = 100 * (x - floor) / (ceiling - floor)",
+      "log": "s = 100 * (ln x - ln floor) / (ln ceiling - ln floor)",
+      "direction": "If direction = -1 the score is 100 - s (higher raw value means less diffusion). If direction = 0 the pillar is diagnostic: a score is shown but never aggregated.",
+      "clipping": "After normalisation s is clipped to [0, 100]. Every clipped value is flagged clipped=true with the raw value kept in the output. If any headline-pillar indicator clips in two consecutive editions, its goalposts are reviewed at the next MINOR version (never silently).",
+      "log_nonpositive": "For log scales a raw value <= 0 is invalid input: the compiler fails (no silent epsilon)."
+    },
+    "within_pillar_aggregation": {
+      "layer_score": "Arithmetic mean of the scores of the measured indicators in that layer (reach, depth, embeddedness).",
+      "channel_score": "Arithmetic mean of the measured layers of that channel (digital, physical). DAI = digital channel, PAI = physical channel.",
+      "pillar_score": "Equal-weighted mean of the measured channels (digital 0.5, physical 0.5, as in v0.6 section 1). If only one channel is measured, the pillar score is that channel and the pillar carries channel_coverage='digital_only' or 'physical_only'.",
+      "unmeasured": "Unmeasured indicators, layers or channels are omitted and listed; they are never imputed and never scored as zero."
+    },
+    "rounding": {
+      "internal": "IEEE double precision throughout; no intermediate rounding.",
+      "published": "Scores, interval bounds and paces are rounded once, at output, to 1 decimal using ROUND_HALF_UP (Python decimal). Headline display (main page) rounds the same unrounded value to an integer with ROUND_HALF_UP. Weights are published to 4 decimals."
+    }
+  },
+  "pillars": [
+    {
+      "id": "deployment",
+      "code": "P1",
+      "block": "A_diffusion",
+      "direction": 1,
+      "headline_eligible_by_design": true,
+      "indicators": [
+        {
+          "id": "D1_ent_any_ai",
+          "channel": "digital",
+          "layer": "reach",
+          "source_id": "eurostat_isoc_eb_ai",
+          "series": "isoc_eb_ai / E_AI_TANY / size_emp=GE10 / nace_r2=C10-S951_X_K / unit=PC_ENT",
+          "unit": "% of enterprises (10+ persons)",
+          "scale": "linear",
+          "floor": 0.0,
+          "ceiling": 100.0,
+          "goalpost_source": "Natural bounds of a share (0 % and 100 % of enterprises). Decision TP1 2026-11-22, see deployment_ceiling_decision.",
+          "goalpost_date": "2026-11-22",
+          "segments": [
+            {
+              "id": "S1",
+              "periods": [
+                "2021",
+                "2023",
+                "2024"
+              ],
+              "definition": "7 AI technologies"
+            },
+            {
+              "id": "S2",
+              "from": "2025",
+              "definition": "8 AI technologies (adds E_AI_TPVSG image/video/audio generation)"
+            }
+          ]
+        },
+        {
+          "id": "D2_ind_genai",
+          "channel": "digital",
+          "layer": "reach",
+          "source_id": "eurostat_isoc_ai_iaiu",
+          "series": "isoc_ai_iaiu / I_IUAI / ind_type=IND_TOTAL / unit=PC_IND",
+          "unit": "% of individuals (16-74) using generative AI tools in last 3 months",
+          "scale": "linear",
+          "floor": 0.0,
+          "ceiling": 100.0,
+          "goalpost_source": "Natural bounds of a share.",
+          "goalpost_date": "2026-11-22",
+          "segments": [
+            {
+              "id": "S1",
+              "from": "2025"
+            }
+          ]
+        },
+        {
+          "id": "D3_ent_depth_ge3",
+          "channel": "digital",
+          "layer": "depth",
+          "source_id": "eurostat_isoc_eb_ai",
+          "series": "isoc_eb_ai / E_AI_TGE3 / size_emp=GE10 / nace_r2=C10-S951_X_K / unit=PC_ENT",
+          "unit": "% of enterprises using >= 3 AI technologies",
+          "scale": "linear",
+          "floor": 0.0,
+          "ceiling": 100.0,
+          "goalpost_source": "Natural bounds of a share.",
+          "goalpost_date": "2026-11-22",
+          "segments": [
+            {
+              "id": "S1",
+              "periods": [
+                "2021",
+                "2023",
+                "2024"
+              ]
+            },
+            {
+              "id": "S2",
+              "from": "2025",
+              "definition": "counted over 8 technologies"
+            }
+          ]
+        },
+        {
+          "id": "D4_ent_autonomous",
+          "channel": "physical",
+          "layer": "reach",
+          "source_id": "eurostat_isoc_eb_ai",
+          "series": "isoc_eb_ai / E_AI_TAR / size_emp=GE10 / nace_r2=C10-S951_X_K / unit=PC_ENT",
+          "unit": "% of enterprises using autonomous robots, self-driving vehicles or drones",
+          "scale": "linear",
+          "floor": 0.0,
+          "ceiling": 100.0,
+          "goalpost_source": "Natural bounds of a share. AI-specific official physical indicator; replaces IFR robot density as the scored physical indicator.",
+          "goalpost_date": "2026-11-22",
+          "segments": [
+            {
+              "id": "S1",
+              "from": "2021",
+              "definition": "question unchanged 2021-2025; country-level 'b' flags apply"
+            }
+          ]
+        },
+        {
+          "id": "D5_robot_density",
+          "channel": "physical",
+          "layer": "reach",
+          "source_id": "ifr_world_robotics",
+          "role": "sensitivity_only",
+          "unit": "industrial robots per 10,000 manufacturing employees",
+          "scale": "log",
+          "floor": 10.0,
+          "ceiling": 1500.0,
+          "goalpost_source": "registry.v0.6.json deployment.goalpost (robot_density_floor 10, ceiling 1500); IFR World Robotics executive summary. Not AI-specific (proxy) and restricted licence, so never scored in the headline.",
+          "goalpost_date": "2026-10-28"
+        }
+      ],
+      "embeddedness": "Curated workflow log (brief_signals.csv) is grade C and not observable at scale from open data; layer is 'not measured' in 1.0.0."
+    },
+    {
+      "id": "cost_to_serve",
+      "code": "P2",
+      "block": "A_diffusion",
+      "direction": -1,
+      "headline_eligible_by_design": false,
+      "status_1_0": "experimental (grade C)",
+      "indicators": [
+        {
+          "id": "C1_task_price_index",
+          "channel": "digital",
+          "layer": "depth",
+          "source_id": "adi_task_price_index",
+          "unit": "AI Task Price Index, cost per accepted deliverable relative to human cost (2026 baseline = 100)",
+          "scale": "log",
+          "floor": 10.0,
+          "ceiling": 200.0,
+          "goalpost_source": "registry.v0.6.json cost_to_serve.goalpost (floor 10, ceiling 200, base 100) and v0.6 score guide (100 = one tenth of today's cost). With direction -1: TPI 10 -> score 100, TPI 200 -> score 0, TPI 100 -> score 23.1.",
+          "goalpost_date": "2026-10-28",
+          "exists": false
+        }
+      ],
+      "rule": "Grade C until (a) the Task Price Index harness (GDPval-based basket, method v0.6 section 3) is published and (b) at least 2 quarterly TPI readings exist. Until then the pillar is shown as experimental, excluded from the headline, and Block A weights are renormalised over the remaining eligible pillars. The v0.6 observations OBS-038 (one firm's compute share of revenue), OBS-039 (% end-to-end workflows), OBS-040 (million lines of Rocq; sector/source tags to be corrected) are context only and do not score this pillar."
+    },
+    {
+      "id": "capital_intensity",
+      "code": "P3",
+      "block": "A_diffusion",
+      "direction": 1,
+      "headline_eligible_by_design": true,
+      "ai_specificity": "proxy",
+      "indicators": [
+        {
+          "id": "K1_gfcf_ict_ipp_gdp",
+          "channel": "digital",
+          "layer": "reach",
+          "source_id": "eurostat_nama_10_an6",
+          "series": "nama_10_an6 / unit=PC_GDP / asset10 = N1132G (ICT equipment) + N117G (intellectual property products)",
+          "unit": "% of GDP",
+          "scale": "linear",
+          "floor": 0.0,
+          "ceiling": 15.0,
+          "goalpost_source": "Floor = natural zero. Ceiling 15 % of GDP = about 1.7x the highest EU member state in 2024 (DK 9.0 %, SE 8.6 %; EU27 2025 5.1 %; FI 2025 5.9 %), Eurostat nama_10_an6 retrieved 2026-11-22. Leaves headroom so no member state clips within the 1.x series.",
+          "goalpost_date": "2026-11-22",
+          "caveat": "National-accounts proxy for the capital that AI diffusion needs (ICT hardware, software, databases, R&D); not AI-specific. Source must be added to the registry as [V] and logged before rc1."
+        },
+        {
+          "id": "K2_ai_capex_commitments",
+          "channel": "digital",
+          "layer": "reach",
+          "source_id": "sec_edgar",
+          "role": "context_only",
+          "unit": "USD bn, AI compute commitments disclosed in filings (global)",
+          "scale": "log",
+          "floor": 1.0,
+          "ceiling": 500.0,
+          "goalpost_source": "registry.v0.6.json capital_intensity.goalpost (log 1-500). Global and firm-level, so it has no EU27/FI population and is shown as context only.",
+          "goalpost_date": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "labour_reorganisation",
+      "code": "P4",
+      "block": "C_consequences",
+      "direction": 0,
+      "indicators": [
+        {
+          "id": "L1_firms_reorganised",
+          "unit": "% of firms that reorganised tasks/workflows because of AI",
+          "scale": "linear",
+          "floor": 0.0,
+          "ceiling": 100.0,
+          "goalpost_source": "registry.v0.6.json; natural bounds of a share",
+          "goalpost_date": "2026-10-28",
+          "source_id": "TBD ([K] Eurostat LFS / BTOS AI supplement)"
+        }
+      ]
+    },
+    {
+      "id": "governance_burden",
+      "code": "P5",
+      "block": "B_conditions",
+      "direction": 0,
+      "indicators": [
+        {
+          "id": "G1_binding_obligations",
+          "unit": "count of binding AI obligations / harmonised standards in force (counting rule: named authority + date + sanction/standard)",
+          "scale": "linear",
+          "floor": 0.0,
+          "ceiling": 50.0,
+          "goalpost_source": "registry.v0.6.json governance_burden.goalpost",
+          "goalpost_date": "2026-10-28",
+          "source_id": "eur_lex"
+        }
+      ]
+    },
+    {
+      "id": "human_capital",
+      "code": "P6",
+      "block": "B_conditions",
+      "direction": 1,
+      "indicators": [
+        {
+          "id": "H1_ict_specialists",
+          "unit": "% ICT specialists in total employment",
+          "scale": "linear",
+          "floor": 0.0,
+          "ceiling": 25.0,
+          "goalpost_source": "registry.v0.6.json human_capital.goalpost; Eurostat isoc_sks_itspt to be verified [K]",
+          "goalpost_date": "2026-10-28",
+          "source_id": "TBD ([K] Eurostat isoc_sks_itspt)"
+        }
+      ]
+    },
+    {
+      "id": "ecological_balance",
+      "code": "P7",
+      "block": "C_consequences",
+      "direction": 0,
+      "indicators": [
+        {
+          "id": "E1_dc_electricity",
+          "unit": "TWh, data-centre electricity demand",
+          "scale": "log",
+          "floor": 10.0,
+          "ceiling": 2000.0,
+          "goalpost_source": "registry.v0.6.json ecological_balance.goalpost; IEA Energy and AI",
+          "goalpost_date": "2026-10-28",
+          "source_id": "iea_energy_ai"
+        }
+      ],
+      "rule": "Diagnostic, two-way (burden vs enabled reduction); no net figure until both components are A/B in the same sector (v0.6 section 3)."
+    },
+    {
+      "id": "energy_capacity",
+      "code": "P8",
+      "block": "B_conditions",
+      "direction": -1,
+      "indicators": [
+        {
+          "id": "N1_queue_ratio",
+          "unit": "requested MW / connected MW (large-load or interconnection queue ratio)",
+          "scale": "log",
+          "floor": 0.5,
+          "ceiling": 10.0,
+          "goalpost_source": "registry.v0.6.json energy_capacity.goalpost (0.5-10). Scale frozen as log because it is a ratio. Direction -1: a longer queue means a tighter constraint, scored lower.",
+          "goalpost_date": "2026-11-22",
+          "source_id": "TBD ([K] Fingrid / ENTSO-E for EU27/FI)"
+        }
+      ]
+    },
+    {
+      "id": "ownership_distribution",
+      "code": "P9",
+      "block": "C_consequences",
+      "direction": 0,
+      "indicators": [
+        {
+          "id": "O1_broad_equity_share",
+          "unit": "% broad/public/employee equity share",
+          "scale": "linear",
+          "floor": 0.0,
+          "ceiling": 100.0,
+          "goalpost_source": "registry.v0.6.json",
+          "goalpost_date": "2026-10-28",
+          "source_id": "TBD ([K] ECB DWA / Fed DFA)"
+        }
+      ]
+    },
+    {
+      "id": "market_openness",
+      "code": "P10",
+      "block": "B_conditions",
+      "direction": 1,
+      "indicators": [
+        {
+          "id": "M1_open_share",
+          "unit": "% open-weights / non-concentrated share",
+          "scale": "linear",
+          "floor": 0.0,
+          "ceiling": 100.0,
+          "goalpost_source": "registry.v0.6.json",
+          "goalpost_date": "2026-10-28",
+          "source_id": "epoch_ai_data / openrouter_rankings"
+        }
+      ]
+    }
+  ],
+  "deployment_ceiling_decision": {
+    "decision": 100,
+    "alternatives_considered": [
+      80
+    ],
+    "rationale": [
+      "A fixed goalpost should be the natural bound of the unit; 100 % needs no external justification, an 80 % saturation level does.",
+      "No clipping risk: with 80 the EU large-firm share (55.0 % in 2025, +13.9 pp/yr) and the Finnish large-firm share (68 % in 2025) would hit the ceiling within one to two years, and sector cells (information & communication) would clip first.",
+      "Same convention as the other share-based pillars (labour, ownership, market openness use 0-100).",
+      "Score reads directly as 'percent adopting', which the main page can explain in one sentence."
+    ],
+    "cost": "Scores look lower (EU enterprise reach 2025 = 20.0, not 24.9). An 80 % saturation reading may be shown as a labelled sensitivity, never as the headline.",
+    "ui_fix_required": "v0.6 score guide text '100 = 80% of organizations' must be replaced (compute_index.py pillar deployment score_guide_en)."
+  },
+  "evidence_rules": {
+    "observation_eligibility": "Only rows whose source is verified=true ([V]) in the registry and that pass the series.csv schema count. [K] sources never count.",
+    "pillar_headline_eligibility": {
+      "min_verified_observations": 5,
+      "min_distinct_verified_sources": 2,
+      "min_official_sources": 1,
+      "official_definition": "registry trust tier 1 (official statistics)",
+      "min_derived_grade": "B",
+      "population_rule": "The pillar must also have at least one scored indicator value for the population and reference period in question.",
+      "counting": "Observations and sources are counted per pillar across all geographies (as in plan section 2.3); the score itself uses only the target population's values."
+    },
+    "experimental": "A pillar with >= 1 scored indicator value that fails pillar_headline_eligibility is published as 'experimental' with n and grade, and excluded from the headline.",
+    "grid_cell": {
+      "definition": "10 sectors (registry sectors, NACE sections) x 10 pillars per population.",
+      "min_sector_specific_observations": 1,
+      "rule": "A cell is scored only from verified observations whose sector matches the cell's NACE section(s) and whose geography matches the population, within the staleness limit. 'ALL'-sector observations never fill a sector cell. Otherwise score = null, grade = null, status = 'not measured'.",
+      "no_multipliers": "Fixed reach/depth/embeddedness multipliers (v0.6 x1.14/x0.88/x0.98) and sector DAI/PAI multipliers (x1.08/0.92, x1.15/0.45) are abolished."
+    },
+    "headline": {
+      "min_eligible_block_a_pillars": 2,
+      "rule": "If fewer than 2 Block A pillars are eligible for a population, the headline for that population is null with status 'incomplete'; eligible and experimental pillar scores are still published."
+    },
+    "not_measured_display": "Unmeasured values are shown as the text 'not measured' (never 0, never blank, never a colour that implies a score). Every published number carries n (observations) and coverage (measured indicators / defined indicators)."
+  },
+  "grade_rules": {
+    "provenance_scale": {
+      "A": "official/administrative register or filing",
+      "B": "academic, intergovernmental or documented commercial series, stable definition",
+      "C": "proxy, voluntary or single-source"
+    },
+    "indicator_grade": "Provenance grade of the source series in the registry. Tier 4 (vendor telemetry/company disclosure) is at most B and never the sole A/B evidence; tier 5 is never a source.",
+    "derived_grade": "Pillar or cell grade = the lowest (weakest) provenance grade among the indicators that enter its score.",
+    "caps": [
+      {
+        "scope": "sector=agriculture",
+        "max_grade": "C",
+        "reason": "method v0.6 section 3: precision-agriculture adoption has no open official series; agriculture stays C until a sector-specific A/B series is logged."
+      },
+      {
+        "scope": "pillar=cost_to_serve",
+        "max_grade": "C",
+        "reason": "Task Price Index not yet published."
+      },
+      {
+        "scope": "ai_specificity=proxy (physical channel indicators)",
+        "max_grade": "C for the AI dimension",
+        "reason": "method v0.6 section 1 honest limit on PAI; D4 (E_AI_TAR) is AI-specific and not capped."
+      }
+    ],
+    "sector_gap": "The sector gap is computed only between scored cells of grade A or B for the same population and pillar set; capped (C) sectors are excluded."
+  },
+  "block_a": {
+    "pillars": [
+      "deployment",
+      "cost_to_serve",
+      "capital_intensity"
+    ],
+    "nominal_weights": {
+      "deployment": 0.3333,
+      "cost_to_serve": 0.3333,
+      "capital_intensity": 0.3333
+    },
+    "missing_or_grade_c_rule": "Weights are renormalised over the eligible pillars only: w_i = nominal_i / sum(nominal_j for eligible j). With cost_to_serve experimental the effective weights are deployment 0.5000, capital_intensity 0.5000.",
+    "headline_aggregation": "arithmetic: H = sum_i w_i * s_i",
+    "sensitivity_aggregation": {
+      "name": "geometric (weakest-link) sensitivity",
+      "formula": "G = exp(sum_i w_i * ln(max(s_i, 1.0)))",
+      "floor": 1.0,
+      "label": "Always labelled 'sensitivity check: geometric mean (weakest link)'; never called the headline, never mixed into the headline interval."
+    },
+    "dai_pai": "DAI = Block A aggregation applied to digital-channel pillar scores; PAI = same for physical-channel scores (pillars without that channel are omitted and renormalised). PAI carries the proxy flag whenever a proxy indicator contributes.",
+    "blocks_b_c": "Blocks B and C are dashboards: pillar scores with n, grade and coverage; no block composite is published in 1.0.0 (their direction 0 pillars are diagnostic by definition)."
+  },
+  "monte_carlo": {
+    "seed": 20261028,
+    "draws": 20000,
+    "rng": "numpy.random.Generator(numpy.random.PCG64(20261028))",
+    "draw_order": "1) noise matrix Z of shape (draws, n_indicators) = rng.standard_normal, indicators sorted by indicator id; 2) weight factor matrix U of shape (draws, n_eligible_block_a_pillars) = rng.uniform(1-r, 1+r), pillars in block_a.pillars order. Draws are generated once per population in the order EU27, FI.",
+    "monte_carlo_error_note": "At N = 1,000 the v0.6 interval bounds moved by up to 0.6 points between seeds; at N = 20,000 the Monte Carlo standard error of a 2.5 % / 97.5 % quantile is below about 0.2 points for intervals of the v0.6 width.",
+    "weights": {
+      "distribution": "independent multiplicative uniform factors on the nominal weights, then renormalised",
+      "r": 0.5,
+      "decision": "plus/minus 50 %",
+      "justification": [
+        "Equal weights have no empirical basis (formative index, method v0.6 section 1), so the plausible range should be wide; plus/minus 20 % would understate how arbitrary the weights are.",
+        "Plus/minus 50 % is what method v0.6 section 4.5 promised; v0.6 code used Dirichlet(1,1,1) instead, which allows weights near 0 and 1 and made the interval about 2.5x wider (32.0-53.4 vs 38.0-46.5 in the replication).",
+        "It is reported as its own variance component, so readers can see how much of the interval is weight choice rather than data."
+      ],
+      "not_used": "Dirichlet(1,...,1) (v0.6) is abolished."
+    },
+    "data_noise": {
+      "model": "x_draw = x * (1 + sigma_rel * z) for each indicator value, z ~ N(0,1); the score is recomputed from x_draw through the goalpost and clipping. One z per indicator value (not shared across indicators).",
+      "sigma_hierarchy": [
+        "1. Published standard error or CI from the source for that value (half-width of 95 % CI / 1.96).",
+        "2. For survey proportions with known sample size n: sigma_abs = sqrt(p(1-p) / (n / deff)), deff = 2.0 (Eurostat ICT enterprise survey 2025: n = 157,000 for EU27, ESMS isoc_e section 3.6).",
+        "3. Fallback by derived grade (relative): A 0.045, B 0.075, C 0.15. A and B continue the v0.6 values; C is new."
+      ],
+      "record": "Each observation row records sigma and sigma_basis (published | binomial | fallback_A | fallback_B | fallback_C)."
+    },
+    "aggregation_component": "Run separately: the geometric sensitivity G is computed with the same draws; aggregation uncertainty is reported as the distribution of H - G, not mixed into the headline interval.",
+    "interval": {
+      "level": 0.95,
+      "quantiles": [
+        0.025,
+        0.5,
+        0.975
+      ],
+      "headline_interval": "Quantiles of H over the joint draws of data noise and weights (arithmetic aggregation).",
+      "point_vs_median": "The published point is H at nominal effective weights and unperturbed data; the MC median is published next to it. If |median - point| > 1.0 the compiler emits a warning."
+    },
+    "variance_decomposition": {
+      "runs": {
+        "V_total": "variance of H with data noise and weights both random",
+        "V_data": "variance of H with data noise only (weights fixed at effective nominal)",
+        "V_weights": "variance of H with weights only (data fixed)",
+        "V_aggregation": "variance over the 50/50 mixture of H and G at fixed data and weights = ((H - G)/2)^2"
+      },
+      "outputs": [
+        "V_total",
+        "V_data",
+        "V_weights",
+        "V_aggregation",
+        "share_data = V_data / (V_data + V_weights + V_aggregation)",
+        "share_weights",
+        "share_aggregation",
+        "interaction = V_total - V_data - V_weights"
+      ],
+      "publish": "Shares to whole per cent on the methodology page and in computed JSON."
+    },
+    "scope": "Run for each population's headline, DAI, PAI and every pillar score (data component only for pillars)."
+  },
+  "breaks": {
+    "default_rule": "Segments. A series break (definition, question wording, population or classification change) starts a new segment. Levels may use the latest segment; paces and any chaining never cross a segment boundary.",
+    "bridging_allowed_only_if": "The source publishes the same period under both definitions (an overlap period). Bridge factor = old/new for that overlap period, recorded with source URL, overlap period, date and its standard error. Ratios of different periods are forbidden.",
+    "flags": "Observation rows carry break_flag (true on the first row of a new segment), segment_id and, only if bridged, bridge_factor + bridge_source + bridge_period. Eurostat 'b' flags are imported per value.",
+    "decisions": [
+      {
+        "series": "census_btos BTOS_AI_USE_V1 -> V2",
+        "decision": "Two segments; no bridge. The v0.6 factor 0.563 (= 9.8 / 17.4, OBS-024 week 44 / OBS-025 week 48) is rejected: it divides different weeks and different questions. BTOS is US, outside the EU27/FI target, so it is context only. OBS-026 must have bridge_factor removed (it currently carries 0.563 with break_flag=false)."
+      },
+      {
+        "series": "eurostat isoc_eb_ai E_AI_TANY, E_AI_TGE2, E_AI_TGE3",
+        "decision": "Segment S1 = 2021, 2023, 2024 (7 technologies); segment S2 from 2025 (8 technologies: adds E_AI_TPVSG). See eurostat_isoc_eb_ai_check. Bridge only if Eurostat publishes a 2025 value on the 7-technology basis."
+      },
+      {
+        "series": "eurostat isoc_eb_ai E_AI_TAR",
+        "decision": "One segment 2021-2025 at EU27 level; country 'b' flags (FR 2023, SE 2023, NL 2025) are carried per value and start a new segment for that country."
+      }
+    ]
+  },
+  "eurostat_isoc_eb_ai_check": {
+    "checked": "2026-11-22",
+    "sources": [
+      "https://ec.europa.eu/eurostat/cache/metadata/en/isoc_e_esms.htm (metadata last update 11 December 2025)",
+      "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/isoc_eb_ai (dataset updated 2026-06-15; periods 2021, 2023, 2024, 2025)",
+      "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Use_of_artificial_intelligence_in_enterprises (data extracted December 2025; planned update 15 December 2026)"
+    ],
+    "findings": [
+      "No AI module in survey year 2022: the series has 2021, 2023, 2024, 2025 only.",
+      "EU27_2020 E_AI_TANY (GE10) values: 2021 7.65, 2023 8.06, 2024 13.48, 2025 19.95; no 'b' (break) flag on any EU27 value.",
+      "Definition change in 2025: the E_AI_TANY label now reads 'at least one of AI_TTM, AI_TSR, AI_TNLG, AI_TIR, AI_TML, AI_TPA, AI_TAR, E_AI_TPVSG'; E_AI_TPVSG (generating pictures, videos, sound/audio) exists only for 2025 (EU27 9.55 %). The 2025 'any AI' share therefore covers one more technology than 2021-2024. Eurostat does not flag this as a break and publishes no 7-technology 2025 total, so the size of the effect is bounded (0 to 9.55 pp) but not identified.",
+      "Purpose indicators changed between 2021 and 2023 (E_AI_PBA, E_AI_PHR, E_AI_PME exist only for 2021); provenance indicators (E_AI_ADOWN etc.) exist for 2021 and 2024 only. Not used for scoring.",
+      "Country-level break flags on E_AI_TANY: FR 2023 'b', SE 2023 'b', NL 2025 'b'. FI has no flag (2021 15.79, 2023 15.10, 2024 24.37, 2025 37.82).",
+      "E_AI_TANY + E_AI_TX does not sum to 100 (EU27: 94.78 in 2021, 98.18 in 2023, 98.19 in 2024, 99.04 in 2025), consistent with item non-response; not a definition break but noted.",
+      "ESMS section 15.2: comparability over time is restricted where definitions change to follow ICT developments; section 12.3: changed questions get new indicator codes and break series. Standard errors exist in national quality reports for selected indicators (section 13).",
+      "registry.v0.6.json caveat mentions a 'German definition break 2025'; the API carries no 'b' flag for DE in 2023-2025 on E_AI_TANY (NOT CONFIRMED)."
+    ],
+    "outcome": "Treat 2025 as a soft definition break for E_AI_TANY, E_AI_TGE2 and E_AI_TGE3: segment S1 (2021, 2023, 2024) and S2 (2025-). 2023 vs 2021 is comparable at EU27 level (same 7 technologies) apart from flagged countries. E_AI_TAR is unaffected."
+  },
+  "pace": {
+    "unit": "index points per year on the 0-100 score scale (never percentage points of the raw unit)",
+    "min_comparable_points": 3,
+    "comparable": "Same population, same indicator set, same segment for every indicator involved, same goalposts.",
+    "estimator": "OLS slope of score on time in years (period midpoints), unweighted.",
+    "interval": "95 %: Monte Carlo over data noise (same seed/stream after the level draws), slope recomputed per draw; if n_points >= 4 the OLS t-interval (df = n - 2) is also computed and the wider of the two is published.",
+    "significance": "A pace is described as rising or falling only if its 95 % interval excludes 0; otherwise 'not distinguishable from zero'.",
+    "levels": "Pillar pace only when the pillar's whole indicator set meets min_comparable_points; otherwise indicator-level paces are published, labelled as such. Headline pace only when all eligible Block A pillars have a pillar pace over the same periods.",
+    "fast_slow_shear": "The v0.6 pace-shear ratio is suspended until at least one slow-layer pillar has a data-based pace.",
+    "momentum_percentile": "Abolished in 1.0.0. The v0.6 momentum percentiles were hard-coded and their reference distribution is not documented; pace with a 95 % interval replaces them."
+  },
+  "data_vintage": {
+    "cut_off_rule": "Cut-off = last day of the reference quarter (Europe/Helsinki). Observations count if date_logged <= cut-off and the source release date <= cut-off. Nothing logged after the cut-off changes a published edition.",
+    "proposed_1_0_0_cut_off": "2026-12-31 (2026-Q4): captures Eurostat's planned December 2026 isoc_eb_ai release; publication proposed January 2027.",
+    "hashes": "SHA-256 of index/series.csv, index/registry.v1.0.json, index/method.v1.0.json, index/brief_signals.csv and index/planetary_boundaries.json are written into computed JSON (vintage.hashes) and SHA256SUMS of the release.",
+    "raw_snapshots": "API responses used to log Eurostat values are stored as dated raw snapshots in the release assets (TP2 item 3).",
+    "edition_cadence": "Quarterly, fixed day (TP4). Daily briefs never change the index between editions."
+  },
+  "versioning": {
+    "scheme": "Semantic versioning MAJOR.MINOR.PATCH for the index; the method file carries MAJOR.MINOR (method.v1.0 covers 1.0.x).",
+    "major": "Change to the construct, block membership, headline aggregation formula, goalpost form (scale type) or target populations. Breaks comparability with earlier editions; back series must be recomputed or marked non-comparable.",
+    "minor": "Change to goalpost values, nominal weights, indicator set, evidence thresholds, MC specification (seed, N, weight range, noise rule), or break decisions. Full back series recomputed under the new method and published with the release.",
+    "patch": "New data vintage under an unchanged method, corrections of logged data errors, documentation fixes that do not change any number.",
+    "changelog": "CHANGELOG.md in Keep a Changelog format; every release lists method changes, data vintage (cut-off), hashes and the effect on the headline (old vs new value). One VERSION source (TP2 item 8) and a git tag vX.Y.Z per release.",
+    "freeze": "Once 1.0.0 is tagged, nothing in this file changes without a version bump and a CHANGELOG entry."
+  },
+  "compiler_contract": {
+    "must": [
+      "Read goalposts, weights, evidence and MC parameters only from this file (no constants in code).",
+      "Compute every score from series.csv through the chain in scoring.chain; no hard-coded scores.",
+      "Fail the build if a [K] source is used, a log-scale value is <= 0, or a required field is missing.",
+      "Emit n, coverage, grade, status (scored | experimental | not measured | stale | incomplete), clipped flags and sigma_basis for every published number.",
+      "Golden test: rerun on the frozen vintage reproduces computed JSON byte-for-byte (except generated_at).",
+      "Sensitivity test: changing one input value changes the dependent score."
+    ],
+    "outputs": [
+      "headline per population (point, median, 2.5 %, 97.5 %)",
+      "geometric sensitivity",
+      "variance decomposition",
+      "DAI and PAI",
+      "pillar scores and statuses",
+      "grid cells",
+      "paces with intervals",
+      "vintage block with hashes",
+      "method_version and index_version"
+    ]
+  }
+}
