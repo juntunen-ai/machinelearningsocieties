@@ -1,0 +1,7 @@
+{
+  "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/isoc_eb_ain2?format=JSON&lang=EN&indic_is=E_AI_TANY&unit=PC_ENT&size_emp=GE10&geo=EU27_2020&geo=FI&time=2025",
+  "retrieved_at_utc": "2026-11-22T14:16:22Z",
+  "http_status": 200,
+  "bytes": 8775,
+  "content_type": "application/json"
+}

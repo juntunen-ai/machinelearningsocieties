@@ -159,7 +159,8 @@
         "src_planetary_boundaries",
         "richardson_2023_pb",
         "pik_planetary_health_check",
-        "eurostat_nama_10_an6"
+        "eurostat_nama_10_an6",
+        "anthropic_research_formal_verification"
       ]
     },
     "series_id": {

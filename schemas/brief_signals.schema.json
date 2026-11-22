@@ -191,7 +191,8 @@
         "stackoverflow_survey_2026",
         "src_planetary_boundaries",
         "richardson_2023_pb",
-        "pik_planetary_health_check"
+        "pik_planetary_health_check",
+        "anthropic_research_formal_verification"
       ]
     },
     "quant_metric": {
