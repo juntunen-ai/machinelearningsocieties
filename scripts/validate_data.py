@@ -21,7 +21,7 @@ from pandera.pandas import Check, Column, DataFrameSchema
 ROOT = Path(__file__).resolve().parent.parent
 INDEX_DIR = ROOT / "index"
 SCHEMA_DIR = ROOT / "schemas"
-REGISTRY_PATH = INDEX_DIR / "registry.v0.6.json"
+REGISTRY_PATH = INDEX_DIR / "registry.v1.0.json"
 SERIES_CSV = INDEX_DIR / "series.csv"
 BRIEF_CSV = INDEX_DIR / "brief_signals.csv"
 
@@ -50,6 +50,7 @@ def enum_sets(registry):
         "blocks": list(registry["blocks"].keys()),
         "grades": [f"{p}-{f}" for p in "ABC" for f in "MQY"],
         "ai_specificity": ["specific", "proxy", "macro_context"],
+        "sigma_bases": ["binomial", "fallback_A", "fallback_B", "fallback_C"],
         "levels": ["macro", "meso", "micro"],
         "verified_sources": {s["id"] for s in registry["sources"] if s.get("verified")},
     }
@@ -73,6 +74,7 @@ def load_series_frame(path: Path) -> pd.DataFrame:
     frame["value"] = pd.to_numeric(frame["value"])
     frame["trust_tier"] = pd.to_numeric(frame["trust_tier"], downcast="integer")
     frame["bridge_factor"] = pd.to_numeric(frame["bridge_factor"])
+    frame["sigma"] = pd.to_numeric(frame["sigma"])
     frame["break_flag"] = frame["break_flag"].map(_as_bool)
     return frame
 
@@ -103,7 +105,15 @@ def series_pandera_schema(enums: dict) -> DataFrameSchema:
             "grade": Column(str, checks=Check.isin(enums["grades"])),
             "trust_tier": Column(int, checks=Check.in_range(1, 5)),
             "break_flag": Column(bool),
-            "bridge_factor": Column(float, checks=Check.gt(0)),
+            "segment_id": Column(str, checks=Check.str_matches(r"^$|^S\d+$")),
+            "bridge_factor": Column(float, checks=Check.gt(0), nullable=True),
+            "bridge_source": Column(str, nullable=False),
+            "bridge_period": Column(str, nullable=False),
+            "sigma": Column(float, checks=Check.gt(0)),
+            "sigma_basis": Column(str, checks=Check.isin(enums["sigma_bases"])),
+            "indicator_id": Column(str, nullable=False),
+            "source_release_date": Column(str, checks=Check.str_matches(r"^$|^\d{4}-\d{2}-\d{2}$")),
+            "source_flag": Column(str, nullable=False),
             "ai_specificity": Column(str, checks=Check.isin(enums["ai_specificity"])),
             "brief_ref": Column(str, nullable=False),
             "notes": Column(str, checks=Check.str_length(min_value=1)),

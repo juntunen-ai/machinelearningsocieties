@@ -4,7 +4,7 @@ fetch_open_series.py — Open API verification & replication helper for
 Machine Learning Societies Diffusion Index v0.6.
 
 Validates that every observation in `index/series.csv` references a `[V]`
-verified source in `index/registry.v0.6.json`, maintains `index/series.seed.csv`,
+verified source in `index/registry.v1.0.json`, maintains `index/series.seed.csv`,
 and supports optional live refresh against Eurostat SDMX JSON-stat 2.0 and
 Statistics Finland PxWeb APIs.
 """
@@ -18,7 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 INDEX_DIR = ROOT / "index"
-REGISTRY_PATH = INDEX_DIR / "registry.v0.6.json"
+REGISTRY_PATH = INDEX_DIR / "registry.v1.0.json"
 SERIES_CSV = INDEX_DIR / "series.csv"
 SERIES_SEED_CSV = INDEX_DIR / "series.seed.csv"
 
@@ -41,7 +41,7 @@ def validate_series_against_registry():
         src = sources[sid]
         if not src.get("verified", False):
             errors.append(
-                f"{row['obs_id']}: source_id '{sid}' is marked [K] (unverified) in registry.v0.6.json — violates §0 rule!"
+                f"{row['obs_id']}: source_id '{sid}' is marked [K] (unverified) in registry.v1.0.json — violates §0 rule!"
             )
 
     if errors:

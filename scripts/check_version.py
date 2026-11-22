@@ -41,7 +41,7 @@ def main() -> int:
     if computed.is_file():
         if f'"pipeline_version": "{version}"' not in computed.read_text(encoding="utf-8"):
             errors.append(
-                "index/computed.v0.6.json pipeline_version does not match VERSION; "
+                "index/computed.v1.0.json pipeline_version does not match VERSION; "
                 "re-run python3 scripts/compute_index.py and commit the golden file"
             )
     if errors:
