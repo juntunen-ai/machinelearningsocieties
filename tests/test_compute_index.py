@@ -123,8 +123,9 @@ def test_headline_figures_and_statuses(computed: dict):
     assert fi["display"] == 28
     assert fi["geometric_mean"] == 26.1
     assert fi["status"] == "scored"
-    assert fi["p2_5"] == 23.7
-    assert fi["p97_5"] == 33.2
+    # FI interval after the TP1 review: pace draws use their own stream (method monte_carlo.pace_stream_offset).
+    assert fi["p2_5"] == 23.8
+    assert fi["p97_5"] == 33.3
     assert fi["variance_decomposition"]["share_data_pct"] == 11
     assert fi["variance_decomposition"]["share_weights_pct"] == 72
     assert fi["variance_decomposition"]["share_aggregation_pct"] == 17
@@ -183,3 +184,16 @@ def test_obs_026_has_no_bridge_and_obs_027_is_corrected(repo_root: Path):
         assert row["geo"] == "US"
     assert rows["OBS-027"]["value"] == "8.28"
     assert rows["OBS-027"]["indicator_id"] == "D3_ent_depth_ge3"
+
+
+def test_pace_history_ignores_staleness_but_respects_segments(computed: dict):
+    """Method pace.history: staleness limits levels only; segments are never crossed."""
+    for pop in ("EU27", "FI"):
+        paces = {(p["indicator_id"], p["segment_id"]): p for p in computed["populations"][pop]["paces"]}
+        k1 = paces[("K1_gfcf_ict_ipp_gdp", "S1")]
+        assert k1["n_points"] == 7 and k1["periods"][0] == "2019" and k1["periods"][-1] == "2025"
+        d1 = paces[("D1_ent_any_ai", "S1")]
+        assert d1["periods"] == ["2021", "2023", "2024"]
+        # n = 3: the OLS t-interval (df = 1) is wide, so no direction is claimed.
+        assert d1["wording"] == "not distinguishable from zero"
+        assert ("D1_ent_any_ai", "S2") not in paces

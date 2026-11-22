@@ -3,7 +3,7 @@
 Machine Learning Societies · method version 1.0 (covers index releases 1.0.x) · frozen candidate, 22 November 2026 · owner: Harri Juntunen · method freeze (work package TP1): Massi
 
 Machine-readable specification: `index/method.v1.0.json`. If this page and the JSON ever disagree, the JSON is authoritative and the disagreement is a bug to be fixed in a PATCH release.
-Companion files: `index/series.csv` (logged observations), `index/registry.v1.0.json` (sources, sectors; to be created from `registry.v0.6.json` in TP2), `index/brief_signals.csv` (curated brief log, not scored).
+Companion files: `index/series.csv` (logged observations), `index/registry.v1.0.json` (registry version 1.0, dated 22 November 2026; supersedes `registry.v0.6.json`: 10 pillars, 10 sectors, blocks, channels, layers, pace layers, grade scheme, trust tiers and 51 sources, 29 of them verified [V]), `index/brief_signals.csv` (curated brief log, not scored).
 Supersedes: Methodology v0.6 (`index/method.v0.6.md`, 22 October 2026) and the scoring constants in `scripts/compute_index.py` v0.6.
 
 Status of this document: every rule below is frozen for 1.0.0 once the release is tagged. Until the tag, the team may still reopen a rule, but only by editing both this page and the JSON in the same commit.
@@ -57,7 +57,9 @@ Reach is measurable now from official statistics. Depth is partly measurable. Em
 - **EU27** (Eurostat code `EU27_2020`)
 - **Finland** (`FI`)
 
-EU27 and Finland are computed and published separately and never averaged together. Observations for other geographies (United States, global, other member states) may be shown as context but never enter a population score. The reference period of an edition is the calendar quarter ending on the data cut-off (section 11). For each indicator the latest period that ended on or before the cut-off is used; a value whose period ended more than 36 months before the cut-off is "stale" and excluded.
+EU27 and Finland are computed and published separately and never averaged together. Observations for other geographies (United States, global, other member states) may be shown as context but never enter a population score. The reference period of an edition is the calendar quarter ending on the data cut-off (section 11). For each indicator the latest period that ended on or before the cut-off is used as the current level; a value whose period ended more than 36 months before the cut-off is "stale" and is never used as a level. The staleness limit applies to level selection only. It does not shorten the history used for pace (section 10).
+
+**Source rule: one designated source per indicator.** Each indicator has one designated source, the same for every population: the series named in its definition (Eurostat for D1–D4 and K1, for both EU27 and Finland). This keeps EU27 and Finland comparable (same harmonised questionnaire, same definition, same segment structure). Values from other sources for a similar concept are logged without an indicator id, as context or cross-checks. Examples are Statistics Finland table 13vg and CSO Ireland. They never replace, average with or fill gaps in the designated series. If the designated source has no value, the value is "not measured". Finland's 2025 enterprise reach is therefore Eurostat's 37.82 %, not Statistics Finland's rounded 38 % national release of the same survey.
 
 ---
 
@@ -115,7 +117,7 @@ If the pillar's direction is −1, the score is 100 − *s*. After normalisation
 
 - **Layer score** = arithmetic mean of the measured indicators in that layer.
 - **Channel score** = arithmetic mean of the measured layers in that channel.
-- **Pillar score** = equal-weighted mean of the measured channels (digital 0.5, physical 0.5). If only one channel is measured, the pillar score is that channel and carries `channel_coverage = digital_only` or `physical_only`.
+- **Pillar score** = weighted mean of the measured channels, with weights from the parameter `channel_weights`: digital 0.5, physical 0.5 (the v0.6 equal split). **Provisional, pending Harri Juntunen's decision.** Making the existing rule an explicit parameter changed no number and needs no version bump before the 1.0.0 tag; it is recorded under [1.0.0-dev] in CHANGELOG.md. A different value chosen before the tag is recorded there with the old and new headline. Any change after the tag is a MINOR change (method v1.1). If only one channel is measured, the pillar score is that channel and carries `channel_coverage = digital_only` or `physical_only`.
 - Unmeasured indicators, layers and channels are omitted and listed. They are never imputed and never scored as zero.
 
 ### 3.3 Rounding
@@ -146,7 +148,7 @@ All arithmetic runs in double precision with no intermediate rounding. Scores, i
 | P9 ownership_distribution | O1 % broad / public / employee equity share — ECB DWA, Fed DFA [K] | — | linear | 0 | 100 | 0 | registry v0.6, 2026-10-28 | dashboard; source [K] |
 | P10 market_openness | M1 % open-weights / non-concentrated share — Epoch AI, OpenRouter | — | linear | 0 | 100 | +1 | registry v0.6, 2026-10-28 | dashboard |
 
-Indicators marked [K] cannot enter `series.csv` until someone has opened the source and recorded the series id. K1 (`nama_10_an6`) must be added to the registry as a verified source and logged before release candidate 1.
+Indicators marked [K] cannot enter `series.csv` until someone has opened the source and recorded the series id. K1 (`eurostat_nama_10_an6`) is in `registry.v1.0.json` as a verified source (verified 22 November 2026). It is logged as OBS-077 to OBS-090 (EU27 and Finland, 2019–2025), with the raw API response in `data/snapshots/1.0.0-dev/raw/eurostat_nama_10_an6/`.
 
 ### 4.2 Deployment ceiling: 100, not 80
 
@@ -179,7 +181,10 @@ Observations and sources are counted per pillar across all geographies (plan sec
 
 **Headline completeness.** The headline for a population needs at least **2 eligible Block A pillars**. Otherwise it is null with status "incomplete", and the pillar scores are still published.
 
-**Grid cells.** The grid is 10 sectors (NACE sections, as in the registry) × 10 pillars, per population. A cell is scored only from at least **1 verified observation whose sector matches the cell's NACE section(s)** and whose geography matches the population, within the 36-month staleness limit. Observations for all sectors ("ALL") never fill a sector cell. Otherwise the cell's score and grade are null and its status is "not measured". The v0.6 fixed multipliers (reach ×1.14, depth ×0.88, embeddedness ×0.98; sector DAI ×1.08/0.92, PAI ×1.15/0.45) are abolished.
+**Grid cells.** The grid is 10 sectors (NACE sections, as in the registry) × 10 pillars, per population. A cell is scored only from at least **1 verified observation whose sector matches the cell's NACE section(s)** and whose geography matches the population, within the 36-month staleness limit. Observations for all sectors ("ALL") never fill a sector cell. Otherwise the cell's score and grade are null and its status is "not measured". The source rule (section 1) applies to cells as well.
+
+- **Sectors spanning several NACE sections.** energy_utilities (D+E) and retail_logistics (G+H) are scored only if the designated source publishes the combined aggregate. Eurostat publishes D_E but not G+H. Section values are never averaged, because their enterprise weights are unknown.
+- **Survey scope.** The Eurostat ICT enterprise survey covers NACE sections C to N except K, plus S95.1 (ESMS `isoc_e`, sections 3.3 and 15.3). Cells for finance and insurance (K), healthcare (Q), education (P), public administration (O) and agriculture (A) therefore have no D1–D4 source and read "not measured" unless another verified sector-specific source is logged. The TP1 review on 22 November 2026 removed six v0.6 rows (OBS-014, OBS-018 to OBS-022) that had been attributed to Eurostat for these sectors or for G+H. It also corrected four rows (OBS-013, 015, 016, 017) to the published 2025 Eurostat values. The v0.6 fixed multipliers (reach ×1.14, depth ×0.88, embeddedness ×0.98; sector DAI ×1.08/0.92, PAI ×1.15/0.45) are abolished.
 
 **Display.** Unmeasured values are shown as the words "not measured": never 0, never blank, never a colour that implies a score. Every published number carries n (observations) and coverage (measured indicators ÷ defined indicators).
 
@@ -222,7 +227,7 @@ Provenance grades: **A** official or administrative register or filing; **B** ac
 | Seed | 20261028 |
 | Draws | 20,000 per population |
 | Generator | `numpy.random.Generator(numpy.random.PCG64(20261028))` |
-| Draw order | (1) noise matrix *Z* (draws × indicators) from `standard_normal`, indicators sorted by id; (2) weight factors *U* (draws × eligible Block A pillars) from `uniform(0.5, 1.5)`, pillars in Block A order; populations in the order EU27, FI |
+| Draw order | (1) noise matrix *Z* (draws × indicators) from `standard_normal`, indicators sorted by id; (2) weight factors *U* (draws × eligible Block A pillars) from `uniform(0.5, 1.5)`, pillars in Block A order; populations in the order EU27, FI. Pace draws use a separate generator PCG64(20261029) (section 10) |
 | Weights | independent multiplicative factors uniform on [0.5, 1.5] (±50 %), then renormalised |
 | Data noise | *x*ᵈʳᵃʷ = *x* (1 + σʳᵉˡ *z*), one *z* per indicator value; the score is recomputed through goalpost and clipping |
 | Interval | 95 %: 2.5 %, 50 % and 97.5 % quantiles of *H* over joint data and weight draws |
@@ -300,13 +305,18 @@ Findings:
 
 - **Unit:** index points per year on the 0–100 score scale, never percentage points of the raw unit. (v0.6's deployment velocity of 6.5 was the change in the EU adoption share, 13.5 % → 20.0 %, not a change in score.)
 - **Minimum:** 3 comparable points: same population, same indicator set, same segment for every indicator, same goalposts.
+- **History:** pace uses every verified observation of the comparable segment up to the cut-off, back to the start of the segment, **regardless of the 36-month staleness limit**. Staleness decides only which value is the current level, and a comparable history is not out of date. Segment boundaries are never crossed. For the Eurostat "any AI", "≥2" and "≥3 technologies" indicators, the 2025 break means segment S1 = 2021, 2023, 2024 and S2 from 2025. With cut-off 31 December 2026:
+  - K1 uses 2019–2025 (7 points, one segment);
+  - D1 and D3 S1 paces use 2021, 2023, 2024 (3 points);
+  - S2 has one point (2025) and gets no pace;
+  - D4 uses 2021–2025 (4 points).
 - **Estimator:** ordinary least squares slope of score on time in years (period midpoints), unweighted.
-- **Interval:** 95 %. A Monte Carlo over data noise (same generator stream, after the level draws) recomputes the slope per draw. With 4 or more points the OLS t-interval (df = n − 2) is also computed, and the wider of the two is published.
+- **Interval:** 95 %. A Monte Carlo over data noise recomputes the slope per draw. It uses its own generator, PCG64(seed + 1) = PCG64(20261029), so level intervals never depend on pace history. With 3 or more points the OLS t-interval (df = n − 2) is also computed, and the wider of the two is published. With three points the t-interval (df = 1) is usually the wider; this is intended, because data noise alone ignores lack of fit.
 - **Wording:** a pace is called rising or falling only if its 95 % interval excludes zero; otherwise it is "not distinguishable from zero".
 - **Levels:** a pillar pace is published only when the whole indicator set of the pillar meets the minimum. Otherwise indicator-level paces are published and labelled as such. A headline pace is published only when every eligible Block A pillar has a pillar pace over the same periods.
 - **Momentum percentile:** abolished. **Pace shear:** suspended until a slow-layer pillar has a data-based pace.
 
-Illustration (OLS only, Eurostat values retrieved 22 November 2026; not a published number):
+Illustration (OLS only, Eurostat values retrieved 22 November 2026; not a published number). These are the points the history rule above selects; the compiler publishes the wider of this and the Monte Carlo interval:
 
 | Series | Points | Slope (points/yr) | 95 % OLS interval |
 |---|---|---|---|
@@ -344,7 +354,7 @@ The index uses semantic versioning **MAJOR.MINOR.PATCH**. The method file carrie
 
 ## 13. Worked example (illustrative, not a published number)
 
-Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2); fallback A (4.5 %) otherwise. Script: `/workspace/adi-review/work/worked_example.py` (outside the repo; Kernelio's compiler replaces it).
+Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. The v1.0 compiler (`scripts/compute_index.py`) reproduces these levels; its published values after the TP1 review are EU27 21.7 (median 21.6, 95 % 16.7–27.0) and Finland 28.3 (median 28.3, 95 % 23.8–33.3). Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2); fallback A (4.5 %) otherwise. Script: `/workspace/adi-review/work/worked_example.py` (outside the repo; Kernelio's compiler replaces it).
 
 | | EU27 | Finland |
 |---|---|---|
@@ -389,13 +399,13 @@ Outputs: headline per population (point, median, 2.5 %, 97.5 %); geometric sensi
 
 Source status: **[V]** checked live in primary form; **[K]** known source, URL or licence still to be confirmed before logging. Licence status is audited separately (TP3).
 
-**P1 deployment (digital).** Eurostat `isoc_eb_ai`, `isoc_eb_ain2` [V], A-Y, annual, next release planned December 2026. Statistics Finland StatFin `13vg` [V], A-Y. CSO Ireland `BIIESA20` [V], A-Y (context). US Census BTOS [V], A-M, series break 17 November 2025 (context). Eurostat `isoc_ai_iaiu` [V], A-Y. Microsoft AI Economy Institute AI User Share [V], tier 4 vendor telemetry, B-Q (context; global). TED open data [V] and Hilma [K] for public-sector deployment (A-M after classification work; not scored in 1.0).
+**P1 deployment (digital).** Eurostat `isoc_eb_ai`, `isoc_eb_ain2` [V], A-Y, annual, next release planned December 2026. Statistics Finland StatFin `13vg` [V], A-Y (context and cross-check only under the source rule; not the designated D1 source). CSO Ireland `BIIESA20` [V], A-Y (context). US Census BTOS [V], A-M, series break 17 November 2025 (context). Eurostat `isoc_ai_iaiu` [V], A-Y. Microsoft AI Economy Institute AI User Share [V], tier 4 vendor telemetry, B-Q (context; global). TED open data [V] and Hilma [K] for public-sector deployment (A-M after classification work; not scored in 1.0).
 
 **P1 deployment (physical).** Eurostat `isoc_eb_ai` `E_AI_TAR` [V], A-Y (scored). IFR World Robotics [V], B-Y, restricted licence, not AI-specific (sensitivity only). CPUC, NHTSA SGO, Waymo hub [K] (not scored). FDA AI-Enabled Medical Device List [V], A-Q, list not exhaustive (context; US).
 
 **P2 cost_to_serve.** No open price series exists. The AI Task Price Index is to be built on a fixed basket of standardised workflow tasks (GDPval gold subset `openai/gdpval`, 220 public tasks across 44 occupations; arXiv 2510.04374 [V]), priced quarterly from public list prices and measured tokens per task with a published harness, divided by the human cost of the same task (Eurostat `lc_lci` or BLS [K]). Unit: (inference cost + human review and rework at wage cost + integration overhead) ÷ share of outputs rated at least "as good as" the expert baseline, indexed to 100 in the 2026 baseline. Grade C until the harness is published and replicated. Vendor "price fell X %" claims are not used.
 
-**P3 capital_intensity.** Eurostat `nama_10_an6` [V as of 2026-11-22 API check; add to registry] for K1. SEC EDGAR filings [V] (context: Anthropic S-1, H1 2026 compute 8.95 bn USD of 16.29 bn revenue; 265.6 bn USD commitments). Epoch AI data [V], CC BY 4.0 (context). *Lower-bound rule (productivity J-curve):* national accounts miss most complementary intangible investment (multipliers of about 2 for R&D and about 10 for software and hardware in Brynjolfsson, Rock and Syverson), so K1 is read as a lower bound on total adoption investment and the multiplier is a sensitivity case.
+**P3 capital_intensity.** Eurostat `nama_10_an6` [V], in the registry as `eurostat_nama_10_an6` since 22 November 2026, for K1. SEC EDGAR filings [V] (context: Anthropic S-1, H1 2026 compute 8.95 bn USD of 16.29 bn revenue; 265.6 bn USD commitments). Epoch AI data [V], CC BY 4.0 (context). *Lower-bound rule (productivity J-curve):* national accounts miss most complementary intangible investment (multipliers of about 2 for R&D and about 10 for software and hardware in Brynjolfsson, Rock and Syverson), so K1 is read as a lower bound on total adoption investment and the multiplier is a sensitivity case.
 
 **P8 energy_capacity.** IEA Energy and AI Observatory [V]; LBNL "Queued Up", ERCOT/PJM large-load queues [V for Texas]; Fingrid open data [K]; ENTSO-E Transparency Platform [K]. Ratio rule: requested MW ÷ connected MW.
 

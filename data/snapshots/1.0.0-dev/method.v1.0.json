@@ -35,7 +35,12 @@
     "reference_period": {
       "rule": "Reference period of an edition = the calendar quarter whose last day is the data cut-off. For each indicator the latest period with period_end <= cut-off is used.",
       "staleness_limit_months": 36,
-      "staleness_rule": "An indicator value whose period ended more than 36 months before the cut-off is excluded from scores and listed as stale."
+      "staleness_rule": "Applies to level selection only: an indicator value whose period ended more than 36 months before the cut-off is never used as the current level (it is listed as stale). The staleness limit does not shorten pace history: see pace.history."
+    },
+    "source_rule": {
+      "rule": "One designated source per indicator, identical for every population: the series named in the indicator definition (Eurostat for D1-D4 and K1, for both EU27 and FI). Values from other sources for a similar concept (e.g. Statistics Finland table 13vg, CSO Ireland) are logged without indicator_id as context or cross-checks and never replace, average with or fill gaps in the designated series. If the designated source has no value for a population, period or sector, the value is 'not measured'.",
+      "rationale": "Cross-population comparability (EU27 vs FI on the same harmonised questionnaire and definition) and one segment structure per series. Example: FI D1 2025 uses Eurostat 37.82, not Statistics Finland 38.0 (rounded national release of the same survey).",
+      "added": "2026-11-22 (TP1 review)"
     }
   },
   "scoring": {
@@ -55,8 +60,9 @@
       "channel_weights": {
         "digital": 0.5,
         "physical": 0.5,
-        "decision_status": "default pending a decision by Harri Juntunen (2026-11-22). This is the v0.6 equal digital/physical split. Do not change these numbers without that decision and a CHANGELOG entry.",
-        "sensitivity_note": "The worked example in method.v1.0.md section 13 shows that a digital-only deployment score would raise the EU27 headline from 21.67 to 25.6."
+        "decision_status": "PROVISIONAL pending a decision by Harri Juntunen (requested 2026-11-22). Values are the v0.6 equal digital/physical split already stated in pillar_score; exposing them as a parameter changed no number.",
+        "sensitivity_note": "Digital-only deployment (weights 1.0/0.0) would raise the EU27 headline from 21.67 to 25.6 (method.v1.0.md section 13).",
+        "version_note": "Making the existing 0.5/0.5 rule an explicit parameter is a documentation change before the 1.0.0 tag: no version bump, recorded under [1.0.0-dev] in CHANGELOG.md. If Harri chooses different values before the tag, record them under [1.0.0-dev] with the old and new headline. Any change after the 1.0.0 tag is a MINOR change (method v1.1) with full back-series recomputation."
       }
     },
     "rounding": {
@@ -403,7 +409,10 @@
       "definition": "10 sectors (registry sectors, NACE sections) x 10 pillars per population.",
       "min_sector_specific_observations": 1,
       "rule": "A cell is scored only from verified observations whose sector matches the cell's NACE section(s) and whose geography matches the population, within the staleness limit. 'ALL'-sector observations never fill a sector cell. Otherwise score = null, grade = null, status = 'not measured'.",
-      "no_multipliers": "Fixed reach/depth/embeddedness multipliers (v0.6 x1.14/x0.88/x0.98) and sector DAI/PAI multipliers (x1.08/0.92, x1.15/0.45) are abolished."
+      "no_multipliers": "Fixed reach/depth/embeddedness multipliers (v0.6 x1.14/x0.88/x0.98) and sector DAI/PAI multipliers (x1.08/0.92, x1.15/0.45) are abolished.",
+      "multi_section_sectors": "A sector mapped to several NACE sections (energy_utilities = D+E, retail_logistics = G+H) is scored only if the designated source publishes the combined aggregate (Eurostat D_E exists; G+H does not). Section values are never averaged, because their enterprise weights are unknown.",
+      "survey_scope": "The Eurostat ICT enterprise survey (isoc_eb_ai, isoc_eb_ain2) covers NACE C-N excluding K, plus S95.1 (ESMS isoc_e section 3.3 and 15.3). Cells for finance_insurance (K), healthcare (Q), education (P), public_administration (O) and agriculture (A) therefore have no D1-D4 source and are 'not measured' unless another verified sector-specific source is logged.",
+      "staleness": "The 36-month staleness limit applies to cell levels as to population levels."
     },
     "headline": {
       "min_eligible_block_a_pillars": 2,
@@ -464,7 +473,7 @@
     "seed": 20261028,
     "draws": 20000,
     "rng": "numpy.random.Generator(numpy.random.PCG64(20261028))",
-    "draw_order": "1) noise matrix Z of shape (draws, n_indicators) = rng.standard_normal, indicators sorted by indicator id; 2) weight factor matrix U of shape (draws, n_eligible_block_a_pillars) = rng.uniform(1-r, 1+r), pillars in block_a.pillars order. Draws are generated once per population in the order EU27, FI.",
+    "draw_order": "1) noise matrix Z of shape (draws, n_indicators) = rng.standard_normal, indicators sorted by indicator id; 2) weight factor matrix U of shape (draws, n_eligible_block_a_pillars) = rng.uniform(1-r, 1+r), pillars in block_a.pillars order. Draws are generated once per population in the order EU27, FI. Pace draws (section pace) use a separate generator numpy.random.Generator(numpy.random.PCG64(seed + pace_stream_offset)) = PCG64(20261029), consumed in the order: population (EU27, FI), pillar (method order), indicator (method order), segment (chronological), draw, point; one standard_normal per point per draw. Level intervals therefore never depend on pace history.",
     "monte_carlo_error_note": "At N = 1,000 the v0.6 interval bounds moved by up to 0.6 points between seeds; at N = 20,000 the Monte Carlo standard error of a 2.5 % / 97.5 % quantile is below about 0.2 points for intervals of the v0.6 width.",
     "weights": {
       "distribution": "independent multiplicative uniform factors on the nominal weights, then renormalised",
@@ -516,7 +525,8 @@
       ],
       "publish": "Shares to whole per cent on the methodology page and in computed JSON."
     },
-    "scope": "Run for each population's headline, DAI, PAI and every pillar score (data component only for pillars)."
+    "scope": "Run for each population's headline, DAI, PAI and every pillar score (data component only for pillars).",
+    "pace_stream_offset": 1
   },
   "breaks": {
     "default_rule": "Segments. A series break (definition, question wording, population or classification change) starts a new segment. Levels may use the latest segment; paces and any chaining never cross a segment boundary.",
@@ -561,11 +571,13 @@
     "min_comparable_points": 3,
     "comparable": "Same population, same indicator set, same segment for every indicator involved, same goalposts.",
     "estimator": "OLS slope of score on time in years (period midpoints), unweighted.",
-    "interval": "95 %: Monte Carlo over data noise (same seed/stream after the level draws), slope recomputed per draw; if n_points >= 4 the OLS t-interval (df = n - 2) is also computed and the wider of the two is published.",
+    "interval": "95 %. (a) Monte Carlo over data noise on the pace stream: slope recomputed per draw. (b) OLS t-interval (df = n - 2) whenever n >= 3. The wider of (a) and (b) is published. With only three points the t-interval (df = 1, t = 12.706) is usually the wider; this is intended, because data noise alone ignores lack of fit.",
     "significance": "A pace is described as rising or falling only if its 95 % interval excludes 0; otherwise 'not distinguishable from zero'.",
     "levels": "Pillar pace only when the pillar's whole indicator set meets min_comparable_points; otherwise indicator-level paces are published, labelled as such. Headline pace only when all eligible Block A pillars have a pillar pace over the same periods.",
     "fast_slow_shear": "The v0.6 pace-shear ratio is suspended until at least one slow-layer pillar has a data-based pace.",
-    "momentum_percentile": "Abolished in 1.0.0. The v0.6 momentum percentiles were hard-coded and their reference distribution is not documented; pace with a 95 % interval replaces them."
+    "momentum_percentile": "Abolished in 1.0.0. The v0.6 momentum percentiles were hard-coded and their reference distribution is not documented; pace with a 95 % interval replaces them.",
+    "history": "Pace history uses every verified observation of the comparable segment with period_end <= cut-off, back to the start of the segment, regardless of the 36-month staleness limit (staleness governs only which value is the current level). Segment boundaries are never crossed; for isoc_eb_ai E_AI_TANY/TGE2/TGE3 the 2025 break means S1 = 2021, 2023, 2024 and S2 from 2025.",
+    "history_examples": "With cut-off 2026-12-31: K1 pace uses 2019-2025 (7 points, one segment); EU27/FI D1 and D3 S1 paces use 2021, 2023, 2024 (3 points); S2 has one point (2025) and gets no pace; D4 (E_AI_TAR) uses 2021-2025 (4 points)."
   },
   "data_vintage": {
     "cut_off_rule": "Cut-off = last day of the reference quarter (Europe/Helsinki). Observations count if date_logged <= cut-off and the source release date <= cut-off. Nothing logged after the cut-off changes a published edition.",
@@ -602,5 +614,20 @@
       "vintage block with hashes",
       "method_version and index_version"
     ]
-  }
+  },
+  "revisions": [
+    {
+      "date": "2026-11-22",
+      "by": "Massi (TP1 review of compiler 6b0c9e0)",
+      "version_effect": "none (pre-tag documentation and data-tag corrections)",
+      "items": [
+        "Staleness limit clarified as level-only; pace history uses the full comparable segment.",
+        "Source rule added: one designated source per indicator for all populations (Eurostat preferred).",
+        "Grid rules added for multi-section sectors and Eurostat survey scope.",
+        "channel_weights marked provisional pending Harri's decision; version note added.",
+        "Pace interval: OLS t-interval now computed from n >= 3 (was n >= 4); with n = 3 the Monte Carlo interval alone ignored lack of fit and labelled S1 adoption paces 'rising'.",
+        "Pace Monte Carlo moved to its own generator stream PCG64(seed + 1) so level intervals do not depend on pace history length."
+      ]
+    }
+  ]
 }

@@ -310,10 +310,18 @@ def compute(
             continue
         classified.append(item)
 
-    def rows_for(pop_id: str, indicator_id: str, *, sector: str | None = "ALL") -> list[dict]:
+    def rows_for(pop_id: str, indicator_id: str, *, sector: str | None = "ALL", include_stale: bool = False) -> list[dict]:
+        """Rows for one population and indicator.
+
+        The 36-month staleness limit governs level selection only (method
+        target.reference_period.staleness_rule). Pace history passes
+        include_stale=True so the whole comparable segment is used
+        (method pace.history).
+        """
         geos = POPULATION_GEO[pop_id]
         out = []
-        for row in classified:
+        pool = classified + stale_rows if include_stale else classified
+        for row in pool:
             if row.get("indicator_id") != indicator_id:
                 continue
             if row["geo"] not in geos:
@@ -510,6 +518,9 @@ def compute(
     # --- Build per-population levels ---
     pop_results = {}
     rng = np.random.Generator(np.random.PCG64(int(mc["seed"])))
+    # Pace draws use their own stream (method monte_carlo.pace_stream) so level
+    # intervals never depend on how many pace points another population has.
+    rng_pace = np.random.Generator(np.random.PCG64(int(mc["seed"]) + int(mc.get("pace_stream_offset", 1))))
     r_weight = float(mc["weights"]["r"])
     n_draws = int(mc["draws"])
     warning_messages: list[str] = []
@@ -821,13 +832,16 @@ def compute(
             se = math.sqrt(float((resid @ resid) / (n - 2) / ss_t))
             return slope, se, n
 
-        TCRIT = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571, 6: 2.447, 7: 2.365}
+        # Two-sided 97.5 % Student t quantiles, df 1-30; df > 30 uses 1.96.
+        TCRIT = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571, 6: 2.447, 7: 2.365, 8: 2.306, 9: 2.262, 10: 2.228,
+                 11: 2.201, 12: 2.179, 13: 2.160, 14: 2.145, 15: 2.131, 16: 2.120, 17: 2.110, 18: 2.101, 19: 2.093, 20: 2.086,
+                 21: 2.080, 22: 2.074, 23: 2.069, 24: 2.064, 25: 2.060, 26: 2.056, 27: 2.052, 28: 2.048, 29: 2.045, 30: 2.042}
 
         for pid, pillar in pillars_spec.items():
             for ind in pillar["indicators"]:
                 if ind.get("role") in {"sensitivity_only", "context_only"} or ind.get("exists") is False:
                     continue
-                cands = rows_for(pop_id, ind["id"], sector="ALL")
+                cands = rows_for(pop_id, ind["id"], sector="ALL", include_stale=True)
                 # Group by segment; do not cross segments
                 by_seg: dict[str, list] = defaultdict(list)
                 for row in cands:
@@ -839,9 +853,9 @@ def compute(
                     times = [period_midpoint(r["period"]) for r in group]
                     sc = [normalise(r["_value"], ind, pillar["direction"])[0] for r in group]
                     slope, se, n = ols_slope(times, sc)
-                    # OLS t interval if n >= 4
+                    # OLS t interval whenever df = n - 2 >= 1 (method pace.interval)
                     lo = hi = None
-                    if n >= 4 and se == se:  # not NaN
+                    if n >= 3 and se == se:  # not NaN
                         tc = TCRIT.get(n - 2, 1.96)
                         lo, hi = slope - tc * se, slope + tc * se
                     # MC over data noise, continuing the same generator
@@ -853,7 +867,7 @@ def compute(
                                 sig = float(r["sigma"]) if r.get("sigma") else 0.045
                             except ValueError:
                                 sig = 0.045
-                            x = r["_value"] * (1.0 + sig * float(rng.standard_normal()))
+                            x = r["_value"] * (1.0 + sig * float(rng_pace.standard_normal()))
                             ys.append(normalise(x, ind, pillar["direction"])[0])
                         mc_slopes.append(ols_slope(times, ys)[0])
                     mq = np.quantile(np.array(mc_slopes), [0.025, 0.5, 0.975])

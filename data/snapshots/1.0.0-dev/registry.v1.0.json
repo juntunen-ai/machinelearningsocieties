@@ -1225,6 +1225,25 @@
       "verified": true,
       "verified_date": "2026-11-22",
       "caveats": "K1 is N1132G (ICT equipment) + N117G (intellectual property products) as % of GDP. National-accounts proxy for capital that AI diffusion needs; not AI-specific. Retrieved 2026-11-22 (dataset updated 2026-11-05)."
+    },
+    {
+      "id": "anthropic_research_formal_verification",
+      "name": "Anthropic research: formal verification with Claude and Rocq (company research post)",
+      "url": "https://www.anthropic.com/research/formal-verification",
+      "tier": 4,
+      "grade": "C-Q",
+      "pillars": [
+        "cost_to_serve"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global",
+      "access": "web page",
+      "licence": "company web page; quote single figures only",
+      "verified": true,
+      "caveats": "Single-company disclosure (tier 4); context only, never sole A/B evidence; added in TP1 review 2026-11-22 to correct OBS-040, previously mis-tagged as gdpval",
+      "verified_date": "2026-11-22"
     }
   ],
   "pace_layers": [
