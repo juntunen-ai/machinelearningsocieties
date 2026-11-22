@@ -41,12 +41,16 @@ Work that led to this candidate (still documented here; not a separate release).
 
 ### Changed
 
+- Method v1.0 (TP1 review, 2026-11-22, pre-tag, no version bump): the 36-month staleness limit applies to level selection only; pace history uses the whole comparable segment (K1 2019–2025, isoc_eb_ai S1 2021/2023/2024). Pace OLS t-interval from n ≥ 3 (was n ≥ 4), and pace Monte Carlo on its own stream PCG64(seed + 1). New source rule (one designated source per indicator for every population; Eurostat for D1–D4 and K1) and grid rules for multi-section sectors and Eurostat survey scope. `channel_weights` marked provisional pending Harri Juntunen's decision. Headlines unchanged: EU27 21.7 [16.7–27.0], FI 28.3 [23.8–33.3] (FI interval moved by 0.1 because pace draws no longer share the level stream).
 - Scores are computed from `series.csv` through the published chain. Channel weights (digital/physical) are a single JSON parameter, default 0.5 / 0.5, pending a decision by Harri Juntunen.
 - `scripts/fetch_open_series.py` no longer overwrites `index/series.seed.csv` unless `--sync-seed` is passed, and it validates against `registry.v1.0.json`.
 - Firebase Hosting deploy is a no-op on any ref other than `main`.
 
 ### Fixed
 
+- Sector D1 rows checked against Eurostat `isoc_eb_ain2` 2025: OBS-013/015/016/017 corrected to 62.52 (J), 40.43 (M), 18.16 (D_E), 17.27 (C); OBS-014 (K), OBS-019 (Q), OBS-020 (P), OBS-021 (O), OBS-022 (A) removed as outside the survey scope; OBS-018 (G+H) removed because no combined value is published.
+- OBS-012 (FI × software) now uses Eurostat FI NACE J 79.79 instead of the rounded Statistics Finland ICT-sector figure.
+- OBS-040 retagged: sector software, source `anthropic_research_formal_verification` (new tier-4 registry entry; context only), also in `brief_signals.csv`.
 - OBS-027 EU27 2025 D3 corrected from 6.4 to 8.28 (official Eurostat `E_AI_TGE3`).
 - OBS-025 / OBS-026 no longer carry the rejected 0.563 BTOS bridge factor (US context only; no bridge).
 - `index/series.seed.csv` is synchronized with `index/series.csv`.
