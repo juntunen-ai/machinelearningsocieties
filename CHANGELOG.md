@@ -54,3 +54,4 @@ Work that led to this candidate (still documented here; not a separate release).
 - OBS-027 EU27 2025 D3 corrected from 6.4 to 8.28 (official Eurostat `E_AI_TGE3`).
 - OBS-025 / OBS-026 no longer carry the rejected 0.563 BTOS bridge factor (US context only; no bridge).
 - `index/series.seed.csv` is synchronized with `index/series.csv`.
+- Method text on the DAI/PAI proxy flag (`block_a.dai_pai`, methodology §7): both channels carry the flag when a proxy contributes. v1.0 flags DAI (K1 is a national-accounts proxy) and not PAI (only D4 E_AI_TAR, AI-specific); v0.6 flagged PAI because it used IFR robot density. Metadata only; the computed flags were already correct.

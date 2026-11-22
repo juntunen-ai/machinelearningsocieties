@@ -197,3 +197,11 @@ def test_pace_history_ignores_staleness_but_respects_segments(computed: dict):
         # n = 3: the OLS t-interval (df = 1) is wide, so no direction is claimed.
         assert d1["wording"] == "not distinguishable from zero"
         assert ("D1_ent_any_ai", "S2") not in paces
+
+
+def test_proxy_flags_follow_channel_inputs(computed: dict):
+    """method block_a.dai_pai: DAI is a proxy mix (K1); PAI uses only AI-specific D4."""
+    for pop in ("EU27", "FI"):
+        block = computed["populations"][pop]
+        assert block["dai"]["proxy"] is True
+        assert block["pai"]["proxy"] is False

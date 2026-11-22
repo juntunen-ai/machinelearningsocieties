@@ -216,7 +216,7 @@ Provenance grades: **A** official or administrative register or filing; **B** ac
 
 **Sensitivity check, geometric mean (weakest link):** *G* = exp(Σ *w*ᵢ ln max(*s*ᵢ, 1.0)). The floor of 1.0 keeps a near-zero pillar from sending *G* to zero. *G* is always labelled "sensitivity check: geometric mean (weakest link)", is never called the headline, and is never mixed into the headline interval. It shows how much a weak pillar would pull the score down if pillars could not compensate for each other. For example, with v0.6's typed-in pillars, a deployment score of 10 instead of 28.4 would have moved *H* to 36.6 and *G* to 28.9.
 
-**DAI and PAI** apply the same aggregation to the digital and physical channel scores of each pillar; pillars without that channel are omitted and the weights renormalised. PAI carries the proxy flag whenever a proxy indicator contributes.
+**DAI and PAI** apply the same aggregation to the digital and physical channel scores of each pillar; pillars without that channel are omitted and the weights renormalised. DAI and PAI each carry the proxy flag whenever an indicator or pillar marked as a proxy (not AI-specific) contributes to that channel. In v1.0, DAI is flagged because K1 capital is a national-accounts proxy. PAI is not flagged: its only scored input is D4 (E_AI_TAR), which is AI-specific. v0.6 flagged PAI because it used IFR robot density, which is sensitivity-only in v1.0.
 
 ---
 

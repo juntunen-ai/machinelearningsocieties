@@ -466,7 +466,7 @@
       "floor": 1.0,
       "label": "Always labelled 'sensitivity check: geometric mean (weakest link)'; never called the headline, never mixed into the headline interval."
     },
-    "dai_pai": "DAI = Block A aggregation applied to digital-channel pillar scores; PAI = same for physical-channel scores (pillars without that channel are omitted and renormalised). PAI carries the proxy flag whenever a proxy indicator contributes.",
+    "dai_pai": "DAI = Block A aggregation applied to digital-channel pillar scores; PAI = same for physical-channel scores (pillars without that channel are omitted and renormalised). DAI and PAI each carry the proxy flag whenever an indicator or pillar with ai_specificity=proxy contributes to that channel. In v1.0 DAI is flagged (K1 capital_intensity is a national-accounts proxy) and PAI is not (its only scored input is D4 E_AI_TAR, AI-specific); v0.6 flagged PAI because it used IFR robot density, which is sensitivity-only in v1.0.",
     "blocks_b_c": "Blocks B and C are dashboards: pillar scores with n, grade and coverage; no block composite is published in 1.0.0 (their direction 0 pillars are diagnostic by definition)."
   },
   "monte_carlo": {
