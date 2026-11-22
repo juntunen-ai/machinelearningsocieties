@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic compiler for the Machine Learning Societies AI Diffusion Index.
+"""Deterministic compiler for the Machine Learning Societies – Diffusion Index.
 
 Implements the compiler contract in index/method.v1.0.json §14:
 every score is computed from series.csv through the documented chain;

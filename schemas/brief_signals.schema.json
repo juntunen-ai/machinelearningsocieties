@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://juntunen-ai.github.io/machinelearningsocieties/schemas/brief_signals.schema.json",
-  "title": "AI Diffusion Index brief_signals.csv row",
+  "title": "Machine Learning Societies – Diffusion Index brief_signals.csv row",
   "description": "One row of index/brief_signals.csv.",
   "type": "object",
   "additionalProperties": false,

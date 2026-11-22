@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://juntunen-ai.github.io/machinelearningsocieties/schemas/series.schema.json",
-  "title": "AI Diffusion Index series.csv observation",
+  "title": "Machine Learning Societies – Diffusion Index series.csv observation",
   "description": "One row of index/series.csv. Enums are taken from index/registry.v1.0.json at generation time; scripts/validate_data.py also checks them against the live registry.",
   "type": "object",
   "additionalProperties": false,

@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Machine Learning Societies AI Diffusion Index are documented in this file.
+All notable changes to the Machine Learning Societies – Diffusion Index are documented in this file.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and version numbers follow the policy in `docs/semver.md`.
 
@@ -10,6 +10,7 @@ The pipeline version in the `VERSION` file is the single source of truth. Method
 
 ### Changed
 
+- The public name of the index is now “Machine Learning Societies – Diffusion Index” (en dash). It previously appeared as “AI Diffusion Index”.
 - Added an internal appendix, `docs/analysis/1.0.0-sensitivity-and-coherence.md`, with reproducible scripts in `scripts/analysis/` and Eurostat 2025 member-state inputs. It covers sensitivity scenarios (channel weights, goalposts, K1 placement and weight, cost_to_serve bounds, D5, the 2025 break bound) and a coherence matrix across the 27 member states. It is not linked from the pages and no published number changes.
 - Registry licences applied from the TP3 licence audit (2026-11-22): every source now has `licence`, `licence_url`, `licence_checked`, `reuse_class`, `redistribution` and `attribution`. `gdpval` and `ramp_ai_index` are marked `use: context_only` (no open licence). `iea_energy_ai` is split into the Energy and AI report (CC BY 4.0, stays a possible score input) and `iea_energy_ai_observatory` (IEA non-CC terms, context only); OBS-051 retagged to the Observatory. No score changes.
 
