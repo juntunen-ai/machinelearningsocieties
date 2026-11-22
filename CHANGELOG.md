@@ -4,11 +4,26 @@ All notable changes to the Machine Learning Societies AI Diffusion Index are doc
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and version numbers follow the policy in `docs/semver.md`.
 
-The pipeline version in the `VERSION` file is the single source of truth. Method v1.0 is frozen on this branch (`index/method.v1.0.json` is authoritative). `VERSION` remains **1.0.0-dev** until a 1.0.0 tag is approved. The public dashboard may still say v0.6 until the main-page copy is wired.
+The pipeline version in the `VERSION` file is the single source of truth. Method v1.0 is frozen on this branch (`index/method.v1.0.json` is authoritative). The current pipeline version is **1.0.0-rc.1**. This is a release candidate on `release/1.0.0`, not a GitHub Release or git tag.
+
+## [1.0.0-rc.1] — 2026-11-22
+
+Release candidate on branch `release/1.0.0`. Not tagged and not deployed.
+
+### Added
+
+- English main page copy from `copy/main-page.en.md` wired into `diffusion-index.html`. The page is English only (`lang=en`), with no Finnish toggle or Finnish strings, and does not write a language choice to `localStorage`.
+- Live binding of scores and statuses from `index/computed.v1.0.json`. EU27 and Finland are shown separately. Every published figure carries a status: scored, experimental, not measured, stale or incomplete.
+- Draft release notes in `docs/release-notes-1.0.0-rc.1.md` (documentation only; no tag or GitHub Release).
+
+### Changed
+
+- The opening of the dashboard follows Wedgwood's section order: result, the gap, how to read the score, audience doors, press, credit. Reliable task completion is experimental, so the gap chart has two bars, not three. There is no headline speed card (no three comparable headline points yet).
+- `{{PUBLISHER_LINE}}` and `{{NEXT_UPDATE_DATE}}` remain visible placeholders, pending Harri's decisions.
 
 ## [1.0.0-dev] — Unreleased
 
-Work on the `release/1.0.0` branch toward a 1.0.0 publication. This is not a release.
+Work that led to this candidate (still documented here; not a separate release).
 
 ### Added
 

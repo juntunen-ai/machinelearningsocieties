@@ -8,8 +8,8 @@ ROOT = Path(__file__).resolve().parent.parent
 VERSION_PATH = ROOT / "VERSION"
 
 # Paths relative to the repo root that must contain the VERSION string.
-# User-facing method labels on the live pages may still say v0.6 until TP1
-# and TP2.1 land; those HTML files are intentionally not listed here.
+# The dashboard and methodology pages may still say 1.0.0 (the method edition)
+# rather than the pipeline pre-release string; those HTML files are not listed here.
 REQUIRED_CONTAINMENT = (
     "CHANGELOG.md",
     "docs/semver.md",
@@ -37,7 +37,7 @@ def main() -> int:
         body = path.read_text(encoding="utf-8")
         if version not in body:
             errors.append(f"{rel} does not contain {version!r}")
-    computed = ROOT / "index" / "computed.v0.6.json"
+    computed = ROOT / "index" / "computed.v1.0.json"
     if computed.is_file():
         if f'"pipeline_version": "{version}"' not in computed.read_text(encoding="utf-8"):
             errors.append(
