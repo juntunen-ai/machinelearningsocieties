@@ -4,7 +4,25 @@ All notable changes to the Machine Learning Societies AI Diffusion Index are doc
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and version numbers follow the policy in `docs/semver.md`.
 
-The pipeline version in the `VERSION` file is the single source of truth. Method v1.0 is frozen on this branch (`index/method.v1.0.json` is authoritative). The current pipeline version is **1.0.0-rc.1**. This is a release candidate on `release/1.0.0`, not a GitHub Release or git tag.
+The pipeline version in the `VERSION` file is the single source of truth. Method v1.0 is frozen on this branch (`index/method.v1.0.json` is authoritative). The current pipeline version is **1.0.0-rc.2**. This is a release candidate on `release/1.0.0`, not a GitHub Release or git tag.
+
+## [1.0.0-rc.2] — 2026-11-22
+
+Release candidate on branch `release/1.0.0`. Not tagged and not deployed. Succeeds 1.0.0-rc.1, which was rejected in review because the planetary panel still showed v0.6 constants while ecological_balance was not measured.
+
+### Changed
+
+- **Headline impact:** the v0.6 headline 42.7 was a hand-set constant, not a computed score. Under method v1.0 the compiled headlines are EU27 22 and Finland 28 (display integers). The change is the move from those constants to scores computed from `series.csv`.
+- The compiler reads four previously hardcoded parameters only from `index/method.v1.0.json`: `staleness_limit_months`, population geo codes (`series_geo_codes`), the missing-sigma fallback by grade, and the geometric-mean floor used in the Monte Carlo path. Frozen values are unchanged.
+- Pillar cards report observation and source counts for the selected population (EU27 and Finland separately), following the per-population evidence rule (OECD K1x is the second official source for capital; never scored).
+- Ecological-balance figures inherited from v0.6 (`+52.4`, `−26.8`, Jevons 35%) are nulled in the computed payload. The page renders “not measured”.
+- The industry matrix states how many of the 100 cells are scored, and unmeasured cells show “n/m” with a legend (not colour alone).
+- Release-candidate figures on the page are marked “Preliminary, data cut-off 31 Dec 2026” and will be recomputed before release.
+
+### Added
+
+- Tests that each of the four method parameters is read from JSON (changing the parameter changes the output), and a check that page JavaScript does not hard-code numeric figures for not-measured components.
+- Draft release notes in `docs/release-notes-1.0.0-rc.2.md` (documentation only; no tag or GitHub Release).
 
 ## [1.0.0-rc.1] — 2026-11-22
 

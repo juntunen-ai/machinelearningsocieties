@@ -228,3 +228,121 @@ def test_cross_check_indicator_is_never_scored(computed: dict):
         for p in computed["populations"][pop]["pillars"]:
             assert all(m["indicator_id"] != "K1x_gfcf_ict_ipp_gdp_oecd" for m in p.get("observations", []))
         assert all(x["indicator_id"] != "K1x_gfcf_ict_ipp_gdp_oecd" for x in computed["populations"][pop]["paces"])
+
+
+def _compute_with_method(tmp_path: Path, repo_root: Path, mutate, *, n_draws: int = 400) -> dict:
+    method = json.loads((repo_root / "index" / "method.v1.0.json").read_text(encoding="utf-8"))
+    method["monte_carlo"]["n_draws"] = n_draws
+    mutate(method)
+    dest = tmp_path / "method.v1.0.json"
+    dest.write_text(json.dumps(method), encoding="utf-8")
+    return ci.compute(method_path=dest)
+
+
+def test_staleness_limit_is_read_from_method(tmp_path: Path, repo_root: Path, computed: dict):
+    """Changing target.reference_period.staleness_limit_months changes which levels are kept."""
+
+    def mutate(method: dict) -> None:
+        method["target"]["reference_period"]["staleness_limit_months"] = 1
+
+    bumped = _compute_with_method(tmp_path, repo_root, mutate)
+    # A 1-month window makes the 2025 annual levels stale relative to 2026-12-31.
+    assert bumped["populations"]["EU27"]["headline"]["score"] != computed["populations"]["EU27"]["headline"]["score"]
+    assert len(bumped["stale_observations"]) > len(computed["stale_observations"])
+
+
+def test_population_geo_is_read_from_method(tmp_path: Path, repo_root: Path, computed: dict):
+    """Changing series_geo_codes changes which rows attach to a population."""
+
+    def mutate(method: dict) -> None:
+        for pop in method["target"]["populations"]:
+            if pop["id"] == "EU27":
+                # Official Eurostat code only — series.csv uses the shorthand EU27.
+                pop["series_geo_codes"] = ["EU27_2020"]
+
+    bumped = _compute_with_method(tmp_path, repo_root, mutate)
+    assert bumped["populations"]["EU27"]["headline"]["score"] != computed["populations"]["EU27"]["headline"]["score"]
+    # Finland is untouched.
+    assert bumped["populations"]["FI"]["headline"]["score"] == computed["populations"]["FI"]["headline"]["score"]
+
+
+def test_fallback_sigma_is_read_from_method(tmp_path: Path, repo_root: Path):
+    """When a row has no sigma, the grade fallback table in the method file is used."""
+    src = repo_root / "index" / "series.csv"
+    dest = tmp_path / "series.csv"
+    with src.open(encoding="utf-8") as handle:
+        rows = list(csv.DictReader(handle))
+        fieldnames = list(rows[0].keys())
+    touched = False
+    for row in rows:
+        if (
+            row["indicator_id"] == "D1_ent_any_ai"
+            and row["geo"] in {"EU27", "EU27_2020"}
+            and row["period"] == "2025"
+            and row["sector"] == "ALL"
+        ):
+            row["sigma"] = ""
+            row["sigma_basis"] = ""
+            touched = True
+    assert touched, "expected the EU27 2025 D1 row"
+    with dest.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+    method = json.loads((repo_root / "index" / "method.v1.0.json").read_text(encoding="utf-8"))
+    method["monte_carlo"]["n_draws"] = 400
+    default_path = tmp_path / "method-default.json"
+    default_path.write_text(json.dumps(method), encoding="utf-8")
+    baseline = ci.compute(method_path=default_path, series_path=dest)
+
+    method["monte_carlo"]["data_noise"]["fallback_sigma_by_grade"]["A"] = 0.80
+    wide_path = tmp_path / "method-wide.json"
+    wide_path.write_text(json.dumps(method), encoding="utf-8")
+    wide = ci.compute(method_path=wide_path, series_path=dest)
+
+    base_h = baseline["populations"]["EU27"]["headline"]
+    wide_h = wide["populations"]["EU27"]["headline"]
+    assert wide_h["p97_5"] - wide_h["p2_5"] > base_h["p97_5"] - base_h["p2_5"]
+
+
+def test_geometric_floor_is_read_from_method(tmp_path: Path, repo_root: Path, computed: dict):
+    """The Monte Carlo and point-estimate geometric means use block_a.sensitivity_aggregation.floor."""
+
+    def mutate(method: dict) -> None:
+        method["block_a"]["sensitivity_aggregation"]["floor"] = 50.0
+
+    bumped = _compute_with_method(tmp_path, repo_root, mutate)
+    assert bumped["populations"]["EU27"]["headline"]["geometric_mean"] != computed["populations"]["EU27"]["headline"]["geometric_mean"]
+    assert bumped["populations"]["FI"]["headline"]["geometric_mean"] != computed["populations"]["FI"]["headline"]["geometric_mean"]
+
+
+def test_pillar_n_is_per_population(computed: dict):
+    """Pillar cards expose per-population n and source counts, not a pooled n."""
+    eu_dep = next(p for p in computed["populations"]["EU27"]["pillars"] if p["id"] == "deployment")
+    fi_dep = next(p for p in computed["populations"]["FI"]["pillars"] if p["id"] == "deployment")
+    assert eu_dep["n"] != fi_dep["n"]
+    assert eu_dep["n_sources"] >= 1
+    assert fi_dep["n_sources"] >= 1
+    for card in (eu_dep, fi_dep):
+        assert "sec_edgar" not in card["source_ids"]
+        assert "epoch_ai_data" not in card["source_ids"]
+
+
+def test_planetary_scores_are_null_when_not_measured(computed: dict):
+    eco = next(p for p in computed["populations"]["EU27"]["pillars"] if p["id"] == "ecological_balance")
+    assert eco["status"] == "not measured"
+    pb = computed["planetary_boundaries"]
+    meter = pb["summary_meter"]
+    assert meter["burden_increase_score"] is None
+    assert meter["burden_reduction_score"] is None
+    assert meter["rebound_discount_factor"] is None
+    assert meter["status"] == "not measured"
+    for token in ("52.4", "26.8", "42.7", "0.35", "35%"):
+        assert token not in (meter.get("headline_rule_en") or "")
+        assert token not in (meter.get("headline_rule_fi") or "")
+    for boundary in pb["boundaries"]:
+        assert boundary["burden_score"] is None
+        assert boundary["abatement_score"] is None
+        assert boundary["ai_measured"] is False
+

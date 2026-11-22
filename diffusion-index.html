@@ -10,7 +10,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/site.css?v=20261122c">
+<link rel="stylesheet" href="assets/site.css?v=20261122e">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -32,6 +32,7 @@
   </header>
 
   <main id="main-content">
+    <p class="di-preliminary" role="status">Preliminary, data cut-off 31 Dec 2026. Figures will be recomputed before release.</p>
     <noscript>
       <p class="di-js-required">This page needs JavaScript to fill the latest scores from the data file. You can still read the <a href="diffusion-method.html">methodology</a> and download <a href="index/computed.v1.0.json">computed.v1.0.json</a>.</p>
     </noscript>
@@ -154,8 +155,14 @@
     <section class="di-section" id="industry-matrix" aria-labelledby="matrix-title">
       <h2 id="matrix-title">AI use by industry</h2>
       <p>Only cells with sector-specific evidence are scored. The rest say “not measured”. Click a scored cell for the source observations. Agriculture is capped at grade C.</p>
+      <p class="di-matrix-count" id="matrix-count"></p>
+      <div class="di-matrix-legend" id="matrix-legend">
+        <span class="di-legend-item"><span class="di-legend-swatch di-legend-scored" aria-hidden="true">62</span> Scored (0–100)</span>
+        <span class="di-legend-item"><span class="di-legend-swatch di-cell-unmeasured" aria-hidden="true">n/m</span> n/m = not measured</span>
+      </div>
       <div class="table-scroll">
         <table class="di-table" id="matrix-table">
+          <caption class="visually-hidden">AI use by industry. Unmeasured cells are labelled n/m, not by colour alone.</caption>
           <thead id="matrix-thead"></thead>
           <tbody id="matrix-tbody"></tbody>
         </table>
@@ -266,6 +273,6 @@
     </div>
   </footer>
 </div>
-<script src="assets/diffusion-index.js?v=20261122c"></script>
+<script src="assets/diffusion-index.js?v=20261122e"></script>
 </body>
 </html>

@@ -21,14 +21,21 @@
         "geo_codes": [
           "EU27_2020"
         ],
-        "label": "European Union (27 member states)"
+        "label": "European Union (27 member states)",
+        "series_geo_codes": [
+          "EU27",
+          "EU27_2020"
+        ]
       },
       {
         "id": "FI",
         "geo_codes": [
           "FI"
         ],
-        "label": "Finland"
+        "label": "Finland",
+        "series_geo_codes": [
+          "FI"
+        ]
       }
     ],
     "rule": "Every published score belongs to exactly one population and one reference period. EU27 and FI are computed and published separately and never averaged together. Observations for other geographies (US, GLOBAL, other member states) are context: they may be shown, but never enter a population score.",
@@ -41,6 +48,10 @@
       "rule": "One designated source per indicator, identical for every population: the series named in the indicator definition (Eurostat for D1-D4 and K1, for both EU27 and FI). Values from other sources for a similar concept (e.g. Statistics Finland table 13vg, CSO Ireland) are logged without indicator_id as context, or under a method indicator with role 'cross_check' (e.g. K1x, OECD), and never replace, average with or fill gaps in the designated series. If the designated source has no value for a population, period or sector, the value is 'not measured'.",
       "rationale": "Cross-population comparability (EU27 vs FI on the same harmonised questionnaire and definition) and one segment structure per series. Example: FI D1 2025 uses Eurostat 37.82, not Statistics Finland 38.0 (rounded national release of the same survey).",
       "added": "2026-11-22 (TP1 review)"
+    },
+    "compiler_geo_match": {
+      "rule": "A series row is assigned to a population when row.geo is listed in that population's series_geo_codes if present, otherwise in geo_codes. Added 2026-11-22 so the compiler has no hardcoded population map.",
+      "note": "series.csv records the EU27 population under the historical shorthand EU27. The official Eurostat code EU27_2020 remains in geo_codes and is also accepted. Frozen geo_codes values are unchanged."
     }
   },
   "scoring": {
@@ -510,7 +521,13 @@
         "2. For survey proportions with known sample size n: sigma_abs = sqrt(p(1-p) / (n / deff)), deff = 2.0 (Eurostat ICT enterprise survey 2025: n = 157,000 for EU27, ESMS isoc_e section 3.6).",
         "3. Fallback by derived grade (relative): A 0.045, B 0.075, C 0.15. A and B continue the v0.6 values; C is new."
       ],
-      "record": "Each observation row records sigma and sigma_basis (published | binomial | fallback_A | fallback_B | fallback_C)."
+      "record": "Each observation row records sigma and sigma_basis (published | binomial | fallback_A | fallback_B | fallback_C).",
+      "fallback_sigma_by_grade": {
+        "A": 0.045,
+        "B": 0.075,
+        "C": 0.15,
+        "note": "Relative standard error used when a series row has no usable sigma. Matches sigma_hierarchy rule 3 (A 0.045, B 0.075, C 0.15). Added 2026-11-22 so the compiler does not hard-code the table. Frozen values are unchanged."
+      }
     },
     "aggregation_component": "Run separately: the geometric sensitivity G is computed with the same draws; aggregation uncertainty is reported as the distribution of H - G, not mixed into the headline interval.",
     "interval": {

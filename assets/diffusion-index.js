@@ -312,17 +312,20 @@ function formatNumber(value, places) {
     (popData().grid_cells || []).forEach((c) => {
       cells[cellKey(c.sector_id, c.pillar_id)] = c;
     });
+    const totalCells = SECTOR_ORDER.length * PILLAR_ORDER.length;
+    let scoredCount = 0;
     thead.innerHTML = `<tr><th scope="col">Industry</th>${PILLAR_ORDER.map((id, i) => `<th scope="col" title="${escapeHtml(PILLAR_LABELS[id])}">P${i + 1}</th>`).join("")}</tr>`;
     tbody.innerHTML = SECTOR_ORDER.map((sectorId) => {
       const tds = PILLAR_ORDER.map((pillarId) => {
         const cell = cells[cellKey(sectorId, pillarId)] || { status: "not measured", score: null };
         const scored = cell.status === "scored" && cell.score !== null && cell.score !== undefined;
+        if (scored) scoredCount += 1;
         const color = heatColor(scored ? cell.score : null);
-        const label = scored ? formatNumber(cell.score, 1) : "—";
+        const label = scored ? formatNumber(cell.score, 1) : "n/m";
         const title = `${SECTOR_LABELS[sectorId]} · ${PILLAR_LABELS[pillarId]} · ${cell.status}${scored ? ` · ${formatNumber(cell.score, 1)}` : ""}`;
         const btn = scored
           ? `<button type="button" class="di-cell-btn" data-sector="${escapeHtml(sectorId)}" data-pillar="${escapeHtml(pillarId)}" style="background:${color.bg};color:${color.fg};border:1px solid ${color.border}" aria-label="${escapeHtml(title)}">${label}</button>`
-          : `<span class="di-muted" title="${escapeHtml(title)}">${label}<span class="visually-hidden">, ${escapeHtml(cell.status)}</span></span>`;
+          : `<span class="di-cell-unmeasured" title="${escapeHtml(title)}">n/m<span class="visually-hidden">, not measured</span></span>`;
         return `<td>${btn}</td>`;
       }).join("");
       return `<tr><th scope="row">${escapeHtml(SECTOR_LABELS[sectorId])}</th>${tds}</tr>`;
@@ -330,6 +333,12 @@ function formatNumber(value, places) {
     tbody.querySelectorAll(".di-cell-btn").forEach((btn) => {
       btn.addEventListener("click", () => openCellModal(btn.dataset.sector, btn.dataset.pillar));
     });
+    const countEl = document.getElementById("matrix-count");
+    if (countEl) {
+      const unmeasured = totalCells - scoredCount;
+      const popLabel = POP_LABELS[currentPop] || currentPop;
+      countEl.textContent = `${popLabel}: ${scoredCount} of ${totalCells} cells scored (${unmeasured} not measured).`;
+    }
   }
 
   function openCellModal(sectorId, pillarId) {
@@ -361,7 +370,7 @@ function formatNumber(value, places) {
             <h3 class="di-pillar-title">${escapeHtml(PILLAR_LABELS[p.id] || p.id)}</h3>
             <div class="di-pillar-score">${score}</div>
           </div>
-          <p>${statusBadge(p.status)} ${p.grade ? `· grade ${escapeHtml(p.grade)}` : ""} ${p.coverage ? `· coverage ${escapeHtml(p.coverage)}` : ""} · n=${escapeHtml(String(p.n ?? 0))}</p>
+          <p>${statusBadge(p.status)} ${p.grade ? `· grade ${escapeHtml(p.grade)}` : ""} ${p.coverage ? `· coverage ${escapeHtml(p.coverage)}` : ""} · n=${escapeHtml(String(p.n ?? 0))} (${escapeHtml(POP_LABELS[currentPop] || currentPop)}) · ${escapeHtml(String(p.n_sources ?? 0))} source${Number(p.n_sources) === 1 ? "" : "s"}</p>
           ${interval ? `<p class="di-muted">${escapeHtml(interval)}</p>` : ""}
         </article>`;
       })
@@ -390,19 +399,17 @@ function formatNumber(value, places) {
     const panel = document.getElementById("pb-ecometer-panel");
     const tbody = document.getElementById("pb-tbody");
     const pb = DATA.planetary_boundaries || {};
-    const meter = pb.summary_meter || {};
     if (panel) {
-      const rule = meter.headline_rule_en || pb.framework || "";
-      panel.innerHTML = `<p>${escapeHtml(rule)}</p>
-        <p>Reference status: ${escapeHtml(String(pb.transgressed_count ?? "—"))} planetary boundaries are assessed as transgressed. This is not an index score. ${statusBadge("not measured") } for an AI-specific net figure.</p>`;
+      panel.innerHTML = `<p>Ecological balance is not measured in this edition. No AI-specific burden, abatement or Jevons rebound figure is published.</p>
+        <p>Reference status: ${escapeHtml(String(pb.transgressed_count ?? "—"))} planetary boundaries are assessed as transgressed. This is not an index score. ${statusBadge("not measured")} for an AI-specific net figure.</p>`;
     }
     if (!tbody) return;
     tbody.innerHTML = (pb.boundaries || [])
       .map((b) => `<tr>
         <th scope="row">${escapeHtml(b.name_en || b.id)}</th>
-        <td>${escapeHtml(b.status_code || "")} ${b.ai_measured ? "" : statusBadge("not measured")}</td>
-        <td>${b.burden_score === null || b.burden_score === undefined ? "—" : formatNumber(b.burden_score, 1)} · ${escapeHtml(b.burden_status || "")}</td>
-        <td>${b.abatement_score === null || b.abatement_score === undefined ? "—" : formatNumber(b.abatement_score, 1)} · ${escapeHtml(b.abatement_status || "")}</td>
+        <td>${escapeHtml(b.status_code || "—")}</td>
+        <td>not measured ${statusBadge("not measured")}</td>
+        <td>not measured ${statusBadge("not measured")}</td>
       </tr>`)
       .join("");
   }

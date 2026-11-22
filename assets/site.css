@@ -336,3 +336,11 @@ main a.btn{text-decoration:none}
 #matrix-table{min-height:240px}
 #pillar-grid{min-height:200px}
 #gap-chart{min-height:140px}
+
+.di-preliminary{margin:0 0 1.25rem;padding:.85rem 1rem;border:2px solid var(--ink,#111);background:#fff6d8;color:#111;font-weight:700;line-height:1.45}
+.di-matrix-count{font-weight:600;margin:0 0 .6rem;color:var(--ink,#111)}
+.di-matrix-legend{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center;margin:0 0 1rem;font-size:.9rem;color:#111}
+.di-legend-item{display:inline-flex;align-items:center;gap:.45rem}
+.di-legend-swatch{display:inline-flex;align-items:center;justify-content:center;min-width:2.4rem;padding:.2rem .35rem;border-radius:6px;font-weight:700;font-size:.75rem}
+.di-legend-scored{background:#d4e6c3;color:#111;border:1px solid #4a6a32}
+.di-cell-unmeasured{display:inline-flex;align-items:center;justify-content:center;width:100%;min-width:2.6rem;padding:.35rem .3rem;border:1px solid #4b5563;border-radius:6px;background:#f3f4f6;color:#111827;font-size:.7rem;font-weight:700;letter-spacing:.02em;text-align:center;box-sizing:border-box}

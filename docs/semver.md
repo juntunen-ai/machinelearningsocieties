@@ -6,7 +6,7 @@ The file `VERSION` at the repository root is the **single source of truth** for 
 
 ## How numbers are assigned
 
-This project follows [Semantic Versioning 2.0.0](https://semver.org/). During development the version is `MAJOR.MINOR.PATCH-dev`. A release candidate uses a pre-release suffix such as `1.0.0-rc.1` (currently `1.0.0-rc.1`). Drop the pre-release suffix only when a GitHub Release and tag are created, which requires a separate publication approval. This branch must not create that tag.
+This project follows [Semantic Versioning 2.0.0](https://semver.org/). During development the version is `MAJOR.MINOR.PATCH-dev`. A release candidate uses a pre-release suffix such as `1.0.0-rc.2` (currently `1.0.0-rc.2`). Drop the pre-release suffix only when a GitHub Release and tag are created, which requires a separate publication approval. This branch must not create that tag.
 
 | Change | Bump | Examples |
 | --- | --- | --- |
@@ -25,4 +25,4 @@ A tagged release (not created from this branch) should include:
 - Data payload described in `docs/data-release.md` (snapshots + `SHA256SUMS`)
 - The site artifact described in `docs/publishing.md`
 
-Method v1.0 is frozen on `release/1.0.0` (`index/method.v1.0.json` is authoritative). `VERSION` is `1.0.0-rc.1` on this candidate. A 1.0.0 tag still needs a separate publication approval. The method file, `pipeline_version` in `computed.v1.0.json`, and the dashboard must stay consistent with `VERSION` (the public method edition may still read “1.0.0”).
+Method v1.0 is frozen on `release/1.0.0` (`index/method.v1.0.json` is authoritative). `VERSION` is `1.0.0-rc.2` on this candidate. A 1.0.0 tag still needs a separate publication approval. The method file, `pipeline_version` in `computed.v1.0.json`, and the dashboard must stay consistent with `VERSION` (the public method edition may still read “1.0.0”).

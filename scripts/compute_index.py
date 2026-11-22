@@ -33,10 +33,81 @@ PB_PATH = INDEX_DIR / "planetary_boundaries.json"
 OUTPUT_JSON = INDEX_DIR / "computed.v1.0.json"
 VERSION_PATH = ROOT / "VERSION"
 
-POPULATION_GEO = {
-    "EU27": {"EU27", "EU27_2020"},
-    "FI": {"FI"},
-}
+def population_geo_map(method: dict) -> dict[str, set[str]]:
+    """Map population id -> accepted series geo codes, from the method file.
+
+    Uses each population's series_geo_codes when present, otherwise geo_codes.
+    See target.compiler_geo_match.
+    """
+    out: dict[str, set[str]] = {}
+    for pop in method["target"]["populations"]:
+        codes = pop.get("series_geo_codes") or pop.get("geo_codes") or []
+        out[pop["id"]] = set(codes)
+    return out
+
+
+def staleness_limit_months(method: dict) -> int:
+    return int(method["target"]["reference_period"]["staleness_limit_months"])
+
+
+def fallback_sigma_table(method: dict) -> dict[str, float]:
+    table = method["monte_carlo"]["data_noise"]["fallback_sigma_by_grade"]
+    return {k: float(v) for k, v in table.items() if k in {"A", "B", "C"}}
+
+
+def resolve_sigma(row: dict, table: dict[str, float]) -> float:
+    """Use the row sigma when present; otherwise the grade fallback from the method file."""
+    raw = row.get("sigma")
+    if raw not in (None, ""):
+        try:
+            return float(raw)
+        except (TypeError, ValueError):
+            pass
+    grade = (str(row.get("grade") or "C")[0]).upper()
+    if grade not in table:
+        grade = "C"
+    return table[grade]
+
+
+def geometric_floor(method: dict) -> float:
+    return float(method["block_a"]["sensitivity_aggregation"]["floor"])
+
+
+def sanitize_planetary_boundaries(pb: dict) -> dict:
+    """Drop inherited v0.6 AI-specific planetary figures when the pillar is not measured.
+
+    Official boundary status (transgressed or within the safe operating space) is
+    kept as a reference frame. Burden, abatement and Jevons rebound scores are
+    not measurements in this edition and must not be published as numbers.
+    """
+    out = json.loads(json.dumps(pb or {}))
+    meter = dict(out.get("summary_meter") or {})
+    meter["burden_increase_score"] = None
+    meter["burden_reduction_score"] = None
+    meter["rebound_discount_factor"] = None
+    meter["status"] = "not measured"
+    meter["headline_rule_en"] = (
+        "Ecological balance is not measured in this edition. "
+        "No AI-specific burden, abatement or Jevons rebound figure is published."
+    )
+    src_meter = (pb or {}).get("summary_meter") or {}
+    if "headline_rule_fi" in meter or "headline_rule_fi" in src_meter:
+        meter["headline_rule_fi"] = (
+            "Ekologista tasapainoa ei ole mitattu tässä versiossa. "
+            "Tekoälyyn liittyvää kuormitus-, vähennys- tai Jevons-lukua ei julkaista."
+        )
+    out["summary_meter"] = meter
+    cleaned = []
+    for boundary in out.get("boundaries") or []:
+        item = dict(boundary)
+        item["burden_score"] = None
+        item["abatement_score"] = None
+        item["burden_status"] = "not measured"
+        item["abatement_status"] = "not measured"
+        item["ai_measured"] = False
+        cleaned.append(item)
+    out["boundaries"] = cleaned
+    return out
 
 # Indicator roles that never enter a score (method pillars[].indicators[].role).
 # context_only and cross_check rows still count toward evidence; sensitivity_only
@@ -106,10 +177,12 @@ def period_midpoint(period: str) -> float:
     return end.year + (end.month - 0.5) / 12.0
 
 
-def months_before(end: date, cut: date) -> bool:
-    """True if `end` is more than 36 months before `cut`."""
-    # 36 months before cut
-    year, month = cut.year, cut.month - 36
+def months_before(end: date, cut: date, months: int) -> bool:
+    """True if `end` is more than `months` months before `cut`.
+
+    `months` is read from method target.reference_period.staleness_limit_months.
+    """
+    year, month = cut.year, cut.month - months
     while month <= 0:
         year -= 1
         month += 12
@@ -227,7 +300,7 @@ def eligible_row(row: dict, sources: dict, cut: date, method: dict) -> str | Non
         end = period_end(row["period"])
     except ValueError:
         return "bad period"
-    if months_before(end, cut):
+    if months_before(end, cut, staleness_limit_months(method)):
         return "stale"
     return None
 
@@ -266,7 +339,7 @@ def compute(
     registry = load_json(registry_path)
     series_rows = load_csv(series_path)
     brief_rows = load_csv(brief_path) if brief_path.is_file() else []
-    pb_data = load_json(pb_path) if pb_path.is_file() else {}
+    pb_data = sanitize_planetary_boundaries(load_json(pb_path) if pb_path.is_file() else {})
 
     cut = parse_cut_off(method)
     sources = {s["id"]: s for s in registry["sources"]}
@@ -281,6 +354,9 @@ def compute(
     block_a_ids = list(method["block_a"]["pillars"])
     nominal = {k: float(v) for k, v in method["block_a"]["nominal_weights"].items()}
     populations = method["target"]["populations"]
+    population_geo = population_geo_map(method)
+    sigma_table = fallback_sigma_table(method)
+    floor_g = geometric_floor(method)
 
     # Fail if a [K] source is present in the file at all (used or not).
     for row in series_rows:
@@ -318,12 +394,12 @@ def compute(
     def rows_for(pop_id: str, indicator_id: str, *, sector: str | None = "ALL", include_stale: bool = False) -> list[dict]:
         """Rows for one population and indicator.
 
-        The 36-month staleness limit governs level selection only (method
-        target.reference_period.staleness_rule). Pace history passes
-        include_stale=True so the whole comparable segment is used
-        (method pace.history).
+        The staleness limit (method target.reference_period.staleness_limit_months)
+        governs level selection only (method target.reference_period.staleness_rule).
+        Pace history passes include_stale=True so the whole comparable segment
+        is used (method pace.history).
         """
-        geos = POPULATION_GEO[pop_id]
+        geos = population_geo[pop_id]
         out = []
         pool = classified + stale_rows if include_stale else classified
         for row in pool:
@@ -347,7 +423,7 @@ def compute(
         whose geo belongs to the population count (changed from all
         geographies, plan 2.3, in the rc review).
         """
-        geos = POPULATION_GEO[pop_id]
+        geos = population_geo[pop_id]
         obs = [
             r
             for r in classified
@@ -371,10 +447,7 @@ def compute(
         score, clipped = normalise(raw, indicator, direction)
         grade = (row.get("grade") or "C")[0]
         grade = apply_caps(grade, sector=row.get("sector"), pillar=indicator["pillar_id"], indicator=indicator, caps=caps)
-        try:
-            sigma = float(row["sigma"]) if row.get("sigma") else 0.045
-        except ValueError:
-            sigma = 0.045
+        sigma = resolve_sigma(row, sigma_table)
         return {
             "indicator_id": indicator["id"],
             "obs_id": row["obs_id"],
@@ -568,7 +641,6 @@ def compute(
         else:
             scores = {pid: pillar_aggs[pid]["score"] for pid in eligible_ids}
             H = sum(weights[pid] * scores[pid] for pid in eligible_ids)
-            floor_g = float(method["block_a"]["sensitivity_aggregation"]["floor"])
             G = math.exp(sum(weights[pid] * math.log(max(scores[pid], floor_g)) for pid in eligible_ids))
 
         # DAI / PAI
@@ -628,7 +700,7 @@ def compute(
                 return None, None, None, None
             ww = weight_vec if weight_vec is not None else weights
             h = sum(ww[pid] * local[pid] for pid in eligible_ids)
-            g = math.exp(sum(ww[pid] * math.log(max(local[pid], 1.0)) for pid in eligible_ids))
+            g = math.exp(sum(ww[pid] * math.log(max(local[pid], floor_g)) for pid in eligible_ids))
             # DAI / PAI from channel scores
             def ch_agg(channel: str) -> float | None:
                 ids = [pid for pid in eligible_ids if pillar_aggs[pid]["channels"].get(channel)]
@@ -875,10 +947,7 @@ def compute(
                     for k in range(n_draws):
                         ys = []
                         for r in group:
-                            try:
-                                sig = float(r["sigma"]) if r.get("sigma") else 0.045
-                            except ValueError:
-                                sig = 0.045
+                            sig = resolve_sigma(r, sigma_table)
                             x = r["_value"] * (1.0 + sig * float(rng_pace.standard_normal()))
                             ys.append(normalise(x, ind, pillar["direction"])[0])
                         mc_slopes.append(ols_slope(times, ys)[0])
