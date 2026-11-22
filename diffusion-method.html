@@ -597,7 +597,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 </tr>
 <tr>
 <td>Interval</td>
-<td>95 %: 2.5, 50 and 97.5 percentiles of <em>H</em>. For the published headline range these are the 2.5–97.5 percentiles of the channel-weight draws (digital weight U[0.25, 0.75]); they are not a measure of uncertainty in the data. Data noise and pillar-weight draws are also in the joint Monte Carlo, but they account for 1 % of the headline variance.</td>
+<td>95 % percentile range: 2.5 %, 50 % and 97.5 % quantiles of <em>H</em> over joint data, pillar-weight and channel-weight draws. In 1.0.0 this is in practice a weight-sensitivity range (&ldquo;range by weighting&rdquo;), not a measurement-error interval: about 99 % of its variance comes from the pillar and channel weights</td>
 </tr>
 <tr>
 <td>Aggregation</td>
@@ -651,7 +651,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 </tbody>
 </table></div>
 <p>The data component is also run for DAI, PAI and every pillar score.</p>
-<p>For reference, the v0.6 replication split its 90 % band 95 % weights and 5 % data noise. In 1.0.0-rc.3 the headline variance is 1 % data and 99 % channel weights in both populations, with aggregation at 0 %. The width of the published range comes almost entirely from the digital-versus-physical channel weighting (the digital share is drawn from U[0.25, 0.75]), not from the data. The channel split is the choice that matters, and the interval now shows it.</p>
+<p>For reference, the v0.6 replication split its 90 % band 95 % weights and 5 % data noise. In 1.0.0-rc.3 the headline variance is 1 % data and 99 % channel weights in both populations, with aggregation at 0 %. The channel split is the choice that matters, and the interval now shows it. <strong>In 1.0.0 the headline interval is therefore in practice a weight sensitivity, and is labelled &ldquo;range by weighting&rdquo;:</strong> it is still technically the 95 % percentile range of the joint draws, but about 99 % of its variance comes from the pillar and channel weights. Data noise alone gives only 9.0–9.7 (EU27) and 16.5–18.2 (Finland).</p>
 <hr>
 <h2 id="9-series-breaks">9. Series breaks</h2>
 <p><strong>Default: segments.</strong> A break (definition, question wording, population or classification change) starts a new segment. Levels may use the latest segment; paces and any chaining never cross a segment boundary.</p>
@@ -765,7 +765,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <p><code>CHANGELOG.md</code> follows the Keep a Changelog format. Every release lists method changes, data vintage (cut-off), hashes and the effect on the headline (old value against new). There is one VERSION source and a git tag <code>vX.Y.Z</code> per release. Once 1.0.0 is tagged, nothing in <code>method.v1.0.json</code> changes without a version bump and a CHANGELOG entry.</p>
 <hr>
 <h2 id="13-worked-example-illustrative-not-a-published-number">13. Worked example (illustrative, not a published number)</h2>
-<p>Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. The compiler (<code>scripts/compute_index.py</code>) reproduces these levels. Its values for 1.0.0-rc.3 are EU27 9.3 (median 9.4, range 5.6–13.2 by weighting) and Finland 17.3 (median 17.3, range 10.4–24.4 by weighting). The published ends are the 2.5 and 97.5 percentiles of the Monte Carlo channel-weight draws (digital weight U[0.25, 0.75]), not uncertainty in the data. Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2), fallback A (4.5 %) otherwise.</p>
+<p>Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. The compiler (<code>scripts/compute_index.py</code>) reproduces these levels. Its values for 1.0.0-rc.3 are EU27 9.3 (median 9.4, range 5.6–13.2 by weighting) and Finland 17.3 (median 17.3, range 10.4–24.4 by weighting); both ranges are the 95 % percentile range of the joint Monte Carlo. In 1.0.0 that range is in practice weight sensitivity: about 99 % of its variance comes from the pillar and channel weights, and the data-only range is 9.0–9.7 / 16.5–18.2. Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2), fallback A (4.5 %) otherwise. Channel weights: digital weight uniform on [0.25, 0.75] in the Monte Carlo.</p>
 <div class="table-scroll"><table class="di-table">
 <thead>
 <tr>
@@ -816,12 +816,12 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <td>17.33</td>
 </tr>
 <tr>
-<th scope="row">Monte Carlo median; range by weighting (2.5–97.5 percentiles of the channel-weight draws)</th>
+<th scope="row">Monte Carlo median; range by weighting (95 % percentile range, data + pillar and channel weights)</th>
 <td>9.4; 5.6–13.2</td>
 <td>17.3; 10.4–24.4</td>
 </tr>
 <tr>
-<th scope="row">Deployment data-only interval</th>
+<th scope="row">Deployment data-only range (95 %, measurement noise only)</th>
 <td>9.0–9.7</td>
 <td>16.5–18.2</td>
 </tr>
@@ -880,7 +880,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <li>The physical channel rests on one indicator (<code>E_AI_TAR</code>), which scores low and pulls deployment down by design.</li>
 <li>Most Block B and C pillars and most grid cells will be experimental or not measured.</li>
 <li>The 2025 Eurostat definition extension is bounded but not identified.</li>
-<li>Weights are a convention; their effect is shown, not removed. The channel split dominates the headline interval (99 % of its variance). The width of the range comes almost entirely from the digital-versus-physical weighting (U[0.25, 0.75]), not from the data.</li>
+<li>Weights are a convention; their effect is shown, not removed. The channel split dominates the headline range (about 99 % of its variance), so in 1.0.0 the range is read as &ldquo;range by weighting&rdquo;, not as measurement error; the data-only range is 9.0–9.7 (EU27) and 16.5–18.2 (Finland).</li>
 </ul>
 <hr>
 <h2 id="17-references">17. References</h2>
