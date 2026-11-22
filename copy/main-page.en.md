@@ -15,7 +15,7 @@ Notes for Kernelio are in *italics, prefixed "Build note"*. They are not page te
 - **title:** Machine Learning Societies – Diffusion Index 1.0.0-rc.3
 - **meta description:** The Machine Learning Societies – Diffusion Index measures how far AI has moved from the lab into everyday work, machines and society. Updated every quarter.
 - **og:title:** Machine Learning Societies – Diffusion Index: {{headline.display}}/100 ({{reference_period}})
-- **og:description:** Company adoption of AI remains limited: 9 out of 100 in the EU27 and 17 in Finland. *(Live lead is a placeholder pending Wedgwood.)*
+- **og:description:** Most companies have not yet put AI to work. Company adoption scores 9 out of 100 in the EU27 and 17 in Finland.
 - **og:site_name:** Machine Learning Societies – Diffusion Index
 - **twitter:title:** Machine Learning Societies – Diffusion Index
 - **og:image:** `assets/adi/adi-og-1200x675.png` (not yet created; see image plan)
@@ -36,7 +36,7 @@ Notes for Kernelio are in *italics, prefixed "Build note"*. They are not page te
 
 **The result:** {{headline.display}}/100 in {{reference_period}} ({{RANGE_LEVEL}} range {{headline.p2_5}}–{{headline.p97_5}}). The headline is the deployment pillar (company adoption) alone.
 
-**What it means:** Company adoption of AI remains limited: 9 out of 100 in the EU27 and 17 in Finland. The width of the range comes almost entirely from how digital and physical adoption are weighed (digital share 25–75 %), not from the data. *(Live lead is a placeholder pending Wedgwood.)*
+**What it means:** Most companies have not yet put AI to work. Company adoption scores {{populations.EU27.headline.display}} out of 100 in the EU27 and {{populations.FI.headline.display}} in Finland. The width of the range comes almost entirely from how digital and physical adoption are weighed (digital share 25–75 %), not from the data.
 
 Buttons: [See the gap](#gap) · [How we calculate it →](diffusion-method.html)
 
@@ -61,7 +61,7 @@ Companies and investors are committing large sums to AI. Far fewer companies use
 
 **Chart alt text:** Bar chart. Money committed {{pillars.capital_intensity.score}} (context, outside the headline), companies using AI {{pillars.deployment.score}} (the headline), out of 100.
 
-*Build note: the H2 “The money has arrived. The use hasn't.” is kept as context framing for capital (EU27 34, Finland 39) versus use (9 and 17). It is no longer the headline message. The live lead in §1 is a placeholder pending Wedgwood.*
+*Build note: the H2 “The money has arrived. The use hasn't.” is kept as context framing for capital (EU27 34, Finland 39) versus use (9 and 17). It is no longer the headline message. The live lead is Wedgwood’s final wording: “Most companies have not yet put AI to work. Company adoption scores 9 out of 100 in the EU27 and 17 in Finland.” (9 and 17 are the rounded headline display values.)*
 *Build note: cost_to_serve remains experimental; the third bar stays off.*
 
 ---
@@ -70,7 +70,7 @@ Companies and investors are committing large sums to AI. Far fewer companies use
 
 **H2:** How to read the score
 
-**{{headline.display}}/100 ({{RANGE_LEVEL}} range {{headline.p2_5}}–{{headline.p97_5}}).** The range shows our uncertainty. The true value is most likely inside it. The width of that range comes almost entirely from the digital-versus-physical channel weighting (the digital share is drawn from 25–75 %), not from the data.
+**{{headline.display}}/100 ({{RANGE_LEVEL}} range {{headline.p2_5}}–{{headline.p97_5}}).** The range shows how sensitive the score is to the digital-versus-physical channel-weight choice (the digital share is drawn from 25–75 %). Almost all of its width comes from that choice, not from the data.
 
 100 is not “good” and 0 is not “bad”. The index measures how widely AI is used, not whether that is desirable. 100 means AI has become dependable everyday infrastructure, like electricity.
 
@@ -144,7 +144,7 @@ Key paths refer to `index/computed.*.json` (checked against `computed.v0.6.json`
 | Placeholder | JSON key | Meaning | v0.6 value |
 |---|---|---|---|
 | `{{headline.display}}` (was `headline.block_a_diffusion_core.score`) | yes | Headline, whole number (deployment pillar alone) | EU27 9, FI 17 (v0.6 was 42.7) |
-| `{{headline.p2_5}}` / `{{headline.p97_5}}` (was p5/p95) | yes | Ends of the 95% range (page rounds to whole numbers) | EU27 6–13 (5.6–13.2), FI 10–24 (10.4–24.4) |
+| `{{headline.p2_5}}` / `{{headline.p97_5}}` (was p5/p95) | yes | Ends of the published range (2.5 and 97.5 percentiles; page rounds to whole numbers). This is a channel-weight sensitivity band, not a measurement-error interval. | EU27 6–13 (5.6–13.2), FI 10–24 (10.4–24.4) |
 | `{{headline.geometric_mean}}` | yes | "Weakest-link score" (equals the headline when one pillar is eligible) | EU27 9.3, FI 17.3 |
 | `{{headline.velocity_pp_yr}}` | yes | Annual speed, points per year (omit the card if not published) | — |
 | `{{pillars.capital_intensity.score}}` | yes | Capital commitments (P3), Block B context, outside the headline | EU27 34, FI 39 (v0.6 was 58.6) |

@@ -14,7 +14,7 @@ This project follows [Semantic Versioning 2.0.0](https://semver.org/). During de
 | Backward-compatible method or data additions | **MINOR** | A new verified `[V]` series that does not change existing goalposts, a new diagnostic that is not part of the headline |
 | Bug fixes and tooling | **PATCH** | Schema typo, accessibility fix, checksum script, CI, typo in notes that does not change a published number |
 
-If a patch would change a previously published headline score or confidence interval, treat it as **MAJOR** (or publish a corrected release with a clear changelog entry and a new method note). Do not silently rewrite a published number under the same tag.
+If a patch would change a previously published headline score or published range, treat it as **MAJOR** (or publish a corrected release with a clear changelog entry and a new method note). Do not silently rewrite a published number under the same tag.
 
 ## What a release must contain
 

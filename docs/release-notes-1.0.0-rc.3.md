@@ -29,22 +29,16 @@ The width of the headline range comes almost entirely from the digital-versus-ph
 
 The industry matrix is sparse by design: 4 of 100 EU27 cells and 1 of 100 Finland cells are scored. Unmeasured cells are labelled “n/m”.
 
-## Lead line (placeholder)
+## Lead line
 
 The previous hero lead, “The money has arrived. The use hasn't.”, no longer fits as the headline message, because the headline no longer mixes capital with use. It is kept only as context framing on the Block B capital-versus-use card, where it remains factually true (capital 34 / 39 versus use 9 / 17).
 
-The live lead on the public page is a placeholder pending Wedgwood:
+Wedgwood’s final wording of the live lead (9 and 17 are the rounded EU27 and Finland headline display values):
 
-1. **Live placeholder:** “Company adoption of AI remains limited: 9 out of 100 in the EU27 and 17 in Finland.”
-2. “The headline measures company adoption only. It stands at 9 out of 100 in the EU27 and 17 in Finland.”
-3. “Most companies have not yet put AI into everyday work. The headline is 9 in the EU27 and 17 in Finland, on a 0–100 scale.”
-4. “On a 0–100 scale of company adoption, the EU27 scores 9 and Finland 17.”
-
-Option 1 is on the page because it states both published scores, stays factual, and does not claim more than the deployment pillar supports.
+“Most companies have not yet put AI to work. Company adoption scores 9 out of 100 in the EU27 and 17 in Finland.”
 
 ## Still open before a 1.0.0 publication
 
-- Wedgwood’s final wording of the headline lead (the live text is the placeholder in option 1).
 - Harri's publisher credit line (`{{PUBLISHER_LINE}}`).
 - Harri's next-update date (`{{NEXT_UPDATE_DATE}}` / `next_update`).
 - Press chart images and the Open Graph image (not yet created).
