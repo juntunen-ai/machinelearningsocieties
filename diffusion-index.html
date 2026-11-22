@@ -3,10 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Diffusion Index v0.6 — Machine Learning Societies</title>
-<meta name="description" content="Scientific measurement of how artificial intelligence moves from lab models into daily work, physical machines, laws, power grids, and planetary boundaries.">
+<title>AI Diffusion Index 1.0.0 — Machine Learning Societies</title>
+<meta name="description" content="The AI Diffusion Index measures how far AI has moved from the lab into everyday work, machines and society. Updated every quarter.">
+<!-- og/twitter tags: English only. og:image per kuvasuunnitelma (1200×675); file not yet created. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Diffusion Index: {{HEADLINE_SCORE}}/100 ({{QUARTER_LABEL}})">
+<meta property="og:description" content="The money has arrived. The use hasn't. How far AI has moved from the lab into everyday work, machines and society.">
+<meta property="og:image" content="https://machine-learning-societies.web.app/assets/adi/adi-og-1200x675.png">
+<meta property="og:image:alt" content="AI Diffusion Index {{HEADLINE_SCORE}} out of 100, {{QUARTER_LABEL}}">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
-<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="https://machine-learning-societies.web.app/feed.fi.xml">
 <link rel="stylesheet" href="assets/site.css?v=20261028e">
 </head>
 <body>
@@ -15,124 +21,129 @@
     <div class="mast-left">
       <a class="brand" href="index.html">Machine Learning Societies</a>
       <nav class="toplinks" aria-label="Site links">
-        <a href="about.html"><span class="en">About</span><span class="fi">Tietoa</span></a> ·
-        <a href="diffusion-method.html"><span class="en">Index Methodology v0.6</span><span class="fi">Indeksimetodologia v0.6</span></a> ·
-        <a class="en" href="feed.xml">RSS</a><a class="fi" href="feed.fi.xml">RSS</a>
+        <a href="about.html"><span class="en">About</span></a> ·
+        <a href="diffusion-method.html">Methodology</a> ·
+        <a href="feed.xml">RSS</a>
       </nav>
     </div>
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-      <a class="btn" href="index.html"><span class="en">Daily Briefs</span><span class="fi">Päiväkatsaukset</span></a>
-      <a class="btn" href="diffusion-index.html" aria-current="page"><span class="en">Diffusion Index</span><span class="fi">Diffuusioindeksi</span></a>
-      <a class="btn" href="forecasts.html"><span class="en">Forecasts</span><span class="fi">Ennusteet</span></a>
-      <div class="toggle" role="group" aria-label="Language">
-        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
-        <button type="button" data-set-lang="fi" aria-pressed="false">FI</button>
-      </div>
+      <a class="btn" href="index.html"><span class="en">Daily Briefs</span></a>
+      <a class="btn" href="diffusion-index.html" aria-current="page"><span class="en">Diffusion Index</span></a>
+      <a class="btn" href="forecasts.html"><span class="en">Forecasts</span></a>
     </div>
   </header>
 
   <main>
-    <section class="di-hero">
-      <p class="kicker">
-        <span class="en">AI DIFFUSION INDEX · METHODOLOGY V0.6 · UPDATED 28 OCTOBER 2026</span>
-        <span class="fi">TEKOÄLYN DIFFUUSIOINDEKSI · METODOLOGIA V0.6 · PÄIVITETTY 28.10.2026</span>
-      </p>
-      <h1>
-        <span class="en">AI Diffusion Index: How Artificial Intelligence Enters Real Work, Machines, and Society</span>
-        <span class="fi">Tekoälyn diffuusioindeksi: miten tekoäly siirtyy arjen työhön, koneisiin ja yhteiskuntaan</span>
-      </h1>
-      <p class="di-sub en">
-        Press releases show what new AI models can do in a laboratory. This index measures what organizations actually use in daily work, physical machines, laws, and power grids. To keep cause and effect clear, the index separates <strong>Block A (Actual AI Use and Investment)</strong> from <strong>Block B (Enabling Conditions)</strong> and <strong>Block C (Societal and Planetary Effects)</strong>.
-      </p>
-      <p class="di-sub fi">
-        Lehdistötiedotteet kertovat, mihin uudet tekoälymallit pystyvät laboratoriossa. Tämä indeksi mittaa, mitä organisaatiot todella käyttävät arjen työssä, fyysisissä koneissa, sääntelyssä ja sähköverkoissa. Syy-seuraussuhteiden erottamiseksi indeksi pitää erillään <strong>Lohkon A (todellinen käyttö ja investoinnit)</strong>, <strong>Lohkon B (mahdollistavat edellytykset)</strong> ja <strong>Lohkon C (yhteiskunnalliset ja planetaariset vaikutukset)</strong>.
-      </p>
-      <div class="di-meta-strip" id="hero-meta-strip">
-        <span class="di-badge di-badge-verified"><span class="en">56 Checked [V] Data Points</span><span class="fi">56 tarkistettua [V] datapistettä</span></span>
-        <span class="di-badge"><span class="en">11 Daily Briefs Linked</span><span class="fi">11 päiväkatsausta linkitetty</span></span>
-        <span class="di-badge"><span class="en">27 Checked [V] / 22 Candidate [K] Sources</span><span class="fi">27 tarkistettua [V] / 22 ehdokaslähdettä [K]</span></span>
-        <span class="di-badge di-badge-proxy"><span class="en">0 Unchecked [K] Sources in Calculations</span><span class="fi">0 tarkistamatonta [K]-lähdettä laskennassa</span></span>
-        <a class="btn" href="diffusion-method.html" style="margin-left:auto"><span class="en">Read How We Calculate the Index →</span><span class="fi">Lue miten indeksi lasketaan →</span></a>
+    <!--
+      AI DIFFUSION INDEX 1.0.0 — MAIN PAGE COPY (Wedgwood, draft in release/1.0.0)
+      English only. Plain language for a broad audience. Technical terms live on diffusion-method.html.
+      Every {{NAME}} is a placeholder. Values come from the 1.0.0 recalculation (TP1/TP2).
+      Full list and rules: placeholders.md in the repo root. Do not publish with any {{...}} left.
+    -->
+
+    <!-- A. THREE-LINE OPENING -->
+    <section class="di-hero" id="summary" aria-labelledby="adi-title">
+      <p class="kicker">AI Diffusion Index 1.0.0 · {{QUARTER_LABEL}} · {{SCOPE_LABEL}}</p>
+      <h1 id="adi-title">AI Diffusion Index</h1>
+      <p class="di-sub"><strong>What we measure:</strong> how far AI has moved from the lab into everyday work, machines and society.</p>
+      <p class="di-sub"><strong>The result:</strong> {{HEADLINE_SCORE}}/100 in {{QUARTER_LABEL}} ({{RANGE_LEVEL}} range {{RANGE_LOW}}–{{RANGE_HIGH}}).</p>
+      <p class="di-sub"><strong>What it means:</strong> AI is not yet everyday infrastructure. The money is far ahead of real use.</p>
+      <div class="di-meta-strip">
+        <a class="btn" href="#gap">See the gap</a>
+        <a class="btn" href="diffusion-method.html">How we calculate it →</a>
       </div>
     </section>
 
-    <!-- HOW TO READ THE 0-100 SCALE -->
-    <section class="di-scale-guide" aria-labelledby="scale-guide-title">
+    <!-- B. THE GAP: MONEY VS USE
+         Re-check after recalculation (plan TP4): keep this headline only if
+         {{CAPITAL_SCORE}} is clearly above {{ADOPTION_SCORE}} and {{TASK_SCORE}}.
+         If not, Wedgwood rewrites this block before release.
+         NOTE: in v0.6 the third bar is pillar P2 "Cost to serve" (task completion).
+         Plan TP1 moves cost_to_serve to grade C until a Task Price Index exists.
+         If P2 is not published in 1.0.0, drop the third bar and use a two-bar chart. -->
+    <section class="di-scale-guide" id="gap" aria-labelledby="gap-title">
       <div class="di-scale-head">
-        <h2 id="scale-guide-title">
-          <span class="en">How to Read the 0–100 Scale</span>
-          <span class="fi">Miten luet 0–100-asteikkoa</span>
-        </h2>
-        <span class="di-badge">
-          <span class="en">Fixed 0–100 Goalpost Scale</span>
-          <span class="fi">Kiinteä 0–100-asteikko</span>
-        </span>
+        <h2 id="gap-title">The money has arrived. The use hasn't.</h2>
       </div>
-      <p class="di-scale-intro en">
-        Every score uses a fixed scale from <strong>0 to 100</strong>. The goalposts stay fixed over time so you can compare quarters directly. A score of 100 does not mean infinite growth. Instead, 100 means AI has become dependable everyday infrastructure, like electricity or the internet.
-      </p>
-      <p class="di-scale-intro fi">
-        Jokainen pisteluku käyttää kiinteää asteikkoa <strong>0–100</strong>. Asteikon rajat pysyvät samoina yli ajan, jotta voit verrata eri ajankohtia suoraan. Pistemäärä 100 ei tarkoita rajatonta kasvua. Se tarkoittaa, että tekoälystä on tullut luotettava arjen perusrakenne sähkön tai internetin tapaan.
-      </p>
+      <p class="di-scale-intro">Companies and investors are committing large sums to AI. Far fewer companies use AI in their daily work. And AI still cannot be trusted to finish multi-step tasks on its own.</p>
+
+      <!-- CHART SLOT: one simple bar chart, three bars, same 0–100 scale.
+           Static fallback below. Replace with the shared image adi-gap-1200x675.png
+           or a JS-rendered chart; keep the alt text in plain English. -->
+      <figure class="di-gap-chart" style="margin:0 0 16px">
+        <div class="di-scale-grid">
+          <div class="di-scale-step">
+            <div class="di-scale-tag">Money committed</div>
+            <div class="di-scale-num">{{CAPITAL_SCORE}} <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 100</span></div>
+            <div class="di-bar-track"><div class="di-bar-fill" style="width:{{CAPITAL_SCORE}}%"></div></div>
+            <p>Capital commitments: money locked into data centres, AI chips and long-term cloud contracts.</p>
+          </div>
+          <div class="di-scale-step">
+            <div class="di-scale-tag">Companies using AI</div>
+            <div class="di-scale-num">{{ADOPTION_SCORE}} <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 100</span></div>
+            <div class="di-bar-track"><div class="di-bar-fill" style="width:{{ADOPTION_SCORE}}%"></div></div>
+            <p>Company adoption: how many companies, public agencies and people use AI in daily work.</p>
+          </div>
+          <div class="di-scale-step">
+            <div class="di-scale-tag">Tasks done reliably</div>
+            <div class="di-scale-num">{{TASK_SCORE}} <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 100</span></div>
+            <div class="di-bar-track"><div class="di-bar-fill" style="width:{{TASK_SCORE}}%"></div></div>
+            <p>Reliable task completion: what it costs to finish a real job with AI, from start to finish, including fixing failures.</p>
+          </div>
+        </div>
+        <figcaption class="di-scale-intro" style="font-size:13px">Three of the index's measures, {{QUARTER_LABEL}}. All on the same 0–100 scale. Source and data: <a href="diffusion-method.html">methodology page</a>.</figcaption>
+      </figure>
+    </section>
+
+    <!-- C. HOW TO READ THE SCORE -->
+    <section class="di-scale-guide" id="scale" aria-labelledby="scale-title">
+      <div class="di-scale-head">
+        <h2 id="scale-title">How to read the score</h2>
+      </div>
+      <p class="di-scale-intro"><strong>{{HEADLINE_SCORE}}/100 ({{RANGE_LEVEL}} range {{RANGE_LOW}}–{{RANGE_HIGH}}).</strong> The range shows our uncertainty. The true value is most likely inside it.</p>
+      <p class="di-scale-intro">100 is not “good” and 0 is not “bad”. The index measures how widely AI is used, not whether that is desirable. 100 means AI has become dependable everyday infrastructure, like electricity.</p>
 
       <div class="di-scale-ruler" aria-hidden="true">
         <div class="di-scale-ruler-labels">
-          <span>0 · <span class="en">Start</span><span class="fi">Alku</span></span>
-          <span style="color:var(--ink)">▲ 42.7 · <span class="en">Today (2026-Q4)</span><span class="fi">Nyt (2026-Q4)</span></span>
-          <span>100 · <span class="en">Full Maturity</span><span class="fi">Täysi kypsyys</span></span>
+          <span>0 · Almost no real use</span>
+          <span style="color:var(--ink)">▲ {{HEADLINE_SCORE}} · {{QUARTER_LABEL}}</span>
+          <span>100 · Like electricity</span>
         </div>
         <div class="di-scale-ruler-track">
-          <div class="di-scale-ruler-pin" style="left:42.7%"></div>
+          <div class="di-scale-ruler-pin" style="left:{{HEADLINE_SCORE}}%"></div>
         </div>
       </div>
 
-      <div class="di-scale-grid">
-        <div class="di-scale-step">
-          <div class="di-scale-tag"><span class="en">Starting Point</span><span class="fi">Lähtötilanne</span></div>
-          <div class="di-scale-num">0 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 100</span></div>
-          <p class="en">Almost no real-world use. Companies run only isolated tests, multi-step tasks fail often, and infrastructure investment is minimal.</p>
-          <p class="fi">Ei juuri lainkaan todellista käyttöä. Yritykset tekevät vain yksittäisiä kokeiluja, monivaiheiset tehtävät epäonnistuvat usein ja investoinnit ovat pieniä.</p>
-        </div>
-        <div class="di-scale-step di-scale-now">
-          <div class="di-scale-tag"><span class="en">Today (2026-Q4)</span><span class="fi">Nyt (2026-Q4)</span></div>
-          <div class="di-scale-num">42.7 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 100</span></div>
-          <p class="en">AI is four-tenths of the way to everyday maturity. Capital investment (<strong>58.6</strong>) moves fast, but everyday company use (<strong>28.4</strong>) and reliable task completion (<strong>41.2</strong>) lag behind.</p>
-          <p class="fi">Tekoäly on neljän kymmenesosan päässä arjen kypsyydestä. Pääomasitoumukset (<strong>58.6</strong>) kasvavat nopeasti, mutta yrityskäyttö (<strong>28.4</strong>) ja luotettava työnkulkujen suoritus (<strong>41.2</strong>) laahaavat perässä.</p>
-        </div>
-        <div class="di-scale-step">
-          <div class="di-scale-tag"><span class="en">Full Maturity</span><span class="fi">Täysi kypsyys</span></div>
-          <div class="di-scale-num">100 <span style="font-size:14px;font-weight:400;color:var(--muted)">/ 100</span></div>
-          <p class="en">AI works like electricity. About 80% of organizations use AI in daily work, multi-step tasks finish reliably at one-tenth of today's cost, and all industries use it evenly.</p>
-          <p class="fi">Tekoäly toimii kuin sähköverkko. Noin 80 % organisaatioista käyttää tekoälyä arjen työssä, monivaiheiset tehtävät valmistuvat luotettavasti kymmenesosalla nykykulusta ja toimialakuilu on kurottu umpeen.</p>
-        </div>
-      </div>
-
+      <!-- Secondary numbers. Plain words here; definitions on diffusion-method.html.
+           ANNUAL SPEED: show only if the frozen method allows it (plan TP1: at least
+           3 comparable time points). Otherwise delete that card. -->
       <div class="di-scale-terms">
         <div class="di-scale-term-card">
-          <span class="di-scale-term-title">
-            <span class="en">90% Uncertainty Range [32.0 – 53.4]</span>
-            <span class="fi">90 % epävarmuusväli [32.0 – 53.4]</span>
-          </span>
-          <p class="di-scale-term-body en">We recalculate the index 1,000 times with varied pillar weights and data noise. In 900 out of 1,000 runs, the score lands inside this range.</p>
-          <p class="di-scale-term-body fi">Laskemme indeksin 1 000 kertaa vaihtelevilla painoilla ja mittauskohinalla. 900 ajossa tuhannesta tulos osuu tälle välille.</p>
+          <span class="di-scale-term-title">Weakest-link score: {{BOTTLENECK_SCORE}}/100</span>
+          <p class="di-scale-term-body">A stricter version of the score. It falls when any one part lags behind the others.</p>
         </div>
         <div class="di-scale-term-card">
-          <span class="di-scale-term-title">
-            <span class="en">Bottleneck Score (Geometric Mean: 40.5)</span>
-            <span class="fi">Pullonkaulapiste (geometrinen keskiarvo: 40.5)</span>
-          </span>
-          <p class="di-scale-term-body en">A stricter average that drops when any single pillar (such as company adoption at 28.4) lags behind capital spending.</p>
-          <p class="di-scale-term-body fi">Tiukempi keskiarvo, joka laskee heti, jos yksikin osa-alue (kuten yrityskäyttö 28.4) jää jälkeen pääomainvestoinneista.</p>
+          <span class="di-scale-term-title">Speed: {{ANNUAL_SPEED}} points a year</span>
+          <p class="di-scale-term-body">How fast the score is changing at its current pace.</p>
         </div>
         <div class="di-scale-term-card">
-          <span class="di-scale-term-title">
-            <span class="en">Annual Speed (+8.9 points per year)</span>
-            <span class="fi">Vuosivauhti (+8.9 pistettä vuodessa)</span>
-          </span>
-          <p class="di-scale-term-body en">Shows how many points a score gains or loses per year on the 0–100 scale at its current pace.</p>
-          <p class="di-scale-term-body fi">Kertoo, kuinka monta pistettä tulos nousee tai laskee vuodessa asteikolla 0–100 nykyisellä vauhdilla.</p>
+          <span class="di-scale-term-title">Updated every quarter</span>
+          <p class="di-scale-term-body">The score changes only on the fixed quarterly update. Next update: {{NEXT_UPDATE_DATE}}. Daily briefs do not move it in between.</p>
         </div>
       </div>
+    </section>
+
+    <!-- D. DOORS FOR AUDIENCES -->
+    <section class="di-scale-guide" id="doors" aria-labelledby="doors-title">
+      <div class="di-scale-head">
+        <h2 id="doors-title">Start here</h2>
+      </div>
+      <ul class="di-scale-intro" style="list-style:none;padding:0;margin:0">
+        <li><strong>Policymakers and officials:</strong> <a href="#summary">the result in three lines</a>.</li>
+        <li><strong>Journalists:</strong> <a href="#press">quotable findings, chart images and contact</a>.</li>
+        <li><strong>Researchers and analysts:</strong> <a href="diffusion-method.html">full methodology, data and sources</a>.</li>
+        <li><strong>Investors and companies:</strong> <a href="#industry-matrix">AI use by industry</a>.</li>
+      </ul>
     </section>
 
     <!-- 1. FOUR HEADLINE KPI CARDS -->
@@ -141,41 +152,41 @@
     <!-- 2. THREE BLOCKS + STEWART BRAND PACE-SHEAR DIAGNOSTIC -->
     <h2 class="section">
       <span class="en">Three Separate Blocks and Speed Gaps Across Society</span>
-      <span class="fi">Kolme erillistä lohkoa ja yhteiskunnan kerrostumien vauhtiero</span>
+      
     </h2>
     <p class="sub" style="max-width:82ch">
       <span class="en">An index cannot test whether power grids limit AI or whether AI changes jobs if it mixes all numbers into one score. Therefore, we keep <strong>Block A (Actual Use)</strong> separate from <strong>Block B (Conditions)</strong> and <strong>Block C (Effects)</strong>. <strong>Hover over or focus on any pillar badge below</strong> to read what the term means and how we score it.</span>
-      <span class="fi">Indeksi ei voi tutkia, rajoittaako sähköverkko tekoälyä tai muuttaako tekoäly työtä, jos kaikki luvut lasketaan yhteen. Siksi pidämme <strong>Lohkon A (todellinen käyttö)</strong> erillään <strong>Lohkosta B (edellytykset)</strong> ja <strong>Lohkosta C (vaikutukset)</strong>. <strong>Vie hiiri minkä tahansa pilarin päälle</strong> nähdäksesi, mitä termi tarkoittaa ja miten se pisteytetään.</span>
+      
     </p>
     <div class="di-blocks-row" id="blocks-row"></div>
 
     <div class="di-pace-panel" id="pace-panel"></div>
 
-    <!-- 3. INTERACTIVE 10x10 SECTOR x PILLAR HEATMAP -->
-    <h2 class="section">
+    <!-- 3. INTERACTIVE 10x10 SECTOR x PILLAR HEATMAP (door: investors and companies) -->
+    <h2 class="section" id="industry-matrix">
       <span class="en">10 Industries × 10 Pillars Matrix (Click any score to see sources and daily briefs)</span>
-      <span class="fi">10 toimialaa × 10 pilaria -matriisi (Klikkaa pistelukua nähdäksesi lähteet ja päiväkatsaukset)</span>
+      
     </h2>
     <p class="sub" style="max-width:82ch">
       <span class="en">Use the buttons below to switch between the overall score and three depth levels: <strong>Reach</strong> (how many organizations use AI), <strong>Depth</strong> (how much daily work uses AI), and <strong>Embeddedness</strong> (how deeply AI is built into contracts, budgets, and quality systems).</span>
-      <span class="fi">Valitse alta kokonaispistemäärä tai jokin kolmesta syvyystasosta: <strong>Laajuus (Reach)</strong> (kuinka moni käyttää tekoälyä), <strong>Syvyys (Depth)</strong> (kuinka suuri osa työstä tehdään tekoälyllä) ja <strong>Juurtuneisuus (Embeddedness)</strong> (kuinka syvästi tekoäly on rakennettu sopimuksiin ja laatujärjestelmiin).</span>
+      
     </p>
     <div class="di-toolbar">
       <div class="di-toolbar-group">
-        <span class="di-toolbar-label"><span class="en">Show Level:</span><span class="fi">Näytä taso:</span></span>
+        <span class="di-toolbar-label"><span class="en">Show Level:</span></span>
         <div class="toggle" role="group" aria-label="Diffusion layer view">
-          <button type="button" data-layer-view="score" aria-pressed="true"><span class="en">Overall Score (0–100)</span><span class="fi">Kokonaispisteet (0–100)</span></button>
-          <button type="button" data-layer-view="reach" aria-pressed="false"><span class="en">Reach (How Many Use It)</span><span class="fi">Laajuus (Kuinka moni käyttää)</span></button>
-          <button type="button" data-layer-view="depth" aria-pressed="false"><span class="en">Depth (Share of Work)</span><span class="fi">Syvyys (Osuus työstä)</span></button>
-          <button type="button" data-layer-view="embeddedness" aria-pressed="false"><span class="en">Embeddedness (Built Into Systems)</span><span class="fi">Juurtuneisuus (Osana järjestelmiä)</span></button>
+          <button type="button" data-layer-view="score" aria-pressed="true"><span class="en">Overall Score (0–100)</span></button>
+          <button type="button" data-layer-view="reach" aria-pressed="false"><span class="en">Reach (How Many Use It)</span></button>
+          <button type="button" data-layer-view="depth" aria-pressed="false"><span class="en">Depth (Share of Work)</span></button>
+          <button type="button" data-layer-view="embeddedness" aria-pressed="false"><span class="en">Embeddedness (Built Into Systems)</span></button>
         </div>
       </div>
       <div class="di-toolbar-group">
-        <span class="di-toolbar-label"><span class="en">Sort Industries:</span><span class="fi">Järjestä toimialat:</span></span>
+        <span class="di-toolbar-label"><span class="en">Sort Industries:</span></span>
         <div class="toggle" role="group" aria-label="Sector sort">
-          <button type="button" data-sector-sort="block_a" aria-pressed="true"><span class="en">By Overall Use (Block A)</span><span class="fi">Kokonaiskäytön mukaan (Lohko A)</span></button>
-          <button type="button" data-sector-sort="dai" aria-pressed="false"><span class="en">By Software AI (DAI)</span><span class="fi">Digitaalinen tekoäly (DAI)</span></button>
-          <button type="button" data-sector-sort="pai" aria-pressed="false"><span class="en">By Physical AI (PAI)</span><span class="fi">Fyysinen tekoäly (PAI)</span></button>
+          <button type="button" data-sector-sort="block_a" aria-pressed="true"><span class="en">By Overall Use (Block A)</span></button>
+          <button type="button" data-sector-sort="dai" aria-pressed="false"><span class="en">By Software AI (DAI)</span></button>
+          <button type="button" data-sector-sort="pai" aria-pressed="false"><span class="en">By Physical AI (PAI)</span></button>
         </div>
       </div>
     </div>
@@ -190,20 +201,20 @@
     <!-- 4. TEN PILLARS -->
     <h2 class="section">
       <span class="en">The Ten Pillars: Scores, Annual Speed, and Real-World Evidence</span>
-      <span class="fi">Kymmenen pilaria: pisteluvut, vuosivauhti ja vahvistettu näyttö</span>
+      
     </h2>
     <p class="sub" style="max-width:82ch">
       <span class="en">Each card shows one pillar on the 0–100 scale, its annual change in points per year, its breakdown across Reach, Depth, and Embeddedness, and the primary facts behind the score.</span>
-      <span class="fi">Jokainen kortti näyttää yhden pilarin pistemäärän asteikolla 0–100, vuosimuutoksen pisteinä vuodessa, jakauman laajuuteen, syvyyteen ja juurtuneisuuteen sekä keskeiset faktat luvun takana.</span>
+      
     </p>
     <div class="di-toolbar">
       <div class="di-toolbar-group">
-        <span class="di-toolbar-label"><span class="en">Filter by Block:</span><span class="fi">Suodata lohkon mukaan:</span></span>
+        <span class="di-toolbar-label"><span class="en">Filter by Block:</span></span>
         <div class="toggle" role="group" aria-label="Block filter">
-          <button type="button" data-block-filter="ALL" aria-pressed="true"><span class="en">All 10 Pillars</span><span class="fi">Kaikki 10 pilaria</span></button>
-          <button type="button" data-block-filter="A_diffusion" aria-pressed="false"><span class="en">Block A: Actual Use (3)</span><span class="fi">Lohko A: Todellinen käyttö (3)</span></button>
-          <button type="button" data-block-filter="B_conditions" aria-pressed="false"><span class="en">Block B: Conditions (4)</span><span class="fi">Lohko B: Edellytykset (4)</span></button>
-          <button type="button" data-block-filter="C_consequences" aria-pressed="false"><span class="en">Block C: Effects (3)</span><span class="fi">Lohko C: Vaikutukset (3)</span></button>
+          <button type="button" data-block-filter="ALL" aria-pressed="true"><span class="en">All 10 Pillars</span></button>
+          <button type="button" data-block-filter="A_diffusion" aria-pressed="false"><span class="en">Block A: Actual Use (3)</span></button>
+          <button type="button" data-block-filter="B_conditions" aria-pressed="false"><span class="en">Block B: Conditions (4)</span></button>
+          <button type="button" data-block-filter="C_consequences" aria-pressed="false"><span class="en">Block C: Effects (3)</span></button>
         </div>
       </div>
     </div>
@@ -212,23 +223,23 @@
     <!-- 5. DAILY BRIEF SIGNAL LEDGER -->
     <h2 class="section">
       <span class="en">How Daily Briefs Feed the Index (brief_signals.csv)</span>
-      <span class="fi">Miten päiväkatsaukset kytkeytyvät indeksiin (brief_signals.csv)</span>
+      
     </h2>
     <p class="sub" style="max-width:82ch">
       <span class="en">We link every daily brief to its main Pillar, Industry, Block, Channel (Digital or Physical), and societal speed layer. When a brief verifies an official statistic or legal filing, we record that number in <code>index/series.csv</code> with a direct link back to the brief.</span>
-      <span class="fi">Liitämme jokaisen päiväkatsauksen sen ensisijaiseen pilariin, toimialaan, lohkoon, kanavaan (digitaalinen tai fyysinen) ja yhteiskunnan muutoskerrokseen. Kun katsaus vahvistaa virallisen tilaston tai viranomaisasiakirjan luvun, kirjaamme sen <code>index/series.csv</code>-tauluun suoralla linkillä katsaukseen.</span>
+      
     </p>
     <div class="table-scroll">
       <table class="di-table" id="briefs-signal-table">
         <thead>
           <tr>
-            <th><span class="en">Date</span><span class="fi">Pvm</span></th>
-            <th><span class="en">Daily Brief and Key Finding</span><span class="fi">Päiväkatsaus ja keskeinen havainto</span></th>
-            <th><span class="en">Pillar and Block</span><span class="fi">Pilari ja lohko</span></th>
-            <th><span class="en">Industry and Depth</span><span class="fi">Toimiala ja syvyystaso</span></th>
-            <th><span class="en">Speed Layer</span><span class="fi">Muutoskerros</span></th>
-            <th><span class="en">Verified Number</span><span class="fi">Vahvistettu luku</span></th>
-            <th class="num"><span class="en">Signal · Stakes</span><span class="fi">Signaali · Painoarvo</span></th>
+            <th><span class="en">Date</span></th>
+            <th><span class="en">Daily Brief and Key Finding</span></th>
+            <th><span class="en">Pillar and Block</span></th>
+            <th><span class="en">Industry and Depth</span></th>
+            <th><span class="en">Speed Layer</span></th>
+            <th><span class="en">Verified Number</span></th>
+            <th class="num"><span class="en">Signal · Stakes</span></th>
           </tr>
         </thead>
         <tbody id="briefs-signal-tbody"></tbody>
@@ -238,23 +249,23 @@
     <!-- 6. PLANETARY BOUNDARIES REFERENCE PANEL (TWO-WAY ECOLOGICAL BALANCE METER) -->
     <h2 class="section">
       <span class="en">Two-Way Ecological Balance Meter &amp; Planetary Boundaries (Pillar 7)</span>
-      <span class="fi">Kaksisuuntainen ekologinen tasemittari ja planetaariset rajat (Pilari 7)</span>
+      
     </h2>
     <p class="sub" style="max-width:84ch">
       <span class="en">Artificial intelligence affects the environment in two opposite directions. It <strong>increases burden</strong> when data centres draw electricity, cooling water, and minerals. At the same time, it <strong>reduces burden</strong> when used to balance power grids, cut farm fertilizer runoff, find water-pipe leaks, or spot illegal deforestation. We measure both directions side by side and never subtract modelled savings from metered physical load.</span>
-      <span class="fi">Tekoäly vaikuttaa ympäristöön kahteen vastakkaiseen suuntaan. Se <strong>lisää kuormitusta</strong>, kun datakeskukset kuluttavat sähköä, jäähdytysvettä ja mineraaleja. Samalla se <strong>vähentää kuormitusta</strong>, kun sillä tasapainotetaan sähköverkkoa, vähennetään lannoitevalumia, etsitään vesivuotoja tai valvotaan metsiä satelliiteilla. Mittaamme molemmat suunnat rinnakkain emmekä koskaan vähennä mallinnettuja säästöjä mitatusta kulutuksesta.</span>
+      
     </p>
     <div id="pb-ecometer-panel"></div>
     <div class="table-scroll">
       <table class="di-table" id="pb-table">
         <thead>
           <tr>
-            <th><span class="en">Planetary Boundary &amp; Safe Limit</span><span class="fi">Planetaarinen raja ja turvaraja</span></th>
-            <th><span class="en">Earth-System Status</span><span class="fi">Maapallon tila</span></th>
-            <th><span class="en">Two-Way AI Balance Meter</span><span class="fi">Kaksisuuntainen tekoälymittari</span></th>
-            <th><span class="en">1. Burden Increase (Direct Footprint ↑)</span><span class="fi">1. Kuormituksen kasvu (Suora jalanjälki ↑)</span></th>
-            <th><span class="en">2. Burden Reduction (Enabled Abatement ↓)</span><span class="fi">2. Kuormituksen vähennys (Kädenjälki ↓)</span></th>
-            <th><span class="en">Rebound Risk &amp; Accounting Rule</span><span class="fi">Palautumisriski ja laskentasääntö</span></th>
+            <th><span class="en">Planetary Boundary &amp; Safe Limit</span></th>
+            <th><span class="en">Earth-System Status</span></th>
+            <th><span class="en">Two-Way AI Balance Meter</span></th>
+            <th><span class="en">1. Burden Increase (Direct Footprint ↑)</span></th>
+            <th><span class="en">2. Burden Reduction (Enabled Abatement ↓)</span></th>
+            <th><span class="en">Rebound Risk &amp; Accounting Rule</span></th>
           </tr>
         </thead>
         <tbody id="pb-tbody"></tbody>
@@ -264,20 +275,20 @@
     <!-- 7. VERIFIED OBSERVATION LEDGER -->
     <h2 class="section">
       <span class="en">Checked Data Points (index/series.csv — 56 Primary Observations)</span>
-      <span class="fi">Tarkistetut datapisteet (index/series.csv — 56 havaintoa)</span>
+      
     </h2>
     <p class="sub" style="max-width:82ch">
       <span class="en">This table lists all 56 data points used in our calculations. Every row comes from a checked primary source (<code>[V]</code>). If a statistical agency changed its survey questions, we mark the row with a <code>survey change</code> badge and apply an adjustment factor.</span>
-      <span class="fi">Tämä taulukko sisältää kaikki 56 laskennassa käytettyä datapistettä. Jokainen rivi on peräisin suoraan tarkistetusta alkuperäislähteestä (<code>[V]</code>). Jos tilastoviranomainen on muuttanut kyselylomakettaan, merkitsemme rivin <code>aikasarjakatkos</code>-tunnisteella ja korjauskertoimella.</span>
+      
     </p>
     <div class="di-toolbar">
       <div class="di-toolbar-group">
-        <span class="di-toolbar-label"><span class="en">Filter Data Points:</span><span class="fi">Suodata datapisteet:</span></span>
+        <span class="di-toolbar-label"><span class="en">Filter Data Points:</span></span>
         <div class="toggle" role="group" aria-label="Observation channel filter">
-          <button type="button" data-obs-filter="ALL" aria-pressed="true"><span class="en">All (56)</span><span class="fi">Kaikki (56)</span></button>
-          <button type="button" data-obs-filter="digital" aria-pressed="false"><span class="en">Digital AI</span><span class="fi">Digitaalinen tekoäly</span></button>
-          <button type="button" data-obs-filter="physical" aria-pressed="false"><span class="en">Physical AI</span><span class="fi">Fyysinen tekoäly</span></button>
-          <button type="button" data-obs-filter="brief" aria-pressed="false"><span class="en">From Daily Briefs</span><span class="fi">Päiväkatsauksista</span></button>
+          <button type="button" data-obs-filter="ALL" aria-pressed="true"><span class="en">All (56)</span></button>
+          <button type="button" data-obs-filter="digital" aria-pressed="false"><span class="en">Digital AI</span></button>
+          <button type="button" data-obs-filter="physical" aria-pressed="false"><span class="en">Physical AI</span></button>
+          <button type="button" data-obs-filter="brief" aria-pressed="false"><span class="en">From Daily Briefs</span></button>
         </div>
       </div>
     </div>
@@ -286,12 +297,12 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th><span class="en">Period</span><span class="fi">Ajankohta</span></th>
-            <th><span class="en">Pillar and Industry</span><span class="fi">Pilari ja toimiala</span></th>
-            <th><span class="en">Region and Depth</span><span class="fi">Alue ja syvyystaso</span></th>
-            <th class="num"><span class="en">Value and Unit</span><span class="fi">Arvo ja yksikkö</span></th>
-            <th><span class="en">Source and Quality Grade</span><span class="fi">Lähde ja laatuluokka</span></th>
-            <th><span class="en">Explanation and Links</span><span class="fi">Selite ja linkit</span></th>
+            <th><span class="en">Period</span></th>
+            <th><span class="en">Pillar and Industry</span></th>
+            <th><span class="en">Region and Depth</span></th>
+            <th class="num"><span class="en">Value and Unit</span></th>
+            <th><span class="en">Source and Quality Grade</span></th>
+            <th><span class="en">Explanation and Links</span></th>
           </tr>
         </thead>
         <tbody id="obs-tbody"></tbody>
@@ -301,19 +312,19 @@
     <!-- 8. SOURCE REGISTRY -->
     <h2 class="section">
       <span class="en">Source Registry (49 Sources: [V] Checked vs [K] Candidate Sources)</span>
-      <span class="fi">Lähderekisteri (49 lähdettä: [V] tarkistetut vs [K] ehdokaslähteet)</span>
+      
     </h2>
     <p class="sub" style="max-width:82ch">
       <span class="en">We separate sources into two groups. <strong>Checked sources (<code>[V]</code>)</strong> have been opened and verified directly in the primary database or filing. <strong>Candidate sources (<code>[K]</code>)</strong> are listed for future tracking and are blocked from entering any score until we verify them directly.</span>
-      <span class="fi">Jaamme lähteet kahteen ryhmään. <strong>Tarkistetut lähteet (<code>[V]</code>)</strong> on avattu ja tarkistettu suoraan alkuperäisestä tietokannasta tai viranomaisrekisteristä. <strong>Ehdokaslähteet (<code>[K]</code>)</strong> ovat seurannassa, eikä niitä hyväksytä laskentaan ennen suoraa tarkistusta.</span>
+      
     </p>
     <div class="di-toolbar">
       <div class="di-toolbar-group">
-        <span class="di-toolbar-label"><span class="en">Filter Sources:</span><span class="fi">Suodata lähteet:</span></span>
+        <span class="di-toolbar-label"><span class="en">Filter Sources:</span></span>
         <div class="toggle" role="group" aria-label="Source verification filter">
-          <button type="button" data-src-filter="ALL" aria-pressed="true"><span class="en">All Sources (49)</span><span class="fi">Kaikki lähteet (49)</span></button>
-          <button type="button" data-src-filter="verified" aria-pressed="false"><span class="en">[V] Checked in Primary Source (27)</span><span class="fi">[V] Alkuperäislähteestä tarkistetut (27)</span></button>
-          <button type="button" data-src-filter="candidate" aria-pressed="false"><span class="en">[K] Candidates Waiting for Check (22)</span><span class="fi">[K] Tarkistusta odottavat ehdokkaat (22)</span></button>
+          <button type="button" data-src-filter="ALL" aria-pressed="true"><span class="en">All Sources (49)</span></button>
+          <button type="button" data-src-filter="verified" aria-pressed="false"><span class="en">[V] Checked in Primary Source (27)</span></button>
+          <button type="button" data-src-filter="candidate" aria-pressed="false"><span class="en">[K] Candidates Waiting for Check (22)</span></button>
         </div>
       </div>
     </div>
@@ -321,38 +332,44 @@
       <table class="di-table" id="sources-table">
         <thead>
           <tr>
-            <th><span class="en">Status</span><span class="fi">Tila</span></th>
-            <th><span class="en">Source Name and Link</span><span class="fi">Lähteen nimi ja linkki</span></th>
-            <th><span class="en">Trust Tier and Grade</span><span class="fi">Luottamustaso ja luokka</span></th>
-            <th><span class="en">Pillars and Region</span><span class="fi">Pilarit ja alue</span></th>
-            <th><span class="en">Limitations and Licence</span><span class="fi">Rajoitteet ja lisenssi</span></th>
+            <th><span class="en">Status</span></th>
+            <th><span class="en">Source Name and Link</span></th>
+            <th><span class="en">Trust Tier and Grade</span></th>
+            <th><span class="en">Pillars and Region</span></th>
+            <th><span class="en">Limitations and Licence</span></th>
           </tr>
         </thead>
         <tbody id="sources-tbody"></tbody>
       </table>
     </div>
 
-    <!-- 9. OPEN REPLICATION PACKAGE -->
-    <section class="method" style="margin-top:36px" aria-labelledby="replication-title">
-      <h3 id="replication-title">
-        <span class="en">Open Data Files: Check or Re-Run Our Calculations</span>
-        <span class="fi">Avoimet datatiedostot: tarkista tai aja laskenta itse</span>
-      </h3>
-      <p class="en">
-        Our Python script (<code>scripts/compute_index.py</code>) calculates every score and uncertainty range on this page from open files in the <code>index/</code> folder. You can download all data files below to inspect our numbers or run the calculation on your own computer:
-      </p>
-      <p class="fi">
-        Python-skriptimme (<code>scripts/compute_index.py</code>) laskee jokaisen tämän sivun pisteluvun ja epävarmuusvälin avoimista tiedostoista kansiossa <code>index/</code>. Voit ladata kaikki lähdetiedostot alta tarkistusta tai omaa ajoa varten:
-      </p>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
-        <a class="btn" href="index/computed.v0.6.json" download>computed.v0.6.json</a>
-        <a class="btn" href="index/registry.v0.6.json" download>registry.v0.6.json</a>
-        <a class="btn" href="index/series.csv" download>series.csv</a>
-        <a class="btn" href="index/brief_signals.csv" download>brief_signals.csv</a>
-        <a class="btn" href="index/planetary_boundaries.json" download>planetary_boundaries.json</a>
-        <a class="btn" href="index/method.v0.6.md" download>method.v0.6.md</a>
-        <a class="btn" href="diffusion-method.html"><span class="en">Read the Full Methodology Guide →</span><span class="fi">Lue koko menetelmäopas →</span></a>
-      </div>
+    <!-- Open data / replication section removed from the main page (Harri 22.11.2026: no transparency section in 1.0.0). Data files stay in index/; methodology page links them. -->
+
+    <!-- E. FOR JOURNALISTS -->
+    <section class="method" id="press" aria-labelledby="press-title">
+      <h3 id="press-title">For journalists</h3>
+      <p><strong>Quotable findings ({{QUARTER_LABEL}}):</strong></p>
+      <ul>
+        <li>The AI Diffusion Index stands at {{HEADLINE_SCORE}} out of 100 ({{RANGE_LEVEL}} range {{RANGE_LOW}}–{{RANGE_HIGH}}).</li>
+        <li>Capital commitments score {{CAPITAL_SCORE}}. Company adoption scores {{ADOPTION_SCORE}}. Reliable task completion scores {{TASK_SCORE}}.</li>
+        <li>100 would mean AI works like electricity: dependable, everyday infrastructure. A high score is not a judgement that AI is good.</li>
+      </ul>
+      <!-- Image files are produced per kuvasuunnitelma (draft). Links stay dead until the files exist. -->
+      <!-- Reuse terms follow the licence decision in plan TP3 (open item); add one line here once decided. -->
+      <p><strong>Chart images:</strong>
+        <a href="assets/adi/adi-headline-1200x675.png">headline score</a> ·
+        <a href="assets/adi/adi-gap-1200x675.png">the gap</a> ·
+        <a href="assets/adi/adi-industries-1200x675.png">industries</a></p>
+      <p><strong>Contact:</strong> Harri Juntunen on <a href="https://x.com/hjuntunen">x.com/hjuntunen</a> or <a href="https://www.linkedin.com/in/hjuntunen">linkedin.com/in/hjuntunen</a>.</p>
+      <p><strong>Methodology:</strong> <a href="diffusion-method.html">how the index is calculated</a>.</p>
+    </section>
+
+    <!-- F. CREDIT AND DISCLOSURE -->
+    <section class="method" id="credit" aria-labelledby="credit-title">
+      <h3 id="credit-title">Who makes this</h3>
+      <p><strong>HARRI JUNTUNEN &amp; IMAGINARY FRIENDS</strong> · <a href="https://x.com/hjuntunen">x.com/hjuntunen</a> · <a href="https://www.linkedin.com/in/hjuntunen">linkedin.com/in/hjuntunen</a></p>
+      <p>AI Diffusion Index 1.0.0 · {{QUARTER_LABEL}} · Prepared with the help of AI tools.</p>
+      <p>Disclosure: Harri Juntunen is a political candidate. This index is independent work. It is not Liberaalipuolue material.</p>
     </section>
   </main>
 
@@ -364,7 +381,7 @@
         <h3 id="modal-title" style="margin:4px 0 0;font-family:Georgia,serif;font-size:21px"></h3>
       </div>
       <form method="dialog" style="margin:0">
-        <button type="submit" class="di-modal-close" value="close">✕ <span class="en">Close</span><span class="fi">Sulje</span></button>
+        <button type="submit" class="di-modal-close" value="close">✕ <span class="en">Close</span></button>
       </form>
     </div>
     <div id="modal-body"></div>
@@ -372,13 +389,13 @@
 
   <footer>
     <div>
-      <span class="en">Machine Learning Societies · AI Diffusion Index v0.6 · By Harri Juntunen · </span>
-      <span class="fi">Machine Learning Societies · Tekoälyn diffuusioindeksi v0.6 · Harri Juntunen · </span>
-      <a href="index.html"><span class="en">Daily Briefs</span><span class="fi">Päiväkatsaukset</span></a> ·
-      <a href="diffusion-method.html"><span class="en">Index Methodology</span><span class="fi">Indeksimetodologia</span></a> ·
-      <a href="forecasts.html"><span class="en">Forecasts</span><span class="fi">Ennusteet</span></a> ·
-      <a href="about.html"><span class="en">About</span><span class="fi">Tietoa</span></a> ·
-      <a class="en" href="feed.xml">RSS</a><a class="fi" href="feed.fi.xml">RSS</a>
+      Machine Learning Societies · AI Diffusion Index 1.0.0 · HARRI JUNTUNEN &amp; IMAGINARY FRIENDS · 
+      
+      <a href="index.html"><span class="en">Daily Briefs</span></a> ·
+      <a href="diffusion-method.html"><span class="en">Index Methodology</span></a> ·
+      <a href="forecasts.html"><span class="en">Forecasts</span></a> ·
+      <a href="about.html"><span class="en">About</span></a> ·
+      <a href="feed.xml">RSS</a>
     </div>
   </footer>
 </div>
@@ -407,7 +424,9 @@
   const urlLang = new URLSearchParams(location.search).get('lang');
   let saved = null;
   try { saved = localStorage.getItem('mls-lang') || localStorage.getItem('lang'); } catch(e){}
-  setLang(urlLang || saved || 'en');
+  // 1.0.0: English only (Harri 22.11.2026). Do not save to localStorage, so the bilingual briefs keep the reader's choice.
+  // FI strings in t() are now dead code; Kernelio may remove them.
+  currentLang = 'en'; root.setAttribute('data-lang', 'en'); root.setAttribute('lang', 'en');
   btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang)));
 
   function t(enStr, fiStr){
