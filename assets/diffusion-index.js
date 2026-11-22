@@ -138,7 +138,7 @@ function formatNumber(value, places) {
     const q = DATA.quarter_label || DATA.reference_period || "";
     const og = document.querySelector('meta[property="og:title"]');
     if (og && eu !== undefined) {
-      og.setAttribute("content", `AI Diffusion Index: ${eu}/100 (${q})`);
+      og.setAttribute("content", `Machine Learning Societies – Diffusion Index: ${eu}/100 (${q})`);
     }
   }
 

@@ -1,4 +1,4 @@
-# AI Diffusion Index 1.0.0 – main page copy (English)
+# Machine Learning Societies – Diffusion Index 1.0.0: main page copy (English)
 
 Status: draft copy for `diffusion-index.html` in branch `release/1.0.0`. Written by Wedgwood, 22 Nov 2026. Not published. Release needs Harri's separate approval.
 
@@ -12,12 +12,14 @@ Notes for Kernelio are in *italics, prefixed "Build note"*. They are not page te
 
 ## 0. Page metadata (head)
 
-- **title:** AI Diffusion Index 1.0.0 — Machine Learning Societies
-- **meta description:** The AI Diffusion Index measures how far AI has moved from the lab into everyday work, machines and society. Updated every quarter.
-- **og:title:** AI Diffusion Index: {{headline.block_a_diffusion_core.score}}/100 ({{reference_period}})
+- **title:** Machine Learning Societies – Diffusion Index 1.0.0
+- **meta description:** The Machine Learning Societies – Diffusion Index measures how far AI has moved from the lab into everyday work, machines and society. Updated every quarter.
+- **og:title:** Machine Learning Societies – Diffusion Index: {{headline.block_a_diffusion_core.score}}/100 ({{reference_period}})
 - **og:description:** The money has arrived. The use hasn't. How far AI has moved from the lab into everyday work, machines and society.
+- **og:site_name:** Machine Learning Societies – Diffusion Index
+- **twitter:title:** Machine Learning Societies – Diffusion Index
 - **og:image:** `assets/adi/adi-og-1200x675.png` (not yet created; see image plan)
-- **og:image:alt:** AI Diffusion Index {{headline.block_a_diffusion_core.score}} out of 100, {{reference_period}}
+- **og:image:alt:** Machine Learning Societies – Diffusion Index {{headline.block_a_diffusion_core.score}} out of 100, {{reference_period}}
 - **twitter:card:** summary_large_image
 
 *Build note: language toggle and Finnish RSS link removed from this page. Force English on this page without writing to localStorage, so the bilingual daily briefs keep the reader's own choice.*
@@ -26,9 +28,9 @@ Notes for Kernelio are in *italics, prefixed "Build note"*. They are not page te
 
 ## 1. Opening (anchor `#summary`)
 
-**Kicker:** AI Diffusion Index 1.0.0 · {{reference_period}} · {{SCOPE_LABEL}}
+**Kicker:** Machine Learning Societies – Diffusion Index 1.0.0 · {{reference_period}} · {{SCOPE_LABEL}}
 
-**H1:** AI Diffusion Index
+**H1:** Machine Learning Societies – Diffusion Index
 
 **What we measure:** how far AI has moved from the lab into everyday work, machines and society.
 
@@ -104,7 +106,7 @@ Three small cards:
 
 **Quotable findings ({{reference_period}}):**
 
-- The AI Diffusion Index stands at {{headline.block_a_diffusion_core.score}} out of 100 ({{RANGE_LEVEL}} range {{headline.block_a_diffusion_core.p5}}–{{headline.block_a_diffusion_core.p95}}).
+- The Machine Learning Societies – Diffusion Index stands at {{headline.block_a_diffusion_core.score}} out of 100 ({{RANGE_LEVEL}} range {{headline.block_a_diffusion_core.p5}}–{{headline.block_a_diffusion_core.p95}}).
 - Capital commitments score {{pillars.capital_intensity.level_score}}. Company adoption scores {{pillars.deployment.level_score}}. Reliable task completion scores {{pillars.cost_to_serve.level_score}}.
 - 100 would mean AI works like electricity: dependable, everyday infrastructure. A high score is not a judgement that AI is good.
 
@@ -124,13 +126,13 @@ Three small cards:
 
 **{{PUBLISHER_LINE}}**
 
-AI Diffusion Index 1.0.0 · {{reference_period}} · Prepared with the help of AI tools.
+Machine Learning Societies – Diffusion Index 1.0.0 · {{reference_period}} · Prepared with the help of AI tools.
 
 ---
 
 ## 7. Footer
 
-Machine Learning Societies · AI Diffusion Index 1.0.0 · {{PUBLISHER_LINE}} · Daily Briefs · Methodology · Forecasts · About · RSS
+Machine Learning Societies – Diffusion Index 1.0.0 · {{PUBLISHER_LINE}} · Daily Briefs · Methodology · Forecasts · About · RSS
 
 *Build note: the main page has no open-data / replication section (Harri, 22 Nov 2026). Data files stay in `index/`; the methodology page links them.*
 
