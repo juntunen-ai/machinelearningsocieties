@@ -259,3 +259,8 @@ dialog.di-modal::backdrop{background:rgba(18,22,26,.45)}
   .di-kpi-grid{grid-template-columns:1fr}
 }
 
+
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:-1}
+.skip-link:focus,.skip-link:focus-visible{left:12px;top:12px;width:auto;height:auto;overflow:visible;z-index:1000;padding:8px 14px;background:var(--ink);color:#fff;border-radius:6px;text-decoration:underline;font-weight:600}
+main a{text-decoration:underline;text-underline-offset:.14em}
+main a.btn{text-decoration:none}
