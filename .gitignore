@@ -2,3 +2,12 @@
 firebase-debug.log*
 .DS_Store
 node_modules/
+
+# Python tooling
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Packed site artifact (rebuilt in CI)
+dist/
