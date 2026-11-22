@@ -1,15 +1,14 @@
 <!doctype html>
-<html lang="en" data-lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diffusion Index Methodology v0.6 — Machine Learning Societies</title>
-<meta name="description" content="Complete v0.6 methodology for the Machine Learning Societies AI Diffusion Index, written in clear technical English and Finnish with exact mathematical rules.">
+<title>AI Diffusion Index Methodology v1.0 — Machine Learning Societies</title>
+<meta name="description" content="Full v1.0 methodology for the Machine Learning Societies AI Diffusion Index: scoring chain, goalposts, evidence rules, Monte Carlo specification, and compiler contract.">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
-<link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (FI)" href="https://machine-learning-societies.web.app/feed.fi.xml">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
-<link rel="stylesheet" href="assets/site.css?v=20261122a">
+<link rel="stylesheet" href="assets/site.css?v=20261122b">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -18,228 +17,870 @@
     <div class="mast-left">
       <a class="brand" href="index.html">Machine Learning Societies</a>
       <nav class="toplinks" aria-label="Site links">
-        <a href="about.html"><span class="en">About</span><span class="fi">Tietoa</span></a> ·
-        <a href="diffusion-index.html"><span class="en">Live Dashboard</span><span class="fi">Indeksitaulu</span></a> ·
-        <a href="https://www.linkedin.com/groups/17992023/" target="_blank" rel="noopener"><span class="en">LinkedIn group</span><span class="fi">LinkedIn-ryhmä</span></a> ·
-        <a class="en" href="feed.xml">RSS</a><a class="fi" href="feed.fi.xml">RSS</a>
+        <a href="about.html">About</a> ·
+        <a href="diffusion-index.html">Live Dashboard</a> ·
+        <a href="https://www.linkedin.com/groups/17992023/" target="_blank" rel="noopener">LinkedIn group</a> ·
+        <a href="feed.xml">RSS</a>
       </nav>
     </div>
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-      <a class="btn" href="index.html"><span class="en">Daily Briefs</span><span class="fi">Päiväkatsaukset</span></a>
-      <a class="btn" href="diffusion-index.html"><span class="en">Diffusion Index</span><span class="fi">Diffuusioindeksi</span></a>
-      <a class="btn" href="forecasts.html"><span class="en">Forecasts</span><span class="fi">Ennusteet</span></a>
-      <div class="toggle" role="group" aria-label="Language">
-        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
-        <button type="button" data-set-lang="fi" aria-pressed="false">FI</button>
-      </div>
+      <a class="btn" href="index.html">Daily Briefs</a>
+      <a class="btn" href="diffusion-index.html">Diffusion Index</a>
+      <a class="btn" href="forecasts.html">Forecasts</a>
     </div>
   </header>
 
   <main id="main-content">
-    <article class="brief">
-      <p class="kicker">
-        <span class="en">METHODOLOGY SPECIFICATION · VERSION 0.6 · 28 OCTOBER 2026</span>
-        <span class="fi">METODOLOGIAMÄÄRITTELY · VERSIO 0.6 · 28. LOKAKUUTA 2026</span>
+    <article class="brief method-page">
+      <p class="kicker">METHODOLOGY SPECIFICATION · VERSION 1.0 · 22 NOVEMBER 2026</p>
+      <h1>How we calculate the AI Diffusion Index (v1.0)</h1>
+      <p>
+        This page is the public English text of the v1.0 method. The machine-readable file
+        <a href="index/method.v1.0.json"><code>index/method.v1.0.json</code></a> is authoritative:
+        if this page and the JSON ever disagree, the JSON wins and the disagreement is a bug
+        to be fixed in a PATCH release.
       </p>
-
-      <h1>
-        <span class="en">How We Calculate the AI Diffusion Index (v0.6)</span>
-        <span class="fi">Miten tekoälyn diffuusioindeksi (v0.6) lasketaan</span>
-      </h1>
-
-      <div class="en">
-        <p>
-          The Machine Learning Societies <strong>AI Diffusion Index (v0.6)</strong> measures how artificial intelligence moves from lab models into daily company work, physical machines, laws, power grids, and planetary limits. We build the index in the open according to the OECD and European Commission Joint Research Centre <em>Handbook on Constructing Composite Indicators</em> (2008).
-        </p>
-
-        <h2>§0 · Data Verification Rule: Checked [V] vs Candidate [K] Sources</h2>
-        <p>
-          We tag every data source in <a href="index/registry.v0.6.json"><code>index/registry.v0.6.json</code></a> with one of two verification flags:
-        </p>
-        <ul>
-          <li><strong><code>[V]</code> Checked in primary source (<code>"verified": true</code> — 27 sources):</strong> We opened the primary database, official statistical table, or legal filing directly and confirmed the exact numbers and licence terms.</li>
-          <li><strong><code>[K]</code> Candidate source (<code>"verified": false</code> — 22 sources):</strong> We identified the source for future tracking, but we have not yet checked the raw table or reuse licence directly.</li>
-        </ul>
-        <p>
-          <strong>Strict compiler rule:</strong> No candidate source (<code>[K]</code>) can enter <a href="index/series.csv"><code>index/series.csv</code></a>. Our build script (<code>scripts/compute_index.py</code>) stops with an error if any data point references an unchecked source.
-        </p>
-
-        <h2>§1 · Why We Separate the Index into Three Blocks</h2>
-        <p>
-          Many technology rankings mix investments, adoption, regulations, and job impacts into a single number. When an index mixes those categories together, researchers cannot test whether power grids slow down AI or whether AI changes jobs. Therefore, we divide the ten pillars into three separate blocks:
-        </p>
-        <ul>
-          <li><strong>Block A — Actual AI Use and Investment (Main Score: 42.7 / 100):</strong> Combines Pillar 1 (Deployment), Pillar 2 (Cost to Serve), and Pillar 3 (Capital Intensity). Only Block A forms the main Diffusion Index score.</li>
-          <li><strong>Block B — Enabling Conditions (47.6 / 100):</strong> Combines Pillar 5 (Governance Burden), Pillar 6 (Human Capital), Pillar 8 (Energy and Grid Capacity), and Pillar 10 (Market Openness).</li>
-          <li><strong>Block C — Societal and Planetary Effects (40.7 / 100):</strong> Combines Pillar 4 (Labour Reorganisation), Pillar 7 (Ecological Balance), and Pillar 9 (Ownership Distribution).</li>
-        </ul>
-        <p>
-          Inside Block A, we also separate two delivery channels:
-        </p>
-        <ul>
-          <li><strong>Digital AI Index (DAI — 47.0 / 100):</strong> Measures software, cloud APIs, and office workflows.</li>
-          <li><strong>Physical AI Index (PAI — 26.1 / 100):</strong> Measures industrial robots, cleared medical devices, autonomous vehicles, and power grid equipment. Because International Federation of Robotics counts (542,076 robots installed in 2024 and 4,663,698 in operation) include non-AI factory automation alongside 1,620+ FDA-cleared medical AI devices, we mark PAI with an explicit <code>proxy data</code> badge.</li>
-        </ul>
-
-        <h2>§2 · Societal Speed Layers and Daily Brief Links</h2>
-        <p>
-          Following Stewart Brand's book <em>Pace Layering</em> (2018), society changes at six different speeds, from fastest to slowest:
-        </p>
-        <ul>
-          <li><strong>1. Fashion and Hype:</strong> Viral demos and press releases. We do not score this layer in the index.</li>
-          <li><strong>2. Commerce and Markets (Pillars 1, 2, 3):</strong> Company spending, software rollouts, and cloud contracts. Changes in months or quarters.</li>
-          <li><strong>3. Power Grids and Hardware (Pillar 8):</strong> Power plants, transformers, and grid permits. Changes in years to decades.</li>
-          <li><strong>4. Laws and Standards (Pillars 5, 9, 10):</strong> Court rulings, banking rules, and quality standards. Changes in years.</li>
-          <li><strong>5. Work Habits and Skills (Pillars 4, 6):</strong> Job redesign, training, and management practices. Changes in years to generations.</li>
-          <li><strong>6. Nature and Planetary Limits (Pillar 7):</strong> Electricity load, water use, and Earth-system stability. Changes in decades to centuries.</li>
-        </ul>
-        <p>
-          <strong>How Daily Briefs feed the Index (§2.1):</strong> Our script <code>scripts/sync_briefs_to_index.py</code> reads every published daily brief and logs its primary Pillar, Industry, Block, Channel, Depth Level, and Speed Layer into <a href="index/brief_signals.csv"><code>index/brief_signals.csv</code></a>. When a brief verifies a primary number from an official register or filing, we add that number directly to <code>index/series.csv</code> with a <code>brief_ref</code> date link:
-        </p>
-        <ul>
-          <li><a href="briefs/2026-10-28.html"><strong>28 October 2026 Brief:</strong></a> Anthropic PBC's SEC Form S-1 ($16.29B six-month revenue, $8.95B compute cost, $265.6B long-term compute contracts, and 48% revenue share through three cloud marketplaces).</li>
-          <li><a href="briefs/2026-10-25.html"><strong>25 October 2026 Brief:</strong></a> Texas regulators (TCEQ and ERCOT) pausing 8.7 GW of gas power permits across 6 data-centre campuses (16 air permits) until 10 December 2026.</li>
-          <li><a href="briefs/2026-10-14.html"><strong>14 October 2026 Brief:</strong></a> Citation of European standard EN 18286:2026 in the EU Official Journal for AI Act Article 17 quality management systems.</li>
-        </ul>
-
-        <h2>§3 · The Ten Pillars, Scale Direction, and the J-Curve Rule</h2>
-        <ul>
-          <li><strong>Pillar 1 — Deployment (<code>direction: +1</code>, score 28.4):</strong> Measures how many organizations and people use AI. Key sources include Eurostat table <code>isoc_eb_ai</code> (20.0% of EU companies in 2025, +6.5 points per year, Denmark 42.0%, Finland 37.8%, Romania 5.2%), Statistics Finland table <code>13vg</code> (38% of all Finnish firms, 68% of large firms, and about 80% of software firms), US Census BTOS, IFR robotics (proxy), and FDA medical AI devices (1,620+).</li>
-          <li><strong>Pillar 2 — Cost to Serve (<code>direction: -1</code>, score 41.2):</strong> Measures the real cost and reliability of completing full tasks. Lower cost and higher reliability produce a higher score. We never log single-prompt token prices as proof of cheap work because multi-step tasks often fail (for example, <a href="briefs/2026-10-19.html">Stanford HAI hospital tests</a> show under 50% end-to-end completion).</li>
-          <li><strong>Pillar 3 — Capital Intensity and the J-Curve Rule (<code>direction: +1</code>, score 58.6):</strong> Records audited compute and hardware commitments ($265.6B in Anthropic's S-1) as a minimum floor. Alongside hardware spend, we report the <strong>2× to 10× J-curve multiplier</strong> from economists Erik Brynjolfsson, Daniel Rock, and Chad Syverson (2021): every $1 spent on AI compute requires $2 to $10 in workflow redesign, staff training, and quality systems.</li>
-          <li><strong>Pillars 4, 5, 7, and 9 (<code>direction: 0</code> — Diagnostic):</strong> Labour Reorganisation (31.2), Governance Burden (64.5), Ecological Balance (52.4), and Ownership Distribution (38.5) measure the intensity of structural change without labeling high or low numbers as "good" or "bad".</li>
-        </ul>
-
-        <h2>§4 · 10 Industries × 10 Pillars and Three Depth Levels</h2>
-        <p>
-          Every cell in our 10 × 10 industry matrix separates three depth levels:
-        </p>
-        <ul>
-          <li><strong>Reach:</strong> Share of companies or workers using AI at least once in their work.</li>
-          <li><strong>Depth:</strong> Share of daily workflows or production tasks handled with AI.</li>
-          <li><strong>Embeddedness:</strong> Share of organizations where AI is built into core software, multi-year contracts, or legal audit trails.</li>
-        </ul>
-        <p>
-          We calculate the <strong>Industry Gap (50.9 points)</strong> strictly between industries that have matching official data quality (Grade A or B), comparing Information and Software (69.0) with Agriculture and Forestry (18.1).
-        </p>
-
-        <h2>§5 · Five Source Trust Tiers and Survey Changes</h2>
-        <p>
-          We classify every source into one of five trust tiers:
-        </p>
-        <ul>
-          <li><strong>Tier 1:</strong> National and European statistical offices (Eurostat, Statistics Finland, US Census Bureau, BLS).</li>
-          <li><strong>Tier 2:</strong> Statutory filings and regulatory registers (SEC EDGAR S-1/10-K, EUR-Lex, FDA, ERCOT, IEA).</li>
-          <li><strong>Tier 3:</strong> Peer-reviewed research and open academic benchmarks (NBER, Stanford HAI, METR, Epoch AI, Stockholm Resilience Centre).</li>
-          <li><strong>Tier 4:</strong> Company disclosures and telemetry (Anthropic Economic Index, OpenRouter). Tier 4 sources can never be the sole source for a Grade A or B cell.</li>
-          <li><strong>Tier 5:</strong> Secondary summary reports (such as the Stanford AI Index Report). We use Tier 5 reports only to find original Tier 1–3 sources and never log them directly as data points.</li>
-        </ul>
-        <p>
-          When a statistical agency changes its survey questions (such as the US Census BTOS questionnaire update on 17 November 2025), we tag the observation with <code>break_flag = true</code> and apply a documented adjustment factor (<code>bridge_factor</code>).
-        </p>
-
-        <h2>§7 · How the 0–100 Score and Uncertainty Range Work</h2>
-        <p>
-          For each indicator \(i\), we set a fixed lower goalpost \(L_i\) (where 0 points begins) and a fixed upper goalpost \(U_i\) (where 100 points is reached). We calculate the score \(S_i(t)\) on the 0–100 scale using:
-        </p>
-        <p style="text-align:center">
-          \[
-            S_i(t) = \operatorname{clamp}_{[0,100]}\!\left(100 \cdot \frac{g(x_i(t)) - g(L_i)}{g(U_i) - g(L_i)}\right)
-          \]
-        </p>
-        <p>
-          In this formula:
-        </p>
-        <ul>
-          <li>For percentage shares (such as the share of companies using AI, where \(L_i = 0\%\) and \(U_i = 80\%\)), we use a straight linear scale: \(g(x) = x\).</li>
-          <li>For skewed physical or dollar amounts (such as gigawatts of grid capacity, terawatt-hours of electricity, or billions of dollars in compute contracts), we use natural logarithms: \(g(x) = \ln(x)\). This prevents extreme dollar spikes from distorting the 0–100 scale.</li>
-          <li><strong>1,000-Run Uncertainty Check (Monte Carlo):</strong> Every time <code>scripts/compute_index.py</code> runs, it recalculates the index 1,000 times while varying pillar weights \(\mathbf{w} \sim \operatorname{Dirichlet}(\mathbf{1})\), adding measurement noise \(\epsilon_i \sim \mathcal{N}(0, \sigma_i^2)\), and switching between arithmetic averages and bottleneck-sensitive geometric averages. We publish both the main score and the 5th-to-95th percentile range \([p_5, p_{95}]\).</li>
-        </ul>
-      </div>
-
-      <div class="fi">
-        <p>
-          Machine Learning Societies -julkaisun <strong>Tekoälyn diffuusioindeksi (v0.6)</strong> mittaa, miten tekoäly siirtyy laboratoriomalleista yritysten arjen työhön, fyysisiin koneisiin, lainsäädäntöön, sähköverkkoihin ja maapallon kantokyvyn rajoihin. Indeksi rakennetaan avoimesti OECD:n ja Euroopan komission yhteisen tutkimuskeskuksen (JRC) <em>Handbook on Constructing Composite Indicators</em> (2008) -oppaan mukaisesti.
-        </p>
-
-        <h2>§0 · Lähdekuri: tarkistetut [V] vs ehdokaslähteet [K]</h2>
-        <p>
-          Merkitsemme jokaisen tiedostossa <a href="index/registry.v0.6.json"><code>index/registry.v0.6.json</code></a> olevan tietolähteen jommallakummalla vahvistustunnisteella:
-        </p>
-        <ul>
-          <li><strong><code>[V]</code> Tarkistettu alkuperäislähteestä (<code>"verified": true</code> — 27 lähdettä):</strong> Olemme avanneet virallisen tilastotaulun, tietokannan tai viranomaisasiakirjan suoraan ja tarkistaneet luvut sekä lisenssiehdot.</li>
-          <li><strong><code>[K]</code> Ehdokaslähde (<code>"verified": false</code> — 22 lähdettä):</strong> Lähde on tunnistettu seurantaa varten, mutta sen raakataulukkoa tai jatkokäyttölisenssiä ei ole vielä tarkistettu suoraan.</li>
-        </ul>
-        <p>
-          <strong>Ehdoton laskentasääntö:</strong> Yhtäkään ehdokaslähdettä (<code>[K]</code>) ei saa viedä <a href="index/series.csv"><code>index/series.csv</code></a>-tauluun. Laskentaskripti (<code>scripts/compute_index.py</code>) keskeyttää ajon virheeseen, jos yksikin datapiste viittaa tarkistamattomaan lähteeseen.
-        </p>
-
-        <h2>§1 · Miksi indeksi on jaettu kolmeen erilliseen lohkoon</h2>
-        <p>
-          Monet teknologiavertailut laskevat investoinnit, käyttöönoton, sääntelyn ja työmarkkinavaikutukset yhteen yhdeksi luvuksi. Jos nämä asiat sekoitetaan keskenään, tutkija ei voi selvittää, jarruttaako sähköverkko tekoälyä vai muuttaako tekoäly työtä. Siksi jaamme kymmenen pilaria kolmeen erilliseen lohkoon:
-        </p>
-        <ul>
-          <li><strong>Lohko A — Todellinen käyttö ja investoinnit (Pääpistemäärä: 42.7 / 100):</strong> Yhdistää pilarit 1 (Käyttöönotto), 2 (Suorituskustannus) ja 3 (Pääomavaltaisuus). Vain Lohko A muodostaa varsinaisen pääindeksin.</li>
-          <li><strong>Lohko B — Mahdollistavat edellytykset (47.6 / 100):</strong> Yhdistää pilarit 5 (Sääntelykuorma), 6 (Inhimillinen pääoma), 8 (Energia ja sähköverkko) ja 10 (Markkinoiden avoimuus).</li>
-          <li><strong>Lohko C — Yhteiskunnalliset ja planetaariset vaikutukset (40.7 / 100):</strong> Yhdistää pilarit 4 (Työn uudelleenjärjestely), 7 (Ekologinen tasapaino) ja 9 (Omistuksen jakautuminen).</li>
-        </ul>
-        <p>
-          Lohkon A sisällä erotamme lisäksi kaksi kanavaa: <strong>Digitaalisen tekoälyindeksin (DAI — 47.0 / 100)</strong> sekä <strong>Fyysisen tekoälyindeksin (PAI — 26.1 / 100)</strong>. Koska kansainvälisen robottiliiton (IFR) teollisuusrobottiluvut (542 076 asennettua robottia vuonna 2024 ja 4,66 miljoonan robotin kanta) sisältävät myös perinteisen teollisuusautomaation yli 1 620 FDA-hyväksytyn lääkintälaitteen rinnalla, PAI-kortissa näkyy selkeä <code>korvikemittari</code>-merkintä.
-        </p>
-
-        <h2>§2 · Yhteiskunnan kuusi muutosnopeutta ja päiväkatsaukset</h2>
-        <p>
-          Stewart Brandin <em>Pace Layering</em> (2018) -mallin mukaisesti yhteiskunta muuttuu kuudella eri nopeudella nopeimmasta hitaimpaan: <strong>1. Muoti ja huomio (ei pisteytetä) → 2. Kauppa ja markkinat → 3. Sähköverkot ja infrastruktuuri → 4. Lait ja standardit → 5. Työtavat ja osaaminen → 6. Luonto ja planetaariset rajat</strong>.
-        </p>
-        <p>
-          <strong>Miten päiväkatsaukset syöttävät indeksiä (§2.1):</strong> Skripti <code>scripts/sync_briefs_to_index.py</code> luokittelee jokaisen julkaistun päiväkatsauksen tiedostoon <a href="index/brief_signals.csv"><code>index/brief_signals.csv</code></a>. Kun katsaus vahvistaa virallisen tilaston tai viranomaisasiakirjan luvun (kuten Anthropicin S-1-luvut <a href="briefs/2026-10-28.html">28.10.2026 katsauksessa</a>, Texasin 8,7 GW:n lupajonon <a href="briefs/2026-10-25.html">25.10.2026 katsauksessa</a> ja EN 18286:2026 -laatustandardin <a href="briefs/2026-10-14.html">14.10.2026 katsauksessa</a>), luku kirjataan suoraan <code>index/series.csv</code>-tauluun <code>brief_ref</code>-viitteellä.
-        </p>
-
-        <h2>§7 · Miten asteikko 0–100 ja epävarmuusväli lasketaan</h2>
-        <p>
-          Jokaiselle mittarille \(i\) on asetettu kiinteä alaraja \(L_i\) (0 pistettä) ja kiinteä yläraja \(U_i\) (100 pistettä, joka vastaa arjen kypsää perusinfrastruktuuria). Prosenttiosuuksille käytämme suoraa lineaarista asteikkoa \(g(x) = x\), ja voimakkaasti vinoille fyysisille tai rahamääräisille suureille (GW, TWh, miljardit dollarit) luonnollista logaritmia \(g(x) = \ln(x)\).
-        </p>
-        <p>
-          Skripti <code>scripts/compute_index.py</code> laskee jokaisella ajolla <strong>1 000 Monte Carlo -kierrosta</strong>, joissa pilarien painot vaihtelevat satunnaisesti (\(\operatorname{Dirichlet}(\mathbf{1})\)), mittauskohina huomioidaan ja laskentatapa vaihtelee tavallisen keskiarvon sekä pullonkauloille herkän geometrisen keskiarvon välillä. Julkaisemme jokaiselle pääluvulle 90 prosentin epävarmuusvälin \([p_5, p_{95}]\).
-        </p>
-      </div>
-
+      <nav class="method-toc" aria-labelledby="method-toc-heading">
+        <h2 id="method-toc-heading">Contents</h2>
+        <ol>
+      <li><a href="#0-what-changed-from-v0-6-and-why">0. What changed from v0.6, and why</a></li>
+      <li><a href="#1-construct-and-measurement-model">1. Construct and measurement model</a></li>
+      <li><a href="#2-architecture-three-blocks-one-headline">2. Architecture: three blocks, one headline</a></li>
+      <li><a href="#3-scoring-chain">3. Scoring chain</a></li>
+      <li><a href="#4-goalposts-frozen">4. Goalposts (frozen)</a></li>
+      <li><a href="#5-evidence-rules-and-not-measured">5. Evidence rules and “not measured”</a></li>
+      <li><a href="#6-grades">6. Grades</a></li>
+      <li><a href="#7-block-a-weights-and-aggregation">7. Block A weights and aggregation</a></li>
+      <li><a href="#8-uncertainty-monte-carlo-specification">8. Uncertainty: Monte Carlo specification</a></li>
+      <li><a href="#9-series-breaks">9. Series breaks</a></li>
+      <li><a href="#10-pace-annual-change">10. Pace (annual change)</a></li>
+      <li><a href="#11-data-vintage">11. Data vintage</a></li>
+      <li><a href="#12-versioning-and-changelog">12. Versioning and CHANGELOG</a></li>
+      <li><a href="#13-worked-example-illustrative-not-a-published-number">13. Worked example (illustrative, not a published number)</a></li>
+      <li><a href="#14-compiler-contract-for-tp2">14. Compiler contract (for TP2)</a></li>
+      <li><a href="#15-sources-by-pillar-carried-over-from-v0-6-status-updated">15. Sources by pillar (carried over from v0.6, status updated)</a></li>
+      <li><a href="#16-known-limitations-of-1-0">16. Known limitations of 1.0</a></li>
+      <li><a href="#17-references">17. References</a></li>
+        </ol>
+      </nav>
+<p>Machine Learning Societies · method version 1.0 (covers index releases 1.0.x) · frozen candidate, 22 November 2026 · owner: Harri Juntunen · method freeze (work package TP1): Massi</p>
+<p>Machine-readable specification: <a href="index/method.v1.0.json"><code>index/method.v1.0.json</code></a>. If this page and the JSON ever disagree, the JSON is authoritative and the disagreement is a bug to be fixed in a PATCH release.
+Companion files: <a href="index/series.csv"><code>index/series.csv</code></a> (logged observations), <a href="index/registry.v1.0.json"><code>index/registry.v1.0.json</code></a> (sources, sectors; to be created from <code>registry.v0.6.json</code> in TP2), <a href="index/brief_signals.csv"><code>index/brief_signals.csv</code></a> (curated brief log, not scored).
+Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.v0.6.md</code></a>, 22 October 2026) and the scoring constants in <a href="scripts/compute_index.py"><code>scripts/compute_index.py</code></a> v0.6.</p>
+<p>Status of this document: every rule below is frozen for 1.0.0 once the release is tagged. Until the tag, the team may still reopen a rule, but only by editing both this page and the JSON in the same commit.</p>
+<hr>
+<h2 id="0-what-changed-from-v0-6-and-why">0. What changed from v0.6, and why</h2>
+<p>An internal review on 22 November 2026 found that the v0.6 numbers did not come from data. All ten pillar scores, all pillar velocities and all 100 sector × pillar cells were typed into <a href="scripts/compute_index.py"><code>scripts/compute_index.py</code></a> (lines 79–403) as constants. The 56 logged observations were checked and counted but never passed through the published goalposts. Adding observation OBS-057 on 13 November 2026 changed nothing in the output. Version 1.0 fixes that and freezes every choice that changes a number.</p>
+<div class="table-scroll"><table class="di-table">
+<thead>
+<tr>
+<th scope="col">Topic</th>
+<th scope="col">v0.6</th>
+<th scope="col">v1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source of scores</td>
+<td>Hard-coded constants</td>
+<td>Computed from <code>series.csv</code> through fixed goalposts; a test proves that changing an input changes the output</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Mixed EU27, US, global and national figures</td>
+<td>Two populations, EU27 and Finland, scored separately; other geographies are context only</td>
+</tr>
+<tr>
+<td>Deployment ceiling</td>
+<td>Registry 100 %, page text &ldquo;100 = 80 %&rdquo;</td>
+<td>100 % (section 4.2)</td>
+</tr>
+<tr>
+<td>Physical indicator</td>
+<td>IFR robot density (not AI-specific, restricted licence)</td>
+<td>Eurostat share of enterprises using autonomous robots, vehicles or drones (<code>E_AI_TAR</code>); IFR is a sensitivity only</td>
+</tr>
+<tr>
+<td>Capital intensity</td>
+<td>One company&rsquo;s S-1 commitments, global</td>
+<td>Eurostat gross fixed capital formation in ICT equipment and intellectual property, % of GDP (proxy, official); filings are context</td>
+</tr>
+<tr>
+<td>cost_to_serve</td>
+<td>Graded A-Q without a price index</td>
+<td>Grade C, experimental, outside the headline until the Task Price Index exists</td>
+</tr>
+<tr>
+<td>Block A weights</td>
+<td>Implicit 1/3</td>
+<td>Nominal 1/3 written down; renormalised over eligible pillars</td>
+</tr>
+<tr>
+<td>Headline</td>
+<td>Arithmetic; &ldquo;bottleneck score&rdquo; was the median of randomly weighted geometric draws</td>
+<td>Arithmetic headline; geometric mean only as a labelled sensitivity with floor 1.0</td>
+</tr>
+<tr>
+<td>Monte Carlo</td>
+<td>1,000 draws, Dirichlet(1,1,1) weights, hand-set noise, 70/30 arithmetic/geometric mix, 90 % band</td>
+<td>20,000 draws, seed 20261028, ±50 % weights, noise from source standard errors, 95 % interval, three-way variance decomposition</td>
+</tr>
+<tr>
+<td>Velocity</td>
+<td>Hard-coded; Block A 8.9 = mean of three typed numbers in mixed units</td>
+<td>Pace in index points per year from at least 3 comparable points, with its own 95 % interval</td>
+</tr>
+<tr>
+<td>Breaks</td>
+<td>BTOS factor 0.563 from two different weeks</td>
+<td>Segments by default; bridging only from a published overlap period; BTOS factor rejected</td>
+</tr>
+<tr>
+<td>Grid</td>
+<td>100 hand-set cells, fixed multipliers for reach, depth and embeddedness</td>
+<td>Only cells with sector-specific evidence are scored; others say &ldquo;not measured&rdquo;</td>
+</tr>
+<tr>
+<td>Grades</td>
+<td>Set by hand (agriculture A)</td>
+<td>Derived from the data (weakest link); agriculture capped at C</td>
+</tr>
+<tr>
+<td>Momentum percentile</td>
+<td>Hard-coded, reference distribution undocumented</td>
+<td>Abolished</td>
+</tr>
+<tr>
+<td>Versioning</td>
+<td>&ldquo;0.6-proposed&rdquo; in the registry, &ldquo;0.6.0&rdquo; in the output</td>
+<td>Semantic versioning with a CHANGELOG and frozen data vintages</td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h2 id="1-construct-and-measurement-model">1. Construct and measurement model</h2>
+<p><strong>Construct.</strong> AI diffusion is the extent to which learning systems are embedded in productive and social activity, measured as use, not capability (Edgerton&rsquo;s &ldquo;technology in use&rdquo;).</p>
+<p><strong>Formative, not reflective.</strong> The pillars are not interchangeable symptoms of one latent trait. A country can have high deployment and weak human capital. The index is therefore a formative composite: there is no factor analysis and no Cronbach&rsquo;s alpha as a validity argument. Validity is argued from content (is every relevant facet covered?) and from convergent checks against independent sources (OECD/JRC 2008, steps 1, 7 and 8).</p>
+<p><strong>Three layers per sector.</strong></p>
+<div class="table-scroll"><table class="di-table">
+<thead>
+<tr>
+<th scope="col">Layer</th>
+<th scope="col">Question</th>
+<th scope="col">Digital example</th>
+<th scope="col">Physical example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reach (extensive margin)</td>
+<td>What share of units use it?</td>
+<td>% of enterprises using at least one AI technology; % of individuals using generative AI</td>
+<td>% of enterprises using autonomous robots, self-driving vehicles or drones</td>
+</tr>
+<tr>
+<td>Depth (intensive margin)</td>
+<td>How much of the work runs through it?</td>
+<td>% of enterprises using three or more AI technologies</td>
+<td>Share of robots that are learning-based (not measured in 1.0)</td>
+</tr>
+<tr>
+<td>Embeddedness (workflow)</td>
+<td>Does it run without a human for the routine case?</td>
+<td>Named production workflows (curated log)</td>
+<td>Operational fleets, driverless miles, devices in clinical use</td>
+</tr>
+</tbody>
+</table></div>
+<p>Reach is measurable now from official statistics. Depth is partly measurable. Embeddedness is not observable from open data at scale; it stays a curated log (<code>brief_signals.csv</code>), grade C, and is &ldquo;not measured&rdquo; in every 1.0 score.</p>
+<p><strong>Two channels.</strong> The <strong>Digital AI Index (DAI)</strong> covers software and cloud AI used by enterprises, public bodies and individuals. The <strong>Physical AI Index (PAI)</strong> covers embodied systems. A pillar that has both channels combines them with equal weight (digital 0.5, physical 0.5), as in v0.6. DAI and PAI are always published beside the combined score.</p>
+<p><strong>Target populations.</strong> Every score belongs to one population and one reference period:</p>
+<ul>
+<li><strong>EU27</strong> (Eurostat code <code>EU27_2020</code>)</li>
+<li><strong>Finland</strong> (<code>FI</code>)</li>
+</ul>
+<p>EU27 and Finland are computed and published separately and never averaged together. Observations for other geographies (United States, global, other member states) may be shown as context but never enter a population score. The reference period of an edition is the calendar quarter ending on the data cut-off (section 11). For each indicator the latest period that ended on or before the cut-off is used; a value whose period ended more than 36 months before the cut-off is &ldquo;stale&rdquo; and excluded.</p>
+<hr>
+<h2 id="2-architecture-three-blocks-one-headline">2. Architecture: three blocks, one headline</h2>
+<div class="table-scroll"><table class="di-table">
+<thead>
+<tr>
+<th scope="col">Block</th>
+<th scope="col">Pillars</th>
+<th scope="col">In headline?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. Diffusion proper</strong></td>
+<td>deployment (P1), cost_to_serve (P2), capital_intensity (P3)</td>
+<td><strong>Yes</strong> (eligible pillars only, section 6)</td>
+</tr>
+<tr>
+<td><strong>B. Conditions</strong></td>
+<td>energy_capacity (P8), governance_burden (P5), human_capital (P6), market_openness (P10)</td>
+<td>Dashboard, never blended</td>
+</tr>
+<tr>
+<td><strong>C. Consequences and distribution</strong></td>
+<td>labour_reorganisation (P4), ownership_distribution (P9), ecological_balance (P7)</td>
+<td>Dashboard, never blended</td>
+</tr>
+</tbody>
+</table></div>
+<p>The headline is Block A only. Blocks B and C are published beside it as pillar scores with their observation count, grade and coverage; 1.0 publishes no Block B or Block C composite. The direction of every pillar is fixed in the specification: +1 means more is more diffusion, −1 means less is more diffusion, and 0 means diagnostic only (scored but never aggregated).</p>
+<h3 id="2-1-pace-layers-why-the-blocks-move-at-different-speeds">2.1 Pace layers: why the blocks move at different speeds</h3>
+<p>Stewart Brand&rsquo;s pace-layering essay (<em>Journal of Design and Science</em>, 2018, from <em>The Clock of the Long Now</em>, 1999) gives the theoretical reason for the A/B/C split: a system stays resilient when layers move at different speeds, the fast layers learning and the slow layers remembering. &ldquo;Fast learns, slow remembers.&rdquo; &ldquo;Fast proposes, slow disposes.&rdquo; &ldquo;Fast gets all our attention, slow has all the power.&rdquo; His six layers, fast to slow, are fashion/art, commerce, infrastructure, governance, culture and nature.</p>
+<p>The essay is conceptual: it has no data and no method, and it says nothing about AI. The mapping below is <strong>our proposal, not Brand&rsquo;s finding</strong>.</p>
+<div class="table-scroll"><table class="di-table">
+<thead>
+<tr>
+<th scope="col">Pace layer</th>
+<th scope="col">Index pillars</th>
+<th scope="col">Block</th>
+<th scope="col">Typical speed of change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fashion / attention</td>
+<td>not measured on purpose (the index refuses to score hype)</td>
+<td>—</td>
+<td>days to months</td>
+</tr>
+<tr>
+<td>Commerce</td>
+<td>deployment, cost_to_serve, capital_intensity</td>
+<td>A (headline)</td>
+<td>months to years</td>
+</tr>
+<tr>
+<td>Infrastructure</td>
+<td>energy_capacity</td>
+<td>B</td>
+<td>years to decades</td>
+</tr>
+<tr>
+<td>Governance</td>
+<td>governance_burden, market_openness, ownership_distribution</td>
+<td>B / C</td>
+<td>years to decades</td>
+</tr>
+<tr>
+<td>Culture</td>
+<td>human_capital; labour_reorganisation</td>
+<td>B / C</td>
+<td>decades</td>
+</tr>
+<tr>
+<td>Nature</td>
+<td>ecological_balance</td>
+<td>C</td>
+<td>decades and longer</td>
+</tr>
+</tbody>
+</table></div>
+<p>Consequences for the method:</p>
+<ol>
+<li><strong>The headline measures the fastest layer we score.</strong> A high Block A number says commerce has absorbed the technology; it does not say the slower layers have.</li>
+<li><strong>Slow layers constrain fast ones.</strong> The pace-mismatch (&ldquo;pace shear&rdquo;) diagnostic compares Block A pace with slow-layer pace. In 1.0 it is <strong>suspended</strong> until at least one slow-layer pillar has a data-based pace (section 10); v0.6&rsquo;s ratio of 1.95 was built from typed-in velocities.</li>
+<li><strong>Guard against &ldquo;fast gets all our attention&rdquo;.</strong> Each edition reports the pace-layer mix of the briefs it logged and flags a quarter with no slow-layer observation. Briefs never change the index between editions.</li>
+</ol>
+<p><em>Link to the productivity J-curve.</em> Brynjolfsson, Rock and Syverson (NBER w25148) argue that complementary intangible investment (process redesign, training, new business models) lags the technology and is mostly unrecorded. In pace-layer terms, the organisation and culture layers catch up with what commerce adopted quickly. This is an interpretation, not a claim made by either source.</p>
+<hr>
+<h2 id="3-scoring-chain">3. Scoring chain</h2>
+<p>Every published number is produced by the same chain:</p>
+<blockquote>
+<p>observation (<code>series.csv</code>) → indicator value for a population and period → goalpost normalisation → indicator score 0–100 → layer → channel → pillar → Block A headline</p>
+</blockquote>
+<h3 id="3-1-normalisation">3.1 Normalisation</h3>
+<p>For an indicator with raw value <em>x</em>, floor <em>f</em> and ceiling <em>c</em>:</p>
+<ul>
+<li>linear: <em>s</em> = 100 × (<em>x</em> − <em>f</em>) / (<em>c</em> − <em>f</em>)</li>
+<li>log: <em>s</em> = 100 × (ln <em>x</em> − ln <em>f</em>) / (ln <em>c</em> − ln <em>f</em>)</li>
+</ul>
+<p>If the pillar&rsquo;s direction is −1, the score is 100 − <em>s</em>. After normalisation <em>s</em> is <strong>clipped to [0, 100]</strong>. Every clipped value is flagged <code>clipped = true</code> and its raw value is kept in the output. If a headline-pillar indicator clips in two consecutive editions, its goalposts are reviewed at the next MINOR version, never silently. On a log scale a raw value of zero or below is invalid input and the build fails (no silent epsilon).</p>
+<h3 id="3-2-within-a-pillar">3.2 Within a pillar</h3>
+<ul>
+<li><strong>Layer score</strong> = arithmetic mean of the measured indicators in that layer.</li>
+<li><strong>Channel score</strong> = arithmetic mean of the measured layers in that channel.</li>
+<li><strong>Pillar score</strong> = equal-weighted mean of the measured channels (digital 0.5, physical 0.5). If only one channel is measured, the pillar score is that channel and carries <code>channel_coverage = digital_only</code> or <code>physical_only</code>.</li>
+<li>Unmeasured indicators, layers and channels are omitted and listed. They are never imputed and never scored as zero.</li>
+</ul>
+<h3 id="3-3-rounding">3.3 Rounding</h3>
+<p>All arithmetic runs in double precision with no intermediate rounding. Scores, interval bounds and paces are rounded once, at output, to one decimal with ROUND_HALF_UP (Python <code>decimal</code>). The main page rounds the same unrounded value to a whole number with ROUND_HALF_UP. Weights are published to four decimals.</p>
+<hr>
+<h2 id="4-goalposts-frozen">4. Goalposts (frozen)</h2>
+<h3 id="4-1-per-pillar-and-indicator">4.1 Per pillar and indicator</h3>
+<div class="table-scroll"><table class="di-table">
+<thead>
+<tr>
+<th scope="col">Pillar</th>
+<th scope="col">Indicator (series)</th>
+<th scope="col">Channel / layer</th>
+<th scope="col">Scale</th>
+<th scope="col">Floor</th>
+<th scope="col">Ceiling</th>
+<th scope="col">Dir.</th>
+<th scope="col">Goalpost source and date</th>
+<th scope="col">Role in 1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1 deployment</td>
+<td>D1 % enterprises (10+) using ≥1 AI technology — Eurostat <code>isoc_eb_ai</code> <code>E_AI_TANY</code>, GE10, C10-S951_X_K</td>
+<td>digital / reach</td>
+<td>linear</td>
+<td>0</td>
+<td>100</td>
+<td>+1</td>
+<td>Natural bounds of a share; TP1 decision 2026-11-22</td>
+<td>scored</td>
+</tr>
+<tr>
+<td>P1 deployment</td>
+<td>D2 % individuals 16–74 using generative AI tools (last 3 months) — Eurostat <code>isoc_ai_iaiu</code> <code>I_IUAI</code></td>
+<td>digital / reach</td>
+<td>linear</td>
+<td>0</td>
+<td>100</td>
+<td>+1</td>
+<td>Natural bounds; 2026-11-22</td>
+<td>scored</td>
+</tr>
+<tr>
+<td>P1 deployment</td>
+<td>D3 % enterprises using ≥3 AI technologies — <code>isoc_eb_ai</code> <code>E_AI_TGE3</code></td>
+<td>digital / depth</td>
+<td>linear</td>
+<td>0</td>
+<td>100</td>
+<td>+1</td>
+<td>Natural bounds; 2026-11-22</td>
+<td>scored</td>
+</tr>
+<tr>
+<td>P1 deployment</td>
+<td>D4 % enterprises using autonomous robots, self-driving vehicles or drones — <code>isoc_eb_ai</code> <code>E_AI_TAR</code></td>
+<td>physical / reach</td>
+<td>linear</td>
+<td>0</td>
+<td>100</td>
+<td>+1</td>
+<td>Natural bounds; 2026-11-22</td>
+<td>scored (AI-specific)</td>
+</tr>
+<tr>
+<td>P1 deployment</td>
+<td>D5 industrial robots per 10,000 manufacturing employees — IFR World Robotics</td>
+<td>physical / reach</td>
+<td>log</td>
+<td>10</td>
+<td>1500</td>
+<td>+1</td>
+<td>registry v0.6, 2026-10-28</td>
+<td>sensitivity only (proxy, restricted licence)</td>
+</tr>
+<tr>
+<td>P2 cost_to_serve</td>
+<td>C1 AI Task Price Index, cost per accepted deliverable relative to human cost (2026 = 100)</td>
+<td>digital / depth</td>
+<td>log</td>
+<td>10</td>
+<td>200</td>
+<td>−1</td>
+<td>registry v0.6 and v0.6 score guide (&ldquo;100 = one tenth of today&rsquo;s cost&rdquo;), 2026-10-28. TPI 10 → 100, TPI 100 → 23.1, TPI 200 → 0</td>
+<td>experimental: index does not exist yet</td>
+</tr>
+<tr>
+<td>P3 capital_intensity</td>
+<td>K1 GFCF in ICT equipment (N1132G) + intellectual property products (N117G), % of GDP — Eurostat <code>nama_10_an6</code></td>
+<td>digital / reach</td>
+<td>linear</td>
+<td>0</td>
+<td>15</td>
+<td>+1</td>
+<td>Ceiling ≈ 1.7 × highest member state in 2024 (DK 9.0 %, SE 8.6 %); EU27 2025 5.1 %, FI 5.9 %; retrieved 2026-11-22</td>
+<td>scored (proxy, official)</td>
+</tr>
+<tr>
+<td>P3 capital_intensity</td>
+<td>K2 AI compute commitments in filings, USD bn (global) — SEC EDGAR</td>
+<td>digital / reach</td>
+<td>log</td>
+<td>1</td>
+<td>500</td>
+<td>+1</td>
+<td>registry v0.6, 2026-10-28</td>
+<td>context only (no EU27/FI population)</td>
+</tr>
+<tr>
+<td>P4 labour_reorganisation</td>
+<td>L1 % firms that reorganised tasks or workflows because of AI</td>
+<td>—</td>
+<td>linear</td>
+<td>0</td>
+<td>100</td>
+<td>0</td>
+<td>registry v0.6, 2026-10-28</td>
+<td>dashboard; source [K]</td>
+</tr>
+<tr>
+<td>P5 governance_burden</td>
+<td>G1 count of binding AI obligations / harmonised standards in force (named authority + date + sanction/standard) — EUR-Lex</td>
+<td>—</td>
+<td>linear</td>
+<td>0</td>
+<td>50</td>
+<td>0</td>
+<td>registry v0.6, 2026-10-28</td>
+<td>dashboard</td>
+</tr>
+<tr>
+<td>P6 human_capital</td>
+<td>H1 % ICT specialists in total employment — Eurostat <code>isoc_sks_itspt</code> [K]</td>
+<td>—</td>
+<td>linear</td>
+<td>0</td>
+<td>25</td>
+<td>+1</td>
+<td>registry v0.6, 2026-10-28</td>
+<td>dashboard; source to verify</td>
+</tr>
+<tr>
+<td>P7 ecological_balance</td>
+<td>E1 data-centre electricity demand, TWh — IEA</td>
+<td>—</td>
+<td>log</td>
+<td>10</td>
+<td>2000</td>
+<td>0</td>
+<td>registry v0.6, 2026-10-28</td>
+<td>dashboard, two-way, no net figure</td>
+</tr>
+<tr>
+<td>P8 energy_capacity</td>
+<td>N1 requested MW ÷ connected MW (queue ratio) — Fingrid / ENTSO-E [K]</td>
+<td>—</td>
+<td>log</td>
+<td>0.5</td>
+<td>10</td>
+<td>−1</td>
+<td>registry v0.6; scale frozen as log (a ratio) and direction −1, 2026-11-22</td>
+<td>dashboard; source to verify</td>
+</tr>
+<tr>
+<td>P9 ownership_distribution</td>
+<td>O1 % broad / public / employee equity share — ECB DWA, Fed DFA [K]</td>
+<td>—</td>
+<td>linear</td>
+<td>0</td>
+<td>100</td>
+<td>0</td>
+<td>registry v0.6, 2026-10-28</td>
+<td>dashboard; source [K]</td>
+</tr>
+<tr>
+<td>P10 market_openness</td>
+<td>M1 % open-weights / non-concentrated share — Epoch AI, OpenRouter</td>
+<td>—</td>
+<td>linear</td>
+<td>0</td>
+<td>100</td>
+<td>+1</td>
+<td>registry v0.6, 2026-10-28</td>
+<td>dashboard</td>
+</tr>
+</tbody>
+</table></div>
+<p>Indicators marked [K] cannot enter <code>series.csv</code> until someone has opened the source and recorded the series id. K1 (<code>nama_10_an6</code>) must be added to the registry as a verified source and logged before release candidate 1.</p>
+<h3 id="4-2-deployment-ceiling-100-not-80">4.2 Deployment ceiling: 100, not 80</h3>
+<p><strong>Decision: 100 %.</strong></p>
+<ol>
+<li>A fixed goalpost should be the natural bound of its unit. 100 % needs no external justification; an 80 % &ldquo;saturation level&rdquo; does, and we have none that would survive review.</li>
+<li>With 80 the scores would clip soon. The share of large EU enterprises using AI was 55.0 % in 2025, rising 13.9 points a year, and the share of large Finnish firms was 68 % (Statistics Finland). Sector cells such as information and communication would clip first.</li>
+<li>It matches the other share-based pillars (labour, ownership and market openness all use 0–100).</li>
+<li>The score reads directly as &ldquo;percent adopting&rdquo;, which the main page can explain in one sentence.</li>
+</ol>
+<p>The cost is that scores look lower: EU enterprise reach in 2025 scores 20.0 instead of 24.9. An 80 % saturation reading may be shown as a labelled sensitivity, never as the headline. The v0.6 page text &ldquo;100 = 80 % of organizations&rdquo; must be removed.</p>
+<hr>
+<h2 id="5-evidence-rules-and-not-measured">5. Evidence rules and &ldquo;not measured&rdquo;</h2>
+<p><strong>Which observations count.</strong> Only rows from registry sources marked verified ([V]) that pass the <code>series.csv</code> schema. [K] sources never count.</p>
+<p><strong>Pillar eligibility for the headline.</strong> A pillar enters the headline for a population only if all of these hold:</p>
+<ul>
+<li>at least <strong>5 verified observations</strong>,</li>
+<li>from at least <strong>2 distinct verified sources</strong>,</li>
+<li>at least <strong>1 of them official statistics</strong> (registry trust tier 1),</li>
+<li>a derived grade of <strong>A or B</strong>, and</li>
+<li>at least one scored indicator value for that population and reference period.</li>
+</ul>
+<p>Observations and sources are counted per pillar across all geographies (plan section 2.3); the score itself uses only the target population&rsquo;s values.</p>
+<p><strong>Experimental pillars.</strong> A pillar with at least one scored indicator value that fails the eligibility test is published as &ldquo;experimental&rdquo;, with n and grade, and excluded from the headline.</p>
+<p><strong>Headline completeness.</strong> The headline for a population needs at least <strong>2 eligible Block A pillars</strong>. Otherwise it is null with status &ldquo;incomplete&rdquo;, and the pillar scores are still published.</p>
+<p><strong>Grid cells.</strong> The grid is 10 sectors (NACE sections, as in the registry) × 10 pillars, per population. A cell is scored only from at least <strong>1 verified observation whose sector matches the cell&rsquo;s NACE section(s)</strong> and whose geography matches the population, within the 36-month staleness limit. Observations for all sectors (&ldquo;ALL&rdquo;) never fill a sector cell. Otherwise the cell&rsquo;s score and grade are null and its status is &ldquo;not measured&rdquo;. The v0.6 fixed multipliers (reach ×1.14, depth ×0.88, embeddedness ×0.98; sector DAI ×1.08/0.92, PAI ×1.15/0.45) are abolished.</p>
+<p><strong>Display.</strong> Unmeasured values are shown as the words &ldquo;not measured&rdquo;: never 0, never blank, never a colour that implies a score. Every published number carries n (observations) and coverage (measured indicators ÷ defined indicators).</p>
+<p>For scale: in v0.6 only 23 of the 100 cells had any sector-specific observation, and deployment held 37 of 57 observations. Most grid cells and most Block B and C pillars will read &ldquo;not measured&rdquo; or &ldquo;experimental&rdquo; in 1.0. That is intended.</p>
+<hr>
+<h2 id="6-grades">6. Grades</h2>
+<p>Provenance grades: <strong>A</strong> official or administrative register or filing; <strong>B</strong> academic, intergovernmental or documented commercial series with a stable definition; <strong>C</strong> proxy, voluntary or single-source. A frequency tag (M monthly, Q quarterly, Y annual) is kept from v0.6.</p>
+<ul>
+<li><strong>Indicator grade</strong> = the provenance grade of its source series. Trust tier 4 (vendor telemetry, company disclosure) is at most B and never the only A/B evidence. Tier 5 is never a source.</li>
+<li><strong>Derived grade</strong> of a pillar or cell = the <strong>lowest</strong> grade among the indicators that enter its score (weakest link).</li>
+<li><strong>Caps:</strong></li>
+<li>Agriculture: maximum <strong>C</strong>, until a sector-specific A/B series is logged (precision-agriculture adoption has no open official series).</li>
+<li>cost_to_serve: maximum <strong>C</strong> until the Task Price Index exists.</li>
+<li>Proxy indicators in the physical channel: maximum C for the AI dimension. <code>E_AI_TAR</code> is AI-specific and not capped.</li>
+<li><strong>Sector gap</strong> is computed only between scored cells of grade A or B for the same population and pillar set. Capped sectors are excluded, so agriculture (one observation in v0.6) can no longer be the &ldquo;laggard&rdquo; end of the gap.</li>
+</ul>
+<hr>
+<h2 id="7-block-a-weights-and-aggregation">7. Block A weights and aggregation</h2>
+<p><strong>Nominal weights:</strong> deployment 1/3, cost_to_serve 1/3, capital_intensity 1/3.</p>
+<p><strong>Missing or grade-C pillar:</strong> weights are renormalised over the eligible pillars only, <em>w</em>ᵢ = nominalᵢ / Σ nominalⱼ (eligible <em>j</em>). With cost_to_serve experimental, the effective weights are <strong>deployment 0.5000, capital_intensity 0.5000</strong>.</p>
+<p><strong>Headline (arithmetic):</strong> <em>H</em> = Σ <em>w</em>ᵢ <em>s</em>ᵢ.</p>
+<p><strong>Sensitivity check, geometric mean (weakest link):</strong> <em>G</em> = exp(Σ <em>w</em>ᵢ ln max(<em>s</em>ᵢ, 1.0)). The floor of 1.0 keeps a near-zero pillar from sending <em>G</em> to zero. <em>G</em> is always labelled &ldquo;sensitivity check: geometric mean (weakest link)&rdquo;, is never called the headline, and is never mixed into the headline interval. It shows how much a weak pillar would pull the score down if pillars could not compensate for each other. For example, with v0.6&rsquo;s typed-in pillars, a deployment score of 10 instead of 28.4 would have moved <em>H</em> to 36.6 and <em>G</em> to 28.9.</p>
+<p><strong>DAI and PAI</strong> apply the same aggregation to the digital and physical channel scores of each pillar; pillars without that channel are omitted and the weights renormalised. PAI carries the proxy flag whenever a proxy indicator contributes.</p>
+<hr>
+<h2 id="8-uncertainty-monte-carlo-specification">8. Uncertainty: Monte Carlo specification</h2>
+<div class="table-scroll"><table class="di-table">
+<thead>
+<tr>
+<th scope="col">Parameter</th>
+<th scope="col">Frozen value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seed</td>
+<td>20261028</td>
+</tr>
+<tr>
+<td>Draws</td>
+<td>20,000 per population</td>
+</tr>
+<tr>
+<td>Generator</td>
+<td><code>numpy.random.Generator(numpy.random.PCG64(20261028))</code></td>
+</tr>
+<tr>
+<td>Draw order</td>
+<td>(1) noise matrix <em>Z</em> (draws × indicators) from <code>standard_normal</code>, indicators sorted by id; (2) weight factors <em>U</em> (draws × eligible Block A pillars) from <code>uniform(0.5, 1.5)</code>, pillars in Block A order; populations in the order EU27, FI</td>
+</tr>
+<tr>
+<td>Weights</td>
+<td>independent multiplicative factors uniform on [0.5, 1.5] (±50 %), then renormalised</td>
+</tr>
+<tr>
+<td>Data noise</td>
+<td><em>x</em>ᵈʳᵃʷ = <em>x</em> (1 + σʳᵉˡ <em>z</em>), one <em>z</em> per indicator value; the score is recomputed through goalpost and clipping</td>
+</tr>
+<tr>
+<td>Interval</td>
+<td>95 %: 2.5 %, 50 % and 97.5 % quantiles of <em>H</em> over joint data and weight draws</td>
+</tr>
+<tr>
+<td>Aggregation</td>
+<td>separate component, <em>H</em> − <em>G</em>; not mixed into the interval</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Why ±50 % weights and not ±20 %.</strong> Equal weights have no empirical basis in a formative index, so the plausible range should be wide. ±20 % would understate how arbitrary the weights are and would make the interval mostly data noise. ±50 % is also what method v0.6 promised. The v0.6 code instead drew weights from Dirichlet(1,1,1), which allows weights near 0 and 1. In the review&rsquo;s replication that made the interval about 2.5 times wider: 32.0–53.4 versus 38.0–46.5 under ±50 %. Weight uncertainty is reported as its own variance component, so readers can see how much of the interval comes from weight choice rather than data. Dirichlet sampling is abolished.</p>
+<p><strong>Why 20,000 draws.</strong> At 1,000 draws the v0.6 interval bounds moved by up to 0.6 points between seeds. At 20,000 the Monte Carlo error of the 2.5 % and 97.5 % quantiles is about 0.2 points or less for intervals of that width.</p>
+<p><strong>Noise from source standard errors.</strong> σ for each indicator value is chosen in this order:</p>
+<ol>
+<li>The standard error or confidence interval the source publishes for that value (half-width of a 95 % CI ÷ 1.96).</li>
+<li>For survey proportions with a known sample size <em>n</em>: σ = √(<em>p</em>(1 − <em>p</em>) / (<em>n</em> / deff)), with design effect deff = 2.0. The Eurostat ICT enterprise survey 2025 sampled 157,000 enterprises in the EU (ESMS <code>isoc_e</code>, section 3.6).</li>
+<li><strong>Fallback</strong> by derived grade, relative: A 0.045, B 0.075, C 0.15. A and B continue the v0.6 values; C is new.</li>
+</ol>
+<p>Each observation row records <code>sigma</code> and <code>sigma_basis</code> (published, binomial, fallback_A, fallback_B or fallback_C). Eurostat states that standard errors are reported in national quality reports for a selection of indicators (ESMS section 13); where those can be located they replace rule 2.</p>
+<p><strong>Point and median.</strong> The published point is <em>H</em> at the effective nominal weights with unperturbed data; the Monte Carlo median is published beside it. If they differ by more than 1.0 point the compiler warns. (In v0.6 they differed: 42.7 against 41.7.)</p>
+<p><strong>Variance decomposition</strong> (published for each population&rsquo;s headline):</p>
+<div class="table-scroll"><table class="di-table">
+<thead>
+<tr>
+<th scope="col">Output</th>
+<th scope="col">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V_total</td>
+<td>variance of <em>H</em>, data noise and weights both random</td>
+</tr>
+<tr>
+<td>V_data</td>
+<td>variance of <em>H</em>, data noise only (weights fixed)</td>
+</tr>
+<tr>
+<td>V_weights</td>
+<td>variance of <em>H</em>, weights only (data fixed)</td>
+</tr>
+<tr>
+<td>V_aggregation</td>
+<td>variance of a 50/50 mix of <em>H</em> and <em>G</em> at fixed data and weights = ((<em>H</em> − <em>G</em>)/2)²</td>
+</tr>
+<tr>
+<td>share_data, share_weights, share_aggregation</td>
+<td>each V ÷ (V_data + V_weights + V_aggregation), whole per cent</td>
+</tr>
+<tr>
+<td>interaction</td>
+<td>V_total − V_data − V_weights</td>
+</tr>
+</tbody>
+</table></div>
+<p>The data component is also run for DAI, PAI and every pillar score.</p>
+<p>For reference, the v0.6 replication split its 90 % band 95 % weights and 5 % data noise. Under v1.0 the weight share falls, and the aggregation share becomes visible whenever pillars diverge.</p>
+<hr>
+<h2 id="9-series-breaks">9. Series breaks</h2>
+<p><strong>Default: segments.</strong> A break (definition, question wording, population or classification change) starts a new segment. Levels may use the latest segment; paces and any chaining never cross a segment boundary.</p>
+<p><strong>Bridging</strong> is allowed only if the source publishes the same period under both definitions (an overlap period). Bridge factor = old ÷ new for that overlap period, recorded with source URL, overlap period, date and its standard error. A ratio of two different periods is never a bridge factor.</p>
+<p><strong>Schema.</strong> Rows carry <code>break_flag</code> (true on the first row of a new segment), <code>segment_id</code> and, only when bridged, <code>bridge_factor</code>, <code>bridge_source</code> and <code>bridge_period</code>. Eurostat &ldquo;b&rdquo; flags are imported per value.</p>
+<p><strong>Decisions for 1.0:</strong></p>
+<ul>
+<li><strong>US Census BTOS (V1 → V2, 17 November 2025): two segments, no bridge.</strong> The v0.6 factor 0.563 equals 9.8 ÷ 17.4, i.e. OBS-024 (week 44, old question) divided by OBS-025 (week 48, new question). It divides different weeks under different questions, so four weeks of real growth are counted as part of the break. It is rejected. BTOS is US data, outside the EU27/FI target, so it is context only. OBS-026 must lose its bridge factor (it carries 0.563 with <code>break_flag = false</code>).</li>
+<li><strong>Eurostat <code>isoc_eb_ai</code> &ldquo;any AI&rdquo;, &ldquo;≥2&rdquo; and &ldquo;≥3 technologies&rdquo;: segment S1 = 2021, 2023, 2024; segment S2 from 2025</strong> (see 9.1).</li>
+<li><strong>Eurostat <code>E_AI_TAR</code>: one segment 2021–2025 at EU27 level.</strong> Country &ldquo;b&rdquo; flags start a new segment for that country.</li>
+</ul>
+<h3 id="9-1-eurostat-isoc-eb-ai-definition-check-2021-2025">9.1 Eurostat <code>isoc_eb_ai</code>: definition check, 2021–2025</h3>
+<p>Checked on 22 November 2026 against:</p>
+<ul>
+<li>ESMS metadata <code>isoc_e</code> (metadata last updated 11 December 2025): https://ec.europa.eu/eurostat/cache/metadata/en/isoc_e_esms.htm</li>
+<li>Eurostat dissemination API, dataset <code>isoc_eb_ai</code> (data updated 15 June 2026; periods 2021, 2023, 2024, 2025): https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/isoc_eb_ai</li>
+<li>Statistics Explained, &ldquo;Use of artificial intelligence in enterprises&rdquo; (data extracted December 2025; planned update 15 December 2026): https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Use_of_artificial_intelligence_in_enterprises</li>
+</ul>
+<p>Findings:</p>
+<ol>
+<li><strong>There was no AI module in survey year 2022.</strong> The series has 2021, 2023, 2024 and 2025 only.</li>
+<li><strong>EU27 values</strong> (<code>E_AI_TANY</code>, 10+ persons): 2021 7.65 %, 2023 8.06 %, 2024 13.48 %, 2025 19.95 %. <strong>No &ldquo;b&rdquo; flag on any EU27 value.</strong></li>
+<li><strong>2025 adds a technology.</strong> The <code>E_AI_TANY</code> definition now reads &ldquo;at least one of AI_TTM, AI_TSR, AI_TNLG, AI_TIR, AI_TML, AI_TPA, AI_TAR, E_AI_TPVSG&rdquo;. <code>E_AI_TPVSG</code> (AI generating pictures, videos, sound/audio) exists only for 2025 (EU27 9.55 %). The 2025 &ldquo;any AI&rdquo; share therefore covers eight technologies against seven in 2021–2024. Eurostat neither flags this as a break nor publishes a 2025 total on the seven-technology basis. The effect is bounded (between 0 and 9.55 points, the share of firms using that technology) but not identified, because firms using image, video or audio generation mostly also use other AI technologies.</li>
+<li>Purpose indicators changed between 2021 and 2023 (<code>E_AI_PBA</code>, <code>E_AI_PHR</code> and <code>E_AI_PME</code> exist only for 2021). Indicators on how the AI was obtained (<code>E_AI_ADOWN</code> and others) exist only for 2021 and 2024. Neither group is used for scoring.</li>
+<li><strong>Country break flags on <code>E_AI_TANY</code>:</strong> France 2023 &ldquo;b&rdquo;, Sweden 2023 &ldquo;b&rdquo;, Netherlands 2025 &ldquo;b&rdquo;. Finland has no flag (2021 15.79 %, 2023 15.10 %, 2024 24.37 %, 2025 37.82 %).</li>
+<li><code>E_AI_TANY</code> + <code>E_AI_TX</code> does not sum to 100 (EU27: 94.78 in 2021, 98.18 in 2023, 98.19 in 2024, 99.04 in 2025). This is consistent with item non-response; it is not a definition break, but it is noted.</li>
+<li>ESMS section 15.2 says comparability over time is restricted where definitions change to follow ICT, and section 12.3 says changed questions get new indicator codes and break series.</li>
+<li>The v0.6 registry notes a &ldquo;German definition break 2025&rdquo;. The API carries no &ldquo;b&rdquo; flag for Germany on <code>E_AI_TANY</code> in 2023–2025. <strong>Not confirmed.</strong></li>
+</ol>
+<p><strong>Outcome.</strong> 2025 is treated as a soft definition break for <code>E_AI_TANY</code>, <code>E_AI_TGE2</code> and <code>E_AI_TGE3</code>: segment S1 (2021, 2023, 2024) and S2 (from 2025). Levels use 2025 (S2). Paces use S1 until S2 has three points (expected with the 2027 data), unless Eurostat publishes a 2025 value on the seven-technology basis, which would allow an overlap bridge. 2023 against 2021 is comparable at EU27 level apart from flagged countries. <code>E_AI_TAR</code> is unaffected.</p>
+<hr>
+<h2 id="10-pace-annual-change">10. Pace (annual change)</h2>
+<ul>
+<li><strong>Unit:</strong> index points per year on the 0–100 score scale, never percentage points of the raw unit. (v0.6&rsquo;s deployment velocity of 6.5 was the change in the EU adoption share, 13.5 % → 20.0 %, not a change in score.)</li>
+<li><strong>Minimum:</strong> 3 comparable points: same population, same indicator set, same segment for every indicator, same goalposts.</li>
+<li><strong>Estimator:</strong> ordinary least squares slope of score on time in years (period midpoints), unweighted.</li>
+<li><strong>Interval:</strong> 95 %. A Monte Carlo over data noise (same generator stream, after the level draws) recomputes the slope per draw. With 4 or more points the OLS t-interval (df = n − 2) is also computed, and the wider of the two is published.</li>
+<li><strong>Wording:</strong> a pace is called rising or falling only if its 95 % interval excludes zero; otherwise it is &ldquo;not distinguishable from zero&rdquo;.</li>
+<li><strong>Levels:</strong> a pillar pace is published only when the whole indicator set of the pillar meets the minimum. Otherwise indicator-level paces are published and labelled as such. A headline pace is published only when every eligible Block A pillar has a pillar pace over the same periods.</li>
+<li><strong>Momentum percentile:</strong> abolished. <strong>Pace shear:</strong> suspended until a slow-layer pillar has a data-based pace.</li>
+</ul>
+<p>Illustration (OLS only, Eurostat values retrieved 22 November 2026; not a published number):</p>
+<div class="table-scroll"><table class="di-table">
+<thead>
+<tr>
+<th scope="col">Series</th>
+<th scope="col">Points</th>
+<th scope="col">Slope (points/yr)</th>
+<th scope="col">95 % OLS interval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EU27 D1 any AI, segment S1</td>
+<td>2021, 2023, 2024</td>
+<td>+1.70</td>
+<td>−14.70 to +18.09</td>
+</tr>
+<tr>
+<td>Finland D1, segment S1</td>
+<td>2021, 2023, 2024</td>
+<td>+2.40</td>
+<td>−27.83 to +32.63</td>
+</tr>
+<tr>
+<td>EU27 D4 autonomous systems</td>
+<td>2021, 2023, 2024, 2025</td>
+<td>+0.11</td>
+<td>−0.13 to +0.35</td>
+</tr>
+<tr>
+<td>EU27 K1 capital, % of GDP</td>
+<td>2019–2025</td>
+<td>−0.52</td>
+<td>−1.26 to +0.22</td>
+</tr>
+<tr>
+<td>Finland K1 capital</td>
+<td>2019–2025</td>
+<td>+0.95</td>
+<td>+0.13 to +1.78</td>
+</tr>
+</tbody>
+</table></div>
+<p>Under these rules the deployment pillar has no pillar pace in 1.0, because D2 (individuals) has only one year (2025). The adoption series accelerates (2024 → 2025: +6.5 points, but across the 2025 definition change), but three points within one segment cannot yet show that with confidence.</p>
+<hr>
+<h2 id="11-data-vintage">11. Data vintage</h2>
+<ul>
+<li><strong>Cut-off</strong> = the last day of the reference quarter (Europe/Helsinki). An observation counts if <code>date_logged</code> and the source&rsquo;s release date are both on or before the cut-off. Nothing logged after the cut-off changes a published edition.</li>
+<li><strong>Proposed cut-off for 1.0.0: 31 December 2026</strong> (2026-Q4). It captures Eurostat&rsquo;s planned December 2026 <code>isoc_eb_ai</code> release; publication is proposed for January 2027.</li>
+<li><strong>Hashes:</strong> SHA-256 of <a href="index/series.csv"><code>index/series.csv</code></a>, <a href="index/registry.v1.0.json"><code>index/registry.v1.0.json</code></a>, <a href="index/method.v1.0.json"><code>index/method.v1.0.json</code></a>, <a href="index/brief_signals.csv"><code>index/brief_signals.csv</code></a> and <a href="index/planetary_boundaries.json"><code>index/planetary_boundaries.json</code></a> are written into the computed JSON (<code>vintage.hashes</code>) and into the release&rsquo;s SHA256SUMS.</li>
+<li><strong>Raw snapshots:</strong> the API responses used to log Eurostat values are stored as dated files in the release assets.</li>
+<li><strong>Cadence:</strong> quarterly, on a fixed day. Daily briefs never change the index between editions.</li>
+</ul>
+<hr>
+<h2 id="12-versioning-and-changelog">12. Versioning and CHANGELOG</h2>
+<p>The index uses semantic versioning <strong>MAJOR.MINOR.PATCH</strong>. The method file carries MAJOR.MINOR (method v1.0 covers 1.0.x).</p>
+<ul>
+<li><strong>MAJOR:</strong> change to the construct, block membership, headline aggregation formula, goalpost form (scale type) or target populations. Comparability with earlier editions breaks; back series are recomputed or marked non-comparable.</li>
+<li><strong>MINOR:</strong> change to goalpost values, nominal weights, the indicator set, evidence thresholds, the Monte Carlo specification (seed, N, weight range, noise rule) or a break decision. The full back series is recomputed under the new method and published with the release.</li>
+<li><strong>PATCH:</strong> a new data vintage under an unchanged method, a correction of logged data errors, or a documentation fix that changes no number.</li>
+</ul>
+<p><code>CHANGELOG.md</code> follows the Keep a Changelog format. Every release lists method changes, data vintage (cut-off), hashes and the effect on the headline (old value against new). There is one VERSION source and a git tag <code>vX.Y.Z</code> per release. Once 1.0.0 is tagged, nothing in <code>method.v1.0.json</code> changes without a version bump and a CHANGELOG entry.</p>
+<hr>
+<h2 id="13-worked-example-illustrative-not-a-published-number">13. Worked example (illustrative, not a published number)</h2>
+<p>Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2); fallback A (4.5 %) otherwise. Script: <code>/workspace/adi-review/work/worked_example.py</code> (outside the repo; Kernelio&rsquo;s compiler replaces it).</p>
+<div class="table-scroll"><table class="di-table">
+<thead>
+<tr>
+<th scope="col">Measure</th>
+<th scope="col">EU27</th>
+<th scope="col">Finland</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">D1 any AI (enterprises)</th>
+<td>19.95</td>
+<td>37.82</td>
+</tr>
+<tr>
+<th scope="row">D2 generative AI (individuals)</th>
+<td>32.66</td>
+<td>46.27</td>
+</tr>
+<tr>
+<th scope="row">D3 ≥3 AI technologies</th>
+<td>8.28</td>
+<td>21.81</td>
+</tr>
+<tr>
+<th scope="row">D4 autonomous robots, vehicles or drones</th>
+<td>1.39</td>
+<td>2.73</td>
+</tr>
+<tr>
+<th scope="row">Digital channel = mean(reach mean(D1, D2), depth D3)</th>
+<td>17.29</td>
+<td>31.93</td>
+</tr>
+<tr>
+<th scope="row">Physical channel = D4</th>
+<td>1.39</td>
+<td>2.73</td>
+</tr>
+<tr>
+<th scope="row"><strong>Deployment</strong> = 0.5 digital + 0.5 physical</th>
+<td><strong>9.34</strong></td>
+<td><strong>17.33</strong></td>
+</tr>
+<tr>
+<th scope="row">K1 capital (ICT equipment + IPP, % of GDP)</th>
+<td>5.1 → <strong>34.00</strong></td>
+<td>5.9 → <strong>39.33</strong></td>
+</tr>
+<tr>
+<th scope="row"><strong>Headline <em>H</em></strong> (0.5 / 0.5)</th>
+<td><strong>21.67</strong></td>
+<td><strong>28.33</strong></td>
+</tr>
+<tr>
+<th scope="row">Geometric sensitivity <em>G</em></th>
+<td>17.82</td>
+<td>26.11</td>
+</tr>
+<tr>
+<th scope="row">Monte Carlo median; 95 % interval</th>
+<td>21.61; 16.71–26.98</td>
+<td>28.29; 23.78–33.32</td>
+</tr>
+<tr>
+<th scope="row">Variance shares data / weights / aggregation</th>
+<td>5 % / 61 % / 34 %</td>
+<td>11 % / 72 % / 17 %</td>
+</tr>
+</tbody>
+</table></div>
+<p>What the example shows:</p>
+<ul>
+<li>Built from data, the headline falls far below v0.6&rsquo;s 42.7.</li>
+<li>Capital clearly exceeds use, so the &ldquo;money has arrived, use has not&rdquo; message survives.</li>
+<li>The equal digital/physical split inside deployment is the single choice that moves the number most: with digital only, deployment would be 17.3 for EU27 and the headline 25.6.</li>
+<li>These numbers change once K1 and the 2026 Eurostat data are logged; they must not be reused on any page.</li>
+</ul>
+<hr>
+<h2 id="14-compiler-contract-for-tp2">14. Compiler contract (for TP2)</h2>
+<p>The compiler must:</p>
+<ol>
+<li>read goalposts, weights, evidence thresholds and Monte Carlo parameters only from <a href="index/method.v1.0.json"><code>index/method.v1.0.json</code></a> (no constants in code);</li>
+<li>compute every score from <code>series.csv</code> through the chain in section 3, with no hard-coded scores;</li>
+<li>fail the build if a [K] source is used, a log-scale value is ≤ 0, or a required field is missing;</li>
+<li>emit n, coverage, grade, status (scored, experimental, not measured, stale or incomplete), clipped flags and <code>sigma_basis</code> for every published number;</li>
+<li>pass a golden test: a rerun on the frozen vintage reproduces the computed JSON byte for byte (except <code>generated_at</code>);</li>
+<li>pass a sensitivity test: changing one input value changes the dependent score.</li>
+</ol>
+<p>Outputs: headline per population (point, median, 2.5 %, 97.5 %); geometric sensitivity; variance decomposition; DAI and PAI; pillar scores and statuses; grid cells; paces with intervals; vintage block with hashes; <code>method_version</code> and <code>index_version</code>.</p>
+<hr>
+<h2 id="15-sources-by-pillar-carried-over-from-v0-6-status-updated">15. Sources by pillar (carried over from v0.6, status updated)</h2>
+<p>Source status: <strong>[V]</strong> checked live in primary form; <strong>[K]</strong> known source, URL or licence still to be confirmed before logging. Licence status is audited separately (TP3).</p>
+<p><strong>P1 deployment (digital).</strong> Eurostat <code>isoc_eb_ai</code>, <code>isoc_eb_ain2</code> [V], A-Y, annual, next release planned December 2026. Statistics Finland StatFin <code>13vg</code> [V], A-Y. CSO Ireland <code>BIIESA20</code> [V], A-Y (context). US Census BTOS [V], A-M, series break 17 November 2025 (context). Eurostat <code>isoc_ai_iaiu</code> [V], A-Y. Microsoft AI Economy Institute AI User Share [V], tier 4 vendor telemetry, B-Q (context; global). TED open data [V] and Hilma [K] for public-sector deployment (A-M after classification work; not scored in 1.0).</p>
+<p><strong>P1 deployment (physical).</strong> Eurostat <code>isoc_eb_ai</code> <code>E_AI_TAR</code> [V], A-Y (scored). IFR World Robotics [V], B-Y, restricted licence, not AI-specific (sensitivity only). CPUC, NHTSA SGO, Waymo hub [K] (not scored). FDA AI-Enabled Medical Device List [V], A-Q, list not exhaustive (context; US).</p>
+<p><strong>P2 cost_to_serve.</strong> No open price series exists. The AI Task Price Index is to be built on a fixed basket of standardised workflow tasks (GDPval gold subset <code>openai/gdpval</code>, 220 public tasks across 44 occupations; arXiv 2510.04374 [V]), priced quarterly from public list prices and measured tokens per task with a published harness, divided by the human cost of the same task (Eurostat <code>lc_lci</code> or BLS [K]). Unit: (inference cost + human review and rework at wage cost + integration overhead) ÷ share of outputs rated at least &ldquo;as good as&rdquo; the expert baseline, indexed to 100 in the 2026 baseline. Grade C until the harness is published and replicated. Vendor &ldquo;price fell X %&rdquo; claims are not used.</p>
+<p><strong>P3 capital_intensity.</strong> Eurostat <code>nama_10_an6</code> [V as of 2026-11-22 API check; add to registry] for K1. SEC EDGAR filings [V] (context: Anthropic S-1, H1 2026 compute 8.95 bn USD of 16.29 bn revenue; 265.6 bn USD commitments). Epoch AI data [V], CC BY 4.0 (context). <em>Lower-bound rule (productivity J-curve):</em> national accounts miss most complementary intangible investment (multipliers of about 2 for R&amp;D and about 10 for software and hardware in Brynjolfsson, Rock and Syverson), so K1 is read as a lower bound on total adoption investment and the multiplier is a sensitivity case.</p>
+<p><strong>P8 energy_capacity.</strong> IEA Energy and AI Observatory [V]; LBNL &ldquo;Queued Up&rdquo;, ERCOT/PJM large-load queues [V for Texas]; Fingrid open data [K]; ENTSO-E Transparency Platform [K]. Ratio rule: requested MW ÷ connected MW.</p>
+<p><strong>P5 governance_burden.</strong> EUR-Lex / CELLAR for Regulation (EU) 2024/1689 and implementing acts [V]; FSB Sound Practices [V]; OECD.AI policy database and AI Incidents Monitor [V]; AI Incident Database [K]. Counting rule: named authority + date + sanction or standard.</p>
+<p><strong>P6 human_capital.</strong> Eurostat ICT specialists and Digital Decade series [K]; Statistics Finland / Vipunen [K]; OECD.AI skills data [V]; Stanford AI Index for context only (tier 5: locate the primary).</p>
+<p><strong>P10 market_openness.</strong> Hugging Face Hub API [K]; Epoch AI Models [V]; Epoch finding that five hyperscalers hold over two-thirds of global AI compute [V]; Anthropic S-1 marketplace share [V]; OpenRouter rankings [V, tier 4]; OECD PMR [K]; TED procurement neutrality [V].</p>
+<p><strong>P4 labour_reorganisation.</strong> Eurostat LFS and job vacancies [K]; Census BTOS AI supplement [V, US context]; Indeed Hiring Lab [K]; Cedefop Skills-OVATE [K]; Anthropic Economic Index [V, tier 4].</p>
+<p><strong>P9 ownership_distribution.</strong> Fed DFA and ECB DWA [K]; SEC EDGAR 13F, proxy and S-1 filings [V]; pledge events logged as announced, executed or lapsed.</p>
+<p><strong>P7 ecological_balance.</strong> Planetary boundaries framework (Rockström et al. 2009, Steffen et al. 2015, Richardson et al. 2023) [V] as the reference frame: (a) a boundary status panel, never scored; (b) direct footprint as a share of the global flow behind each control variable (&ldquo;not measured&rdquo; where no AI-specific series exists, never zero); (c) enabled reduction with a mandatory rebound multiplier. No net figure until both components are A/B in the same sector.</p>
+<hr>
+<h2 id="16-known-limitations-of-1-0">16. Known limitations of 1.0</h2>
+<ul>
+<li>K1 capital is a national-accounts proxy (ICT hardware, software, databases and R&amp;D), not AI-specific.</li>
+<li>Embeddedness is not measured anywhere in the headline.</li>
+<li>The physical channel rests on one indicator (<code>E_AI_TAR</code>), which scores low and pulls deployment down by design.</li>
+<li>Most Block B and C pillars and most grid cells will be experimental or not measured.</li>
+<li>The 2025 Eurostat definition extension is bounded but not identified.</li>
+<li>Weights are a convention; their effect is shown, not removed.</li>
+</ul>
+<hr>
+<h2 id="17-references">17. References</h2>
+<ul>
+<li>Brand, S. (2018). <em>Pace Layering: How Complex Systems Learn and Keep Learning.</em> Journal of Design and Science, DOI 10.21428/7f2e5f08.</li>
+<li>Brynjolfsson, E., Rock, D. and Syverson, C. (2018, revised 2020). <em>The Productivity J-Curve: How Intangibles Complement General Purpose Technologies.</em> NBER Working Paper 25148.</li>
+<li>Bonney, K. et al. (2024). <em>Tracking Firm Use of AI in Real Time: A Snapshot from the Business Trends and Outlook Survey.</em> U.S. Census Bureau CES-WP-24-16.</li>
+<li>Eurostat. <em>ICT usage in enterprises (isoc_e), Reference Metadata in Euro SDMX Metadata Structure (ESMS)</em>, last updated 11 December 2025. https://ec.europa.eu/eurostat/cache/metadata/en/isoc_e_esms.htm</li>
+<li>Eurostat. <em>Use of artificial intelligence in enterprises.</em> Statistics Explained, data extracted December 2025.</li>
+<li>Misra, A., Wang, J., McCullers, S., White, K. and Lavista Ferres, J. (2025). <em>Measuring AI Diffusion: A Population-Normalized Metric for Tracking Global AI Usage.</em> arXiv:2511.02781.</li>
+<li>OECD/JRC (2008). <em>Handbook on Constructing Composite Indicators: Methodology and User Guide.</em></li>
+<li>OpenAI (2025). <em>GDPval: Evaluating AI Model Performance on Real-World Economically Valuable Tasks.</em> arXiv:2510.04374.</li>
+<li>Richardson, K. et al. (2023). <em>Earth beyond six of nine planetary boundaries.</em> Science Advances.</li>
+</ul>
       <div style="margin-top:32px;display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn" href="diffusion-index.html"><span class="en">← Back to the Diffusion Index Dashboard</span><span class="fi">← Takaisin diffuusioindeksin tauluun</span></a>
-        <a class="btn" href="index/method.v0.6.md" download><span class="en">Download Full Markdown Specification (method.v0.6.md)</span><span class="fi">Lataa Markdown-spesifikaatio (method.v0.6.md)</span></a>
+        <a class="btn" href="diffusion-index.html">← Back to the Diffusion Index dashboard</a>
+        <a class="btn" href="index/method.v1.0.md" download>Download the Markdown specification</a>
+        <a class="btn" href="index/method.v1.0.json" download>Download the JSON specification</a>
       </div>
     </article>
   </main>
 
   <footer>
     <div>
-      <span class="en">Machine Learning Societies · AI Diffusion Index v0.6 · By Harri Juntunen · </span>
-      <span class="fi">Machine Learning Societies · Tekoälyn diffuusioindeksi v0.6 · Harri Juntunen · </span>
-      <a href="index.html"><span class="en">Daily Briefs</span><span class="fi">Päiväkatsaukset</span></a> ·
-      <a href="diffusion-index.html"><span class="en">Diffusion Index</span><span class="fi">Diffuusioindeksi</span></a> ·
-      <a href="forecasts.html"><span class="en">Forecasts</span><span class="fi">Ennusteet</span></a> ·
-      <a href="about.html"><span class="en">About</span><span class="fi">Tietoa</span></a>
+      Machine Learning Societies · AI Diffusion Index v1.0 · By Harri Juntunen ·
+      <a href="index.html">Daily Briefs</a> ·
+      <a href="diffusion-index.html">Diffusion Index</a> ·
+      <a href="forecasts.html">Forecasts</a> ·
+      <a href="about.html">About</a>
     </div>
   </footer>
 </div>
-
-<script>
-(function(){
-  const root = document.documentElement;
-  const btns = document.querySelectorAll('[data-set-lang]');
-  function setLang(lang){
-    const l = (lang === 'fi') ? 'fi' : 'en';
-    root.setAttribute('data-lang', l);
-    root.setAttribute('lang', l);
-    btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.setLang === l ? 'true' : 'false'));
-    try { localStorage.setItem('mls-lang', l); localStorage.setItem('lang', l); } catch(e){}
-  }
-  const urlLang = new URLSearchParams(location.search).get('lang');
-  let saved = null;
-  try { saved = localStorage.getItem('mls-lang') || localStorage.getItem('lang'); } catch(e){}
-  setLang(urlLang || saved || 'en');
-  btns.forEach(b => b.addEventListener('click', () => setLang(b.dataset.setLang)));
-})();
-</script>
 </body>
 </html>

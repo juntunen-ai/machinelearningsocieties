@@ -25,4 +25,4 @@ A tagged release (not created from this branch) should include:
 - Data payload described in `docs/data-release.md` (snapshots + `SHA256SUMS`)
 - The site artifact described in `docs/publishing.md`
 
-The public method document and dashboard may still be labelled v0.6 while `VERSION` is `1.0.0-dev`. After the method freeze, the method file, `schema_version` in `computed.*.json`, and the dashboard label must move together with `VERSION`.
+Method v1.0 is frozen on `release/1.0.0` (`index/method.v1.0.json` is authoritative). `VERSION` remains `1.0.0-dev` until a 1.0.0 tag is approved. The public dashboard may still be labelled v0.6 until the main-page copy is wired; after that, the method file, `schema_version` in `computed.v1.0.json`, and the dashboard label must move together with `VERSION`.
