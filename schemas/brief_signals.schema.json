@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://juntunen-ai.github.io/machinelearningsocieties/schemas/brief_signals.schema.json",
+  "title": "AI Diffusion Index brief_signals.csv row",
+  "description": "One row of index/brief_signals.csv.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "brief_date",
+    "title_en",
+    "title_fi",
+    "pillar",
+    "secondary_pillar",
+    "sector",
+    "block",
+    "pace_layer",
+    "channel",
+    "layer",
+    "level",
+    "signal_score",
+    "stakes_score",
+    "market_test",
+    "source_id",
+    "quant_metric",
+    "primary_urls",
+    "brief_path",
+    "summary_note"
+  ],
+  "properties": {
+    "brief_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "title_en": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title_fi": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pillar": {
+      "type": "string",
+      "enum": [
+        "deployment",
+        "cost_to_serve",
+        "capital_intensity",
+        "labour_reorganisation",
+        "governance_burden",
+        "human_capital",
+        "ecological_balance",
+        "energy_capacity",
+        "ownership_distribution",
+        "market_openness"
+      ]
+    },
+    "secondary_pillar": {
+      "type": "string",
+      "enum": [
+        "deployment",
+        "cost_to_serve",
+        "capital_intensity",
+        "labour_reorganisation",
+        "governance_burden",
+        "human_capital",
+        "ecological_balance",
+        "energy_capacity",
+        "ownership_distribution",
+        "market_openness"
+      ]
+    },
+    "sector": {
+      "type": "string",
+      "enum": [
+        "professional_services",
+        "software",
+        "manufacturing",
+        "agriculture",
+        "healthcare",
+        "education",
+        "public_administration",
+        "finance_insurance",
+        "retail_logistics",
+        "energy_utilities"
+      ]
+    },
+    "block": {
+      "type": "string",
+      "enum": [
+        "A_diffusion",
+        "B_conditions",
+        "C_consequences"
+      ]
+    },
+    "pace_layer": {
+      "type": "string",
+      "enum": [
+        "fashion_attention",
+        "commerce",
+        "infrastructure",
+        "governance",
+        "culture",
+        "nature"
+      ]
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "digital",
+        "physical"
+      ]
+    },
+    "layer": {
+      "type": "string",
+      "enum": [
+        "reach",
+        "depth",
+        "embeddedness"
+      ]
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "macro",
+        "meso",
+        "micro"
+      ]
+    },
+    "signal_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "stakes_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "market_test": {
+      "type": "string",
+      "pattern": "^Primary=\\d+;Confirmation=\\d+;FirstMover=\\d+$"
+    },
+    "source_id": {
+      "type": "string",
+      "enum": [
+        "eurostat_isoc_eb_ai",
+        "eurostat_isoc_ai_iaiu",
+        "statfin_icte_13vg",
+        "cso_biiesa20",
+        "census_btos",
+        "microsoft_ai_user_share",
+        "anthropic_economic_index",
+        "ted_open_data",
+        "hilma",
+        "ifr_world_robotics",
+        "fda_ai_device_list",
+        "cpuc_av_data",
+        "nhtsa_sgo",
+        "waymo_safety_hub",
+        "epoch_ai_data",
+        "iea_energy_ai",
+        "oecd_ai",
+        "eur_lex",
+        "incident_db",
+        "sec_edgar",
+        "fed_dfa",
+        "ecb_dwa",
+        "eurostat_lfs_labour",
+        "indeed_hiring_lab",
+        "cedefop_ovate",
+        "fingrid_open_data",
+        "entsoe_transparency",
+        "ember",
+        "lbnl_queued_up",
+        "wri_aqueduct",
+        "oecd_pmr",
+        "hf_hub",
+        "stanford_ai_index",
+        "gdpval",
+        "ramp_ai_index",
+        "charlotin_hallucination_cases",
+        "openrouter_rankings",
+        "cloudflare_radar_ai",
+        "github_innovation_graph",
+        "ercot_large_load_queue",
+        "taiwan_moea_export_orders",
+        "china_nbs_robot_output",
+        "swaa",
+        "rps_bick_blandin_deming",
+        "firm_data_on_ai",
+        "stackoverflow_survey_2026",
+        "src_planetary_boundaries",
+        "richardson_2023_pb",
+        "pik_planetary_health_check"
+      ]
+    },
+    "quant_metric": {
+      "type": "string",
+      "minLength": 1
+    },
+    "primary_urls": {
+      "type": "string",
+      "minLength": 1
+    },
+    "brief_path": {
+      "type": "string",
+      "pattern": "^briefs/\\d{4}-\\d{2}-\\d{2}\\.html$"
+    },
+    "summary_note": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

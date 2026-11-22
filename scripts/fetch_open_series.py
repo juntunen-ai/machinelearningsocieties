@@ -71,10 +71,16 @@ def ping_eurostat_sample():
 def main():
     parser = argparse.ArgumentParser(description="Validate or refresh Diffusion Index v0.6 series.")
     parser.add_argument("--live-ping", action="store_true", help="Ping live Eurostat SDMX API endpoint")
+    parser.add_argument(
+        "--sync-seed",
+        action="store_true",
+        help="Copy index/series.csv to index/series.seed.csv. Use only when the series change is intentional.",
+    )
     args = parser.parse_args()
 
     validate_series_against_registry()
-    sync_seed_snapshot()
+    if args.sync_seed:
+        sync_seed_snapshot()
     if args.live_ping:
         ping_eurostat_sample()
 

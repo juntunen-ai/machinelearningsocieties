@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://juntunen-ai.github.io/machinelearningsocieties/schemas/series.schema.json",
+  "title": "AI Diffusion Index series.csv observation",
+  "description": "One row of index/series.csv. Enums are taken from index/registry.v0.6.json at generation time; scripts/validate_data.py also checks them against the live registry.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "obs_id",
+    "date_logged",
+    "period",
+    "pillar",
+    "sector",
+    "channel",
+    "layer",
+    "geo",
+    "value",
+    "unit",
+    "source_id",
+    "series_id",
+    "series_version",
+    "grade",
+    "trust_tier",
+    "break_flag",
+    "bridge_factor",
+    "ai_specificity",
+    "brief_ref",
+    "notes"
+  ],
+  "properties": {
+    "obs_id": {
+      "type": "string",
+      "pattern": "^OBS-\\d{3}$",
+      "description": "Unique observation id"
+    },
+    "date_logged": {
+      "type": "string",
+      "format": "date"
+    },
+    "period": {
+      "type": "string",
+      "minLength": 4,
+      "description": "Year, quarter, month, week or half-year label"
+    },
+    "pillar": {
+      "type": "string",
+      "enum": [
+        "deployment",
+        "cost_to_serve",
+        "capital_intensity",
+        "labour_reorganisation",
+        "governance_burden",
+        "human_capital",
+        "ecological_balance",
+        "energy_capacity",
+        "ownership_distribution",
+        "market_openness"
+      ]
+    },
+    "sector": {
+      "type": "string",
+      "enum": [
+        "professional_services",
+        "software",
+        "manufacturing",
+        "agriculture",
+        "healthcare",
+        "education",
+        "public_administration",
+        "finance_insurance",
+        "retail_logistics",
+        "energy_utilities",
+        "ALL"
+      ]
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "digital",
+        "physical"
+      ]
+    },
+    "layer": {
+      "type": "string",
+      "enum": [
+        "reach",
+        "depth",
+        "embeddedness"
+      ]
+    },
+    "geo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "value": {
+      "type": "number"
+    },
+    "unit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_id": {
+      "type": "string",
+      "enum": [
+        "eurostat_isoc_eb_ai",
+        "eurostat_isoc_ai_iaiu",
+        "statfin_icte_13vg",
+        "cso_biiesa20",
+        "census_btos",
+        "microsoft_ai_user_share",
+        "anthropic_economic_index",
+        "ted_open_data",
+        "hilma",
+        "ifr_world_robotics",
+        "fda_ai_device_list",
+        "cpuc_av_data",
+        "nhtsa_sgo",
+        "waymo_safety_hub",
+        "epoch_ai_data",
+        "iea_energy_ai",
+        "oecd_ai",
+        "eur_lex",
+        "incident_db",
+        "sec_edgar",
+        "fed_dfa",
+        "ecb_dwa",
+        "eurostat_lfs_labour",
+        "indeed_hiring_lab",
+        "cedefop_ovate",
+        "fingrid_open_data",
+        "entsoe_transparency",
+        "ember",
+        "lbnl_queued_up",
+        "wri_aqueduct",
+        "oecd_pmr",
+        "hf_hub",
+        "stanford_ai_index",
+        "gdpval",
+        "ramp_ai_index",
+        "charlotin_hallucination_cases",
+        "openrouter_rankings",
+        "cloudflare_radar_ai",
+        "github_innovation_graph",
+        "ercot_large_load_queue",
+        "taiwan_moea_export_orders",
+        "china_nbs_robot_output",
+        "swaa",
+        "rps_bick_blandin_deming",
+        "firm_data_on_ai",
+        "stackoverflow_survey_2026",
+        "src_planetary_boundaries",
+        "richardson_2023_pb",
+        "pik_planetary_health_check"
+      ]
+    },
+    "series_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "series_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "grade": {
+      "type": "string",
+      "enum": [
+        "A-M",
+        "A-Q",
+        "A-Y",
+        "B-M",
+        "B-Q",
+        "B-Y",
+        "C-M",
+        "C-Q",
+        "C-Y"
+      ]
+    },
+    "trust_tier": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "break_flag": {
+      "type": "boolean"
+    },
+    "bridge_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "ai_specificity": {
+      "type": "string",
+      "enum": [
+        "specific",
+        "proxy",
+        "macro_context"
+      ]
+    },
+    "brief_ref": {
+      "type": "string",
+      "description": "Optional brief date or empty string"
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
