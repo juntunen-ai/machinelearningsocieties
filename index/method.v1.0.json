@@ -51,7 +51,13 @@
       "layer_score": "Arithmetic mean of the scores of the measured indicators in that layer (reach, depth, embeddedness).",
       "channel_score": "Arithmetic mean of the measured layers of that channel (digital, physical). DAI = digital channel, PAI = physical channel.",
       "pillar_score": "Equal-weighted mean of the measured channels (digital 0.5, physical 0.5, as in v0.6 section 1). If only one channel is measured, the pillar score is that channel and the pillar carries channel_coverage='digital_only' or 'physical_only'.",
-      "unmeasured": "Unmeasured indicators, layers or channels are omitted and listed; they are never imputed and never scored as zero."
+      "unmeasured": "Unmeasured indicators, layers or channels are omitted and listed; they are never imputed and never scored as zero.",
+      "channel_weights": {
+        "digital": 0.5,
+        "physical": 0.5,
+        "decision_status": "default pending a decision by Harri Juntunen (2026-11-22). This is the v0.6 equal digital/physical split. Do not change these numbers without that decision and a CHANGELOG entry.",
+        "sensitivity_note": "The worked example in method.v1.0.md section 13 shows that a digital-only deployment score would raise the EU27 headline from 21.67 to 25.6."
+      }
     },
     "rounding": {
       "internal": "IEEE double precision throughout; no intermediate rounding.",

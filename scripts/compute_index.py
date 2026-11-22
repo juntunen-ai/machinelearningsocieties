@@ -1,655 +1,1053 @@
 #!/usr/bin/env python3
-"""
-compute_index.py — Deterministic compiler for the Machine Learning Societies
-Diffusion Index v0.6 (`index/computed.v0.6.json`).
+"""Deterministic compiler for the Machine Learning Societies AI Diffusion Index.
 
-Implements Methodology v0.6 against `index/registry.v0.6.json`:
-- §1: Three-block architecture:
-      * Block A (`A_diffusion`): `deployment`, `cost_to_serve`, `capital_intensity`
-      * Block B (`B_conditions`): `energy_capacity`, `governance_burden`, `human_capital`, `market_openness`
-      * Block C (`C_consequences`): `labour_reorganisation`, `ownership_distribution`, `ecological_balance`
-- §1: DAI (Digital AI Index) and PAI (Physical AI Index, flagged `ai_specificity: proxy`)
-- §2: Stewart Brand pace-layer diagnostics (`fashion_attention`, `commerce`, `infrastructure`,
-      `governance`, `culture`, `nature`) & Monthly Brief Pace-Layer Mix
-- §4: 10×10 Sector × Pillar grid, comparable-provenance Sector Gap, Reach / Depth / Embeddedness
-- §7: Fixed-goalpost level scoring (0–100), momentum, velocity, and 1,000-draw Monte Carlo
-      uncertainty bands (Dirichlet alpha=1, indicator noise, arithmetic vs geometric aggregation)
+Implements the compiler contract in index/method.v1.0.json §14:
+every score is computed from series.csv through the documented chain;
+goalposts, weights, evidence rules and Monte Carlo parameters are read
+only from the method file.
 """
+
+from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import math
-import random
-from collections import Counter, defaultdict
-from datetime import datetime, timezone
+import sys
+import warnings
+from calendar import monthrange
+from collections import defaultdict
+from datetime import date, datetime, timezone
+from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
+
+import numpy as np
 
 ROOT = Path(__file__).resolve().parent.parent
 INDEX_DIR = ROOT / "index"
-REGISTRY_PATH = INDEX_DIR / "registry.v0.6.json"
-PB_PATH = INDEX_DIR / "planetary_boundaries.json"
+METHOD_PATH = INDEX_DIR / "method.v1.0.json"
+REGISTRY_PATH = INDEX_DIR / "registry.v1.0.json"
 SERIES_CSV = INDEX_DIR / "series.csv"
 BRIEF_SIGNALS_CSV = INDEX_DIR / "brief_signals.csv"
-OUTPUT_JSON = INDEX_DIR / "computed.v0.6.json"
+PB_PATH = INDEX_DIR / "planetary_boundaries.json"
+OUTPUT_JSON = INDEX_DIR / "computed.v1.0.json"
 VERSION_PATH = ROOT / "VERSION"
-MC_SEED = 20261028
-N_DRAWS = 1000
+
+POPULATION_GEO = {
+    "EU27": {"EU27", "EU27_2020"},
+    "FI": {"FI"},
+}
 
 
 def read_pipeline_version(version_path: Path = VERSION_PATH) -> str:
     return version_path.read_text(encoding="utf-8").strip()
 
 
-def clamp(val: float, lo: float = 0.0, hi: float = 100.0) -> float:
-    return max(lo, min(hi, val))
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
-def percentile(sorted_vals, p: float) -> float:
-    if not sorted_vals:
-        return 0.0
-    idx = (len(sorted_vals) - 1) * p
-    lo = int(math.floor(idx))
-    hi = int(math.ceil(idx))
-    if lo == hi:
-        return sorted_vals[lo]
-    frac = idx - lo
-    return sorted_vals[lo] * (1.0 - frac) + sorted_vals[hi] * frac
+def parse_cut_off(method: dict) -> date:
+    text = method["data_vintage"]["proposed_1_0_0_cut_off"]
+    # "2026-12-31 (2026-Q4): ..."
+    token = text.strip().split()[0]
+    return date.fromisoformat(token)
 
 
-def dirichlet_uniform(rng: random.Random, k: int):
-    samples = [rng.gammavariate(1.0, 1.0) for _ in range(k)]
-    total = sum(samples) or 1.0
-    return [s / total for s in samples]
+def quarter_label(cut: date) -> str:
+    q = (cut.month - 1) // 3 + 1
+    return f"{cut.year}-Q{q}"
+
+
+def period_end(period: str) -> date:
+    if len(period) == 4 and period.isdigit():
+        return date(int(period), 12, 31)
+    if len(period) == 7 and period[4:6] == "-Q" and period[6] in "1234":
+        year, q = int(period[:4]), int(period[6])
+        month = q * 3
+        return date(year, month, monthrange(year, month)[1])
+    if len(period) == 7 and period[4] == "-" and period[5:].isdigit():
+        year, month = int(period[:4]), int(period[5:])
+        return date(year, month, monthrange(year, month)[1])
+    if len(period) == 7 and period[4:6] == "-H" and period[6] in "12":
+        year, half = int(period[:4]), int(period[6])
+        return date(year, 6 if half == 1 else 12, 30 if half == 1 else 31)
+    if len(period) >= 7 and "-W" in period:
+        year = int(period.split("-W")[0])
+        week = int(period.split("-W")[1])
+        return date.fromisocalendar(year, week, 7)
+    raise ValueError(f"Unrecognised period label: {period!r}")
+
+
+def period_midpoint(period: str) -> float:
+    """Return a year-fraction midpoint for OLS pace (e.g. 2025.5 for a calendar year)."""
+    end = period_end(period)
+    if len(period) == 4 and period.isdigit():
+        return int(period) + 0.5
+    if "-Q" in period:
+        year, q = int(period[:4]), int(period[6])
+        return year + (q - 0.5) / 4.0
+    if "-H" in period:
+        year, half = int(period[:4]), int(period[6])
+        return year + (0.25 if half == 1 else 0.75)
+    if "-W" in period:
+        year, week = int(period.split("-W")[0]), int(period.split("-W")[1])
+        return year + (week - 0.5) / 52.0
+    # YYYY-MM
+    return end.year + (end.month - 0.5) / 12.0
+
+
+def months_before(end: date, cut: date) -> bool:
+    """True if `end` is more than 36 months before `cut`."""
+    # 36 months before cut
+    year, month = cut.year, cut.month - 36
+    while month <= 0:
+        year -= 1
+        month += 12
+    threshold = date(year, month, min(cut.day, monthrange(year, month)[1]))
+    return end < threshold
+
+
+def round_half_up(value: float, places: int) -> float:
+    quant = Decimal("1") if places == 0 else Decimal("1." + "0" * places)
+    # Avoid binary float artefacts by going through a stable decimal string.
+    dec = Decimal(format(value, ".15g"))
+    return float(dec.quantize(quant, rounding=ROUND_HALF_UP))
+
+
+def round_int(value: float) -> int:
+    return int(Decimal(format(value, ".15g")).quantize(Decimal("1"), rounding=ROUND_HALF_UP))
+
+
+def load_json(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_csv(path: Path) -> list[dict]:
+    with path.open(encoding="utf-8") as handle:
+        return list(csv.DictReader(handle))
+
+
+def normalise(x: float, indicator: dict, direction: int) -> tuple[float, bool]:
+    scale = indicator["scale"]
+    floor, ceiling = float(indicator["floor"]), float(indicator["ceiling"])
+    if scale == "log":
+        if x <= 0 or floor <= 0 or ceiling <= 0:
+            raise RuntimeError(
+                f"Log-scale value must be > 0 (indicator {indicator['id']}, x={x}, floor={floor})"
+            )
+        score = 100.0 * (math.log(x) - math.log(floor)) / (math.log(ceiling) - math.log(floor))
+    elif scale == "linear":
+        if ceiling == floor:
+            raise RuntimeError(f"Zero-width goalpost for {indicator['id']}")
+        score = 100.0 * (x - floor) / (ceiling - floor)
+    else:
+        raise RuntimeError(f"Unknown scale {scale!r} for {indicator['id']}")
+    if direction == -1:
+        score = 100.0 - score
+    clipped = score < 0.0 or score > 100.0
+    score = max(0.0, min(100.0, score))
+    return score, clipped
+
+
+def provenance_rank(letter: str) -> int:
+    return {"A": 0, "B": 1, "C": 2}.get(letter, 3)
+
+
+def weakest_grade(letters: list[str]) -> str | None:
+    if not letters:
+        return None
+    return max(letters, key=provenance_rank)
+
+
+def parse_bool(value: str) -> bool:
+    return str(value).strip().lower() in {"true", "1", "yes"}
+
+
+def apply_caps(grade: str | None, *, sector: str | None, pillar: str, indicator: dict | None, caps: list) -> str | None:
+    if grade is None:
+        return None
+    out = grade
+    for cap in caps:
+        scope = cap["scope"]
+        max_g = cap["max_grade"][:1]  # "C" or "C for the AI dimension"
+        if scope == f"sector={sector}" and sector is not None:
+            if provenance_rank(out) < provenance_rank(max_g):
+                out = max_g
+        if scope == f"pillar={pillar}":
+            if provenance_rank(out) < provenance_rank(max_g):
+                out = max_g
+        if "ai_specificity=proxy (physical channel indicators)" in scope:
+            if indicator and indicator.get("channel") == "physical" and indicator.get("role") != "scored":
+                # D4 is AI-specific and not capped (method grade_rules.caps)
+                if indicator.get("id") == "D4_ent_autonomous":
+                    continue
+                if indicator.get("id") == "D5_robot_density" or indicator.get("role") == "sensitivity_only":
+                    if provenance_rank(out) < provenance_rank("C"):
+                        out = "C"
+    return out
+
+
+def eligible_row(row: dict, sources: dict, cut: date, method: dict) -> str | None:
+    """Return None if the row may be used, else a reason to skip/fail."""
+    src = sources.get(row["source_id"])
+    if src is None:
+        return f"unknown source_id {row['source_id']}"
+    if not src.get("verified", False):
+        return "K_SOURCE"
+    try:
+        tier = int(row.get("trust_tier") or src.get("tier") or 5)
+    except ValueError:
+        tier = 5
+    if tier >= 5:
+        return "tier_5"
+    try:
+        logged = date.fromisoformat(row["date_logged"])
+    except ValueError:
+        return "bad date_logged"
+    if logged > cut:
+        return "after_cut_off"
+    release = row.get("source_release_date") or ""
+    if release:
+        try:
+            if date.fromisoformat(release) > cut:
+                return "source_released_after_cut_off"
+        except ValueError:
+            return "bad source_release_date"
+    try:
+        end = period_end(row["period"])
+    except ValueError:
+        return "bad period"
+    if months_before(end, cut):
+        return "stale"
+    return None
+
+
+def pick_level_value(candidates: list[dict], indicator: dict) -> dict | None:
+    """Latest period in the latest segment with data, period_end already <= cut-off."""
+    if not candidates:
+        return None
+    segs = indicator.get("segments") or []
+    if segs:
+        # Prefer the last defined segment that has a candidate.
+        for seg in reversed(segs):
+            sid = seg["id"]
+            matched = [r for r in candidates if r.get("segment_id") == sid]
+            if matched:
+                matched.sort(key=lambda r: period_end(r["period"]))
+                return matched[-1]
+    candidates = sorted(candidates, key=lambda r: period_end(r["period"]))
+    return candidates[-1]
+
+
+def mean(values: list[float]) -> float:
+    return sum(values) / len(values)
 
 
 def compute(
     *,
+    method_path: Path = METHOD_PATH,
     registry_path: Path = REGISTRY_PATH,
-    pb_path: Path = PB_PATH,
     series_path: Path = SERIES_CSV,
     brief_path: Path = BRIEF_SIGNALS_CSV,
+    pb_path: Path = PB_PATH,
     version_path: Path = VERSION_PATH,
 ) -> dict:
-    registry = json.loads(registry_path.read_text(encoding="utf-8"))
-    pb_data = json.loads(pb_path.read_text(encoding="utf-8"))
+    method = load_json(method_path)
+    registry = load_json(registry_path)
+    series_rows = load_csv(series_path)
+    brief_rows = load_csv(brief_path) if brief_path.is_file() else []
+    pb_data = load_json(pb_path) if pb_path.is_file() else {}
 
-    with series_path.open("r", encoding="utf-8") as f:
-        series_rows = list(csv.DictReader(f))
+    cut = parse_cut_off(method)
+    sources = {s["id"]: s for s in registry["sources"]}
+    pillars_spec = {p["id"]: p for p in method["pillars"]}
+    indicators = {ind["id"]: {**ind, "pillar_id": p["id"]} for p in method["pillars"] for ind in p["indicators"]}
+    caps = method["grade_rules"]["caps"]
+    ev = method["evidence_rules"]
+    channel_weights = method["scoring"]["within_pillar_aggregation"]["channel_weights"]
+    w_digital = float(channel_weights["digital"])
+    w_physical = float(channel_weights["physical"])
+    mc = method["monte_carlo"]
+    block_a_ids = list(method["block_a"]["pillars"])
+    nominal = {k: float(v) for k, v in method["block_a"]["nominal_weights"].items()}
+    populations = method["target"]["populations"]
 
-    with brief_path.open("r", encoding="utf-8") as f:
-        brief_rows = list(csv.DictReader(f))
+    # Fail if a [K] source is present in the file at all (used or not).
+    for row in series_rows:
+        src = sources.get(row["source_id"])
+        if src is None:
+            raise RuntimeError(f"Unknown source {row['source_id']} in series.csv ({row['obs_id']})")
+        if not src.get("verified", False):
+            raise RuntimeError(f"Unverified source {row['source_id']} in series.csv ({row['obs_id']})")
+        for field in ("obs_id", "period", "pillar", "geo", "value", "source_id"):
+            if not str(row.get(field, "")).strip():
+                raise RuntimeError(f"Missing required field {field} on {row.get('obs_id')}")
 
-    sources_by_id = {s["id"]: s for s in registry["sources"]}
-    pillars_by_id = {p["id"]: p for p in registry["pillars"]}
+    classified: list[dict] = []
+    stale_rows: list[dict] = []
+    for row in series_rows:
+        reason = eligible_row(row, sources, cut, method)
+        item = dict(row)
+        item["_reason"] = reason
+        try:
+            item["_value"] = float(row["value"])
+        except ValueError as exc:
+            raise RuntimeError(f"Non-numeric value on {row['obs_id']}") from exc
+        item["_end"] = period_end(row["period"])
+        if reason == "stale":
+            stale_rows.append(item)
+            continue
+        if reason in {"after_cut_off", "source_released_after_cut_off", "tier_5"}:
+            continue
+        if reason == "K_SOURCE":
+            raise RuntimeError(f"Unverified source {row['source_id']} in series.csv ({row['obs_id']})")
+        if reason:
+            continue
+        classified.append(item)
 
-    # Verify §0 rule: no [K] source in series_rows
-    for r in series_rows:
-        src = sources_by_id.get(r["source_id"])
-        if not src or not src.get("verified", False):
-            raise RuntimeError(f"Unverified source {r['source_id']} in series.csv ({r['obs_id']})")
+    def rows_for(pop_id: str, indicator_id: str, *, sector: str | None = "ALL") -> list[dict]:
+        geos = POPULATION_GEO[pop_id]
+        out = []
+        for row in classified:
+            if row.get("indicator_id") != indicator_id:
+                continue
+            if row["geo"] not in geos:
+                continue
+            if sector is not None and row["sector"] != sector:
+                continue
+            if indicators[indicator_id].get("role") in {"sensitivity_only", "context_only"}:
+                continue
+            if indicators[indicator_id].get("exists") is False:
+                continue
+            out.append(row)
+        return out
 
-    # Compute pillar level scores, layer breakdowns (reach, depth, embeddedness), momentum, velocity
-    # Anchored against fixed goalposts in registry.v0.6.json and verified observations in series.csv
-    pillar_metrics = {
-        "deployment": {
-            "code": "P1",
-            "level_score": 28.4,
-            "digital_score": 32.2,
-            "physical_score": 22.8,
-            "reach_score": 34.5,
-            "depth_score": 18.2,
-            "embeddedness_score": 32.5,
-            "momentum_percentile": 82,
-            "velocity_pp_yr": 6.5,
-            "plain_meaning_en": "How many companies, public agencies, and people actually use AI in daily work or physical machines (not just free trials).",
-            "plain_meaning_fi": "Kuinka moni yritys, virasto ja kansalainen käyttää tekoälyä oikeassa arjen työssä tai fyysisissä koneissa (ei vain kokeiluissa).",
-            "score_guide_en": "0 = almost no real use. 100 = 80% of organizations use AI in daily operations.",
-            "score_guide_fi": "0 = ei juuri käyttöä. 100 = 80 % organisaatioista käyttää tekoälyä arjen toiminnassa.",
-            "primary_metric_label_en": "20.0% of EU companies use AI (+6.5 points per year, Finland 38.0%, Denmark 42.0%). 32.7% of EU adults use generative AI. Factories installed 542,076 robots (proxy), and the FDA cleared over 1,620 medical AI devices.",
-            "primary_metric_label_fi": "20,0 % EU-yrityksistä käyttää tekoälyä (+6,5 pistettä vuodessa, Suomi 38,0 %, Tanska 42,0 %). 32,7 % EU-aikuisista käyttää generatiivista tekoälyä. Tehtaisiin asennettiin 542 076 robottia (korvikemittari), ja FDA hyväksyi yli 1 620 lääkintälaitetta.",
-            "headline_value": "20.0% / 32.7%",
-            "headline_unit": "EU companies / EU adults using AI",
-            "ai_specificity": "specific + proxy (physical)",
-            "grade": "A-Y"
-        },
-        "cost_to_serve": {
-            "code": "P2",
-            "level_score": 41.2,
-            "digital_score": 44.5,
-            "physical_score": 24.0,
-            "reach_score": 52.0,
-            "depth_score": 41.5,
-            "embeddedness_score": 30.1,
-            "momentum_percentile": 86,
-            "velocity_pp_yr": 7.8,
-            "plain_meaning_en": "The total cost to finish a real job from start to finish with AI. Includes cloud computing bills, human checking, and fixing errors when multi-step tasks fail.",
-            "plain_meaning_fi": "Kokonaiskustannus sille, että oikea työtehtävä saadaan tekoälyllä valmiiksi alusta loppuun. Sisältää laskentakulut, ihmisen tarkistustyön ja virheiden korjauksen.",
-            "score_guide_en": "Lower cost and higher reliability give a higher score. 100 = multi-step tasks finish reliably at one-tenth of today's cost.",
-            "score_guide_fi": "Pienempi kustannus ja suurempi luotettavuus nostavat pistettä. 100 = monivaiheiset tehtävät valmistuvat luotettavasti kymmenesosalla nykykulusta.",
-            "primary_metric_label_en": "Anthropic spends 54.9% of its revenue on compute ($8.95B of $16.29B in its S-1 filing). Models wrote 180 million lines of Rocq mathematical proofs, but finish fewer than 50% of multi-step hospital tasks.",
-            "primary_metric_label_fi": "Anthropic käyttää 54,9 % liikevaihdostaan laskentaan (8,95 mrd. $ / 16,29 mrd. $ S-1-ilmoituksessa). Mallit tuottivat 180 miljoonaa riviä Rocq-todistuksia, mutta saavat valmiiksi alle 50 % monivaiheisista sairaalatehtävistä.",
-            "headline_value": "54.9% / <50%",
-            "headline_unit": "compute share of revenue · full task completion",
-            "ai_specificity": "specific",
-            "grade": "A-Q"
-        },
-        "capital_intensity": {
-            "code": "P3",
-            "level_score": 58.6,
-            "digital_score": 64.2,
-            "physical_score": 31.5,
-            "reach_score": 66.0,
-            "depth_score": 58.0,
-            "embeddedness_score": 51.8,
-            "momentum_percentile": 94,
-            "velocity_pp_yr": 12.4,
-            "plain_meaning_en": "How much money companies lock into long-term data centres, AI chips, multi-year cloud contracts, and physical robots.",
-            "plain_meaning_fi": "Kuinka paljon rahaa yritykset sitovat pitkäaikaisiin datakeskuksiin, tekoälysiruihin, monivuotisiin pilvisopimuksiin ja robotteihin.",
-            "score_guide_en": "Higher committed capital investment gives a higher score. Every $1 of hardware requires $2 to $10 of workflow redesign.",
-            "score_guide_fi": "Suurempi pitkäaikainen pääomasitoumus nostaa pistettä. Jokainen laitedollari vaatii 2–10 dollaria työnkulkujen uudistamiseen.",
-            "primary_metric_label_en": "Anthropic locked in $265.6B in multi-year cloud and compute contracts (up from $54.6B at the end of 2025). Every $1 of compute requires $2 to $10 of process redesign (J-curve multiplier).",
-            "primary_metric_label_fi": "Anthropic sitoutui 265,6 mrd. $ monivuotisiin pilvi- ja laskentasopimuksiin (54,6 mrd. $ vuoden 2025 lopussa). Jokainen laskentaan sijoitettu dollari vaatii 2–10 dollaria prosessien uudistamiseen (J-käyrän kerroin).",
-            "headline_value": "$265.6B",
-            "headline_unit": "Anthropic S-1 compute contracts (minimum)",
-            "ai_specificity": "specific",
-            "grade": "A-Q"
-        },
-        "labour_reorganisation": {
-            "code": "P4",
-            "level_score": 31.2,
-            "digital_score": 34.0,
-            "physical_score": 19.5,
-            "reach_score": 36.5,
-            "depth_score": 29.0,
-            "embeddedness_score": 28.1,
-            "momentum_percentile": 68,
-            "velocity_pp_yr": 3.4,
-            "plain_meaning_en": "How much companies redesign job roles, daily workflows, and team structures around AI instead of doing old tasks the old way.",
-            "plain_meaning_fi": "Kuinka paljon yritykset muuttavat työnkuvia, päivittäisiä työnkulkuja ja tiimirakenteita tekoälyn ympärille vanhojen tapojen sijaan.",
-            "score_guide_en": "Diagnostic score (measures the scale of workplace change, not whether it is good or bad).",
-            "score_guide_fi": "Diagnostinen pisteluku (mittaa työn muutoksen laajuutta, ei sen hyvyyttä tai huonoutta).",
-            "primary_metric_label_en": "24.8% of companies redesign work processes around AI (NBER w34836). Workers use AI to assist human tasks in 36.5% of observed interactions rather than replace the worker (Anthropic Economic Index).",
-            "primary_metric_label_fi": "24,8 % yrityksistä muuttaa työnkulkujaan tekoälyn ympärille (NBER w34836). Tekoäly avustaa työntekijää 36,5 %:ssa tehtävistä sen sijaan, että se korvaisi työntekijän (Anthropic Economic Index).",
-            "headline_value": "24.8%",
-            "headline_unit": "companies redesigning workflows (diagnostic)",
-            "ai_specificity": "specific",
-            "grade": "B-Y"
-        },
-        "governance_burden": {
-            "code": "P5",
-            "level_score": 64.5,
-            "digital_score": 66.0,
-            "physical_score": 58.0,
-            "reach_score": 70.0,
-            "depth_score": 61.5,
-            "embeddedness_score": 62.0,
-            "momentum_percentile": 90,
-            "velocity_pp_yr": 11.2,
-            "plain_meaning_en": "The weight of mandatory laws, quality standards, banking rules, and court liabilities that organizations must meet to use AI legally.",
-            "plain_meaning_fi": "Pakollisten lakien, laatustandardien, pankkisääntöjen ja oikeudellisen vastuun määrä, joka organisaation on täytettävä käyttääkseen tekoälyä laillisesti.",
-            "score_guide_en": "Diagnostic score showing how strict and binding official rules and audits are.",
-            "score_guide_fi": "Diagnostinen pisteluku, joka kuvaa virallisen sääntelyn ja valvonnan tiukkuutta.",
-            "primary_metric_label_en": "The EU published standard EN 18286:2026 in the Official Journal for AI Act quality management (Article 17). The Financial Stability Board issued 12 banking rules, and courts logged over 420 AI hallucination cases.",
-            "primary_metric_label_fi": "EU julkaisi EN 18286:2026 -laatustandardin virallisessa lehdessä (tekoälyasetuksen 17 artikla). Finanssimarkkinoiden vakausneuvosto julkaisi 12 pankkiohjetta, ja tuomioistuimet kirjasivat yli 420 hallusinaatiotapausta.",
-            "headline_value": "EN 18286 · FSB 12",
-            "headline_unit": "official EU standard and banking rules",
-            "ai_specificity": "specific",
-            "grade": "A-M"
-        },
-        "human_capital": {
-            "code": "P6",
-            "level_score": 46.8,
-            "digital_score": 51.0,
-            "physical_score": 28.0,
-            "reach_score": 54.0,
-            "depth_score": 44.0,
-            "embeddedness_score": 42.4,
-            "momentum_percentile": 74,
-            "velocity_pp_yr": 4.9,
-            "plain_meaning_en": "Worker skills, practical training, and clear company rules that let staff use AI safely and spot errors.",
-            "plain_meaning_fi": "Työntekijöiden osaaminen, käytännön koulutus ja selkeät yritysohjeet, joiden avulla tekoälyä käytetään turvallisesti ja virheet tunnistaen.",
-            "score_guide_en": "Higher worker skill coverage and written company AI rules give a higher score.",
-            "score_guide_fi": "Laajempi henkilöstön osaaminen ja kirjalliset tekoälyohjeet nostavat pistettä.",
-            "primary_metric_label_en": "54.0% of Finnish companies maintain written AI skill and governance rules (Statistics Finland table 13vg). 76.0% of software developers use AI tools in their work (Stack Overflow 2026).",
-            "primary_metric_label_fi": "54,0 % suomalaisyrityksistä ylläpitää kirjallisia tekoäly- ja osaamisohjeita (Tilastokeskus 13vg). 76,0 % ohjelmistokehittäjistä käyttää tekoälytyökaluja työssään (Stack Overflow 2026).",
-            "headline_value": "54.0% / 76.0%",
-            "headline_unit": "Finnish company AI rules / developer use",
-            "ai_specificity": "specific",
-            "grade": "A-Y"
-        },
-        "ecological_balance": {
-            "code": "P7",
-            "level_score": 52.4,
-            "burden_increase_score": 52.4,
-            "burden_reduction_score": 26.8,
-            "digital_score": 54.0,
-            "physical_score": 48.0,
-            "reach_score": 58.0,
-            "depth_score": 50.0,
-            "embeddedness_score": 49.2,
-            "momentum_percentile": 81,
-            "velocity_pp_yr": 6.8,
-            "plain_meaning_en": "Two-way environmental balance: how much AI increases planetary load (electricity, water, land, e-waste) versus how much AI reduces load (grid optimization, precision farming, leak detection, satellite monitoring).",
-            "plain_meaning_fi": "Kaksisuuntainen ympäristötase: kuinka paljon tekoäly lisää kuormitusta (sähkö, vesi, maankäyttö, SER-jäte) ja kuinka paljon se vähentää kuormitusta (verkon optimointi, täsmäviljely, vuotojen etsintä, satelliittivalvonta).",
-            "score_guide_en": "Two-way meter: Burden Increase (+52.4 / 100, metered) vs Burden Reduction (-26.8 / 100, field + modelled after a 35% Jevons rebound discount). Never subtracted into a single net number.",
-            "score_guide_fi": "Kaksisuuntainen mittari: Kuormituksen kasvu (+52,4 / 100, mitattu) vs Kuormituksen vähennys (-26,8 / 100, kenttä + mallinnettu 35 % Jevons-vähennyksellä). Ei koskaan vähennetä yhdeksi nettoluvuksi.",
-            "primary_metric_label_en": "Burden Increase (+52.4): ~485 TWh/yr electricity (IEA) and stressed-basin water. Burden Reduction (-26.8): 15–30% precision fertilizer savings, water leak detection, and satellite deforestation alerts. 7 of 9 planetary boundaries are crossed.",
-            "primary_metric_label_fi": "Kuormituksen kasvu (+52,4): ~485 TWh/v sähköä (IEA) ja jäähdytysvesi. Kuormituksen vähennys (-26,8): 15–30 % lannoitesäästöt täsmäviljelyssä, vesivuotojen paikannus ja satelliittivalvonta. 7/9 planetaarista rajaa ylitetty.",
-            "headline_value": "+52.4 ↑ / -26.8 ↓",
-            "headline_unit": "Burden Increase vs Burden Reduction (7/9 PB)",
-            "ai_specificity": "specific + macro_context",
-            "grade": "B-Y"
-        },
-        "energy_capacity": {
-            "code": "P8",
-            "level_score": 34.8,
-            "digital_score": 36.0,
-            "physical_score": 32.0,
-            "reach_score": 41.0,
-            "depth_score": 33.5,
-            "embeddedness_score": 30.0,
-            "momentum_percentile": 29,
-            "velocity_pp_yr": -5.4,
-            "plain_meaning_en": "Whether electrical grids, power plants, and environmental permits can deliver enough power to connect new AI data centres on time.",
-            "plain_meaning_fi": "Pystyvätkö sähköverkot, voimalaitokset ja ympäristöluvat toimittamaan riittävästi sähkötehoa uusille datakeskuksille ajoissa.",
-            "score_guide_en": "Faster grid connections and available power give a higher score. Permit freezes lower the score.",
-            "score_guide_fi": "Nopeampi verkkoliityntä ja saatavilla oleva sähköteho nostavat pistettä. Lupasulut laskevat pistettä.",
-            "primary_metric_label_en": "Texas regulators paused 8.7 GW of gas power across 6 data-centre campuses (16 air permits). Projects wait in the TCEQ and ERCOT review queue until 10 December 2026.",
-            "primary_metric_label_fi": "Texasin viranomaiset keskeyttivät 8,7 GW kaasuvoimaa kuudella datakeskusalueella (16 ilmalupaa). Hankkeet odottavat TCEQ:n ja ERCOTin lupajonossa 10.12.2026 asti.",
-            "headline_value": "8.7 GW paused",
-            "headline_unit": "power capacity waiting in Texas permit queue",
-            "ai_specificity": "specific",
-            "grade": "A-Q"
-        },
-        "ownership_distribution": {
-            "code": "P9",
-            "level_score": 38.5,
-            "digital_score": 39.5,
-            "physical_score": 35.0,
-            "reach_score": 42.0,
-            "depth_score": 37.5,
-            "embeddedness_score": 36.0,
-            "momentum_percentile": 42,
-            "velocity_pp_yr": -2.1,
-            "plain_meaning_en": "Whether AI revenue, cloud infrastructure, and adoption spread across many firms and countries or concentrate in a few tech giants.",
-            "plain_meaning_fi": "Jakautuvatko tekoälyn tulot, pilvi-infrastruktuuri ja käyttö laajasti eri yrityksille ja maille vai keskittyvätkö ne muutamalle jättiyhtiölle.",
-            "score_guide_en": "Diagnostic score tracking market concentration and the gap between leading and lagging countries.",
-            "score_guide_fi": "Diagnostinen pisteluku, joka seuraa markkinoiden keskittymistä sekä maiden välistä käyttökuilua.",
-            "primary_metric_label_en": "48% of Anthropic's revenue flows through 3 cloud marketplaces (AWS, Google Cloud, and Azure). Within the EU, the adoption gap between Denmark (42.0%) and Romania (5.2%) is 36.8 percentage points.",
-            "primary_metric_label_fi": "48 % Anthropicin liikevaihdosta kulkee 3 pilvikauppapaikan (AWS, Google Cloud ja Azure) kautta. EU:n sisäinen käyttökuilu Tanskan (42,0 %) ja Romanian (5,2 %) välillä on 36,8 prosenttiyksikköä.",
-            "headline_value": "48% · 36.8 pts",
-            "headline_unit": "3-cloud revenue share · EU country gap",
-            "ai_specificity": "specific",
-            "grade": "A-Q"
-        },
-        "market_openness": {
-            "code": "P10",
-            "level_score": 44.2,
-            "digital_score": 46.5,
-            "physical_score": 34.0,
-            "reach_score": 51.0,
-            "depth_score": 42.5,
-            "embeddedness_score": 39.1,
-            "momentum_percentile": 62,
-            "velocity_pp_yr": 3.1,
-            "plain_meaning_en": "How easily an organization can switch AI providers, run open-weight models on its own servers, and avoid vendor lock-in.",
-            "plain_meaning_fi": "Kuinka helposti organisaatio voi vaihtaa tekoälytoimittajaa, ajaa avoimia malleja omilla palvelimillaan ja välttää toimittajaloukun.",
-            "score_guide_en": "Higher open-model quality and lower cloud switching costs give a higher score.",
-            "score_guide_fi": "Avoimien mallien parempi suorituskyky ja pienempi toimittajaloukku nostavat pistettä.",
-            "primary_metric_label_en": "Open-weight model Kimi K3.1 Pro matches closed frontier models in accuracy, but rationed live API capacity within 48 hours. Five cloud companies control 67% of frontier AI compute.",
-            "primary_metric_label_fi": "Avoimen painon Kimi K3.1 Pro vastaa suljettuja huippumalleja tarkkuudessa, mutta joutui säännöstelemään kapasiteettia 48 tunnissa. Viisi pilvijättiä hallitsee 67 % huippulaskennasta.",
-            "headline_value": "38.5% open / 67% top-5",
-            "headline_unit": "open-model usage share · top-5 compute share",
-            "ai_specificity": "specific",
-            "grade": "B-Q"
-        }
-    }
-
-    # Block definitions from registry.v0.6.json
-    block_a_pillars = registry["blocks"]["A_diffusion"]       # deployment, cost_to_serve, capital_intensity
-    block_b_pillars = registry["blocks"]["B_conditions"]      # energy_capacity, governance_burden, human_capital, market_openness
-    block_c_pillars = registry["blocks"]["C_consequences"]    # labour_reorganisation, ownership_distribution, ecological_balance
-
-    # Compute Block A, DAI, PAI and 1,000-draw Monte Carlo simulation (§7)
-    rng = random.Random(MC_SEED)
-    n_draws = N_DRAWS
-
-    block_a_draws = []
-    dai_draws = []
-    pai_draws = []
-    geom_draws = []
-
-    for _ in range(n_draws):
-        noisy_level = {}
-        noisy_dig = {}
-        noisy_phys = {}
-        for pid in block_a_pillars:
-            pm = pillar_metrics[pid]
-            sigma = 0.045 if pm["grade"].startswith("A") else 0.075
-            eps = rng.gauss(0.0, sigma)
-            noisy_level[pid] = clamp(pm["level_score"] * (1.0 + eps), 1.0, 100.0)
-            noisy_dig[pid] = clamp(pm["digital_score"] * (1.0 + eps), 1.0, 100.0)
-            noisy_phys[pid] = clamp(pm["physical_score"] * (1.0 + rng.gauss(0.0, 0.08)), 1.0, 100.0)
-
-        w_a = dirichlet_uniform(rng, len(block_a_pillars))
-        a_arith = sum(w_a[i] * noisy_level[pid] for i, pid in enumerate(block_a_pillars))
-        a_geom = math.exp(sum(w_a[i] * math.log(noisy_level[pid]) for i, pid in enumerate(block_a_pillars)))
-
-        block_a_draws.append(a_arith if rng.random() < 0.7 else a_geom)
-        geom_draws.append(a_geom)
-        dai_draws.append(sum(w_a[i] * noisy_dig[pid] for i, pid in enumerate(block_a_pillars)))
-        pai_draws.append(sum(w_a[i] * noisy_phys[pid] for i, pid in enumerate(block_a_pillars)))
-
-    block_a_draws.sort()
-    dai_draws.sort()
-    pai_draws.sort()
-    geom_draws.sort()
-
-    block_a_equal = round(sum(pillar_metrics[p]["level_score"] for p in block_a_pillars) / len(block_a_pillars), 1)
-    dai_equal = round(sum(pillar_metrics[p]["digital_score"] for p in block_a_pillars) / len(block_a_pillars), 1)
-    pai_equal = round(sum(pillar_metrics[p]["physical_score"] for p in block_a_pillars) / len(block_a_pillars), 1)
-
-    block_b_equal = round(sum(pillar_metrics[p]["level_score"] for p in block_b_pillars) / len(block_b_pillars), 1)
-    block_c_equal = round(sum(pillar_metrics[p]["level_score"] for p in block_c_pillars) / len(block_c_pillars), 1)
-
-    # 10x10 Sector x Pillar Grid using exact sector IDs and pillar IDs from registry.v0.6.json
-    sector_pillar_profiles = {
-        "software": {
-            "deployment": 64.5, "cost_to_serve": 68.0, "capital_intensity": 78.5,
-            "labour_reorganisation": 54.0, "governance_burden": 68.0, "human_capital": 76.0,
-            "ecological_balance": 58.0, "energy_capacity": 42.0, "ownership_distribution": 48.0, "market_openness": 52.0,
-            "grade": "A"
-        },
-        "finance_insurance": {
-            "deployment": 46.2, "cost_to_serve": 52.0, "capital_intensity": 58.0,
-            "labour_reorganisation": 44.0, "governance_burden": 72.5, "human_capital": 58.0,
-            "ecological_balance": 34.0, "energy_capacity": 48.0, "ownership_distribution": 41.0, "market_openness": 44.0,
-            "grade": "A"
-        },
-        "professional_services": {
-            "deployment": 41.8, "cost_to_serve": 49.5, "capital_intensity": 48.0,
-            "labour_reorganisation": 46.5, "governance_burden": 58.0, "human_capital": 56.0,
-            "ecological_balance": 31.0, "energy_capacity": 51.0, "ownership_distribution": 45.0, "market_openness": 49.0,
-            "grade": "A"
-        },
-        "manufacturing": {
-            "deployment": 34.5, "cost_to_serve": 36.0, "capital_intensity": 52.0,
-            "labour_reorganisation": 32.0, "governance_burden": 54.0, "human_capital": 41.0,
-            "ecological_balance": 56.0, "energy_capacity": 38.0, "ownership_distribution": 42.0, "market_openness": 41.0,
-            "grade": "A"
-        },
-        "energy_utilities": {
-            "deployment": 28.4, "cost_to_serve": 34.0, "capital_intensity": 62.0,
-            "labour_reorganisation": 26.0, "governance_burden": 64.0, "human_capital": 42.0,
-            "ecological_balance": 68.0, "energy_capacity": 24.5, "ownership_distribution": 39.0, "market_openness": 38.0,
-            "grade": "A"
-        },
-        "healthcare": {
-            "deployment": 26.8, "cost_to_serve": 31.5, "capital_intensity": 47.0,
-            "labour_reorganisation": 28.0, "governance_burden": 69.0, "human_capital": 44.0,
-            "ecological_balance": 36.0, "energy_capacity": 46.0, "ownership_distribution": 43.0, "market_openness": 39.0,
-            "grade": "A"
-        },
-        "education": {
-            "deployment": 31.0, "cost_to_serve": 48.5, "capital_intensity": 39.0,
-            "labour_reorganisation": 38.0, "governance_burden": 52.0, "human_capital": 54.0,
-            "ecological_balance": 29.0, "energy_capacity": 49.0, "ownership_distribution": 46.0, "market_openness": 58.0,
-            "grade": "B"
-        },
-        "retail_logistics": {
-            "deployment": 24.4, "cost_to_serve": 33.0, "capital_intensity": 41.0,
-            "labour_reorganisation": 29.5, "governance_burden": 44.0, "human_capital": 36.0,
-            "ecological_balance": 48.0, "energy_capacity": 43.0, "ownership_distribution": 38.0, "market_openness": 42.0,
-            "grade": "A"
-        },
-        "public_administration": {
-            "deployment": 21.2, "cost_to_serve": 28.0, "capital_intensity": 35.0,
-            "labour_reorganisation": 24.0, "governance_burden": 74.0, "human_capital": 39.0,
-            "ecological_balance": 32.0, "energy_capacity": 45.0, "ownership_distribution": 51.0, "market_openness": 47.0,
-            "grade": "A"
-        },
-        "agriculture": {
-            "deployment": 12.8, "cost_to_serve": 19.5, "capital_intensity": 26.0,
-            "labour_reorganisation": 16.0, "governance_burden": 38.0, "human_capital": 24.0,
-            "ecological_balance": 62.0, "energy_capacity": 44.0, "ownership_distribution": 36.0, "market_openness": 35.0,
-            "grade": "A"
-        }
-    }
-
-    obs_by_cell = defaultdict(list)
-    obs_by_pillar = defaultdict(list)
-    for r in series_rows:
-        obs_by_pillar[r["pillar"]].append(r)
-        if r["sector"] != "ALL":
-            obs_by_cell[(r["sector"], r["pillar"])].append(r)
-
-    briefs_by_cell = defaultdict(list)
-    briefs_by_pillar = defaultdict(list)
-    for b in brief_rows:
-        briefs_by_pillar[b["pillar"]].append(b)
-        briefs_by_cell[(b["sector"], b["pillar"])].append(b)
-
-    sector_summaries = []
-    grid_cells = []
-
-    for sec in registry["sectors"]:
-        sid = sec["id"]
-        prof = sector_pillar_profiles[sid]
-        sec_block_a = round(sum(prof[p] for p in block_a_pillars) / len(block_a_pillars), 1)
-        sec_block_b = round(sum(prof[p] for p in block_b_pillars) / len(block_b_pillars), 1)
-        sec_block_c = round(sum(prof[p] for p in block_c_pillars) / len(block_c_pillars), 1)
-        sec_dai = round(sec_block_a * (1.08 if sid in ("software", "finance_insurance", "professional_services") else 0.92), 1)
-        sec_pai = round(sec_block_a * (1.15 if sid in ("manufacturing", "energy_utilities", "healthcare", "agriculture") else 0.45), 1)
-
-        sector_summaries.append({
-            "sector_id": sid,
-            "code": "/".join(sec["nace_section"]),
-            "name_en": sec["label_en"],
-            "name_fi": sec["label_fi"],
-            "provenance_grade": prof["grade"],
-            "block_a_score": sec_block_a,
-            "dai_score": sec_dai,
-            "pai_score": sec_pai,
-            "block_b_score": sec_block_b,
-            "block_c_score": sec_block_c
-        })
-
-        for pid in pillars_by_id:
-            val = prof[pid]
-            cell_obs = obs_by_cell.get((sid, pid), [])
-            if not cell_obs:
-                cell_obs = [o for o in obs_by_pillar.get(pid, []) if o["sector"] == "ALL"][:2]
-            cell_briefs = briefs_by_cell.get((sid, pid), [])
-
-            reach_v = round(clamp(val * 1.14, 0, 100), 1)
-            depth_v = round(clamp(val * 0.88, 0, 100), 1)
-            embed_v = round(clamp(val * 0.98, 0, 100), 1)
-
-            grid_cells.append({
-                "sector_id": sid,
-                "pillar_id": pid,
-                "score": val,
-                "reach": reach_v,
-                "depth": depth_v,
-                "embeddedness": embed_v,
-                "grade": prof["grade"],
-                "ai_specificity": "proxy" if (pid == "deployment" and sid == "manufacturing") else pillar_metrics[pid]["ai_specificity"],
-                "obs_ids": [o["obs_id"] for o in cell_obs],
-                "brief_dates": [b["brief_date"] for b in cell_briefs]
-            })
-
-    # Comparable-provenance Sector Gap (§4): only Grade A/B sectors
-    comparable_sectors = [s for s in sector_summaries if s["provenance_grade"] in ("A", "B")]
-    comparable_sectors_sorted = sorted(comparable_sectors, key=lambda x: x["block_a_score"], reverse=True)
-    top_sec = comparable_sectors_sorted[0]
-    bot_sec = comparable_sectors_sorted[-1]
-    sector_gap_pp = round(top_sec["block_a_score"] - bot_sec["block_a_score"], 1)
-
-    # Monthly Brief Pace-Layer Mix diagnostic (§2.1)
-    pace_counts = Counter(b["pace_layer"] for b in brief_rows)
-    block_counts = Counter(b["block"] for b in brief_rows)
-    total_briefs = len(brief_rows) or 1
-    pace_mix = {}
-    for layer_id in registry["pace_layers"]:
-        cnt = pace_counts.get(layer_id, 0)
-        pace_mix[layer_id] = {
-            "count": cnt,
-            "share_pct": round(100.0 * cnt / total_briefs, 1)
+    def evidence_for_pillar(pillar_id: str) -> dict:
+        """Count observations and sources across all geographies (plan 2.3)."""
+        obs = [
+            r
+            for r in classified
+            if r["pillar"] == pillar_id
+            and r.get("indicator_id")
+            and indicators.get(r["indicator_id"], {}).get("role") not in {"sensitivity_only"}
+        ]
+        # context_only still counts toward evidence (they are verified observations on the pillar)
+        source_ids = {r["source_id"] for r in obs}
+        official = {r["source_id"] for r in obs if int(r["trust_tier"]) == 1}
+        return {
+            "n": len(obs),
+            "source_ids": sorted(source_ids),
+            "n_sources": len(source_ids),
+            "n_official_sources": len(official),
         }
 
-    # Stewart Brand Pace-Mismatch Diagnostic (§2):
-    # Compares fast commerce/capital velocity (`deployment`, `cost_to_serve`, `capital_intensity`)
-    # against slower culture/infrastructure/reorganisation (`labour_reorganisation`, `human_capital`, `energy_capacity`)
-    fast_velocity = round(
-        (pillar_metrics["deployment"]["velocity_pp_yr"]
-         + pillar_metrics["cost_to_serve"]["velocity_pp_yr"]
-         + pillar_metrics["capital_intensity"]["velocity_pp_yr"]) / 3.0, 2
-    )
-    slow_velocity = round(
-        (pillar_metrics["labour_reorganisation"]["velocity_pp_yr"]
-         + pillar_metrics["human_capital"]["velocity_pp_yr"]
-         + abs(pillar_metrics["energy_capacity"]["velocity_pp_yr"])) / 3.0, 2
-    )
-    pace_shear_ratio = round(fast_velocity / max(slow_velocity, 0.1), 2)
+    def score_indicator(indicator: dict, row: dict, direction: int) -> dict:
+        raw = row["_value"]
+        score, clipped = normalise(raw, indicator, direction)
+        grade = (row.get("grade") or "C")[0]
+        grade = apply_caps(grade, sector=row.get("sector"), pillar=indicator["pillar_id"], indicator=indicator, caps=caps)
+        try:
+            sigma = float(row["sigma"]) if row.get("sigma") else 0.045
+        except ValueError:
+            sigma = 0.045
+        return {
+            "indicator_id": indicator["id"],
+            "obs_id": row["obs_id"],
+            "period": row["period"],
+            "geo": row["geo"],
+            "sector": row["sector"],
+            "raw": raw,
+            "score": score,
+            "clipped": clipped,
+            "grade": grade,
+            "sigma": sigma,
+            "sigma_basis": row.get("sigma_basis") or "",
+            "channel": indicator["channel"],
+            "layer": indicator["layer"],
+            "segment_id": row.get("segment_id") or "",
+            "source_id": row["source_id"],
+        }
 
-    j_curve_sensitivity = {
-        "benchmark_label_en": "Every $1 of direct compute requires $2 to $10 of process redesign and training (Brynjolfsson, Rock, and Syverson 2021).",
-        "benchmark_label_fi": "Jokainen suoraan laskentaan sijoitettu dollari vaatii 2–10 dollaria prosessien uudistamiseen ja koulutukseen (Brynjolfsson, Rock ja Syverson 2021).",
-        "audited_lab_h1_compute_usd_b": 8.95,
-        "audited_lab_commitments_usd_b": 265.6,
-        "low_multiplier_2x": 2.0,
-        "mid_multiplier_5x": 5.0,
-        "high_multiplier_10x": 10.0,
-        "implied_complement_gap_points": round(pillar_metrics["capital_intensity"]["level_score"] - pillar_metrics["labour_reorganisation"]["level_score"], 1)
-    }
+    def aggregate_pillar(pillar: dict, measured: list[dict]) -> dict:
+        """measured: list of scored indicator records for one population (sector ALL)."""
+        pid = pillar["id"]
+        defined = [
+            ind
+            for ind in pillar["indicators"]
+            if ind.get("role") not in {"sensitivity_only", "context_only"} and ind.get("exists") is not False
+        ]
+        measured_ids = {m["indicator_id"] for m in measured}
+        unmeasured = [ind["id"] for ind in defined if ind["id"] not in measured_ids]
+        by_channel_layer: dict[tuple[str, str], list[dict]] = defaultdict(list)
+        for item in measured:
+            by_channel_layer[(item["channel"], item["layer"])].append(item)
 
-    pillars_out = []
-    for p in registry["pillars"]:
-        pid = p["id"]
-        pm = pillar_metrics[pid]
-        pillars_out.append({
-            **p,
-            **pm,
-            "observation_count": len(obs_by_pillar.get(pid, [])),
-            "brief_signal_count": len(briefs_by_pillar.get(pid, [])),
-            "recent_briefs": [
-                {
-                    "date": b["brief_date"],
-                    "title_en": b["title_en"],
-                    "title_fi": b["title_fi"],
-                    "signal_score": float(b["signal_score"]),
-                    "stakes_score": float(b["stakes_score"]),
-                    "quant_metric": b["quant_metric"],
-                    "brief_path": b["brief_path"]
+        channels: dict[str, dict] = {}
+        for channel in ("digital", "physical"):
+            layer_scores = []
+            layer_detail = {}
+            for layer in ("reach", "depth", "embeddedness"):
+                items = by_channel_layer.get((channel, layer), [])
+                if not items:
+                    continue
+                lscore = mean([it["score"] for it in items])
+                layer_scores.append(lscore)
+                layer_detail[layer] = {
+                    "score": lscore,
+                    "n_indicators": len(items),
+                    "indicators": [it["indicator_id"] for it in items],
                 }
-                for b in briefs_by_pillar.get(pid, [])[:4]
+            if not layer_scores:
+                continue
+            channels[channel] = {
+                "score": mean(layer_scores),
+                "layers": layer_detail,
+            }
+
+        if not channels:
+            status = "not measured"
+            pillar_score = None
+            coverage_note = "digital_none"
+        elif "digital" in channels and "physical" in channels:
+            pillar_score = w_digital * channels["digital"]["score"] + w_physical * channels["physical"]["score"]
+            coverage_note = "both"
+        elif "digital" in channels:
+            pillar_score = channels["digital"]["score"]
+            coverage_note = "digital_only"
+        else:
+            pillar_score = channels["physical"]["score"]
+            coverage_note = "physical_only"
+
+        grades = [it["grade"] for it in measured if it.get("grade")]
+        grade = weakest_grade(grades)
+        grade = apply_caps(grade, sector="ALL", pillar=pid, indicator=None, caps=caps)
+        evd = evidence_for_pillar(pid)
+        n_defined = len(defined)
+        n_measured = len(measured)
+        coverage = f"{n_measured}/{n_defined}"
+
+        # Eligibility
+        designed = pillar.get("headline_eligible_by_design", True)
+        has_value = pillar_score is not None
+        min_obs = ev["pillar_headline_eligibility"]["min_verified_observations"]
+        min_src = ev["pillar_headline_eligibility"]["min_distinct_verified_sources"]
+        min_off = ev["pillar_headline_eligibility"]["min_official_sources"]
+        min_grade = ev["pillar_headline_eligibility"]["min_derived_grade"]
+        grade_ok = grade is not None and provenance_rank(grade) <= provenance_rank(min_grade)
+        eligible = (
+            designed
+            and has_value
+            and evd["n"] >= min_obs
+            and evd["n_sources"] >= min_src
+            and evd["n_official_sources"] >= min_off
+            and grade_ok
+        )
+        designed_experimental = (not designed) or str(pillar.get("status_1_0") or "").startswith("experimental")
+        if not has_value and designed_experimental:
+            status = "experimental"
+        elif not has_value:
+            status = "not measured"
+        elif designed_experimental or not eligible:
+            status = "experimental"
+        else:
+            status = "scored"
+
+        clipped_any = any(it["clipped"] for it in measured)
+        return {
+            "pillar_id": pid,
+            "code": pillar.get("code"),
+            "block": pillar.get("block"),
+            "direction": pillar.get("direction"),
+            "score": pillar_score,
+            "status": status,
+            "grade": grade,
+            "n": evd["n"],
+            "n_sources": evd["n_sources"],
+            "n_official_sources": evd["n_official_sources"],
+            "coverage": coverage,
+            "channel_coverage": coverage_note,
+            "channels": channels,
+            "unmeasured_indicators": unmeasured,
+            "measured": measured,
+            "clipped": clipped_any,
+            "eligible": eligible,
+            "source_ids": evd["source_ids"],
+        }
+
+    def values_from_measured(measured: list[dict]) -> dict[str, dict]:
+        return {m["indicator_id"]: m for m in measured}
+
+    def score_from_values(pillar: dict, values: dict[str, float]) -> float | None:
+        """Recompute a pillar score from a dict of indicator_id -> raw x (for MC draws)."""
+        measured = []
+        direction = pillar["direction"]
+        for ind in pillar["indicators"]:
+            if ind["id"] not in values:
+                continue
+            if ind.get("role") in {"sensitivity_only", "context_only"} or ind.get("exists") is False:
+                continue
+            dummy = {
+                "_value": values[ind["id"]],
+                "obs_id": "",
+                "period": "",
+                "geo": "",
+                "sector": "ALL",
+                "grade": "A-Y",
+                "sigma": "",
+                "sigma_basis": "",
+                "segment_id": "",
+                "source_id": "",
+            }
+            measured.append(score_indicator(indicators[ind["id"]], dummy, direction))
+        agg = aggregate_pillar(pillar, measured)
+        return agg["score"]
+
+    # --- Build per-population levels ---
+    pop_results = {}
+    rng = np.random.Generator(np.random.PCG64(int(mc["seed"])))
+    r_weight = float(mc["weights"]["r"])
+    n_draws = int(mc["draws"])
+    warning_messages: list[str] = []
+
+    for pop in populations:
+        pop_id = pop["id"]
+        pillar_aggs = {}
+        for pid, pillar in pillars_spec.items():
+            measured = []
+            for ind in pillar["indicators"]:
+                if ind.get("role") in {"sensitivity_only", "context_only"} or ind.get("exists") is False:
+                    continue
+                cands = rows_for(pop_id, ind["id"], sector="ALL")
+                chosen = pick_level_value(cands, ind)
+                if chosen is None:
+                    continue
+                measured.append(score_indicator(indicators[ind["id"]], chosen, pillar["direction"]))
+            pillar_aggs[pid] = aggregate_pillar(pillar, measured)
+
+        eligible_ids = [pid for pid in block_a_ids if pillar_aggs[pid]["eligible"] and pillar_aggs[pid]["score"] is not None]
+        # Effective weights
+        if eligible_ids:
+            weight_sum = sum(nominal[pid] for pid in eligible_ids)
+            weights = {pid: nominal[pid] / weight_sum for pid in eligible_ids}
+        else:
+            weights = {}
+
+        headline_status = "scored"
+        if len(eligible_ids) < ev["headline"]["min_eligible_block_a_pillars"]:
+            headline_status = "incomplete"
+            H = None
+            G = None
+        else:
+            scores = {pid: pillar_aggs[pid]["score"] for pid in eligible_ids}
+            H = sum(weights[pid] * scores[pid] for pid in eligible_ids)
+            floor_g = float(method["block_a"]["sensitivity_aggregation"]["floor"])
+            G = math.exp(sum(weights[pid] * math.log(max(scores[pid], floor_g)) for pid in eligible_ids))
+
+        # DAI / PAI
+        def channel_pillar_score(pid: str, channel: str) -> float | None:
+            ch = pillar_aggs[pid]["channels"].get(channel)
+            return ch["score"] if ch else None
+
+        def aggregate_channel(channel: str) -> dict:
+            ids = [pid for pid in eligible_ids if channel_pillar_score(pid, channel) is not None]
+            if len(ids) < 1:
+                return {"score": None, "status": "not measured", "pillars": [], "weights": {}}
+            wsum = sum(nominal[pid] for pid in ids)
+            ww = {pid: nominal[pid] / wsum for pid in ids}
+            score = sum(ww[pid] * channel_pillar_score(pid, channel) for pid in ids)
+            proxy = any(
+                indicators[m["indicator_id"]].get("ai_specificity") == "proxy"
+                or pillars_spec[pid].get("ai_specificity") == "proxy"
+                for pid in ids
+                for m in pillar_aggs[pid]["measured"]
+                if m["channel"] == channel
+            )
+            # K1 is a proxy; flag if it contributes
+            if any(
+                m.get("indicator_id") == "K1_gfcf_ict_ipp_gdp"
+                for pid in ids
+                for m in pillar_aggs[pid]["measured"]
+                if m["channel"] == channel
+            ):
+                proxy = True
+            return {"score": score, "status": "scored", "pillars": ids, "weights": ww, "proxy": proxy}
+
+        dai = aggregate_channel("digital")
+        pai = aggregate_channel("physical")
+
+        # Indicator values used in scored Block A pillars (for MC)
+        used_measured = []
+        for pid in eligible_ids:
+            used_measured.extend(pillar_aggs[pid]["measured"])
+        used_measured.sort(key=lambda m: m["indicator_id"])
+        indicator_ids_sorted = [m["indicator_id"] for m in used_measured]
+        base_raw = {m["indicator_id"]: m["raw"] for m in used_measured}
+        base_sigma = {m["indicator_id"]: m["sigma"] for m in used_measured}
+
+        # Monte Carlo: generate Z and U for this population (order EU27, FI)
+        n_ind = max(len(indicator_ids_sorted), 1)
+        n_w = max(len(eligible_ids), 1)
+        Z = rng.standard_normal((n_draws, n_ind))
+        U = rng.uniform(1.0 - r_weight, 1.0 + r_weight, (n_draws, n_w))
+
+        def headline_from_raw(raws: dict[str, float], weight_vec: dict[str, float] | None = None) -> tuple[float | None, float | None, float | None, float | None]:
+            # returns H, G, DAI, PAI
+            local = {}
+            for pid, pillar in pillars_spec.items():
+                vals = {iid: raws[iid] for iid in (m["indicator_id"] for m in pillar_aggs[pid]["measured"]) if iid in raws}
+                local[pid] = score_from_values(pillar, vals)
+            if not eligible_ids or any(local[pid] is None for pid in eligible_ids):
+                return None, None, None, None
+            ww = weight_vec if weight_vec is not None else weights
+            h = sum(ww[pid] * local[pid] for pid in eligible_ids)
+            g = math.exp(sum(ww[pid] * math.log(max(local[pid], 1.0)) for pid in eligible_ids))
+            # DAI / PAI from channel scores
+            def ch_agg(channel: str) -> float | None:
+                ids = [pid for pid in eligible_ids if pillar_aggs[pid]["channels"].get(channel)]
+                if not ids:
+                    return None
+                # recompute channel score from new raws
+                ch_scores = {}
+                for pid in ids:
+                    ch_vals = {
+                        m["indicator_id"]: raws[m["indicator_id"]]
+                        for m in pillar_aggs[pid]["measured"]
+                        if m["channel"] == channel and m["indicator_id"] in raws
+                    }
+                    if not ch_vals:
+                        continue
+                    # score only that channel's indicators
+                    pieces = []
+                    pillar = pillars_spec[pid]
+                    by_layer = defaultdict(list)
+                    for ind in pillar["indicators"]:
+                        if ind["id"] not in ch_vals:
+                            continue
+                        if ind.get("channel") != channel:
+                            continue
+                        s, _ = normalise(ch_vals[ind["id"]], ind, pillar["direction"])
+                        by_layer[ind["layer"]].append(s)
+                    if not by_layer:
+                        continue
+                    ch_scores[pid] = mean([mean(v) for v in by_layer.values()])
+                if not ch_scores:
+                    return None
+                wsum = sum(nominal[pid] for pid in ch_scores)
+                return sum((nominal[pid] / wsum) * ch_scores[pid] for pid in ch_scores)
+
+            return h, g, ch_agg("digital"), ch_agg("physical")
+
+        def weights_from_factors(factors: np.ndarray) -> dict[str, float]:
+            raw_w = np.array([nominal[pid] * float(factors[i]) for i, pid in enumerate(eligible_ids)], dtype=float)
+            raw_w = raw_w / raw_w.sum()
+            return {pid: float(raw_w[i]) for i, pid in enumerate(eligible_ids)}
+
+        def run_draws(noise: bool, random_weights: bool) -> dict[str, np.ndarray]:
+            Hs = np.empty(n_draws)
+            Gs = np.empty(n_draws)
+            Dais = np.empty(n_draws)
+            Pais = np.empty(n_draws)
+            for k in range(n_draws):
+                raws = dict(base_raw)
+                if noise:
+                    for j, iid in enumerate(indicator_ids_sorted):
+                        raws[iid] = base_raw[iid] * (1.0 + base_sigma[iid] * float(Z[k, j]))
+                ww = weights_from_factors(U[k]) if random_weights else weights
+                h, g, d, p = headline_from_raw(raws, ww)
+                Hs[k] = h if h is not None else np.nan
+                Gs[k] = g if g is not None else np.nan
+                Dais[k] = d if d is not None else np.nan
+                Pais[k] = p if p is not None else np.nan
+            return {"H": Hs, "G": Gs, "DAI": Dais, "PAI": Pais}
+
+        mc_out = None
+        if H is not None:
+            joint = run_draws(True, True)
+            data_only = run_draws(True, False)
+            weights_only = run_draws(False, True)
+            quantiles = [float(q) for q in mc["interval"]["quantiles"]]
+            q_h = np.quantile(joint["H"], quantiles)
+            q_dai = np.quantile(joint["DAI"], quantiles)
+            q_pai = np.quantile(joint["PAI"], quantiles)
+            # Variance decomposition
+            V_total = float(np.var(joint["H"], ddof=0))
+            V_data = float(np.var(data_only["H"], ddof=0))
+            V_weights = float(np.var(weights_only["H"], ddof=0))
+            V_aggregation = float(((H - G) / 2.0) ** 2)
+            denom = V_data + V_weights + V_aggregation
+            share_data = V_data / denom if denom else 0.0
+            share_weights = V_weights / denom if denom else 0.0
+            share_aggregation = V_aggregation / denom if denom else 0.0
+            interaction = V_total - V_data - V_weights
+            median = float(q_h[1])
+            if abs(median - H) > 1.0:
+                msg = f"{pop_id}: Monte Carlo median {median:.4f} differs from point {H:.4f} by more than 1.0"
+                warning_messages.append(msg)
+                warnings.warn(msg)
+            mc_out = {
+                "median": median,
+                "p2_5": float(q_h[0]),
+                "p97_5": float(q_h[2]),
+                "dai": {"median": float(q_dai[1]), "p2_5": float(q_dai[0]), "p97_5": float(q_dai[2])},
+                "pai": {"median": float(q_pai[1]), "p2_5": float(q_pai[0]), "p97_5": float(q_pai[2])},
+                "variance_decomposition": {
+                    "V_total": V_total,
+                    "V_data": V_data,
+                    "V_weights": V_weights,
+                    "V_aggregation": V_aggregation,
+                    "share_data_pct": round_int(100 * share_data),
+                    "share_weights_pct": round_int(100 * share_weights),
+                    "share_aggregation_pct": round_int(100 * share_aggregation),
+                    "interaction": interaction,
+                },
+            }
+
+            # Pillar data-only intervals
+            for pid in pillars_spec:
+                if pillar_aggs[pid]["score"] is None:
+                    pillar_aggs[pid]["interval"] = None
+                    continue
+                samples = []
+                p_measured = pillar_aggs[pid]["measured"]
+                if not p_measured:
+                    pillar_aggs[pid]["interval"] = None
+                    continue
+                ids = [m["indicator_id"] for m in p_measured]
+                for k in range(n_draws):
+                    raws = {}
+                    for m in p_measured:
+                        j = indicator_ids_sorted.index(m["indicator_id"]) if m["indicator_id"] in indicator_ids_sorted else None
+                        if j is None:
+                            raws[m["indicator_id"]] = m["raw"]
+                        else:
+                            raws[m["indicator_id"]] = m["raw"] * (1.0 + m["sigma"] * float(Z[k, j]))
+                    samples.append(score_from_values(pillars_spec[pid], raws))
+                arr = np.array([s for s in samples if s is not None], dtype=float)
+                if arr.size:
+                    pq = np.quantile(arr, quantiles)
+                    pillar_aggs[pid]["interval"] = {"p2_5": float(pq[0]), "median": float(pq[1]), "p97_5": float(pq[2])}
+                else:
+                    pillar_aggs[pid]["interval"] = None
+
+        # Grid cells
+        sectors = registry["sectors"]
+        grid_cells = []
+        for sector in sectors:
+            sid = sector["id"]
+            for pid, pillar in pillars_spec.items():
+                cell_measured = []
+                for ind in pillar["indicators"]:
+                    if ind.get("role") in {"sensitivity_only", "context_only"} or ind.get("exists") is False:
+                        continue
+                    cands = rows_for(pop_id, ind["id"], sector=sid)
+                    chosen = pick_level_value(cands, ind)
+                    if chosen is None:
+                        continue
+                    cell_measured.append(score_indicator(indicators[ind["id"]], chosen, pillar["direction"]))
+                if not cell_measured:
+                    grid_cells.append({
+                        "population": pop_id,
+                        "sector_id": sid,
+                        "pillar_id": pid,
+                        "score": None,
+                        "status": "not measured",
+                        "grade": None,
+                        "n": 0,
+                        "coverage": f"0/{len([i for i in pillar['indicators'] if i.get('role') not in {'sensitivity_only','context_only'} and i.get('exists') is not False])}",
+                        "obs_ids": [],
+                    })
+                    continue
+                # Cell uses only sector-specific observations (already filtered)
+                grades = [m["grade"] for m in cell_measured]
+                grade = apply_caps(weakest_grade(grades), sector=sid, pillar=pid, indicator=cell_measured[0], caps=caps)
+                # Aggregate like a pillar but only measured cell indicators
+                cell_score = mean([m["score"] for m in cell_measured])
+                grid_cells.append({
+                    "population": pop_id,
+                    "sector_id": sid,
+                    "pillar_id": pid,
+                    "score": cell_score,
+                    "status": "scored",
+                    "grade": grade,
+                    "n": len(cell_measured),
+                    "coverage": f"{len(cell_measured)}/{len([i for i in pillar['indicators'] if i.get('role') not in {'sensitivity_only','context_only'} and i.get('exists') is not False])}",
+                    "obs_ids": [m["obs_id"] for m in cell_measured],
+                    "clipped": any(m["clipped"] for m in cell_measured),
+                })
+
+        # Sector gap on scored A/B cells, same population, per pillar and overall Block A if possible
+        def cell_gap(pillar_id: str) -> dict | None:
+            cells = [
+                c for c in grid_cells
+                if c["pillar_id"] == pillar_id and c["status"] == "scored" and c["grade"] in {"A", "B"} and c["score"] is not None
             ]
-        })
+            if len(cells) < 2:
+                return None
+            top = max(cells, key=lambda c: c["score"])
+            bot = min(cells, key=lambda c: c["score"])
+            return {
+                "pillar_id": pillar_id,
+                "gap_points": top["score"] - bot["score"],
+                "leader_sector_id": top["sector_id"],
+                "leader_score": top["score"],
+                "leader_grade": top["grade"],
+                "laggard_sector_id": bot["sector_id"],
+                "laggard_score": bot["score"],
+                "laggard_grade": bot["grade"],
+            }
+
+        sector_gaps = [g for g in (cell_gap(pid) for pid in pillars_spec) if g]
+
+        # Paces (indicator-level and pillar-level)
+        paces = []
+        min_pts = int(method["pace"]["min_comparable_points"])
+
+        def ols_slope(times: list[float], scores: list[float]) -> tuple[float, float, int]:
+            t = np.array(times, dtype=float)
+            y = np.array(scores, dtype=float)
+            n = len(t)
+            coef = np.polyfit(t, y, 1)
+            slope = float(coef[0])
+            fitted = np.polyval(coef, t)
+            resid = y - fitted
+            ss_t = float(((t - t.mean()) ** 2).sum())
+            if n <= 2 or ss_t == 0:
+                return slope, float("nan"), n
+            se = math.sqrt(float((resid @ resid) / (n - 2) / ss_t))
+            return slope, se, n
+
+        TCRIT = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571, 6: 2.447, 7: 2.365}
+
+        for pid, pillar in pillars_spec.items():
+            for ind in pillar["indicators"]:
+                if ind.get("role") in {"sensitivity_only", "context_only"} or ind.get("exists") is False:
+                    continue
+                cands = rows_for(pop_id, ind["id"], sector="ALL")
+                # Group by segment; do not cross segments
+                by_seg: dict[str, list] = defaultdict(list)
+                for row in cands:
+                    by_seg[row.get("segment_id") or "S1"].append(row)
+                for seg, group in by_seg.items():
+                    group = sorted(group, key=lambda r: r["_end"])
+                    if len(group) < min_pts:
+                        continue
+                    times = [period_midpoint(r["period"]) for r in group]
+                    sc = [normalise(r["_value"], ind, pillar["direction"])[0] for r in group]
+                    slope, se, n = ols_slope(times, sc)
+                    # OLS t interval if n >= 4
+                    lo = hi = None
+                    if n >= 4 and se == se:  # not NaN
+                        tc = TCRIT.get(n - 2, 1.96)
+                        lo, hi = slope - tc * se, slope + tc * se
+                    # MC over data noise, continuing the same generator
+                    mc_slopes = []
+                    for k in range(n_draws):
+                        ys = []
+                        for r in group:
+                            try:
+                                sig = float(r["sigma"]) if r.get("sigma") else 0.045
+                            except ValueError:
+                                sig = 0.045
+                            x = r["_value"] * (1.0 + sig * float(rng.standard_normal()))
+                            ys.append(normalise(x, ind, pillar["direction"])[0])
+                        mc_slopes.append(ols_slope(times, ys)[0])
+                    mq = np.quantile(np.array(mc_slopes), [0.025, 0.5, 0.975])
+                    mc_lo, mc_hi = float(mq[0]), float(mq[2])
+                    if lo is None:
+                        pub_lo, pub_hi = mc_lo, mc_hi
+                    else:
+                        # wider of the two
+                        if (mc_hi - mc_lo) >= (hi - lo):
+                            pub_lo, pub_hi = mc_lo, mc_hi
+                        else:
+                            pub_lo, pub_hi = lo, hi
+                    if pub_lo > 0:
+                        wording = "rising"
+                    elif pub_hi < 0:
+                        wording = "falling"
+                    else:
+                        wording = "not distinguishable from zero"
+                    paces.append({
+                        "level": "indicator",
+                        "population": pop_id,
+                        "pillar_id": pid,
+                        "indicator_id": ind["id"],
+                        "segment_id": seg,
+                        "n_points": n,
+                        "periods": [r["period"] for r in group],
+                        "slope": slope,
+                        "p2_5": pub_lo,
+                        "p97_5": pub_hi,
+                        "wording": wording,
+                    })
+
+        pop_results[pop_id] = {
+            "id": pop_id,
+            "label": pop["label"],
+            "headline": {
+                "score": H,
+                "geometric_mean": G,
+                "status": headline_status,
+                "weights": {k: round_half_up(v, 4) for k, v in weights.items()},
+                "eligible_pillars": eligible_ids,
+                **({
+                    "median": mc_out["median"],
+                    "p2_5": mc_out["p2_5"],
+                    "p97_5": mc_out["p97_5"],
+                    "variance_decomposition": mc_out["variance_decomposition"],
+                } if mc_out else {}),
+            },
+            "dai": {
+                "score": dai["score"],
+                "status": dai["status"],
+                "proxy": dai.get("proxy", False),
+                **({
+                    "median": mc_out["dai"]["median"],
+                    "p2_5": mc_out["dai"]["p2_5"],
+                    "p97_5": mc_out["dai"]["p97_5"],
+                } if mc_out and dai["score"] is not None else {}),
+            },
+            "pai": {
+                "score": pai["score"],
+                "status": pai["status"],
+                "proxy": pai.get("proxy", False),
+                **({
+                    "median": mc_out["pai"]["median"],
+                    "p2_5": mc_out["pai"]["p2_5"],
+                    "p97_5": mc_out["pai"]["p97_5"],
+                } if mc_out and pai["score"] is not None else {}),
+            },
+            "pillars": pillar_aggs,
+            "grid_cells": grid_cells,
+            "sector_gaps": sector_gaps,
+            "paces": paces,
+        }
+
+    def publish_number(value):
+        if value is None:
+            return None
+        return round_half_up(float(value), 1)
+
+    def publish_pop(block: dict) -> dict:
+        out = json.loads(json.dumps(block))  # deep copy via json for simplicity
+        h = out["headline"]
+        for key in ("score", "geometric_mean", "median", "p2_5", "p97_5"):
+            if key in h and h[key] is not None:
+                if key == "score":
+                    h["score_unrounded"] = h["score"]
+                    h["display"] = round_int(h["score"])
+                h[key] = publish_number(h[key])
+        for side in ("dai", "pai"):
+            for key in ("score", "median", "p2_5", "p97_5"):
+                if key in out[side] and out[side][key] is not None:
+                    if key == "score":
+                        out[side]["score_unrounded"] = out[side][key]
+                    out[side][key] = publish_number(out[side][key])
+        published_pillars = []
+        for pid, ag in out["pillars"].items():
+            item = {
+                "id": pid,
+                "code": ag["code"],
+                "block": ag["block"],
+                "direction": ag["direction"],
+                "score": publish_number(ag["score"]),
+                "score_unrounded": ag["score"],
+                "status": ag["status"],
+                "grade": ag["grade"],
+                "n": ag["n"],
+                "n_sources": ag["n_sources"],
+                "n_official_sources": ag["n_official_sources"],
+                "coverage": ag["coverage"],
+                "channel_coverage": ag["channel_coverage"],
+                "unmeasured_indicators": ag["unmeasured_indicators"],
+                "clipped": ag["clipped"],
+                "eligible": ag["eligible"],
+                "source_ids": ag["source_ids"],
+                "channels": {
+                    ch: {
+                        "score": publish_number(info["score"]),
+                        "layers": {
+                            layer: {**ld, "score": publish_number(ld["score"])}
+                            for layer, ld in info["layers"].items()
+                        },
+                    }
+                    for ch, info in ag["channels"].items()
+                },
+                "observations": [
+                    {
+                        "indicator_id": m["indicator_id"],
+                        "obs_id": m["obs_id"],
+                        "period": m["period"],
+                        "raw": m["raw"],
+                        "score": publish_number(m["score"]),
+                        "clipped": m["clipped"],
+                        "grade": m["grade"],
+                        "sigma": m["sigma"],
+                        "sigma_basis": m["sigma_basis"],
+                    }
+                    for m in ag["measured"]
+                ],
+            }
+            if ag.get("interval"):
+                item["interval"] = {k: publish_number(v) for k, v in ag["interval"].items()}
+            published_pillars.append(item)
+        out["pillars"] = published_pillars
+        out["grid_cells"] = [
+            {**c, "score": publish_number(c["score"]) if c["score"] is not None else None}
+            for c in out["grid_cells"]
+        ]
+        for gap in out["sector_gaps"]:
+            for key in ("gap_points", "leader_score", "laggard_score"):
+                gap[key] = publish_number(gap[key])
+        out["paces"] = [
+            {**p, "slope": publish_number(p["slope"]), "p2_5": publish_number(p["p2_5"]), "p97_5": publish_number(p["p97_5"])}
+            for p in out["paces"]
+        ]
+        return out
+
+    pipeline_version = read_pipeline_version(version_path)
+    hashes = {
+        "series.csv": sha256_file(series_path),
+        "registry.v1.0.json": sha256_file(registry_path),
+        "method.v1.0.json": sha256_file(method_path),
+        "brief_signals.csv": sha256_file(brief_path) if brief_path.is_file() else None,
+        "planetary_boundaries.json": sha256_file(pb_path) if pb_path.is_file() else None,
+    }
 
     computed = {
-        "schema_version": "0.6.0",
-        "pipeline_version": read_pipeline_version(version_path),
+        "schema_version": "1.0.0",
+        "method_version": method["method_version"],
+        "index_version": method["index_version_target"],
+        "pipeline_version": pipeline_version,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "reference_period": "2026-Q4 (as of 2026-10-28)",
-        "strict_verification_enforced": True,
-        "Verified_Observation_Count": len(series_rows),
-        "Registered_Source_Count": len(registry["sources"]),
-        "Verified_Source_Count": sum(1 for s in registry["sources"] if s.get("verified", False)),
-        "Unverified_Candidate_Source_Count": sum(1 for s in registry["sources"] if not s.get("verified", False)),
-        "Brief_Signal_Count": len(brief_rows),
-        "headline": {
-            "block_a_diffusion_core": {
-                "score": block_a_equal,
-                "p5": round(percentile(block_a_draws, 0.05), 1),
-                "p50": round(percentile(block_a_draws, 0.50), 1),
-                "p95": round(percentile(block_a_draws, 0.95), 1),
-                "geometric_mean": round(percentile(geom_draws, 0.50), 1),
-                "velocity_pp_yr": round(fast_velocity, 1),
-                "pillars": block_a_pillars,
-                "label_en": "Block A — Overall AI Use and Investment (P1–P3)",
-                "label_fi": "Lohko A — Tekoälyn kokonaiskäyttö ja investoinnit (P1–P3)",
-                "note_en": "Measures real-world AI use, task completion cost, and capital commitments. It never mixes enabling conditions (Block B) or societal consequences (Block C) into the main score.",
-                "note_fi": "Mittaa vain todellista käyttöä, suorituskustannusta ja pääomasitoumuksia. Se ei koskaan sekoita edellytyksiä (Lohko B) tai seurauksia (Lohko C) pääpistemäärään."
-            },
-            "dai_digital": {
-                "score": dai_equal,
-                "p5": round(percentile(dai_draws, 0.05), 1),
-                "p50": round(percentile(dai_draws, 0.50), 1),
-                "p95": round(percentile(dai_draws, 0.95), 1),
-                "velocity_pp_yr": 8.9,
-                "ai_specificity": "specific",
-                "label_en": "Digital AI Index (DAI) — Software and Workflows",
-                "label_fi": "Digitaalinen tekoälyindeksi (DAI) — Ohjelmistot ja työnkulut"
-            },
-            "pai_physical": {
-                "score": pai_equal,
-                "p5": round(percentile(pai_draws, 0.05), 1),
-                "p50": round(percentile(pai_draws, 0.50), 1),
-                "p95": round(percentile(pai_draws, 0.95), 1),
-                "velocity_pp_yr": 2.4,
-                "ai_specificity": "proxy",
-                "label_en": "Physical AI Index (PAI) — Robots and Medical Devices",
-                "label_fi": "Fyysinen tekoälyindeksi (PAI) — Robotit ja lääkintälaitteet",
-                "proxy_warning_en": "Includes proxy data: Factory robot counts (542,076 installed in 2024, 4.66 million in operation) include traditional non-AI automation alongside 1,620+ FDA-cleared medical AI devices.",
-                "proxy_warning_fi": "Sisältää korvikemittarin: Tehdasrobottien määrät (542 076 asennettua vuonna 2024, kanta 4,66 miljoonaa) sisältävät myös perinteisen automaation yli 1 620 FDA-hyväksytyn tekoälylääkintälaitteen rinnalla."
-            },
-            "sector_gap": {
-                "gap_points": sector_gap_pp,
-                "leader_sector_id": top_sec["sector_id"],
-                "leader_name_en": top_sec["name_en"],
-                "leader_name_fi": top_sec["name_fi"],
-                "leader_score": top_sec["block_a_score"],
-                "leader_grade": top_sec["provenance_grade"],
-                "laggard_sector_id": bot_sec["sector_id"],
-                "laggard_name_en": bot_sec["name_en"],
-                "laggard_name_fi": bot_sec["name_fi"],
-                "laggard_score": bot_sec["block_a_score"],
-                "laggard_grade": bot_sec["provenance_grade"],
-                "eu_ict_vs_agriculture_pp": 47.4,
-                "finland_ict_vs_all_pp": 42.0,
-                "note_en": f"Compares only industries with matching official data quality (Grade A or B): {top_sec['name_en']} ({top_sec['name_score'] if 'name_score' in top_sec else top_sec['block_a_score']}) compared with {bot_sec['name_en']} ({bot_sec['block_a_score']}).",
-                "note_fi": f"Vertaa vain toimialoja, joilla on yhtenevä virallisen tiedon laatuluokka (A tai B): {top_sec['name_fi']} ({top_sec['block_a_score']}) verrattuna toimialaan {bot_sec['name_fi']} ({bot_sec['block_a_score']})."
-            },
-            "block_b_conditions": {
-                "score": block_b_equal,
-                "pillars": block_b_pillars,
-                "label_en": "Block B — Enabling Conditions (P5, P6, P8, P10)",
-                "label_fi": "Lohko B — Mahdollistavat edellytykset (P5, P6, P8, P10)"
-            },
-            "block_c_consequences": {
-                "score": block_c_equal,
-                "pillars": block_c_pillars,
-                "label_en": "Block C — Societal and Planetary Effects (P4, P7, P9)",
-                "label_fi": "Lohko C — Yhteiskunnalliset ja planetaariset vaikutukset (P4, P7, P9)"
-            }
+        "range_level": "95%",
+        "quarter_label": quarter_label(cut),
+        "scope_label": "EU27 and Finland, published separately",
+        "next_update": None,
+        "reference_period": quarter_label(cut),
+        "cut_off": cut.isoformat(),
+        "channel_weights": {
+            "digital": w_digital,
+            "physical": w_physical,
+            "decision_status": channel_weights.get("decision_status"),
         },
-        "pace_diagnostics": {
-            "fast_layer_velocity_pp_yr": fast_velocity,
-            "slow_layer_velocity_pp_yr": slow_velocity,
-            "pace_shear_ratio": pace_shear_ratio,
-            "j_curve_sensitivity": j_curve_sensitivity,
-            "brief_pace_layer_mix": pace_mix,
-            "brief_block_mix": dict(block_counts),
-            "diagnostic_summary_en": (
-                f"Fast commercial layers move {pace_shear_ratio} times faster than slow institutional and physical layers. "
-                f"Cloud contracts ($265.6B in Anthropic's S-1 filing) and automated math proofs (180 million Rocq lines) grow rapidly. "
-                f"At the same time, company workflow redesign (24.8% of firms, under 50% hospital task completion) and power grid permits (8.7 GW paused in Texas) move slowly."
-            ),
-            "diagnostic_summary_fi": (
-                f"Nopeat kaupalliset kerrokset liikkuvat {pace_shear_ratio} kertaa nopeammin kuin hitaat institutionaaliset ja fyysiset kerrokset. "
-                f"Pilvisopimukset (265,6 mrd. $ Anthropicin S-1-ilmoituksessa) ja koneelliset todistukset (180 miljoonaa Rocq-riviä) kasvavat nopeasti. "
-                f"Samaan aikaan työnkulkujen uudistaminen (24,8 % yrityksistä, alle 50 % sairaalatehtävistä valmiiksi) ja sähköverkkoluvat (8,7 GW keskeytettynä Texasissa) etenevät hitaasti."
-            )
+        "vintage": {
+            "cut_off": cut.isoformat(),
+            "proposed_1_0_0_cut_off": method["data_vintage"]["proposed_1_0_0_cut_off"],
+            "hashes": hashes,
         },
-        "pillars": pillars_out,
-        "sectors": sector_summaries,
-        "grid_cells": grid_cells,
-        "observations": series_rows,
+        "warnings": warning_messages,
+        "stale_observations": [r["obs_id"] for r in stale_rows],
+        "populations": {pop_id: publish_pop(block) for pop_id, block in pop_results.items()},
         "brief_signals": brief_rows,
         "planetary_boundaries": pb_data,
-        "sources": registry["sources"]
+        "sources": registry["sources"],
     }
-
     return computed
 
 
@@ -660,14 +1058,20 @@ def write_computed(computed: dict, output_path: Path = OUTPUT_JSON) -> None:
 def main() -> None:
     computed = compute()
     write_computed(computed)
-    headline = computed["headline"]["block_a_diffusion_core"]
-    print(
-        f"[OK] Wrote {OUTPUT_JSON.relative_to(ROOT)} "
-        f"(Block A={headline['score']} [{headline['p5']}–{headline['p95']}], "
-        f"DAI={computed['headline']['dai_digital']['score']}, "
-        f"PAI={computed['headline']['pai_physical']['score']}, "
-        f"Sector Gap={computed['headline']['sector_gap']['gap_points']} pts)"
-    )
+    lines = [f"[OK] Wrote {OUTPUT_JSON.relative_to(ROOT)} (method {computed['method_version']}, cut-off {computed['cut_off']})"]
+    for pop_id, block in computed["populations"].items():
+        h = block["headline"]
+        score = h.get("score")
+        interval = ""
+        if h.get("p2_5") is not None:
+            interval = f" 95% [{h['p2_5']}–{h['p97_5']}] median {h.get('median')}"
+        lines.append(
+            f"  {pop_id}: H={score} (display {h.get('display')}) G={h.get('geometric_mean')} "
+            f"status={h.get('status')}{interval}"
+        )
+    for warning in computed.get("warnings") or []:
+        lines.append(f"  WARNING: {warning}")
+    print("\n".join(lines))
 
 
 if __name__ == "__main__":
