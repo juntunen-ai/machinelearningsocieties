@@ -209,7 +209,7 @@ function formatNumber(value, places) {
     const gap = gaps[0];
     const grid = document.getElementById("kpi-grid");
     if (!grid) return;
-    const range = `${DATA.range_level} range ${formatNumber(h.p2_5, 0)}–${formatNumber(h.p97_5, 0)}`;
+    const range = `range ${formatNumber(h.p2_5, 0)}–${formatNumber(h.p97_5, 0)} by weighting`;
     const gapHtml = gap
       ? `<div class="di-kpi-card">
           <div>

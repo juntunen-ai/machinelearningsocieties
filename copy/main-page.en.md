@@ -34,7 +34,7 @@ Notes for Kernelio are in *italics, prefixed "Build note"*. They are not page te
 
 **What we measure:** how far AI has moved from the lab into everyday work, machines and society.
 
-**The result:** {{headline.display}}/100 in {{reference_period}} ({{RANGE_LEVEL}} range {{headline.p2_5}}–{{headline.p97_5}}). The headline is the deployment pillar (company adoption) alone.
+**The result:** {{headline.display}}/100 in {{reference_period}} (range {{headline.p2_5}}–{{headline.p97_5}} by weighting). The headline is the deployment pillar (company adoption) alone.
 
 **What it means:** Most companies have not yet put AI to work. Company adoption scores {{populations.EU27.headline.display}} out of 100 in the EU27 and {{populations.FI.headline.display}} in Finland. The width of the range comes almost entirely from how digital and physical adoption are weighed (digital share 25–75 %), not from the data.
 
@@ -70,7 +70,7 @@ Companies and investors are committing large sums to AI. Far fewer companies use
 
 **H2:** How to read the score
 
-**{{headline.display}}/100 ({{RANGE_LEVEL}} range {{headline.p2_5}}–{{headline.p97_5}}).** The range shows how sensitive the score is to the digital-versus-physical channel-weight choice (the digital share is drawn from 25–75 %). Almost all of its width comes from that choice, not from the data.
+**{{headline.display}}/100 (range {{headline.p2_5}}–{{headline.p97_5}} by weighting).** The range shows how sensitive the score is to the digital-versus-physical channel-weight choice (the digital share is drawn from 25–75 %). Almost all of its width comes from that choice, not from the data.
 
 100 is not “good” and 0 is not “bad”. The index measures how widely AI is used, not whether that is desirable. 100 means AI has become dependable everyday infrastructure, like electricity.
 
@@ -105,8 +105,8 @@ Three small cards:
 
 **Quotable findings ({{reference_period}}):**
 
-- The Machine Learning Societies – Diffusion Index stands at {{headline.display}} out of 100 ({{RANGE_LEVEL}} range {{headline.p2_5}}–{{headline.p97_5}}). The headline is the deployment pillar (company adoption) alone. The two scores for the EU27 and Finland are published separately and are not averaged. The width of the range comes almost entirely from the digital-versus-physical channel weighting, not from the data.
-- For the EU27, capital commitments score 34 (context, not in the headline), while company adoption, the headline, is 9 (range 6–13). For Finland, capital is 39 (context) and the headline is 17 (range 10–24). Reliable task completion is experimental and is not in the headline.
+- The Machine Learning Societies – Diffusion Index stands at {{headline.display}} out of 100 (range {{headline.p2_5}}–{{headline.p97_5}} by weighting). The headline is the deployment pillar (company adoption) alone. The two scores for the EU27 and Finland are published separately and are not averaged. The width of the range comes almost entirely from the digital-versus-physical channel weighting, not from the data.
+- For the EU27, capital commitments score 34 (context, not in the headline), while company adoption, the headline, is 9 (range 6–13 by weighting). For Finland, capital is 39 (context) and the headline is 17 (range 10–24 by weighting). Reliable task completion is experimental and is not in the headline.
 - 100 would mean AI works like electricity: dependable, everyday infrastructure. A high score is not a judgement that AI is good.
 
 **Chart images:** [headline score](assets/adi/adi-headline-1200x675.png) · [the gap](assets/adi/adi-gap-1200x675.png) · [industries](assets/adi/adi-industries-1200x675.png)
@@ -144,20 +144,20 @@ Key paths refer to `index/computed.*.json` (checked against `computed.v0.6.json`
 | Placeholder | JSON key | Meaning | v0.6 value |
 |---|---|---|---|
 | `{{headline.display}}` (was `headline.block_a_diffusion_core.score`) | yes | Headline, whole number (deployment pillar alone) | EU27 9, FI 17 (v0.6 was 42.7) |
-| `{{headline.p2_5}}` / `{{headline.p97_5}}` (was p5/p95) | yes | Ends of the published range (2.5 and 97.5 percentiles; page rounds to whole numbers). This is a channel-weight sensitivity band, not a measurement-error interval. | EU27 6–13 (5.6–13.2), FI 10–24 (10.4–24.4) |
+| `{{headline.p2_5}}` / `{{headline.p97_5}}` (was p5/p95) | yes | Ends of the published range by weighting (2.5 and 97.5 percentiles of the channel-weight draws; page rounds to whole numbers). Public label: “range 6–13 by weighting”. | EU27 6–13 (5.6–13.2), FI 10–24 (10.4–24.4) |
 | `{{headline.geometric_mean}}` | yes | "Weakest-link score" (equals the headline when one pillar is eligible) | EU27 9.3, FI 17.3 |
 | `{{headline.velocity_pp_yr}}` | yes | Annual speed, points per year (omit the card if not published) | — |
 | `{{pillars.capital_intensity.score}}` | yes | Capital commitments (P3), Block B context, outside the headline | EU27 34, FI 39 (v0.6 was 58.6) |
 | `{{pillars.deployment.score}}` | yes | Company adoption (P1), the headline | EU27 9.3, FI 17.3 (v0.6 was 28.4) |
 | `{{pillars.cost_to_serve.level_score}}` | yes | Reliable task completion (P2) | 41.2 |
 | `{{reference_period}}` | yes | Quarter label | "2026-Q4 (as of 2026-10-28)" |
-| `{{RANGE_LEVEL}}` | **no** | Range level label, e.g. "95%" | (90% in v0.6) |
+| `{{RANGE_LEVEL}}` / `range_level` | no (not shown on the headline) | JSON still records the Monte Carlo percentile level as “95%”. The public headline label does not print this; it reads “range … by weighting”. | — |
 | `{{SCOPE_LABEL}}` | **no** | Population covered, e.g. "EU27 and Finland" (plan §2.4) | – |
 | `{{NEXT_UPDATE_DATE}}` | **no** | Next fixed quarterly update, e.g. "13 April 2027" | – |
 | `{{PUBLISHER_LINE}}` | **no** | Publisher / author credit line (name not decided yet); static text, not from JSON | – |
 
 Notes on missing or mismatched keys:
-- `RANGE_LEVEL`: v0.6 gives `p5`/`p95`, which is a 90% range. Plan TP1/TP4 asks for a 95% range. If the method moves to 95%, the keys will change (e.g. `p2_5`/`p97_5`), and the label must match them. Suggest adding a key such as `range_level`.
+- `RANGE_LEVEL` / `range_level`: the computed JSON still stores `range_level: "95%"`, the Monte Carlo 2.5–97.5 percentile level of the weight draws. The public headline wording is “range {p2_5}–{p97_5} by weighting”, not “95% range”.
 - `reference_period` in v0.6 carries extra text "(as of 2026-10-28)". For the kicker and og:title a short quarter label (e.g. `2026-Q4`) reads better. Suggest a separate key such as `quarter_label`.
 - `SCOPE_LABEL` and `NEXT_UPDATE_DATE`: no key in v0.6. Suggest adding `scope_label` and `next_update` to the computed JSON, or keeping them as static text.
 - `PUBLISHER_LINE`: publisher name is still undecided (22 Nov 2026). No disclosure or candidacy line on the page: the transparency section is out of scope (Harri, 22 Nov 2026).

@@ -16,9 +16,9 @@ Release candidate on branch `release/1.0.0`. Not tagged and not deployed. **Meth
 
   | | rc.2 | rc.3 |
   |---|---|---|
-  | EU27 headline (95 %) | 21.7 (16.7–27.0), display 22 | **9.3 (5.6–13.2)**, display 9 |
+  | EU27 headline (range by weighting) | 21.7 (16.7–27.0), display 22 | **9.3 (5.6–13.2)**, display 9 |
   | EU27 geometric / median | 17.8 / 21.6 | 9.3 / 9.4 |
-  | Finland headline (95 %) | 28.3 (23.8–33.3), display 28 | **17.3 (10.4–24.4)**, display 17 |
+  | Finland headline (range by weighting) | 28.3 (23.8–33.3), display 28 | **17.3 (10.4–24.4)**, display 17 |
   | Finland geometric / median | 26.1 / 28.3 | 17.3 / 17.3 |
   | Variance shares data / weights / aggregation | EU27 5/61/34, FI 11/72/17 | 1/99/0 in both |
   | K1 capital (Block B) | in headline: EU27 34.0, FI 39.3 | not in headline: EU27 34.0 (31.0–37.0), FI 39.3 (35.8–42.8) |

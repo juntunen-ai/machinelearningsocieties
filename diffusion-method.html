@@ -128,7 +128,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <tr>
 <td>Monte Carlo</td>
 <td>1,000 draws, Dirichlet(1,1,1) weights, hand-set noise, 70/30 arithmetic/geometric mix, 90 % band</td>
-<td>20,000 draws, seed 20261028, ±50 % weights, noise from source standard errors, 95 % interval, three-way variance decomposition</td>
+<td>20,000 draws, seed 20261028, ±50 % pillar weights, channel weight U[0.25, 0.75], noise from source standard errors, 95 % interval (2.5–97.5 percentiles of the weight draws for the published headline range; not uncertainty in the data), three-way variance decomposition</td>
 </tr>
 <tr>
 <td>Velocity</td>
@@ -597,7 +597,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 </tr>
 <tr>
 <td>Interval</td>
-<td>95 %: 2.5 %, 50 % and 97.5 % quantiles of <em>H</em> over joint data, pillar-weight and channel-weight draws</td>
+<td>95 %: 2.5, 50 and 97.5 percentiles of <em>H</em>. For the published headline range these are the 2.5–97.5 percentiles of the channel-weight draws (digital weight U[0.25, 0.75]); they are not a measure of uncertainty in the data. Data noise and pillar-weight draws are also in the joint Monte Carlo, but they account for 1 % of the headline variance.</td>
 </tr>
 <tr>
 <td>Aggregation</td>
@@ -765,7 +765,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <p><code>CHANGELOG.md</code> follows the Keep a Changelog format. Every release lists method changes, data vintage (cut-off), hashes and the effect on the headline (old value against new). There is one VERSION source and a git tag <code>vX.Y.Z</code> per release. Once 1.0.0 is tagged, nothing in <code>method.v1.0.json</code> changes without a version bump and a CHANGELOG entry.</p>
 <hr>
 <h2 id="13-worked-example-illustrative-not-a-published-number">13. Worked example (illustrative, not a published number)</h2>
-<p>Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. The compiler (<code>scripts/compute_index.py</code>) reproduces these levels. Its values for 1.0.0-rc.3 are EU27 9.3 (median 9.4, 95 % 5.6–13.2) and Finland 17.3 (median 17.3, 95 % 10.4–24.4). Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2), fallback A (4.5 %) otherwise. Channel weights: digital weight uniform on [0.25, 0.75] in the Monte Carlo.</p>
+<p>Values from the Eurostat API, retrieved 22 November 2026, reference year 2025. The compiler (<code>scripts/compute_index.py</code>) reproduces these levels. Its values for 1.0.0-rc.3 are EU27 9.3 (median 9.4, range 5.6–13.2 by weighting) and Finland 17.3 (median 17.3, range 10.4–24.4 by weighting). The published ends are the 2.5 and 97.5 percentiles of the Monte Carlo channel-weight draws (digital weight U[0.25, 0.75]), not uncertainty in the data. Noise: binomial for EU27 enterprise-survey shares (n = 157,000, deff 2), fallback A (4.5 %) otherwise.</p>
 <div class="table-scroll"><table class="di-table">
 <thead>
 <tr>
@@ -816,7 +816,7 @@ Supersedes: Methodology v0.6 (<a href="index/method.v0.6.md"><code>index/method.
 <td>17.33</td>
 </tr>
 <tr>
-<th scope="row">Monte Carlo median; 95 % interval (data + channel weights)</th>
+<th scope="row">Monte Carlo median; range by weighting (2.5–97.5 percentiles of the channel-weight draws)</th>
 <td>9.4; 5.6–13.2</td>
 <td>17.3; 10.4–24.4</td>
 </tr>

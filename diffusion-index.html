@@ -12,7 +12,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="alternate" type="application/rss+xml" title="Machine Learning Societies (EN)" href="https://machine-learning-societies.web.app/feed.xml">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/site.css?v=20261122g">
+<link rel="stylesheet" href="assets/site.css?v=20261122h">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -48,13 +48,13 @@
         <li>
           <span class="di-result-pop">EU27</span>
           <span class="di-result-score"><span data-bind="populations.EU27.headline.display">{{populations.EU27.headline.display}}</span>/100</span>
-          <span class="di-result-range"><span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.EU27.headline.p2_5" data-round="0">{{populations.EU27.headline.p2_5}}</span>–<span data-bind="populations.EU27.headline.p97_5" data-round="0">{{populations.EU27.headline.p97_5}}</span></span>
+          <span class="di-result-range">range <span data-bind="populations.EU27.headline.p2_5" data-round="0">{{populations.EU27.headline.p2_5}}</span>–<span data-bind="populations.EU27.headline.p97_5" data-round="0">{{populations.EU27.headline.p97_5}}</span> by weighting</span>
           <span class="di-status" data-status="populations.EU27.headline.status">{{populations.EU27.headline.status}}</span>
         </li>
         <li>
           <span class="di-result-pop">Finland</span>
           <span class="di-result-score"><span data-bind="populations.FI.headline.display">{{populations.FI.headline.display}}</span>/100</span>
-          <span class="di-result-range"><span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span></span>
+          <span class="di-result-range">range <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span> by weighting</span>
           <span class="di-status" data-status="populations.FI.headline.status">{{populations.FI.headline.status}}</span>
         </li>
       </ul>
@@ -76,11 +76,11 @@
       <h2 id="scale-guide-title">How to read the score</h2>
       <p>
         <strong>EU27: <span data-bind="populations.EU27.headline.display">{{populations.EU27.headline.display}}</span>/100</strong>
-        (<span data-bind="range_level">{{range_level}}</span> range
-        <span data-bind="populations.EU27.headline.p2_5" data-round="0">{{populations.EU27.headline.p2_5}}</span>–<span data-bind="populations.EU27.headline.p97_5" data-round="0">{{populations.EU27.headline.p97_5}}</span>).
+        (range
+        <span data-bind="populations.EU27.headline.p2_5" data-round="0">{{populations.EU27.headline.p2_5}}</span>–<span data-bind="populations.EU27.headline.p97_5" data-round="0">{{populations.EU27.headline.p97_5}}</span> by weighting).
         <strong>Finland: <span data-bind="populations.FI.headline.display">{{populations.FI.headline.display}}</span>/100</strong>
-        (<span data-bind="range_level">{{range_level}}</span> range
-        <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span>).
+        (range
+        <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span> by weighting).
         The range shows how sensitive the score is to the digital-versus-physical channel-weight choice (the digital share is drawn from 25–75 %). Almost all of its width comes from that choice, not from the data.
       </p>
       <p>100 is not “good” and 0 is not “bad”. The index measures how widely AI is used, not whether that is desirable. 100 means AI has become dependable everyday infrastructure, like electricity.</p>
@@ -127,8 +127,8 @@
       <h2>For journalists</h2>
       <p><strong>Quotable findings (<span data-bind="quarter_label">{{quarter_label}}</span>):</strong></p>
       <ul>
-        <li>The Machine Learning Societies – Diffusion Index stands at <span data-bind="populations.EU27.headline.display">{{populations.EU27.headline.display}}</span> out of 100 for the EU27 (<span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.EU27.headline.p2_5" data-round="0">{{populations.EU27.headline.p2_5}}</span>–<span data-bind="populations.EU27.headline.p97_5" data-round="0">{{populations.EU27.headline.p97_5}}</span>) and at <span data-bind="populations.FI.headline.display">{{populations.FI.headline.display}}</span> out of 100 for Finland (<span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span>). The two scores are published separately and are not averaged. The headline is the deployment pillar (company adoption) alone. The width of the range comes almost entirely from the digital-versus-physical channel weighting, not from the data.</li>
-        <li>For the EU27, capital commitments score <span data-bind="populations.EU27.pillars.capital_intensity.score" data-round="0">{{populations.EU27.pillars.capital_intensity.score}}</span> (context, not in the headline), while company adoption, the headline, is <span data-bind="populations.EU27.headline.display">{{populations.EU27.headline.display}}</span> (<span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.EU27.headline.p2_5" data-round="0">{{populations.EU27.headline.p2_5}}</span>–<span data-bind="populations.EU27.headline.p97_5" data-round="0">{{populations.EU27.headline.p97_5}}</span>). For Finland, capital commitments score <span data-bind="populations.FI.pillars.capital_intensity.score" data-round="0">{{populations.FI.pillars.capital_intensity.score}}</span> (context) and the headline is <span data-bind="populations.FI.headline.display">{{populations.FI.headline.display}}</span> (<span data-bind="range_level">{{range_level}}</span> range <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span>). Reliable task completion is experimental in 1.0.0 and is not in the headline.</li>
+        <li>The Machine Learning Societies – Diffusion Index stands at <span data-bind="populations.EU27.headline.display">{{populations.EU27.headline.display}}</span> out of 100 for the EU27 (range <span data-bind="populations.EU27.headline.p2_5" data-round="0">{{populations.EU27.headline.p2_5}}</span>–<span data-bind="populations.EU27.headline.p97_5" data-round="0">{{populations.EU27.headline.p97_5}}</span> by weighting) and at <span data-bind="populations.FI.headline.display">{{populations.FI.headline.display}}</span> out of 100 for Finland (range <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span> by weighting). The two scores are published separately and are not averaged. The headline is the deployment pillar (company adoption) alone. The width of the range comes almost entirely from the digital-versus-physical channel weighting, not from the data.</li>
+        <li>For the EU27, capital commitments score <span data-bind="populations.EU27.pillars.capital_intensity.score" data-round="0">{{populations.EU27.pillars.capital_intensity.score}}</span> (context, not in the headline), while company adoption, the headline, is <span data-bind="populations.EU27.headline.display">{{populations.EU27.headline.display}}</span> (range <span data-bind="populations.EU27.headline.p2_5" data-round="0">{{populations.EU27.headline.p2_5}}</span>–<span data-bind="populations.EU27.headline.p97_5" data-round="0">{{populations.EU27.headline.p97_5}}</span> by weighting). For Finland, capital commitments score <span data-bind="populations.FI.pillars.capital_intensity.score" data-round="0">{{populations.FI.pillars.capital_intensity.score}}</span> (context) and the headline is <span data-bind="populations.FI.headline.display">{{populations.FI.headline.display}}</span> (range <span data-bind="populations.FI.headline.p2_5" data-round="0">{{populations.FI.headline.p2_5}}</span>–<span data-bind="populations.FI.headline.p97_5" data-round="0">{{populations.FI.headline.p97_5}}</span> by weighting). Reliable task completion is experimental in 1.0.0 and is not in the headline.</li>
         <li>100 would mean AI works like electricity: dependable, everyday infrastructure. A high score is not a judgement that AI is good.</li>
       </ul>
       <p><strong>Chart images:</strong> not yet created for this candidate. They will be added before publication.</p>
@@ -275,6 +275,6 @@
     </div>
   </footer>
 </div>
-<script src="assets/diffusion-index.js?v=20261122g"></script>
+<script src="assets/diffusion-index.js?v=20261122h"></script>
 </body>
 </html>

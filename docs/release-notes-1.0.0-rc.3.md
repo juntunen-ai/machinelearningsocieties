@@ -18,12 +18,12 @@ EU27 and Finland are published separately and are never averaged. The headline i
 
 **Headline impact versus rc.2:** moving K1 out of Block A, and drawing the digital weight in the Monte Carlo, changes the published headlines from EU27 22 and Finland 28 to EU27 9 and Finland 17 (display integers).
 
-| Population | Headline (display) | Geometric sensitivity | 95% range | Status |
+| Population | Headline (display) | Geometric sensitivity | Range by weighting | Status |
 |---|---|---|---|---|
 | EU27 | 9 / 100 (9.3 unrounded 9.34) | 9.3 (equals the headline) | 6–13 (5.6–13.2) | scored |
 | Finland | 17 / 100 (17.3 unrounded 17.33) | 17.3 (equals the headline) | 10–24 (10.4–24.4) | scored |
 
-For the EU27, capital commitments (context, not in the headline) score 34.0 (31.0–37.0) and company adoption, the headline, is 9.3 (5.6–13.2). For Finland the figures are 39.3 (35.8–42.8) and 17.3 (10.4–24.4). Reliable task completion (`cost_to_serve`) remains experimental and is not in the headline, until a Task Price Index exists. Ecological balance is not measured: no AI-specific burden, abatement or Jevons rebound figure is published.
+For the EU27, capital commitments (context, not in the headline) score 34.0 (31.0–37.0) and company adoption, the headline, is 9.3 (range 5.6–13.2 by weighting). For Finland the figures are 39.3 (35.8–42.8) and 17.3 (range 10.4–24.4 by weighting). Reliable task completion (`cost_to_serve`) remains experimental and is not in the headline, until a Task Price Index exists. Ecological balance is not measured: no AI-specific burden, abatement or Jevons rebound figure is published.
 
 The width of the headline range comes almost entirely from the digital-versus-physical channel weighting (the digital share is drawn from U[0.25, 0.75]), not from the data. Variance shares are 1 % data, 99 % channel weights and 0 % aggregation in both populations.
 
