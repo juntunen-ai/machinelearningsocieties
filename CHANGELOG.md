@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 The pipeline version in the `VERSION` file is the single source of truth. Method v1.0 is frozen on this branch (`index/method.v1.0.json` is authoritative). The current pipeline version is **1.0.0-rc.2**. This is a release candidate on `release/1.0.0`, not a GitHub Release or git tag.
 
+## [Unreleased] — after 1.0.0-rc.2 on `release/1.0.0`
+
+### Changed
+
+- Registry licences applied from the TP3 licence audit (2026-11-22): every source now has `licence`, `licence_url`, `licence_checked`, `reuse_class`, `redistribution` and `attribution`. `gdpval` and `ramp_ai_index` are marked `use: context_only` (no open licence). `iea_energy_ai` is split into the Energy and AI report (CC BY 4.0, stays a possible score input) and `iea_energy_ai_observatory` (IEA non-CC terms, context only); OBS-051 retagged to the Observatory. No score changes.
+
 ## [1.0.0-rc.2] — 2026-11-22
 
 Release candidate on branch `release/1.0.0`. Not tagged and not deployed. Succeeds 1.0.0-rc.1, which was rejected in review because the planetary panel still showed v0.6 constants while ecological_balance was not measured.

@@ -299,9 +299,14 @@
       ],
       "geo": "EU-27 and others",
       "access": "download and API",
-      "licence": "Eurostat reuse policy (CC BY 4.0 compatible)",
+      "licence": "Eurostat reuse policy: free reuse of statistical data incl. commercial, source must be acknowledged (Commission Decision 2011/833/EU); editorial content CC BY 4.0",
       "verified": true,
-      "caveats": "Enterprises with 10+ persons; sector coverage excludes some sections (confirm); 2025 questionnaire added image/video/audio generation; German definition break 2025; annual, next update planned Dec 2026"
+      "caveats": "Enterprises with 10+ persons; sector coverage excludes some sections (confirm); 2025 questionnaire added image/video/audio generation; German definition break 2025; annual, next update planned Dec 2026",
+      "licence_url": "https://ec.europa.eu/eurostat/help/copyright-notice",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Source: Eurostat (dataset code, e.g. isoc_eb_ai)"
     },
     {
       "id": "eurostat_isoc_ai_iaiu",
@@ -317,9 +322,14 @@
       ],
       "geo": "EU-27",
       "access": "download and API",
-      "licence": "Eurostat reuse policy",
+      "licence": "Eurostat reuse policy (as above); editorial content CC BY 4.0",
       "verified": true,
-      "caveats": "Ages 16-74; reach only"
+      "caveats": "Ages 16-74; reach only",
+      "licence_url": "https://ec.europa.eu/eurostat/help/copyright-notice",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Source: Eurostat (isoc_ai_iaiu)"
     },
     {
       "id": "statfin_icte_13vg",
@@ -335,9 +345,14 @@
       ],
       "geo": "Finland",
       "access": "PxWeb API",
-      "licence": "Statistics Finland open data (CC BY 4.0)",
+      "licence": "CC BY 4.0",
       "verified": true,
-      "caveats": "Annual, spring reference; includes AI documents/instructions variable (governance proxy)"
+      "caveats": "Annual, spring reference; includes AI documents/instructions variable (governance proxy)",
+      "licence_url": "https://stat.fi/en/about-us/get-to-know-statistics-finland/legislation/terms-of-use",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes (texts, tables, graphs)",
+      "attribution": "Source: Statistics Finland (+ table id, download date, 'licence CC BY 4.0')"
     },
     {
       "id": "cso_biiesa20",
@@ -355,7 +370,12 @@
       "access": "JSON-stat API",
       "licence": "CC BY 4.0",
       "verified": true,
-      "caveats": "Annual"
+      "caveats": "Annual",
+      "licence_url": "https://www.cso.ie/en/aboutus/whoweare/copyrightpolicy/",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Source: CSO Ireland, BIIESA20"
     },
     {
       "id": "census_btos",
@@ -372,9 +392,14 @@
       ],
       "geo": "US national, state, sector, size",
       "access": "download",
-      "licence": "US public domain",
+      "licence": "US public domain (work of the US Government, 17 U.S.C. §105); Census asks for citation",
       "verified": true,
-      "caveats": "Experimental product; wording broadened 17 Nov 2025 so pre/post not comparable; use break_flag"
+      "caveats": "Experimental product; wording broadened 17 Nov 2025 so pre/post not comparable; use break_flag",
+      "licence_url": "https://www.law.cornell.edu/uscode/text/17/105 ; https://www.census.gov/about/policies/citation.html",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "U.S. Census Bureau, 'Business Trends and Outlook Survey' [Experimental], vintage, URL, accessed date"
     },
     {
       "id": "microsoft_ai_user_share",
@@ -390,9 +415,14 @@
       ],
       "geo": "147 economies",
       "access": "report tables; method on arXiv 2511.02781",
-      "licence": "check before bulk reuse",
+      "licence": "Data: MIT (GitHub microsoft/ai-diffusion-report). Method paper arXiv:2511.02781: CC BY 4.0. Report PDFs on microsoft.com: Microsoft Terms of Use (personal, non-commercial; no reproduction)",
       "verified": true,
-      "caveats": "Vendor telemetry adjusted for device share and mobile scaling; individuals not firms; cross-check against Eurostat and not sole cell"
+      "caveats": "Vendor telemetry adjusted for device share and mobile scaling; individuals not firms; cross-check against Eurostat and not sole cell",
+      "licence_url": "https://github.com/microsoft/ai-diffusion-report/blob/main/LICENSE.md ; https://arxiv.org/abs/2511.02781 ; https://www.microsoft.com/en-us/legal/terms-of-use",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open-conditions",
+      "redistribution": "Yes for the GitHub CSVs (MIT notice) and arXiv paper; No for microsoft.com PDF content beyond citing facts",
+      "attribution": "Cite Misra et al. (2025) arXiv:2511.02781 and link the dataset (Microsoft's own request); keep MIT copyright notice with redistributed CSVs"
     },
     {
       "id": "anthropic_economic_index",
@@ -409,9 +439,14 @@
       ],
       "geo": "Global, country and US state from Sept 2025 release",
       "access": "Hugging Face download",
-      "licence": "CC BY",
+      "licence": "Data: CC BY (version not stated); code: MIT (dataset card text). Hugging Face metadata tag says 'mit'",
       "verified": true,
-      "caveats": "One vendor's conversations, not market-representative; use as task-mix and depth indicator; publisher is the vendor of the model writing this registry"
+      "caveats": "One vendor's conversations, not market-representative; use as task-mix and depth indicator; publisher is the vendor of the model writing this registry",
+      "licence_url": "https://huggingface.co/datasets/Anthropic/EconomicIndex (README 'License' section)",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Cite the Anthropic Economic Index release used (citations in README)"
     },
     {
       "id": "ted_open_data",
@@ -430,9 +465,14 @@
       ],
       "geo": "EU/EEA above-threshold procurement",
       "access": "open API, no key reported",
-      "licence": "confirm: notice metadata reported as CC0; Open Data service under CC BY 4.0",
+      "licence": "Procurement notices: free reuse incl. commercial (Commission Decision 2011/833/EU); TED editorial content CC BY 4.0",
       "verified": true,
-      "caveats": "Only above-threshold tenders; AI classification of notice text must be built and sampled for accuracy"
+      "caveats": "Only above-threshold tenders; AI classification of notice text must be built and sampled for accuracy",
+      "licence_url": "https://ted.europa.eu/en/legal-notice",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Source: TED – Tenders Electronic Daily, © European Union"
     },
     {
       "id": "hilma",
@@ -449,9 +489,14 @@
       ],
       "geo": "Finland",
       "access": "confirm API/open data terms",
-      "licence": "confirm",
+      "licence": "Archived Hilma notice data (Valtiokonttori, FSD4055/FSD4056): CC BY 4.0. Live AVP open-data API: Terms of Service PDF contains no licence clause -> API licence not found",
       "verified": false,
-      "caveats": "Confirm below-threshold coverage and export"
+      "caveats": "Confirm below-threshold coverage and export",
+      "licence_url": "https://services.fsd.tuni.fi/catalogue/FSD4056 ; https://hnshilmaprodsa.blob.core.windows.net/files/hilma-lukurajapinta-kayttoehdot.pdf",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open-conditions",
+      "redistribution": "Yes for FSD archive; API: not stated",
+      "attribution": "Valtiokonttori: Julkisten hankintojen ilmoitustilastoaineisto [year], FSD; or 'Lähde: hankintailmoitukset.fi'"
     },
     {
       "id": "ifr_world_robotics",
@@ -468,9 +513,14 @@
       ],
       "geo": "Global, country, customer industry",
       "access": "press summaries and executive summary free; full tables paid",
-      "licence": "restricted for tables; cite executive summary only",
+      "licence": "Proprietary. World Robotics Terms of Usage/License Agreement (06 June 2022), §5(2): single figures and quotes up to one paragraph allowed with source; full tables, chapters or major parts prohibited",
       "verified": true,
-      "caveats": "Counts industrial robots, not AI-driven robots; AI-specificity flag = proxy"
+      "caveats": "Counts industrial robots, not AI-driven robots; AI-specificity flag = proxy",
+      "licence_url": "https://vdma-verlag.com/download_10BDB.html (linked from https://ifr.org/worldrobotics/report-2025)",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "restricted",
+      "redistribution": "No tables; single figures only",
+      "attribution": "Source: IFR World Robotics [year]"
     },
     {
       "id": "fda_ai_device_list",
@@ -487,9 +537,14 @@
       ],
       "geo": "US market",
       "access": "download",
-      "licence": "US public domain",
+      "licence": "US public domain (FDA website policy: text and graphics not copyrighted)",
       "verified": true,
-      "caveats": "FDA says list is not comprehensive; authorisation is not use; annual counts revised between updates"
+      "caveats": "FDA says list is not comprehensive; authorisation is not use; annual counts revised between updates",
+      "licence_url": "https://www.fda.gov/about-fda/about-website/website-policies",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Credit to U.S. FDA appreciated, not required"
     },
     {
       "id": "cpuc_av_data",
@@ -505,9 +560,14 @@
       ],
       "geo": "California",
       "access": "download (confirm file locations)",
-      "licence": "California public data",
+      "licence": "Not found",
       "verified": false,
-      "caveats": "Verified only through secondary reports; open primary files before logging; single state"
+      "caveats": "Verified only through secondary reports; open primary files before logging; single state",
+      "licence_url": "https://www.cpuc.ca.gov/regulatory-services/licensing/transportation-licensing-and-analysis-branch/autonomous-vehicle-programs/quarterly-reporting (no licence text); https://www.cpuc.ca.gov/conditions-of-use returned 404",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "not-found",
+      "redistribution": "Unknown",
+      "attribution": "CPUC + report name"
     },
     {
       "id": "nhtsa_sgo",
@@ -524,9 +584,14 @@
       ],
       "geo": "US",
       "access": "download",
-      "licence": "US public domain",
+      "licence": "US public domain (work of the US Government, 17 U.S.C. §105)",
       "verified": false,
-      "caveats": "Crash reports, not exposure; pair with miles from company or CPUC data"
+      "caveats": "Crash reports, not exposure; pair with miles from company or CPUC data",
+      "licence_url": "https://www.law.cornell.edu/uscode/text/17/105 (nhtsa.gov policy pages returned 403/404 to our fetch)",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "NHTSA Standing General Order crash reports, accessed date"
     },
     {
       "id": "waymo_safety_hub",
@@ -542,9 +607,14 @@
       ],
       "geo": "Company service areas",
       "access": "web",
-      "licence": "company terms",
+      "licence": "All rights reserved. Waymo Terms of Service §4 ('all rights ... reserved'; other use requires prior written permission). No open licence on the Safety Impact hub or its CSV downloads",
       "verified": false,
-      "caveats": "Company-reported; use only alongside CPUC primary data"
+      "caveats": "Company-reported; use only alongside CPUC primary data",
+      "licence_url": "https://waymo.com/terms/ ; https://waymo.com/safety/impact/",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "restricted",
+      "redistribution": "No",
+      "attribution": "Waymo Safety Impact Data Hub, release date"
     },
     {
       "id": "epoch_ai_data",
@@ -563,14 +633,19 @@
       ],
       "geo": "Global, strongest for largest US sites",
       "access": "ZIP/CSV download",
-      "licence": "CC BY 4.0 (measurements; satellite images licensed separately)",
+      "licence": "CC BY (Creative Commons Attribution; version not stated on /data page)",
       "verified": true,
-      "caveats": "Frontier Data Centers covered about 15% of delivered AI compute in Nov 2025; China under-represented; owner/user fields carry confidence markers"
+      "caveats": "Frontier Data Centers covered about 15% of delivered AI compute in Nov 2025; China under-represented; owner/user fields carry confidence markers",
+      "licence_url": "https://epoch.ai/data",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes ('free to use, distribute, and reproduce provided the source and authors are credited')",
+      "attribution": "Per-dataset citation on Epoch dataset pages"
     },
     {
       "id": "iea_energy_ai",
-      "name": "IEA Energy and AI Observatory and Energy and AI report",
-      "url": "https://www.iea.org/news/as-energy-and-ai-links-grow-new-iea-observatory-provides-latest-data-and-analysis",
+      "name": "IEA Energy and AI report (2025) and its standalone figures",
+      "url": "https://www.iea.org/reports/energy-and-ai",
       "tier": 2,
       "grade": "B-Y",
       "pillars": [
@@ -582,9 +657,41 @@
       ],
       "geo": "Global and regions",
       "access": "web tools and datasets",
-      "licence": "confirm per dataset",
+      "licence": "CC BY 4.0 (IEA Open Use Terms for the Energy and AI report text and standalone figures)",
       "verified": true,
-      "caveats": "Modelled estimates and projections; separate observed from projected values"
+      "caveats": "Modelled estimates and projections; separate observed from projected values",
+      "licence_url": "https://www.iea.org/terms",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "IEA (year), title, URL, Licence: CC BY 4.0 (+ IEA Notice for CC-licensed Content)",
+      "use_note": "Split 2026-11-22 (TP3 licence audit): the report stays [V] and may be a score input; the Observatory data explorer is the separate source iea_energy_ai_observatory (context only)."
+    },
+    {
+      "id": "iea_energy_ai_observatory",
+      "name": "IEA Energy and AI Observatory (data explorer)",
+      "url": "https://www.iea.org/data-and-statistics/data-tools/energy-and-ai-observatory",
+      "tier": 2,
+      "grade": "B-Y",
+      "pillars": [
+        "energy_capacity",
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global and regions",
+      "access": "web tools and datasets",
+      "licence": "IEA Terms of Use for Non-CC Material: only insubstantial amounts, non-commercial, occasional use; not in a regular cycle; more than 5 data points must not be made downloadable",
+      "verified": true,
+      "caveats": "Modelled estimates and projections; separate observed from projected values",
+      "licence_url": "https://www.iea.org/terms/terms-of-use-for-non-cc-material",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "problem",
+      "redistribution": "Only 'Insubstantial Amounts', non-commercial, occasional, not in a regular cycle; >5 data points must not be downloadable",
+      "attribution": "IEA (year), title, URL, Licence: CC BY 4.0 (+ IEA Notice for CC-licensed Content)",
+      "use": "context_only",
+      "use_note": "split: Energy and AI report (CC BY 4.0) stays [V]; Observatory data explorer is context-only (Non-CC terms forbid regular-cycle reuse). (applied 2026-11-22, TP3 licence audit). Single cited figures only (e.g. OBS-051); never a score input."
     },
     {
       "id": "oecd_ai",
@@ -601,9 +708,14 @@
       ],
       "geo": "60+ countries",
       "access": "web and downloads (confirm)",
-      "licence": "confirm per dataset",
+      "licence": "OECD Terms & Conditions: Data may be extracted, copied, adapted, distributed for any purpose incl. commercial, with OECD citation; written content published from 1 July 2024 mostly CC BY 4.0. Third-party data may carry other restrictions",
       "verified": true,
-      "caveats": "Incident monitor is media-derived; live data uses partner sources with their own terms"
+      "caveats": "Incident monitor is media-derived; live data uses partner sources with their own terms",
+      "licence_url": "https://www.oecd.org/en/about/terms-conditions.html (linked from oecd.ai footer)",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open-conditions",
+      "redistribution": "Yes (OECD-owned data); check third-party items (e.g. AI Incidents Monitor is built from news articles)",
+      "attribution": "OECD (year), dataset name, OECD.AI, URL (accessed date); pass on the acknowledgment requirement"
     },
     {
       "id": "eur_lex",
@@ -620,9 +732,14 @@
       ],
       "geo": "EU",
       "access": "open, SPARQL via CELLAR",
-      "licence": "EU reuse (CC BY 4.0)",
+      "licence": "EU legal documents: free reuse incl. commercial (Decision 2011/833/EU); EUR-Lex editorial content CC BY 4.0",
       "verified": true,
-      "caveats": "Verified via Implementing Decision (EU) 2026/2274 (EN 18286:2026) in brief 2026-10-14; check application dates before logging counts"
+      "caveats": "Verified via Implementing Decision (EU) 2026/2274 (EN 18286:2026) in brief 2026-10-14; check application dates before logging counts",
+      "licence_url": "https://eur-lex.europa.eu/content/legal-notice/legal-notice.html",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "© European Union, https://eur-lex.europa.eu"
     },
     {
       "id": "incident_db",
@@ -639,9 +756,14 @@
       ],
       "geo": "Global",
       "access": "download",
-      "licence": "confirm",
+      "licence": "Not found",
       "verified": false,
-      "caveats": "Reporting-biased; diagnostic only"
+      "caveats": "Reporting-biased; diagnostic only",
+      "licence_url": "https://incidentdatabase.ai/research/snapshots/ (citation guidance only); https://incidentdatabase.ai/terms-of-use/ (covers user submissions); GitHub responsible-ai-collaborative/aiid licence: NOASSERTION",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "not-found",
+      "redistribution": "Unknown",
+      "attribution": "McGregor (2021) IAAI-21 + per-incident citation"
     },
     {
       "id": "sec_edgar",
@@ -660,9 +782,14 @@
       ],
       "geo": "US-listed",
       "access": "free API and filings",
-      "licence": "US public domain",
+      "licence": "Public information: 'may be copied or further distributed ... without the SEC's permission' (SEC website dissemination policy)",
       "verified": true,
-      "caveats": "Verified via Anthropic PBC Form S-1 (26 Oct 2026, brief 2026-10-28); hyperscaler capex not always split into AI vs other"
+      "caveats": "Verified via Anthropic PBC Form S-1 (26 Oct 2026, brief 2026-10-28); hyperscaler capex not always split into AI vs other",
+      "licence_url": "https://www.sec.gov/privacy (section 'Website Dissemination')",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Cite SEC EDGAR + filer/filing"
     },
     {
       "id": "fed_dfa",
@@ -678,9 +805,14 @@
       ],
       "geo": "US",
       "access": "download",
-      "licence": "US public domain",
+      "licence": "Public domain unless otherwise indicated (Federal Reserve Board website)",
       "verified": false,
-      "caveats": "Equity ownership by wealth group, not AI-specific; use as the retail/household share backbone"
+      "caveats": "Equity ownership by wealth group, not AI-specific; use as the retail/household share backbone",
+      "licence_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Cite the Board as source"
     },
     {
       "id": "ecb_dwa",
@@ -696,9 +828,14 @@
       ],
       "geo": "Euro area",
       "access": "download",
-      "licence": "ECB reuse policy",
+      "licence": "ECB copyright notice: free use with ECB cited as source, information reproduced accurately; if included in sold documents, buyers must be informed it is obtainable free of charge from the ECB",
       "verified": false,
-      "caveats": "Not AI-specific"
+      "caveats": "Not AI-specific",
+      "licence_url": "https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open-conditions",
+      "redistribution": "Yes (with conditions)",
+      "attribution": "Source: ECB"
     },
     {
       "id": "eurostat_lfs_labour",
@@ -717,9 +854,14 @@
       ],
       "geo": "EU-27",
       "access": "download and API",
-      "licence": "Eurostat reuse policy",
+      "licence": "Eurostat reuse policy (as row 1)",
       "verified": false,
-      "caveats": "Dataset codes to be recorded per series"
+      "caveats": "Dataset codes to be recorded per series",
+      "licence_url": "https://ec.europa.eu/eurostat/help/copyright-notice",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Source: Eurostat (dataset code)"
     },
     {
       "id": "indeed_hiring_lab",
@@ -736,9 +878,14 @@
       ],
       "geo": "Several countries",
       "access": "GitHub CSV",
-      "licence": "confirm (CC BY 4.0 reported)",
+      "licence": "CC BY 4.0 (LICENSE in hiring-lab/job_postings_tracker and hiring-lab/ai-tracker)",
       "verified": false,
-      "caveats": "Single platform; postings not employment"
+      "caveats": "Single platform; postings not employment",
+      "licence_url": "https://github.com/hiring-lab/job_postings_tracker/blob/master/LICENSE ; https://github.com/hiring-lab/ai-tracker/blob/main/LICENSE",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Indeed Hiring Lab, repo name, date"
     },
     {
       "id": "cedefop_ovate",
@@ -755,9 +902,14 @@
       ],
       "geo": "EU",
       "access": "dashboard; confirm export",
-      "licence": "confirm",
+      "licence": "Cedefop legal notice: reproduction authorised provided the source is acknowledged, save where otherwise stated",
       "verified": false,
-      "caveats": "Online ads only"
+      "caveats": "Online ads only",
+      "licence_url": "https://www.cedefop.europa.eu/en/content/legal-noticedisclaimer",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Source: Cedefop Skills-OVATE"
     },
     {
       "id": "fingrid_open_data",
@@ -774,9 +926,14 @@
       ],
       "geo": "Finland",
       "access": "API (free key)",
-      "licence": "CC BY 4.0 (confirm)",
+      "licence": "Creative Commons Attribution (dataset page; version not stated). API use subject to registration terms",
       "verified": false,
-      "caveats": "Confirm connection-request and data-centre series"
+      "caveats": "Confirm connection-request and data-centre series",
+      "licence_url": "https://data.fingrid.fi/en/datasets/124 ; https://data.fingrid.fi/en/instructions",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Source: Fingrid open data, dataset id"
     },
     {
       "id": "entsoe_transparency",
@@ -793,9 +950,14 @@
       ],
       "geo": "Europe",
       "access": "API (free token)",
-      "licence": "ENTSO-E terms",
+      "licence": "CC BY 4.0 for data on ENTSO-E 'List of data available for free re-use' (18 Feb 2022); excludes GE, MD, TR, some UA and UK-interconnector items. Other data: Terms of Use §3.1 (cite source; prior agreement of Primary Owner if copyright could be prejudiced)",
       "verified": false,
-      "caveats": "Generation and load; carbon intensity must be derived"
+      "caveats": "Generation and load; carbon intensity must be derived",
+      "licence_url": "https://transparencyplatform.zendesk.com/hc/article_attachments/40921875170449 ; https://transparencyplatform.zendesk.com/hc/article_attachments/40921869376401",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open-conditions",
+      "redistribution": "Yes for listed data",
+      "attribution": "Source: ENTSO-E Transparency Platform"
     },
     {
       "id": "ember",
@@ -813,7 +975,12 @@
       "access": "download",
       "licence": "CC BY 4.0",
       "verified": false,
-      "caveats": "Grid carbon intensity at country level, not at the connection point"
+      "caveats": "Grid carbon intensity at country level, not at the connection point",
+      "licence_url": "https://ember-energy.org/data/ (footer) ; https://ember-energy.org/creative-commons/",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Ember, dataset name, year"
     },
     {
       "id": "lbnl_queued_up",
@@ -829,9 +996,14 @@
       ],
       "geo": "US",
       "access": "download",
-      "licence": "confirm",
+      "licence": "Not found",
       "verified": false,
-      "caveats": "Generation queues; large-load queues from ERCOT/PJM to be added"
+      "caveats": "Generation queues; large-load queues from ERCOT/PJM to be added",
+      "licence_url": "https://emp.lbl.gov/queues (no licence statement next to the XLSX/PDF)",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "not-found",
+      "redistribution": "Unknown",
+      "attribution": "Rand et al. (2026) Queued Up: 2026 Edition, LBNL"
     },
     {
       "id": "wri_aqueduct",
@@ -847,9 +1019,14 @@
       ],
       "geo": "Global basins",
       "access": "download",
-      "licence": "CC BY 4.0",
+      "licence": "CC BY 4.0 (WRI standard licence for data and publications, Open Data Commitment)",
       "verified": false,
-      "caveats": "Basin-level water stress to join to data-centre sites"
+      "caveats": "Basin-level water stress to join to data-centre sites",
+      "licence_url": "https://www.wri.org/data/open-data-commitment",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "WRI Aqueduct, version, year"
     },
     {
       "id": "oecd_pmr",
@@ -866,9 +1043,14 @@
       ],
       "geo": "OECD",
       "access": "download",
-      "licence": "OECD terms",
+      "licence": "OECD Terms & Conditions (Data clause; as oecd_ai)",
       "verified": false,
-      "caveats": "Economy-wide, not AI-specific; context for entry_conditions"
+      "caveats": "Economy-wide, not AI-specific; context for entry_conditions",
+      "licence_url": "https://www.oecd.org/en/about/terms-conditions.html",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "OECD (year), PMR indicators, URL"
     },
     {
       "id": "hf_hub",
@@ -884,9 +1066,14 @@
       ],
       "geo": "Global",
       "access": "API",
-      "licence": "per model",
+      "licence": "No blanket licence: each model/dataset repo carries its own licence field",
       "verified": false,
-      "caveats": "Downloads are not use; open_interfaces proxy"
+      "caveats": "Downloads are not use; open_interfaces proxy",
+      "licence_url": "https://huggingface.co/docs/hub/repositories-licenses ; https://huggingface.co/terms-of-service",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open-conditions",
+      "redistribution": "Metadata counts: yes in practice; content: per repo",
+      "attribution": "Hugging Face Hub API, query date"
     },
     {
       "id": "stanford_ai_index",
@@ -901,9 +1088,14 @@
       ],
       "geo": "Global",
       "access": "report",
-      "licence": "CC BY-ND (confirm)",
+      "licence": "CC BY-ND 4.0 ('The AI Index 2026 Annual Report by Stanford University is licensed under Attribution-NoDerivatives 4.0 International')",
       "verified": true,
-      "caveats": "Compiles other sources (including non-probability surveys such as organisation-adoption figures); use to locate primaries, not as a source of cells"
+      "caveats": "Compiles other sources (including non-probability surveys such as organisation-adoption figures); use to locate primaries, not as a source of cells",
+      "licence_url": "https://hai.stanford.edu/assets/files/ai_index_report_2026.pdf (front matter, 'How to Cite This Report') via https://hai.stanford.edu/ai-index/2026-ai-index-report",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "restricted",
+      "redistribution": "Verbatim copies only; no adapted tables/charts. Single facts may be cited",
+      "attribution": "Full citation from the report + DOI 10.48550/arXiv.2606.15708 + licence"
     },
     {
       "id": "gdpval",
@@ -919,9 +1111,16 @@
       ],
       "geo": "US occupations",
       "access": "Hugging Face download (220 gold tasks, 2.29 GB); paper arXiv 2510.04374",
-      "licence": "not stated on dataset page; confirm before redistribution",
+      "licence": "No licence stated (Hugging Face card and API metadata have no licence) -> all rights reserved by default",
       "verified": true,
-      "caveats": "Vendor-authored; one-shot knowledge-work tasks only; public tasks can be contaminated (canary string); automated grader experimental; headline 100x cost claim excludes oversight and integration, never log as a cell; use as task basket and quality anchor, not as a price series"
+      "caveats": "Vendor-authored; one-shot knowledge-work tasks only; public tasks can be contaminated (canary string); automated grader experimental; headline 100x cost claim excludes oversight and integration, never log as a cell; use as task basket and quality anchor, not as a price series",
+      "licence_url": "https://huggingface.co/datasets/openai/gdpval ; https://huggingface.co/api/datasets/openai/gdpval",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "problem",
+      "redistribution": "No (dataset); cite published results only",
+      "attribution": "OpenAI GDPval + paper",
+      "use": "context_only",
+      "use_note": "context-only: no licence could be established (none on the dataset card or in the API metadata). Keep [V] for provenance, but do not use it as score input and do not republish data; cite published results only. (applied 2026-11-22, TP3 licence audit)"
     },
     {
       "id": "ramp_ai_index",
@@ -938,9 +1137,16 @@
       ],
       "geo": "US businesses on Ramp",
       "access": "web page; FRED monthly series e.g. RAMPAIOPENAI",
-      "licence": "page states none; FRED asks for citation, copyright Ramp Business Corporation; confirm",
+      "licence": "Proprietary: 'Copyright 2025–2026 Ramp Business Corporation. Citation required.' FRED Terms: series with a copyright notice need the owner's permission for anything other than personal use",
       "verified": true,
-      "caveats": "Paid AI use only (understates free/personal use); platform-skewed sample; level not comparable to Eurostat/BTOS; use for momentum and as candidate bridge across the BTOS Nov 2025 break; provider shares logged for concentration only"
+      "caveats": "Paid AI use only (understates free/personal use); platform-skewed sample; level not comparable to Eurostat/BTOS; use for momentum and as candidate bridge across the BTOS Nov 2025 break; provider shares logged for concentration only",
+      "licence_url": "https://fred.stlouisfed.org/series/RAMPAIOPENAI ; https://fred.stlouisfed.org/legal/ ; https://ramp.com/data/ai-index",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "problem",
+      "redistribution": "No (without Ramp's permission); single facts with citation only",
+      "attribution": "Ramp, series name [ID], retrieved from FRED, URL, date",
+      "use": "context_only",
+      "use_note": "context-only unless Ramp grants written permission: no open licence; FRED's terms require the owner's permission for non-personal use. (applied 2026-11-22, TP3 licence audit)"
     },
     {
       "id": "charlotin_hallucination_cases",
@@ -959,7 +1165,12 @@
       "access": "CSV download, updated daily",
       "licence": "CC BY 4.0",
       "verified": true,
-      "caveats": "Counts cases courts noticed and addressed; mostly self-represented litigants; inclusion is a judgement call; normalise by case volumes before using as penetration"
+      "caveats": "Counts cases courts noticed and addressed; mostly self-represented litigants; inclusion is a judgement call; normalise by case volumes before using as penetration",
+      "licence_url": "https://www.damiencharlotin.com/hallucinations/",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes incl. commercial",
+      "attribution": "AI Hallucination Cases Database, Damien Charlotin, https://www.damiencharlotin.com/hallucinations/"
     },
     {
       "id": "openrouter_rankings",
@@ -976,9 +1187,14 @@
       ],
       "geo": "Global (routed API traffic)",
       "access": "JSON Data API; web",
-      "licence": "CC BY 4.0 per page",
+      "licence": "CC BY 4.0 ('Rankings data by OpenRouter is licensed under CC BY 4.0')",
       "verified": true,
-      "caveats": "Routed traffic only, not users or spend; developer-skewed; market share counts requests; verbosity and tokenisation differ across models"
+      "caveats": "Routed traffic only, not users or spend; developer-skewed; market share counts requests; verbosity and tokenisation differ across models",
+      "licence_url": "https://openrouter.ai/rankings",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Per OpenRouter Data API citation format"
     },
     {
       "id": "cloudflare_radar_ai",
@@ -996,9 +1212,14 @@
       ],
       "geo": "Global",
       "access": "Radar API and Data Explorer",
-      "licence": "not found; confirm",
+      "licence": "API data and downloads: CC BY-NC 4.0. Charts/images: CC BY 4.0. Reports: limited excerpts with attribution",
       "verified": true,
-      "caveats": "Verified only from a Feb 2025 blog post; DNS popularity is not usage; robots.txt covers top 10,000 domains and declared directives only; check current datasets"
+      "caveats": "Verified only from a Feb 2025 blog post; DNS popularity is not usage; robots.txt covers top 10,000 domains and declared directives only; check current datasets",
+      "licence_url": "https://radar.cloudflare.com/about (section 'Licensing policies')",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "restricted",
+      "redistribution": "Yes, non-commercial only for API data",
+      "attribution": "Cloudflare Radar (title, link); citation generator on the page"
     },
     {
       "id": "github_innovation_graph",
@@ -1015,9 +1236,14 @@
       ],
       "geo": "By economy",
       "access": "Innovation Graph downloads (confirm); Octoverse is a report",
-      "licence": "confirm",
+      "licence": "CC0 1.0 (github/innovationgraph)",
       "verified": false,
-      "caveats": "Octoverse checked (4.3M+ AI repos; ~1.1M repos import an LLM SDK, +178% y/y) but is a report, not a dataset; public activity only; country from self-reported location; Innovation Graph not opened"
+      "caveats": "Octoverse checked (4.3M+ AI repos; ~1.1M repos import an LLM SDK, +178% y/y) but is a report, not a dataset; public activity only; country from self-reported location; Innovation Graph not opened",
+      "licence_url": "https://github.com/github/innovationgraph/blob/main/LICENSE.md",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Not required (suggested: GitHub Innovation Graph)"
     },
     {
       "id": "ercot_large_load_queue",
@@ -1033,9 +1259,14 @@
       ],
       "geo": "Texas",
       "access": "public ERCOT / TCEQ filings",
-      "licence": "Texas public records",
+      "licence": "gov.texas.gov Site Policies: 'Commercial use of any reproduction of any portion of this website is strictly prohibited'. ERCOT's own terms not opened (403)",
       "verified": true,
-      "caveats": "Verified in brief 2026-10-25 (Governor Abbott 21 Sept directive, TCEQ 19 Oct reply, 8.7 GW across 6 campuses, 400+ data centres in ERCOT audit due 10 Dec 2026)"
+      "caveats": "Verified in brief 2026-10-25 (Governor Abbott 21 Sept directive, TCEQ 19 Oct reply, 8.7 GW across 6 campuses, 400+ data centres in ERCOT audit due 10 Dec 2026)",
+      "licence_url": "https://gov.texas.gov/site-policies ; https://gov.texas.gov/uploads/files/press/TCEQ_Data_Center.pdf",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "restricted",
+      "redistribution": "Non-commercial only; cite facts",
+      "attribution": "Office of the Texas Governor / TCEQ, document title, date"
     },
     {
       "id": "taiwan_moea_export_orders",
@@ -1052,9 +1283,14 @@
       ],
       "geo": "Taiwan",
       "access": "MOEA statistics (confirm)",
-      "licence": "confirm",
+      "licence": "Not found",
       "verified": false,
-      "caveats": "Seen via Focus Taiwan only; industry-based (electronics, ICT), not AI-specific: proxy flag"
+      "caveats": "Seen via Focus Taiwan only; industry-based (electronics, ICT), not AI-specific: proxy flag",
+      "licence_url": "https://www.moea.gov.tw (403 to our fetch); registry URL is a Focus Taiwan news article (news copyright; facts only)",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "not-found",
+      "redistribution": "Unknown",
+      "attribution": "MOEA, export orders release, date"
     },
     {
       "id": "china_nbs_robot_output",
@@ -1070,9 +1306,14 @@
       ],
       "geo": "China",
       "access": "NBS monthly release (confirm table)",
-      "licence": "confirm",
+      "licence": "Not found",
       "verified": false,
-      "caveats": "Aug 2026 +34.6% y/y seen via CGTN only; industrial robots, not AI-specific: proxy flag; some months reported from an industry federation rather than NBS"
+      "caveats": "Aug 2026 +34.6% y/y seen via CGTN only; industrial robots, not AI-specific: proxy flag; some months reported from an industry federation rather than NBS",
+      "licence_url": "https://www.stats.gov.cn/english/ (no licence statement found)",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "not-found",
+      "redistribution": "Unknown",
+      "attribution": "National Bureau of Statistics of China, release, date"
     },
     {
       "id": "swaa",
@@ -1089,9 +1330,14 @@
       ],
       "geo": "US workers 20-64",
       "access": "time series Excel/JSON; microdata on request",
-      "licence": "CC BY 4.0",
+      "licence": "CC BY 4.0 ('All our code and data are licensed under ... CC BY 4.0')",
       "verified": true,
-      "caveats": "Data page does not list AI items; Bick et al. report a Dec 2024 SWAA wave with generative-AI use; confirm AI series ids; online panel"
+      "caveats": "Data page does not list AI items; Bick et al. report a Dec 2024 SWAA wave with generative-AI use; confirm AI series ids; online panel",
+      "licence_url": "https://wfhresearch.com/data/",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Barrero, Bloom and Davis (2021), NBER WP 28731"
     },
     {
       "id": "rps_bick_blandin_deming",
@@ -1107,9 +1353,14 @@
       ],
       "geo": "US adults 18-64",
       "access": "NBER data appendix",
-      "licence": "confirm",
+      "licence": "Paper: © 2024 the authors, all rights reserved; short sections (max two paragraphs) may be quoted with full credit incl. © notice. RPS data site: not reachable (connection failed)",
       "verified": true,
-      "caveats": "Aug and Nov 2024 waves only; not peer-reviewed; online panel; self-reported; use as diffusion-speed benchmark against PCs and internet"
+      "caveats": "Aug and Nov 2024 waves only; not peer-reviewed; online panel; self-reported; use as diffusion-speed benchmark against PCs and internet",
+      "licence_url": "https://www.nber.org/system/files/working_papers/w32966/w32966.pdf (p.1) ; https://www.realtimepopulationsurvey.com/ (unreachable)",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "restricted",
+      "redistribution": "No tables; single figures with citation",
+      "attribution": "Bick, Blandin and Deming, 'The Rapid Adoption of Generative AI', NBER WP 32966 (2024), https://doi.org/10.3386/w32966"
     },
     {
       "id": "firm_data_on_ai",
@@ -1126,9 +1377,14 @@
       ],
       "geo": "US, UK, Germany, Australia",
       "access": "working paper; microdata availability not stated",
-      "licence": "confirm",
+      "licence": "NBER Digest: 'Periodical content may be reproduced freely with appropriate attribution'. Underlying NBER WP 34836 not opened (NBER WPs normally carry an all-rights-reserved notice)",
       "verified": true,
-      "caveats": "Single fielding Nov 2025-Jan 2026; executive-reported; useful convergent check against Eurostat and BTOS"
+      "caveats": "Single fielding Nov 2025-Jan 2026; executive-reported; useful convergent check against Eurostat and BTOS",
+      "licence_url": "https://www.nber.org/digest/202605/global-evidence-business-use-ai",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open-conditions",
+      "redistribution": "Digest text: yes with attribution; WP tables: not verified",
+      "attribution": "NBER Digest, May 2026; NBER WP 34836"
     },
     {
       "id": "stackoverflow_survey_2026",
@@ -1145,9 +1401,14 @@
       ],
       "geo": "Global developers",
       "access": "dataset promised on GitHub 'in a few weeks'",
-      "licence": "not stated; confirm",
+      "licence": "Survey data: ODbL 1.0; contents: DbCL 1.0 (survey.stackoverflow.co footer)",
       "verified": true,
-      "caveats": "Developer self-selected sample; software sector only"
+      "caveats": "Developer self-selected sample; software sector only",
+      "licence_url": "https://survey.stackoverflow.co/",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open-conditions",
+      "redistribution": "Yes, but share-alike: a published derived database must be offered under ODbL",
+      "attribution": "Stack Overflow Developer Survey 2026, ODbL notice"
     },
     {
       "id": "src_planetary_boundaries",
@@ -1164,9 +1425,14 @@
       ],
       "geo": "Global",
       "access": "web page; papers; annual Planetary Health Check",
-      "licence": "graphics CC BY-NC-ND 3.0 (no alteration, non-commercial); cite values, redraw panel",
+      "licence": "Graphics: CC BY-NC-ND 3.0 (credit 'Azote for Stockholm Resilience Centre, based on analysis in Sakschewski and Caesar et al. 2026'). Page text: no licence stated",
       "verified": true,
-      "caveats": "Page says seven of nine transgressed but names neither the seven nor control variables; own figures inconsistent (six for 2023); build the panel from primary papers and the Planetary Health Check, print assessment year; reference frame, not an AI series"
+      "caveats": "Page says seven of nine transgressed but names neither the seven nor control variables; own figures inconsistent (six for 2023); build the panel from primary papers and the Planetary Health Check, print assessment year; reference frame, not an AI series",
+      "licence_url": "https://www.stockholmresilience.org/research/planetary-boundaries.html",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "restricted",
+      "redistribution": "Graphics: unaltered, non-commercial only. Values: cite facts, redraw from primary sources",
+      "attribution": "Credit line as given on the page"
     },
     {
       "id": "richardson_2023_pb",
@@ -1183,9 +1449,14 @@
       ],
       "geo": "Global",
       "access": "open access paper (not opened; fetch failed)",
-      "licence": "confirm",
+      "licence": "CC BY-NC (Europe PMC record PMC10499318 for doi 10.1126/sciadv.adh2458)",
       "verified": false,
-      "caveats": "Values seen only via a French government statistics page presenting the 2023 revision; open the paper before logging; later updates supersede (2025 and 2026 Planetary Health Check)"
+      "caveats": "Values seen only via a French government statistics page presenting the 2023 revision; open the paper before logging; later updates supersede (2025 and 2026 Planetary Health Check)",
+      "licence_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1126/sciadv.adh2458&format=json&resultType=core",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "restricted",
+      "redistribution": "Non-commercial; facts/values citable",
+      "attribution": "Richardson et al. (2023) Sci. Adv. 9, eadh2458"
     },
     {
       "id": "pik_planetary_health_check",
@@ -1202,9 +1473,14 @@
       ],
       "geo": "Global",
       "access": "annual report (not opened)",
-      "licence": "confirm",
+      "licence": "CC BY 4.0 'unless otherwise noted' (Planetary Health Check 2025, DOI 10.48485/pik.2025.017)",
       "verified": false,
-      "caveats": "Linked from the SRC page and cited as the source of the 2025 count; find the 2025 and 2026 editions and record per-boundary status before use"
+      "caveats": "Linked from the SRC page and cited as the source of the 2025 count; find the 2025 and 2026 editions and record per-boundary status before use",
+      "licence_url": "https://publications.pik-potsdam.de/pubman/item/item_32589 (PDF licence line seen via search index; 58 MB PDF not opened directly)",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Planetary Boundaries Science (PBScience). 2025. Planetary Health Check 2025. PIK, Potsdam"
     },
     {
       "id": "eurostat_nama_10_an6",
@@ -1221,10 +1497,15 @@
       ],
       "geo": "EU-27, Finland and other member states",
       "access": "download and API",
-      "licence": "Eurostat reuse policy (CC BY 4.0 compatible)",
+      "licence": "Eurostat reuse policy: free reuse of statistical data incl. commercial, source must be acknowledged (Commission Decision 2011/833/EU); editorial content CC BY 4.0",
       "verified": true,
       "verified_date": "2026-11-22",
-      "caveats": "K1 is N1132G (ICT equipment) + N117G (intellectual property products) as % of GDP. National-accounts proxy for capital that AI diffusion needs; not AI-specific. Retrieved 2026-11-22 (dataset updated 2026-11-05)."
+      "caveats": "K1 is N1132G (ICT equipment) + N117G (intellectual property products) as % of GDP. National-accounts proxy for capital that AI diffusion needs; not AI-specific. Retrieved 2026-11-22 (dataset updated 2026-11-05).",
+      "licence_url": "https://ec.europa.eu/eurostat/help/copyright-notice",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes",
+      "attribution": "Source: Eurostat (nama_10_an6)"
     },
     {
       "id": "oecd_sna_table1",
@@ -1241,10 +1522,15 @@
       ],
       "geo": "EU-27 (EU27_2020) and Finland (FIN); 2025 N1132G not yet published for EU27_2020",
       "access": "SDMX API (CSV/JSON)",
-      "licence": "OECD terms and conditions (CC BY 4.0)",
+      "licence": "OECD Terms and Conditions, section 3 Data: extract, copy, adapt, distribute for any purpose incl. commercial, with citation 'OECD (year), dataset, URL (accessed on date)'; third-party restrictions may apply (EU national accounts originate from Eurostat and national statistical institutes)",
       "verified": true,
       "verified_date": "2026-11-22",
-      "caveats": "Cross-check source for K1 only (indicator K1x_gfcf_ict_ipp_gdp_oecd, role cross_check, never scored). (N1132G + N117G) / B1GQ at current prices, national currency. OECD republishes the same ESA 2010 national accounts that Eurostat and Statistics Finland compile, so it verifies the K1 values (agreement within 0.1 percentage point, 2019-2025, retrieved 2026-11-22) but is not an independent measurement. Raw responses in data/snapshots/1.0.0-dev/raw/oecd_sna_table1/."
+      "caveats": "Cross-check source for K1 only (indicator K1x_gfcf_ict_ipp_gdp_oecd, role cross_check, never scored). (N1132G + N117G) / B1GQ at current prices, national currency. OECD republishes the same ESA 2010 national accounts that Eurostat and Statistics Finland compile, so it verifies the K1 values (agreement within 0.1 percentage point, 2019-2025, retrieved 2026-11-22) but is not an independent measurement. Raw responses in data/snapshots/1.0.0-dev/raw/oecd_sna_table1/.",
+      "licence_url": "https://www.oecd.org/en/about/terms-conditions.html",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "open",
+      "redistribution": "Yes, with citation",
+      "attribution": "OECD (2026), Annual GFCF by asset / Annual GDP (DSD_NAMAIN10), OECD Data Explorer, accessed 2026-11-22"
     },
     {
       "id": "anthropic_research_formal_verification",
@@ -1260,10 +1546,15 @@
       ],
       "geo": "Global",
       "access": "web page",
-      "licence": "company web page; quote single figures only",
+      "licence": "No open licence: page footer '© 2026 Anthropic PBC'; no licence or website-terms link found on the page -> all rights reserved by default",
       "verified": true,
       "caveats": "Single-company disclosure (tier 4); context only, never sole A/B evidence; added in TP1 review 2026-11-22 to correct OBS-040, previously mis-tagged as gdpval",
-      "verified_date": "2026-11-22"
+      "verified_date": "2026-11-22",
+      "licence_url": "https://www.anthropic.com/research/formal-verification",
+      "licence_checked": "2026-11-22",
+      "reuse_class": "restricted",
+      "redistribution": "No; single figures with citation only",
+      "attribution": "Anthropic, 'formal verification' research post, URL, access date"
     }
   ],
   "pace_layers": [

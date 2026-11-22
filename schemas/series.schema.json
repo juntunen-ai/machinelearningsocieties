@@ -126,6 +126,7 @@
         "waymo_safety_hub",
         "epoch_ai_data",
         "iea_energy_ai",
+        "iea_energy_ai_observatory",
         "oecd_ai",
         "eur_lex",
         "incident_db",

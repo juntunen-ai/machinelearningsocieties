@@ -346,3 +346,14 @@ def test_planetary_scores_are_null_when_not_measured(computed: dict):
         assert boundary["abatement_score"] is None
         assert boundary["ai_measured"] is False
 
+
+
+def test_context_only_registry_sources_never_feed_a_score(repo_root: Path):
+    """Registry use=context_only (TP3 licence audit): no row from such a source carries an indicator_id."""
+    index_dir = repo_root / "index"
+    registry = json.loads((index_dir / "registry.v1.0.json").read_text(encoding="utf-8"))
+    context_only = {s["id"] for s in registry["sources"] if s.get("use") == "context_only"}
+    assert {"gdpval", "ramp_ai_index", "iea_energy_ai_observatory"} <= context_only
+    with (index_dir / "series.csv").open(encoding="utf-8") as handle:
+        bad = [r["obs_id"] for r in csv.DictReader(handle) if r["source_id"] in context_only and r["indicator_id"]]
+    assert bad == []
