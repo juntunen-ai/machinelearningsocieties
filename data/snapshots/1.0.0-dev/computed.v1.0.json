@@ -1,0 +1,4620 @@
+{
+  "schema_version": "1.0.0",
+  "method_version": "1.0",
+  "index_version": "1.0.0",
+  "pipeline_version": "1.0.0-dev",
+  "generated_at": "2026-11-22T13:55:24Z",
+  "range_level": "95%",
+  "quarter_label": "2026-Q4",
+  "scope_label": "EU27 and Finland, published separately",
+  "next_update": null,
+  "reference_period": "2026-Q4",
+  "cut_off": "2026-12-31",
+  "channel_weights": {
+    "digital": 0.5,
+    "physical": 0.5,
+    "decision_status": "default pending a decision by Harri Juntunen (2026-11-22). This is the v0.6 equal digital/physical split. Do not change these numbers without that decision and a CHANGELOG entry."
+  },
+  "vintage": {
+    "cut_off": "2026-12-31",
+    "proposed_1_0_0_cut_off": "2026-12-31 (2026-Q4): captures Eurostat's planned December 2026 isoc_eb_ai release; publication proposed January 2027.",
+    "hashes": {
+      "series.csv": "98224a0f39d48ecaaf94c32635e49ea82f32d4c52a81ad2adeda54dca02ef4b7",
+      "registry.v1.0.json": "99fb847587d86e58f4e19a8d57efaf1640792663bc6db7d22dbc8885dab95495",
+      "method.v1.0.json": "802c7bb772c69c427d16cef5fcd052b990fa964f3ceeff09263aa0dd8a36694a",
+      "brief_signals.csv": "e545b098899405a93d72a17c0f972d78b71c74c64856b9c2ff0483d82823f0ab",
+      "planetary_boundaries.json": "2819a77b83757566b941d562ad583739c9dbbb098abb69b94d3be11076fb7046"
+    }
+  },
+  "warnings": [],
+  "stale_observations": [
+    "OBS-058",
+    "OBS-059",
+    "OBS-062",
+    "OBS-065",
+    "OBS-069",
+    "OBS-073",
+    "OBS-077",
+    "OBS-078",
+    "OBS-079",
+    "OBS-080",
+    "OBS-084",
+    "OBS-085",
+    "OBS-086",
+    "OBS-087"
+  ],
+  "populations": {
+    "EU27": {
+      "id": "EU27",
+      "label": "European Union (27 member states)",
+      "headline": {
+        "score": 21.7,
+        "geometric_mean": 17.8,
+        "status": "scored",
+        "weights": {
+          "deployment": 0.5,
+          "capital_intensity": 0.5
+        },
+        "eligible_pillars": [
+          "deployment",
+          "capital_intensity"
+        ],
+        "median": 21.6,
+        "p2_5": 16.7,
+        "p97_5": 27.0,
+        "variance_decomposition": {
+          "V_total": 7.272226707748449,
+          "V_data": 0.5838308316711962,
+          "V_weights": 6.635276872412418,
+          "V_aggregation": 3.7041223655655036,
+          "share_data_pct": 5,
+          "share_weights_pct": 61,
+          "share_aggregation_pct": 34,
+          "interaction": 0.05311900366483524
+        },
+        "score_unrounded": 21.670624999999998,
+        "display": 22
+      },
+      "dai": {
+        "score": 25.6,
+        "status": "scored",
+        "proxy": true,
+        "median": 25.6,
+        "p2_5": 24.1,
+        "p97_5": 27.2,
+        "score_unrounded": 25.646249999999995
+      },
+      "pai": {
+        "score": 1.4,
+        "status": "scored",
+        "proxy": false,
+        "median": 1.4,
+        "p2_5": 1.3,
+        "p97_5": 1.5,
+        "score_unrounded": 1.39
+      },
+      "pillars": [
+        {
+          "id": "deployment",
+          "code": "P1",
+          "block": "A_diffusion",
+          "direction": 1,
+          "score": 9.3,
+          "score_unrounded": 9.34125,
+          "status": "scored",
+          "grade": "A",
+          "n": 37,
+          "n_sources": 3,
+          "n_official_sources": 3,
+          "coverage": "4/4",
+          "channel_coverage": "both",
+          "unmeasured_indicators": [],
+          "clipped": false,
+          "eligible": true,
+          "source_ids": [
+            "eurostat_isoc_ai_iaiu",
+            "eurostat_isoc_eb_ai",
+            "statfin_icte_13vg"
+          ],
+          "channels": {
+            "digital": {
+              "score": 17.3,
+              "layers": {
+                "reach": {
+                  "score": 26.3,
+                  "n_indicators": 2,
+                  "indicators": [
+                    "D1_ent_any_ai",
+                    "D2_ind_genai"
+                  ]
+                },
+                "depth": {
+                  "score": 8.3,
+                  "n_indicators": 1,
+                  "indicators": [
+                    "D3_ent_depth_ge3"
+                  ]
+                }
+              }
+            },
+            "physical": {
+              "score": 1.4,
+              "layers": {
+                "reach": {
+                  "score": 1.4,
+                  "n_indicators": 1,
+                  "indicators": [
+                    "D4_ent_autonomous"
+                  ]
+                }
+              }
+            }
+          },
+          "observations": [
+            {
+              "indicator_id": "D1_ent_any_ai",
+              "obs_id": "OBS-003",
+              "period": "2025",
+              "raw": 19.95,
+              "score": 20.0,
+              "clipped": false,
+              "grade": "A",
+              "sigma": 0.0071494789,
+              "sigma_basis": "binomial"
+            },
+            {
+              "indicator_id": "D2_ind_genai",
+              "obs_id": "OBS-029",
+              "period": "2025",
+              "raw": 32.66,
+              "score": 32.7,
+              "clipped": false,
+              "grade": "A",
+              "sigma": 0.045,
+              "sigma_basis": "fallback_A"
+            },
+            {
+              "indicator_id": "D3_ent_depth_ge3",
+              "obs_id": "OBS-027",
+              "period": "2025",
+              "raw": 8.28,
+              "score": 8.3,
+              "clipped": false,
+              "grade": "A",
+              "sigma": 0.0118790586,
+              "sigma_basis": "binomial"
+            },
+            {
+              "indicator_id": "D4_ent_autonomous",
+              "obs_id": "OBS-072",
+              "period": "2025",
+              "raw": 1.39,
+              "score": 1.4,
+              "clipped": false,
+              "grade": "A",
+              "sigma": 0.0300620263,
+              "sigma_basis": "binomial"
+            }
+          ],
+          "interval": {
+            "p2_5": 9.0,
+            "median": 9.3,
+            "p97_5": 9.7
+          }
+        },
+        {
+          "id": "cost_to_serve",
+          "code": "P2",
+          "block": "A_diffusion",
+          "direction": -1,
+          "score": null,
+          "score_unrounded": null,
+          "status": "experimental",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/0",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "capital_intensity",
+          "code": "P3",
+          "block": "A_diffusion",
+          "direction": 1,
+          "score": 34.0,
+          "score_unrounded": 33.99999999999999,
+          "status": "scored",
+          "grade": "A",
+          "n": 9,
+          "n_sources": 3,
+          "n_official_sources": 1,
+          "coverage": "1/1",
+          "channel_coverage": "digital_only",
+          "unmeasured_indicators": [],
+          "clipped": false,
+          "eligible": true,
+          "source_ids": [
+            "epoch_ai_data",
+            "eurostat_nama_10_an6",
+            "sec_edgar"
+          ],
+          "channels": {
+            "digital": {
+              "score": 34.0,
+              "layers": {
+                "reach": {
+                  "score": 34.0,
+                  "n_indicators": 1,
+                  "indicators": [
+                    "K1_gfcf_ict_ipp_gdp"
+                  ]
+                }
+              }
+            }
+          },
+          "observations": [
+            {
+              "indicator_id": "K1_gfcf_ict_ipp_gdp",
+              "obs_id": "OBS-083",
+              "period": "2025",
+              "raw": 5.1,
+              "score": 34.0,
+              "clipped": false,
+              "grade": "A",
+              "sigma": 0.045,
+              "sigma_basis": "fallback_A"
+            }
+          ],
+          "interval": {
+            "p2_5": 31.0,
+            "median": 34.0,
+            "p97_5": 37.0
+          }
+        },
+        {
+          "id": "labour_reorganisation",
+          "code": "P4",
+          "block": "C_consequences",
+          "direction": 0,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "L1_firms_reorganised"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "governance_burden",
+          "code": "P5",
+          "block": "B_conditions",
+          "direction": 0,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "G1_binding_obligations"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "human_capital",
+          "code": "P6",
+          "block": "B_conditions",
+          "direction": 1,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "H1_ict_specialists"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "ecological_balance",
+          "code": "P7",
+          "block": "C_consequences",
+          "direction": 0,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "E1_dc_electricity"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "energy_capacity",
+          "code": "P8",
+          "block": "B_conditions",
+          "direction": -1,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "N1_queue_ratio"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "ownership_distribution",
+          "code": "P9",
+          "block": "C_consequences",
+          "direction": 0,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "O1_broad_equity_share"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "market_openness",
+          "code": "P10",
+          "block": "B_conditions",
+          "direction": 1,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "M1_open_share"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        }
+      ],
+      "grid_cells": [
+        {
+          "population": "EU27",
+          "sector_id": "professional_services",
+          "pillar_id": "deployment",
+          "score": 36.8,
+          "status": "scored",
+          "grade": "A",
+          "n": 1,
+          "coverage": "1/4",
+          "obs_ids": [
+            "OBS-015"
+          ],
+          "clipped": false
+        },
+        {
+          "population": "EU27",
+          "sector_id": "professional_services",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "professional_services",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "professional_services",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "professional_services",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "professional_services",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "professional_services",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "professional_services",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "professional_services",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "professional_services",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "software",
+          "pillar_id": "deployment",
+          "score": 54.2,
+          "status": "scored",
+          "grade": "A",
+          "n": 1,
+          "coverage": "1/4",
+          "obs_ids": [
+            "OBS-013"
+          ],
+          "clipped": false
+        },
+        {
+          "population": "EU27",
+          "sector_id": "software",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "software",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "software",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "software",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "software",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "software",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "software",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "software",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "software",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "manufacturing",
+          "pillar_id": "deployment",
+          "score": 18.2,
+          "status": "scored",
+          "grade": "A",
+          "n": 1,
+          "coverage": "1/4",
+          "obs_ids": [
+            "OBS-017"
+          ],
+          "clipped": false
+        },
+        {
+          "population": "EU27",
+          "sector_id": "manufacturing",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "manufacturing",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "manufacturing",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "manufacturing",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "manufacturing",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "manufacturing",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "manufacturing",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "manufacturing",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "manufacturing",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "agriculture",
+          "pillar_id": "deployment",
+          "score": 6.8,
+          "status": "scored",
+          "grade": "C",
+          "n": 1,
+          "coverage": "1/4",
+          "obs_ids": [
+            "OBS-022"
+          ],
+          "clipped": false
+        },
+        {
+          "population": "EU27",
+          "sector_id": "agriculture",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "agriculture",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "agriculture",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "agriculture",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "agriculture",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "agriculture",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "agriculture",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "agriculture",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "agriculture",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "healthcare",
+          "pillar_id": "deployment",
+          "score": 15.6,
+          "status": "scored",
+          "grade": "A",
+          "n": 1,
+          "coverage": "1/4",
+          "obs_ids": [
+            "OBS-019"
+          ],
+          "clipped": false
+        },
+        {
+          "population": "EU27",
+          "sector_id": "healthcare",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "healthcare",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "healthcare",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "healthcare",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "healthcare",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "healthcare",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "healthcare",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "healthcare",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "healthcare",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "education",
+          "pillar_id": "deployment",
+          "score": 19.5,
+          "status": "scored",
+          "grade": "A",
+          "n": 1,
+          "coverage": "1/4",
+          "obs_ids": [
+            "OBS-020"
+          ],
+          "clipped": false
+        },
+        {
+          "population": "EU27",
+          "sector_id": "education",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "education",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "education",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "education",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "education",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "education",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "education",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "education",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "education",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "public_administration",
+          "pillar_id": "deployment",
+          "score": 14.8,
+          "status": "scored",
+          "grade": "A",
+          "n": 1,
+          "coverage": "1/4",
+          "obs_ids": [
+            "OBS-021"
+          ],
+          "clipped": false
+        },
+        {
+          "population": "EU27",
+          "sector_id": "public_administration",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "public_administration",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "public_administration",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "public_administration",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "public_administration",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "public_administration",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "public_administration",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "public_administration",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "public_administration",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "finance_insurance",
+          "pillar_id": "deployment",
+          "score": 41.5,
+          "status": "scored",
+          "grade": "A",
+          "n": 1,
+          "coverage": "1/4",
+          "obs_ids": [
+            "OBS-014"
+          ],
+          "clipped": false
+        },
+        {
+          "population": "EU27",
+          "sector_id": "finance_insurance",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "finance_insurance",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "finance_insurance",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "finance_insurance",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "finance_insurance",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "finance_insurance",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "finance_insurance",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "finance_insurance",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "finance_insurance",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "retail_logistics",
+          "pillar_id": "deployment",
+          "score": 16.9,
+          "status": "scored",
+          "grade": "A",
+          "n": 1,
+          "coverage": "1/4",
+          "obs_ids": [
+            "OBS-018"
+          ],
+          "clipped": false
+        },
+        {
+          "population": "EU27",
+          "sector_id": "retail_logistics",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "retail_logistics",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "retail_logistics",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "retail_logistics",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "retail_logistics",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "retail_logistics",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "retail_logistics",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "retail_logistics",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "retail_logistics",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "energy_utilities",
+          "pillar_id": "deployment",
+          "score": 21.4,
+          "status": "scored",
+          "grade": "A",
+          "n": 1,
+          "coverage": "1/4",
+          "obs_ids": [
+            "OBS-016"
+          ],
+          "clipped": false
+        },
+        {
+          "population": "EU27",
+          "sector_id": "energy_utilities",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "energy_utilities",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "energy_utilities",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "energy_utilities",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "energy_utilities",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "energy_utilities",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "energy_utilities",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "energy_utilities",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "EU27",
+          "sector_id": "energy_utilities",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        }
+      ],
+      "sector_gaps": [
+        {
+          "pillar_id": "deployment",
+          "gap_points": 39.4,
+          "leader_sector_id": "software",
+          "leader_score": 54.2,
+          "leader_grade": "A",
+          "laggard_sector_id": "public_administration",
+          "laggard_score": 14.8,
+          "laggard_grade": "A"
+        }
+      ],
+      "paces": [
+        {
+          "level": "indicator",
+          "population": "EU27",
+          "pillar_id": "deployment",
+          "indicator_id": "D4_ent_autonomous",
+          "segment_id": "S1",
+          "n_points": 3,
+          "periods": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "slope": 0.2,
+          "p2_5": 0.2,
+          "p97_5": 0.3,
+          "wording": "rising"
+        },
+        {
+          "level": "indicator",
+          "population": "EU27",
+          "pillar_id": "capital_intensity",
+          "indicator_id": "K1_gfcf_ict_ipp_gdp",
+          "segment_id": "S1",
+          "n_points": 3,
+          "periods": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "slope": 0.3,
+          "p2_5": -1.7,
+          "p97_5": 2.4,
+          "wording": "not distinguishable from zero"
+        }
+      ]
+    },
+    "FI": {
+      "id": "FI",
+      "label": "Finland",
+      "headline": {
+        "score": 28.3,
+        "geometric_mean": 26.1,
+        "status": "scored",
+        "weights": {
+          "deployment": 0.5,
+          "capital_intensity": 0.5
+        },
+        "eligible_pillars": [
+          "deployment",
+          "capital_intensity"
+        ],
+        "median": 28.2,
+        "p2_5": 23.7,
+        "p97_5": 33.2,
+        "variance_decomposition": {
+          "V_total": 6.0698401125718435,
+          "V_data": 0.8211125710314574,
+          "V_weights": 5.209388092694171,
+          "V_aggregation": 1.2361207538661727,
+          "share_data_pct": 11,
+          "share_weights_pct": 72,
+          "share_aggregation_pct": 17,
+          "interaction": 0.03933944884621532
+        },
+        "score_unrounded": 28.331041666666668,
+        "display": 28
+      },
+      "dai": {
+        "score": 35.6,
+        "status": "scored",
+        "proxy": true,
+        "median": 35.6,
+        "p2_5": 33.7,
+        "p97_5": 37.5,
+        "score_unrounded": 35.63041666666667
+      },
+      "pai": {
+        "score": 2.7,
+        "status": "scored",
+        "proxy": false,
+        "median": 2.7,
+        "p2_5": 2.5,
+        "p97_5": 3.0,
+        "score_unrounded": 2.73
+      },
+      "pillars": [
+        {
+          "id": "deployment",
+          "code": "P1",
+          "block": "A_diffusion",
+          "direction": 1,
+          "score": 17.3,
+          "score_unrounded": 17.32875,
+          "status": "scored",
+          "grade": "A",
+          "n": 37,
+          "n_sources": 3,
+          "n_official_sources": 3,
+          "coverage": "4/4",
+          "channel_coverage": "both",
+          "unmeasured_indicators": [],
+          "clipped": false,
+          "eligible": true,
+          "source_ids": [
+            "eurostat_isoc_ai_iaiu",
+            "eurostat_isoc_eb_ai",
+            "statfin_icte_13vg"
+          ],
+          "channels": {
+            "digital": {
+              "score": 31.9,
+              "layers": {
+                "reach": {
+                  "score": 42.0,
+                  "n_indicators": 2,
+                  "indicators": [
+                    "D1_ent_any_ai",
+                    "D2_ind_genai"
+                  ]
+                },
+                "depth": {
+                  "score": 21.8,
+                  "n_indicators": 1,
+                  "indicators": [
+                    "D3_ent_depth_ge3"
+                  ]
+                }
+              }
+            },
+            "physical": {
+              "score": 2.7,
+              "layers": {
+                "reach": {
+                  "score": 2.7,
+                  "n_indicators": 1,
+                  "indicators": [
+                    "D4_ent_autonomous"
+                  ]
+                }
+              }
+            }
+          },
+          "observations": [
+            {
+              "indicator_id": "D1_ent_any_ai",
+              "obs_id": "OBS-005",
+              "period": "2025",
+              "raw": 37.82,
+              "score": 37.8,
+              "clipped": false,
+              "grade": "A",
+              "sigma": 0.045,
+              "sigma_basis": "fallback_A"
+            },
+            {
+              "indicator_id": "D2_ind_genai",
+              "obs_id": "OBS-031",
+              "period": "2025",
+              "raw": 46.27,
+              "score": 46.3,
+              "clipped": false,
+              "grade": "A",
+              "sigma": 0.045,
+              "sigma_basis": "fallback_A"
+            },
+            {
+              "indicator_id": "D3_ent_depth_ge3",
+              "obs_id": "OBS-068",
+              "period": "2025",
+              "raw": 21.81,
+              "score": 21.8,
+              "clipped": false,
+              "grade": "A",
+              "sigma": 0.045,
+              "sigma_basis": "fallback_A"
+            },
+            {
+              "indicator_id": "D4_ent_autonomous",
+              "obs_id": "OBS-076",
+              "period": "2025",
+              "raw": 2.73,
+              "score": 2.7,
+              "clipped": false,
+              "grade": "A",
+              "sigma": 0.045,
+              "sigma_basis": "fallback_A"
+            }
+          ],
+          "interval": {
+            "p2_5": 16.5,
+            "median": 17.3,
+            "p97_5": 18.2
+          }
+        },
+        {
+          "id": "cost_to_serve",
+          "code": "P2",
+          "block": "A_diffusion",
+          "direction": -1,
+          "score": null,
+          "score_unrounded": null,
+          "status": "experimental",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/0",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "capital_intensity",
+          "code": "P3",
+          "block": "A_diffusion",
+          "direction": 1,
+          "score": 39.3,
+          "score_unrounded": 39.333333333333336,
+          "status": "scored",
+          "grade": "A",
+          "n": 9,
+          "n_sources": 3,
+          "n_official_sources": 1,
+          "coverage": "1/1",
+          "channel_coverage": "digital_only",
+          "unmeasured_indicators": [],
+          "clipped": false,
+          "eligible": true,
+          "source_ids": [
+            "epoch_ai_data",
+            "eurostat_nama_10_an6",
+            "sec_edgar"
+          ],
+          "channels": {
+            "digital": {
+              "score": 39.3,
+              "layers": {
+                "reach": {
+                  "score": 39.3,
+                  "n_indicators": 1,
+                  "indicators": [
+                    "K1_gfcf_ict_ipp_gdp"
+                  ]
+                }
+              }
+            }
+          },
+          "observations": [
+            {
+              "indicator_id": "K1_gfcf_ict_ipp_gdp",
+              "obs_id": "OBS-090",
+              "period": "2025",
+              "raw": 5.9,
+              "score": 39.3,
+              "clipped": false,
+              "grade": "A",
+              "sigma": 0.045,
+              "sigma_basis": "fallback_A"
+            }
+          ],
+          "interval": {
+            "p2_5": 35.9,
+            "median": 39.3,
+            "p97_5": 42.8
+          }
+        },
+        {
+          "id": "labour_reorganisation",
+          "code": "P4",
+          "block": "C_consequences",
+          "direction": 0,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "L1_firms_reorganised"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "governance_burden",
+          "code": "P5",
+          "block": "B_conditions",
+          "direction": 0,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "G1_binding_obligations"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "human_capital",
+          "code": "P6",
+          "block": "B_conditions",
+          "direction": 1,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "H1_ict_specialists"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "ecological_balance",
+          "code": "P7",
+          "block": "C_consequences",
+          "direction": 0,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "E1_dc_electricity"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "energy_capacity",
+          "code": "P8",
+          "block": "B_conditions",
+          "direction": -1,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "N1_queue_ratio"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "ownership_distribution",
+          "code": "P9",
+          "block": "C_consequences",
+          "direction": 0,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "O1_broad_equity_share"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        },
+        {
+          "id": "market_openness",
+          "code": "P10",
+          "block": "B_conditions",
+          "direction": 1,
+          "score": null,
+          "score_unrounded": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "n_sources": 0,
+          "n_official_sources": 0,
+          "coverage": "0/1",
+          "channel_coverage": "digital_none",
+          "unmeasured_indicators": [
+            "M1_open_share"
+          ],
+          "clipped": false,
+          "eligible": false,
+          "source_ids": [],
+          "channels": {},
+          "observations": []
+        }
+      ],
+      "grid_cells": [
+        {
+          "population": "FI",
+          "sector_id": "professional_services",
+          "pillar_id": "deployment",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/4",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "professional_services",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "professional_services",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "professional_services",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "professional_services",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "professional_services",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "professional_services",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "professional_services",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "professional_services",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "professional_services",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "software",
+          "pillar_id": "deployment",
+          "score": 80.0,
+          "status": "scored",
+          "grade": "A",
+          "n": 1,
+          "coverage": "1/4",
+          "obs_ids": [
+            "OBS-012"
+          ],
+          "clipped": false
+        },
+        {
+          "population": "FI",
+          "sector_id": "software",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "software",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "software",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "software",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "software",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "software",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "software",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "software",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "software",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "manufacturing",
+          "pillar_id": "deployment",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/4",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "manufacturing",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "manufacturing",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "manufacturing",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "manufacturing",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "manufacturing",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "manufacturing",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "manufacturing",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "manufacturing",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "manufacturing",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "agriculture",
+          "pillar_id": "deployment",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/4",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "agriculture",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "agriculture",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "agriculture",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "agriculture",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "agriculture",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "agriculture",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "agriculture",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "agriculture",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "agriculture",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "healthcare",
+          "pillar_id": "deployment",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/4",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "healthcare",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "healthcare",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "healthcare",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "healthcare",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "healthcare",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "healthcare",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "healthcare",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "healthcare",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "healthcare",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "education",
+          "pillar_id": "deployment",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/4",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "education",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "education",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "education",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "education",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "education",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "education",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "education",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "education",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "education",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "public_administration",
+          "pillar_id": "deployment",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/4",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "public_administration",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "public_administration",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "public_administration",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "public_administration",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "public_administration",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "public_administration",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "public_administration",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "public_administration",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "public_administration",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "finance_insurance",
+          "pillar_id": "deployment",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/4",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "finance_insurance",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "finance_insurance",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "finance_insurance",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "finance_insurance",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "finance_insurance",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "finance_insurance",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "finance_insurance",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "finance_insurance",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "finance_insurance",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "retail_logistics",
+          "pillar_id": "deployment",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/4",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "retail_logistics",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "retail_logistics",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "retail_logistics",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "retail_logistics",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "retail_logistics",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "retail_logistics",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "retail_logistics",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "retail_logistics",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "retail_logistics",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "energy_utilities",
+          "pillar_id": "deployment",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/4",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "energy_utilities",
+          "pillar_id": "cost_to_serve",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/0",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "energy_utilities",
+          "pillar_id": "capital_intensity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "energy_utilities",
+          "pillar_id": "labour_reorganisation",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "energy_utilities",
+          "pillar_id": "governance_burden",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "energy_utilities",
+          "pillar_id": "human_capital",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "energy_utilities",
+          "pillar_id": "ecological_balance",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "energy_utilities",
+          "pillar_id": "energy_capacity",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "energy_utilities",
+          "pillar_id": "ownership_distribution",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        },
+        {
+          "population": "FI",
+          "sector_id": "energy_utilities",
+          "pillar_id": "market_openness",
+          "score": null,
+          "status": "not measured",
+          "grade": null,
+          "n": 0,
+          "coverage": "0/1",
+          "obs_ids": []
+        }
+      ],
+      "sector_gaps": [],
+      "paces": [
+        {
+          "level": "indicator",
+          "population": "FI",
+          "pillar_id": "deployment",
+          "indicator_id": "D4_ent_autonomous",
+          "segment_id": "S1",
+          "n_points": 3,
+          "periods": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "slope": 0.4,
+          "p2_5": 0.3,
+          "p97_5": 0.6,
+          "wording": "rising"
+        },
+        {
+          "level": "indicator",
+          "population": "FI",
+          "pillar_id": "capital_intensity",
+          "indicator_id": "K1_gfcf_ict_ipp_gdp",
+          "segment_id": "S1",
+          "n_points": 3,
+          "periods": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "slope": 1.7,
+          "p2_5": -0.7,
+          "p97_5": 4.0,
+          "wording": "not distinguishable from zero"
+        }
+      ]
+    }
+  },
+  "brief_signals": [
+    {
+      "brief_date": "2026-10-28",
+      "title_en": "Anthropic made artificial intelligence auditable, and audited numbers will discipline the industry faster than any statute",
+      "title_fi": "Anthropic teki tekoälystä tilintarkastettavaa – ja luvut kurittavat alaa lakia nopeammin",
+      "pillar": "capital_intensity",
+      "secondary_pillar": "governance_burden",
+      "sector": "software",
+      "block": "A_diffusion",
+      "pace_layer": "governance",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "macro",
+      "signal_score": "5.0",
+      "stakes_score": "5.0",
+      "market_test": "Primary=3;Confirmation=6;FirstMover=1",
+      "source_id": "sec_edgar",
+      "quant_metric": "$16.29B H1 rev; $8.95B compute cost; $265.6B commitments; 48% cloud marketplace share",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://twin.so/",
+      "brief_path": "briefs/2026-10-28.html",
+      "summary_note": "Anthropic PBC Form S-1 makes frontier lab compute economics and cloud marketplace concentration auditable under SEC disclosure rules."
+    },
+    {
+      "brief_date": "2026-10-27",
+      "title_en": "OpenAI convened the referees, and that is the result that will last",
+      "title_fi": "OpenAI kokoaa arvioijat – siitä syntyy pysyvä tulos",
+      "pillar": "human_capital",
+      "secondary_pillar": "governance_burden",
+      "sector": "education",
+      "block": "B_conditions",
+      "pace_layer": "culture",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "meso",
+      "signal_score": "4.0",
+      "stakes_score": "6.0",
+      "market_test": "Primary=3;Confirmation=0;FirstMover=1",
+      "source_id": "oecd_ai",
+      "quant_metric": "3 Lean-checked proofs; independent scientific referee consortium",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://twin.so/",
+      "brief_path": "briefs/2026-10-27.html",
+      "summary_note": "OpenAI published Lean-checked proofs and convened external referee groups to verify machine-generated formal mathematics."
+    },
+    {
+      "brief_date": "2026-10-26",
+      "title_en": "Open weights now set the price of frontier capability, and the bottleneck has moved to serving it",
+      "title_fi": "Avoimet painot asettavat nyt huippukyvyn hinnan, ja pullonkaula on siirtynyt mallin tarjoamiseen",
+      "pillar": "market_openness",
+      "secondary_pillar": "cost_to_serve",
+      "sector": "software",
+      "block": "B_conditions",
+      "pace_layer": "infrastructure",
+      "channel": "digital",
+      "layer": "depth",
+      "level": "meso",
+      "signal_score": "7.0",
+      "stakes_score": "6.0",
+      "market_test": "Primary=3;Confirmation=3;FirstMover=1",
+      "source_id": "epoch_ai_data",
+      "quant_metric": "3T parameters; 1M context; subscriber inference rationing within 48h",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://twin.so/",
+      "brief_path": "briefs/2026-10-26.html",
+      "summary_note": "Moonshot AI shipped open-weight Kimi K3.1 Pro (3T params) and rationed inference quotas within 48 hours, proving serving capacity is the binding constraint."
+    },
+    {
+      "brief_date": "2026-10-25",
+      "title_en": "Texas closed the on-site power loophole, and the delay moved into the permit queue",
+      "title_fi": "Texas sulki oman voimalan porsaanreiän, ja viive siirtyi lupajonoon",
+      "pillar": "energy_capacity",
+      "secondary_pillar": "ecological_balance",
+      "sector": "energy_utilities",
+      "block": "B_conditions",
+      "pace_layer": "infrastructure",
+      "channel": "physical",
+      "layer": "embeddedness",
+      "level": "macro",
+      "signal_score": "6.0",
+      "stakes_score": "7.0",
+      "market_test": "Primary=3;Confirmation=2;FirstMover=1",
+      "source_id": "ercot_large_load_queue",
+      "quant_metric": "8.7 GW across 6 data-centre campuses; 16 permits gated by TCEQ/ERCOT",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://gov.texas.gov/uploads/files/press/TCEQ_Data_Center.pdf",
+      "brief_path": "briefs/2026-10-25.html",
+      "summary_note": "Texas TCEQ paused standard air permits for behind-the-meter data-centre gas turbines, gating 8.7 GW of on-site power capacity until Dec 2026."
+    },
+    {
+      "brief_date": "2026-10-24",
+      "title_en": "Containment became an engineering discipline, and its first export was a patch",
+      "title_fi": "Laboratorio sulkee verkon malliltaan ja löytää reiän muualta",
+      "pillar": "governance_burden",
+      "secondary_pillar": "deployment",
+      "sector": "software",
+      "block": "B_conditions",
+      "pace_layer": "infrastructure",
+      "channel": "digital",
+      "layer": "depth",
+      "level": "micro",
+      "signal_score": "4.0",
+      "stakes_score": "6.0",
+      "market_test": "Primary=3;Confirmation=0;FirstMover=1",
+      "source_id": "oecd_ai",
+      "quant_metric": "Air-gapped training clusters; critical Brotli patch in Node.js, Bun, Envoy",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://openai.com/index/securing-our-frontier-model-training-environment",
+      "brief_path": "briefs/2026-10-24.html",
+      "summary_note": "OpenAI air-gapped frontier training clusters after a DNS misconfiguration and exported a critical Brotli security patch across core web infrastructure."
+    },
+    {
+      "brief_date": "2026-10-23",
+      "title_en": "The proof got cheap; the specification became the scarce good",
+      "title_fi": "Todistuksesta tuli halpa, määritelmästä niukka hyödyke",
+      "pillar": "cost_to_serve",
+      "secondary_pillar": "labour_reorganisation",
+      "sector": "software",
+      "block": "A_diffusion",
+      "pace_layer": "commerce",
+      "channel": "digital",
+      "layer": "depth",
+      "level": "meso",
+      "signal_score": "4.0",
+      "stakes_score": "5.0",
+      "market_test": "Primary=3;Confirmation=0;FirstMover=1",
+      "source_id": "gdpval",
+      "quant_metric": "180M lines of machine-checked Rocq proofs across 123 open-source libraries",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://www.anthropic.com/research/formal-verification",
+      "brief_path": "briefs/2026-10-23.html",
+      "summary_note": "Anthropic and Theorem generated 180M lines of formal Rocq proofs across 123 libraries, shifting scarcity from proof labour to formal specification."
+    },
+    {
+      "brief_date": "2026-10-22",
+      "title_en": "The frontier model became a line item, not a vendor decision",
+      "title_fi": "Rajamallista tuli ostorivi, ei toimittajapäätös",
+      "pillar": "deployment",
+      "secondary_pillar": "market_openness",
+      "sector": "software",
+      "block": "A_diffusion",
+      "pace_layer": "commerce",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "meso",
+      "signal_score": "5.0",
+      "stakes_score": "7.0",
+      "market_test": "Primary=3;Confirmation=1;FirstMover=1",
+      "source_id": "sec_edgar",
+      "quant_metric": "GPT-6 family added to Google Cloud Marketplace commitment drawdowns",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://twin.so/",
+      "brief_path": "briefs/2026-10-22.html",
+      "summary_note": "Google Cloud added OpenAI's GPT-6 family to its Marketplace so enterprise usage draws down existing cloud commits, turning model adoption into a procurement line item."
+    },
+    {
+      "brief_date": "2026-10-21",
+      "title_en": "The labs stopped selling models and started buying the paperwork",
+      "title_fi": "Laboratoriot eivät enää myy malleja, ne ostavat paperityön",
+      "pillar": "capital_intensity",
+      "secondary_pillar": "deployment",
+      "sector": "healthcare",
+      "block": "A_diffusion",
+      "pace_layer": "commerce",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "meso",
+      "signal_score": "5.0",
+      "stakes_score": "5.0",
+      "market_test": "Primary=3;Confirmation=1;FirstMover=1",
+      "source_id": "sec_edgar",
+      "quant_metric": "Acquisition of Orchestra Bio into Rosalind clinical workflow layer (J-curve complement)",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://openai.com/index/openai-to-acquire-orchestra-bio/",
+      "brief_path": "briefs/2026-10-21.html",
+      "summary_note": "OpenAI acquired drug-development coordination platform Orchestra Bio to own the regulated audit trail and workflow complement in life sciences."
+    },
+    {
+      "brief_date": "2026-10-19",
+      "title_en": "The agents finish less than half the work",
+      "title_fi": "Agentit tekevät alle puolet työstä",
+      "pillar": "cost_to_serve",
+      "secondary_pillar": "deployment",
+      "sector": "healthcare",
+      "block": "A_diffusion",
+      "pace_layer": "commerce",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "micro",
+      "signal_score": "5.0",
+      "stakes_score": "5.0",
+      "market_test": "Primary=3;Confirmation=1;FirstMover=1",
+      "source_id": "stanford_ai_index",
+      "quant_metric": "<50% end-to-end hospital/payer workflow completion vs >90% single-step QA",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://github.com/juntunen-ai/machinelearningsocieties",
+      "brief_path": "briefs/2026-10-19.html",
+      "summary_note": "Stanford HAI benchmarks show frontier models pass 90%+ of single-step clinical questions but complete under half of multi-step administrative workflows."
+    },
+    {
+      "brief_date": "2026-10-15",
+      "title_en": "The Financial Stability Board writes the first common AI checklist for banks",
+      "title_fi": "FSB kirjoitti pankeille ensimmäisen yhteisen tekoälytarkistuslistan",
+      "pillar": "governance_burden",
+      "secondary_pillar": "deployment",
+      "sector": "finance_insurance",
+      "block": "B_conditions",
+      "pace_layer": "governance",
+      "channel": "digital",
+      "layer": "depth",
+      "level": "macro",
+      "signal_score": "4.0",
+      "stakes_score": "7.0",
+      "market_test": "Primary=3;Confirmation=1;FirstMover=0",
+      "source_id": "oecd_ai",
+      "quant_metric": "12 common FSB supervisory & lifecycle practices for banks and insurers",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://github.com/juntunen-ai/machinelearningsocieties",
+      "brief_path": "briefs/2026-10-15.html",
+      "summary_note": "The Financial Stability Board published 12 common AI governance and third-party risk practices for banks, insurers, and financial supervisors."
+    },
+    {
+      "brief_date": "2026-10-14",
+      "title_en": "Europe publishes the first harmonised standard for AI quality management",
+      "title_fi": "Eurooppa julkaisi ensimmäisen harmonisoidun standardin tekoälyn laadunhallinnalle",
+      "pillar": "governance_burden",
+      "secondary_pillar": "deployment",
+      "sector": "public_administration",
+      "block": "B_conditions",
+      "pace_layer": "governance",
+      "channel": "digital",
+      "layer": "embeddedness",
+      "level": "macro",
+      "signal_score": "5.0",
+      "stakes_score": "5.0",
+      "market_test": "Primary=3;Confirmation=1;FirstMover=0",
+      "source_id": "eur_lex",
+      "quant_metric": "EN 18286:2026 cited in Official Journal (Art. 17 AI Act presumption of conformity)",
+      "primary_urls": "https://twin.so | https://www.linkedin.com/in/hjuntunen | https://x.com/hjuntunen | https://github.com/juntunen-ai/machinelearningsocieties",
+      "brief_path": "briefs/2026-10-14.html",
+      "summary_note": "European Commission cited EN 18286:2026 in the Official Journal, giving providers a harmonised quality-management standard under Article 17 of the EU AI Act."
+    }
+  ],
+  "planetary_boundaries": {
+    "framework": "Stockholm Resilience Centre / Rockström et al. 2009 / Steffen et al. 2015 / Richardson et al. 2023 / Planetary Health Check 2025-2026",
+    "licence_note": "Values cited from primary assessments. Panel drawn independently (Stockholm Resilience Centre graphics are CC BY-NC-ND 3.0).",
+    "transgressed_count": "7 of 9 (2025 Planetary Health Check; 6 of 9 in Richardson et al. 2023)",
+    "summary_meter": {
+      "burden_increase_score": 52.4,
+      "burden_reduction_score": 26.8,
+      "rebound_discount_factor": 0.35,
+      "headline_rule_en": "We measure AI's environmental impact on two separate scales: Burden Increase (+52.4 / 100 from metered electricity, water, land, and gas permits) and Burden Reduction (-26.8 / 100 from grid optimization, precision farming, leak detection, and satellite monitoring after a 35% Jevons rebound discount). We never subtract modelled savings from metered physical consumption.",
+      "headline_rule_fi": "Mittaamme tekoälyn ympäristövaikutusta kahdella erillisellä asteikolla: Kuormituksen kasvu (+52,4 / 100 mitatusta sähköstä, vedestä, maankäytöstä ja kaasuluvista) sekä Kuormituksen vähennys (-26,8 / 100 sähköverkon optimoinnista, täsmäviljelystä, vuotojen etsinnästä ja satelliittivalvonnasta 35 % Jevonsin palautumisvähennyksen jälkeen). Mallinnettuja säästöjä ei koskaan vähennetä suoraan mitatusta kulutuksesta."
+    },
+    "boundaries": [
+      {
+        "id": "climate_change",
+        "name_en": "Climate change",
+        "name_fi": "Ilmastonmuutos",
+        "control_variable_en": "Atmospheric CO₂ concentration (ppm) and radiative forcing (W/m²)",
+        "control_variable_fi": "Ilmakehän CO₂-pitoisuus (ppm) ja säteilypakote (W/m²)",
+        "boundary_value": "350 ppm CO₂ / +1.0 W/m²",
+        "current_status": "422 ppm CO₂ / +2.91 W/m²",
+        "status_code": "transgressed",
+        "assessment_year": 2025,
+        "burden_score": 64.0,
+        "burden_status": "measured",
+        "burden_badge_en": "[V] Metered · Grade B-Y",
+        "burden_badge_fi": "[V] Mitattu · Luokka B-Y",
+        "ai_load_en": "Data centres and AI use about 485 TWh of electricity per year (1.6% of world electricity, IEA, rising toward 945 TWh by 2030), plus carbon from making chips and buildings.",
+        "ai_load_fi": "Datakeskukset ja tekoäly kuluttavat noin 485 TWh sähköä vuodessa (1,6 % maailman sähköstä, IEA, kasvamassa kohti 945 TWh:ta vuonna 2030) sekä sirujen ja rakennusten valmistuspäästöt.",
+        "abatement_score": 28.5,
+        "abatement_status": "modelled_and_field",
+        "abatement_badge_en": "Field + Modelled · Grade B-Y",
+        "abatement_badge_fi": "Kenttä + Mallinnettu · Luokka B-Y",
+        "ai_abatement_en": "AI forecasts wind and solar output, reduces renewable grid curtailment, optimizes building heating and cooling, and cuts empty truck miles.",
+        "ai_abatement_fi": "Tekoäly ennustaa tuuli- ja aurinkovoimaa, vähentää uusiutuvan sähkön hukkaa verkossa, optimoi kiinteistöjen lämmitystä ja vähentää tyhjiä kuljetusajokilometrejä.",
+        "rebound_note_en": "High Jevons rebound risk: cheaper AI increases total compute runs, and oil and gas companies also use AI to speed up fossil fuel extraction.",
+        "rebound_note_fi": "Suuri Jevonsin palautumisriski: halvempi tekoäly lisää kokonaislaskentaa, ja öljy- ja kaasuyhtiöt käyttävät tekoälyä myös fossiilisten polttoaineiden etsinnän tehostamiseen.",
+        "ai_measured": true,
+        "grade": "B-Y",
+        "sources": [
+          "iea_energy_ai",
+          "epoch_ai_data"
+        ]
+      },
+      {
+        "id": "freshwater_change",
+        "name_en": "Freshwater change",
+        "name_fi": "Makean veden muutos",
+        "control_variable_en": "Blue water (rivers and aquifers) and green water (soil moisture) deviation",
+        "control_variable_fi": "Sinisen veden (joet ja pohjavesi) sekä vihreän veden (maaperän kosteus) poikkeama",
+        "boundary_value": "10.2% (blue) / 11.1% (green) land area",
+        "current_status": "18.2% (blue) / 15.8% (green)",
+        "status_code": "transgressed",
+        "assessment_year": 2023,
+        "burden_score": 46.0,
+        "burden_status": "proxy",
+        "burden_badge_en": "Basin Proxy · Grade C-Y",
+        "burden_badge_fi": "Vesistöproksi · Luokka C-Y",
+        "ai_load_en": "Cooling water drawn and evaporated by data centres located in drought-stressed river basins (WRI Aqueduct and voluntary site disclosures).",
+        "ai_load_fi": "Kuivuudesta kärsivillä vesistöalueilla sijaitsevien datakeskusten ottama ja haihduttama jäähdytysvesi (WRI Aqueduct ja yritysraportit).",
+        "abatement_score": 22.0,
+        "abatement_status": "measured_field",
+        "abatement_badge_en": "Field Verified · Grade B-Y",
+        "abatement_badge_fi": "Kenttävahvistettu · Luokka B-Y",
+        "ai_abatement_en": "Acoustic AI sensors find hidden leaks in city water pipes, and soil-moisture AI cuts farm irrigation water use by 15% to 25%.",
+        "ai_abatement_fi": "Akustiset tekoälyanturit paikantavat vesijohtovuotoja, ja maaperäanturit vähentävät peltojen kasteluveden tarvetta 15–25 %.",
+        "rebound_note_en": "Evaluated strictly per river basin. Saving water in a rainy region never offsets drawing cooling water in an arid basin.",
+        "rebound_note_fi": "Arvioidaan tiukasti vesistöalueittain. Veden säästäminen sateisella alueella ei koskaan kompensoi jäähdytysveden ottoa kuivalla alueella.",
+        "ai_measured": true,
+        "grade": "C-Y",
+        "sources": [
+          "wri_aqueduct",
+          "epoch_ai_data"
+        ]
+      },
+      {
+        "id": "biogeochemical_flows",
+        "name_en": "Biogeochemical flows (Nitrogen & Phosphorus)",
+        "name_fi": "Typen ja fosforin kierrot (N & P)",
+        "control_variable_en": "Nitrogen fixation (Tg N/yr) and phosphorus runoff to oceans (Tg P/yr)",
+        "control_variable_fi": "Typen sidonta (Tg N/v) ja fosforivaluma valtameriin (Tg P/v)",
+        "boundary_value": "62 Tg N/yr · 11 Tg P/yr",
+        "current_status": "~190 Tg N/yr · ~22.6 Tg P/yr",
+        "status_code": "transgressed",
+        "assessment_year": 2023,
+        "burden_score": null,
+        "burden_status": "not_measured",
+        "burden_badge_en": "Direct load: Not measured",
+        "burden_badge_fi": "Suora kuorma: Ei mitattu",
+        "ai_load_en": "not measured (data centres do not emit agricultural nitrogen or phosphorus runoff directly; indirect electricity NOx is tracked under aerosols).",
+        "ai_load_fi": "ei mitattu (datakeskukset eivät päästä suoraan maatalouden typpi- tai fosforivalumia; voimaloiden NOx-päästöt seurataan pienhiukkasissa).",
+        "abatement_score": 31.0,
+        "abatement_status": "measured_field",
+        "abatement_badge_en": "Field Trials · Grade B-Y",
+        "abatement_badge_fi": "Kenttäkokeet · Luokka B-Y",
+        "ai_abatement_en": "Computer-vision tractor sprayers and soil AI target fertilizer and herbicide to individual plants, cutting nitrogen and chemical runoff by 15% to 30% in field trials.",
+        "ai_abatement_fi": "Konenäöllä ohjatut ruiskut ja maaperämallit kohdistavat lannoitteet kasnikohtaisesti, mikä vähentää typpi- ja kemikaalivalumia 15–30 % kenttäkokeissa.",
+        "rebound_note_en": "High reduction potential per hectare, but overall Agriculture AI adoption is still low (18.1 / 100 in our industry matrix).",
+        "rebound_note_fi": "Suuri vähennyspotentiaali hehtaaria kohti, mutta maatalouden tekoälykäyttö on kokonaisuutena vielä matalaa (18,1 / 100 toimialamatriisissa).",
+        "ai_measured": true,
+        "grade": "B-Y",
+        "sources": [
+          "eurostat_isoc_eb_ai"
+        ]
+      },
+      {
+        "id": "land_system_change",
+        "name_en": "Land-system change",
+        "name_fi": "Maankäytön muutos",
+        "control_variable_en": "Remaining forest area as % of original forest cover",
+        "control_variable_fi": "Jäljellä oleva metsäpinta-ala osuutena alkuperäisestä metsäpeitteestä (%)",
+        "boundary_value": "At least 75% forest cover",
+        "current_status": "~60% global forest cover",
+        "status_code": "transgressed",
+        "assessment_year": 2023,
+        "burden_score": 24.0,
+        "burden_status": "measured",
+        "burden_badge_en": "[V] Satellite · Grade B-Q",
+        "burden_badge_fi": "[V] Satelliitti · Luokka B-Q",
+        "ai_load_en": "Direct land conversion for hyperscale data-centre campuses, substations, and transmission lines (Epoch AI satellite tracking; 6 Texas campuses = 8.7 GW).",
+        "ai_load_fi": "Suurten datakeskusalueiden, sähköasemien ja voimalinjojen suora maankäyttö (Epoch AI -satelliittiseuranta; 6 Texasin aluetta = 8,7 GW).",
+        "abatement_score": 35.0,
+        "abatement_status": "measured_field",
+        "abatement_badge_en": "[V] Satellite · Grade B-Y",
+        "abatement_badge_fi": "[V] Satelliitti · Luokka B-Y",
+        "ai_abatement_en": "Satellite AI (Sentinel-2 and Global Forest Watch) detects illegal deforestation and wildfire ignitions within hours across tropical and boreal forests.",
+        "ai_abatement_fi": "Satelliittitekoäly (Sentinel-2 ja Global Forest Watch) havaitsee laittomat hakkuut ja metsäpalojen syttymiset tuntien sisällä.",
+        "rebound_note_en": "Physical land paving (hectares) and satellite forest monitoring (square kilometres) are never subtracted from each other.",
+        "rebound_note_fi": "Rakennettua maapinta-alaa (hehtaarit) ja satelliittivalvottua metsää (neliökilometrit) ei koskaan vähennetä toisistaan.",
+        "ai_measured": true,
+        "grade": "B-Q",
+        "sources": [
+          "epoch_ai_data"
+        ]
+      },
+      {
+        "id": "biosphere_integrity",
+        "name_en": "Biosphere integrity (Biodiversity)",
+        "name_fi": "Biosfäärin eheys (Luonnon monimuotoisuus)",
+        "control_variable_en": "Species extinction rate (E/MSY) and human share of net primary production (HANPP)",
+        "control_variable_fi": "Lajien sukupuuttovauhti (E/MSY) ja ihmisen osuus perustuotannosta (HANPP)",
+        "boundary_value": "<10 E/MSY · <10% HANPP",
+        "current_status": ">100 E/MSY · ~30% HANPP",
+        "status_code": "transgressed",
+        "assessment_year": 2023,
+        "burden_score": null,
+        "burden_status": "not_measured",
+        "burden_badge_en": "Direct load: Not measured",
+        "burden_badge_fi": "Suora kuorma: Ei mitattu",
+        "ai_load_en": "not measured (indirect habitat pressure via climate, water, and mining is not yet isolated into an AI-specific species-loss series).",
+        "ai_load_fi": "ei mitattu (epäsuoraa elinympäristökuormaa ilmaston, veden ja kaivostoiminnan kautta ei ole vielä eristetty AI-kohtaiseksi sarjaksi).",
+        "abatement_score": 26.0,
+        "abatement_status": "measured_field",
+        "abatement_badge_en": "Field Deployed · Grade B-Y",
+        "abatement_badge_fi": "Kenttäkäytössä · Luokka B-Y",
+        "ai_abatement_en": "Bioacoustic AI recorders, camera-trap vision, and satellite radar (Global Fishing Watch) track endangered species and detect illegal fishing in marine reserves.",
+        "ai_abatement_fi": "Bioakustiset tallentimet, riistakameroiden konenäkö ja satelliittitutkat (Global Fishing Watch) seuraavat uhanalaisia lajeja ja laitonta kalastusta.",
+        "rebound_note_en": "Conservation monitoring helps enforcement, but does not offset habitat loss from energy or mineral extraction.",
+        "rebound_note_fi": "Luonnonsuojelun valvonta tukee viranomaisia, mutta ei kumoa energian- tai mineraalintuotannon elinympäristövaikutuksia.",
+        "ai_measured": true,
+        "grade": "B-Y",
+        "sources": []
+      },
+      {
+        "id": "novel_entities",
+        "name_en": "Novel entities (Synthetic chemicals & e-waste)",
+        "name_fi": "Uudet aineet (Synteettiset kemikaalit ja SER-jäte)",
+        "control_variable_en": "Synthetic chemicals, plastics, and e-waste released without full safety testing",
+        "control_variable_fi": "Ilman kattavaa turvallisuusarviota ympäristöön pääsevät synteettiset kemikaalit ja elektroniikkajäte",
+        "boundary_value": "0% untested harmful releases",
+        "current_status": "Limit crossed (Richardson 2023)",
+        "status_code": "transgressed",
+        "assessment_year": 2023,
+        "burden_score": null,
+        "burden_status": "not_measured",
+        "burden_badge_en": "Direct load: Not measured",
+        "burden_badge_fi": "Suora kuorma: Ei mitattu",
+        "ai_load_en": "not measured (3-to-5-year GPU server replacement creates high-grade e-waste and chip fabs use PFAS process chemicals, but no global AI-specific series exists yet).",
+        "ai_load_fi": "ei mitattu (GPU-palvelimien 3–5 vuoden vaihtosykli tuottaa elektroniikkajätettä ja siruvalmistus käyttää PFAS-kemikaaleja, mutta AI-kohtaista tilastosarjaa ei vielä ole).",
+        "abatement_score": 19.0,
+        "abatement_status": "modelled_and_field",
+        "abatement_badge_en": "Lab & Pilot · Grade C-Y",
+        "abatement_badge_fi": "Laboratorio & Pilotti · Luokka C-Y",
+        "ai_abatement_en": "AI molecular screening speeds up discovery of PFAS-free coatings, low-toxicity battery electrolytes, and enzymes that break down plastics.",
+        "ai_abatement_fi": "Molekyylimallinnus nopeuttaa PFAS-vapaiden pinnoitteiden, myrkyttömämpien akkuelektrolyyttien ja muovia hajottavien entsyymien kehitystä.",
+        "rebound_note_en": "AI material models can design both safer substitutes and novel synthetic compounds. Only verified industrial replacements count toward abatement.",
+        "rebound_note_fi": "Molekyylimallit voivat tuottaa sekä turvallisempia korvikkeita että uusia yhdisteitä. Vain tuotantoon viedyt korvikkeet lasketaan vähennykseksi.",
+        "ai_measured": false,
+        "grade": "C-Y",
+        "sources": []
+      },
+      {
+        "id": "atmospheric_aerosol_loading",
+        "name_en": "Atmospheric aerosol loading (Air particulates)",
+        "name_fi": "Ilmakehän pienhiukkaskuormitus (Aerosolit)",
+        "control_variable_en": "Interhemispheric difference in aerosol optical depth (AOD)",
+        "control_variable_fi": "Puoliskojen välinen ero aerosolien optisessa paksuudessa (AOD)",
+        "boundary_value": "0.10 AOD difference (regional limits lower)",
+        "current_status": "0.076 globally (exceeded regionally)",
+        "status_code": "safe",
+        "assessment_year": 2023,
+        "burden_score": 29.0,
+        "burden_status": "measured",
+        "burden_badge_en": "[V] Air Permits · Grade A-Q",
+        "burden_badge_fi": "[V] Ilmaluvat · Luokka A-Q",
+        "ai_load_en": "Local NOx and particulate emissions from behind-the-meter gas turbines and diesel backup generators (16 air permits for 8.7 GW paused in Texas).",
+        "ai_load_fi": "Datakeskusten omien kaasuturbiinien ja dieselvaravoimakoneiden paikalliset NOx- ja pienhiukkaspäästöt (16 ilmalupaa / 8,7 GW keskeytetty Texasissa).",
+        "abatement_score": 18.0,
+        "abatement_status": "measured_field",
+        "abatement_badge_en": "Deployed · Grade B-Y",
+        "abatement_badge_fi": "Käytössä · Luokka B-Y",
+        "ai_abatement_en": "AI combustion control in industrial boilers and high-resolution urban air-quality alerts reduce local particulate exposure.",
+        "ai_abatement_fi": "Teollisuuskattiloiden palamisen tekoälyohjaus ja tarkat ilmanlaatuennusteet vähentävät paikallista pienhiukkasaltistusta.",
+        "rebound_note_en": "Local air pollution around data-centre gas plants is tracked by air basin and cannot be offset by cleaner air elsewhere.",
+        "rebound_note_fi": "Datakeskusten kaasuvoimaloiden paikallista ilmanlaatua seurataan alueittain, eikä sitä voi kompensoida muualta.",
+        "ai_measured": true,
+        "grade": "A-Q",
+        "sources": [
+          "tceq_texas_air_permits",
+          "ercot_gis_report"
+        ]
+      },
+      {
+        "id": "ocean_acidification",
+        "name_en": "Ocean acidification",
+        "name_fi": "Merien happamoituminen",
+        "control_variable_en": "Surface seawater aragonite saturation state (Ω_arag vs pre-industrial)",
+        "control_variable_fi": "Pintaveden aragoniittikyllästeisyys (Ω_arag suhteessa esiteolliseen)",
+        "boundary_value": "At least 80% of pre-industrial saturation",
+        "current_status": "Limit crossed in 2025 Planetary Health Check (~79–80%)",
+        "status_code": "transgressed",
+        "assessment_year": 2025,
+        "burden_score": null,
+        "burden_status": "not_measured",
+        "burden_badge_en": "Tracked via CO₂ (Climate)",
+        "burden_badge_fi": "Seurataan CO₂-päästöissä",
+        "ai_load_en": "not measured separately (ocean acidification is driven by atmospheric CO₂ emissions already counted under Climate change).",
+        "ai_load_fi": "ei mitattu erikseen (merien happamoituminen johtuu ilmakehän CO₂-päästöistä, jotka on jo laskettu Ilmastonmuutos-rivillä).",
+        "abatement_score": null,
+        "abatement_status": "not_measured",
+        "abatement_badge_en": "Tracked via CO₂ (Climate)",
+        "abatement_badge_fi": "Seurataan CO₂-vähennyksissä",
+        "ai_abatement_en": "not measured separately (follows CO₂ emission reductions under Climate change, plus AI ocean-buoy carbonate mapping).",
+        "ai_abatement_fi": "ei mitattu erikseen (seuraa Ilmastonmuutos-rivin CO₂-päästövähennyksiä sekä meripoijujen hiilikartoitusta).",
+        "rebound_note_en": "Un-scored here to avoid double-counting CO₂ emissions and reductions already scored under Climate change.",
+        "rebound_note_fi": "Ei pisteytetä erikseen, jotta Ilmastonmuutos-rivin CO₂-päästöjä ja -vähennyksiä ei lasketa kahteen kertaan.",
+        "ai_measured": false,
+        "grade": "—",
+        "sources": []
+      },
+      {
+        "id": "stratospheric_ozone_depletion",
+        "name_en": "Stratospheric ozone depletion",
+        "name_fi": "Stratosfäärin otsonikerroksen oheneminen",
+        "control_variable_en": "Stratospheric ozone column concentration (Dobson Units, DU)",
+        "control_variable_fi": "Stratosfäärin otsonipitoisuus (Dobson-yksikköä, DU)",
+        "boundary_value": "<5% drop from 290 DU pre-industrial baseline",
+        "current_status": "~284.6 DU (recovering under Montreal Protocol)",
+        "status_code": "safe",
+        "assessment_year": 2023,
+        "burden_score": null,
+        "burden_status": "not_measured",
+        "burden_badge_en": "Not measured",
+        "burden_badge_fi": "Ei mitattu",
+        "ai_load_en": "not measured (no primary series links AI hardware or data-centre chillers to ozone-depleting substances).",
+        "ai_load_fi": "ei mitattu (mikään ensisijainen tilastosarja ei yhdistä datakeskusten jäähdytystä otsonikerrosta heikentäviin aineisiin).",
+        "abatement_score": null,
+        "abatement_status": "not_measured",
+        "abatement_badge_en": "Not measured",
+        "abatement_badge_fi": "Ei mitattu",
+        "ai_abatement_en": "not measured (satellite atmospheric ozone monitoring only).",
+        "ai_abatement_fi": "ei mitattu (vain satelliittipohjainen ilmakehän otsoniseuranta).",
+        "rebound_note_en": "Marked 'not measured' on both sides. Never imputed as zero.",
+        "rebound_note_fi": "Merkitty 'ei mitattu' molemmille puolille. Ei koskaan oleteta nollaksi.",
+        "ai_measured": false,
+        "grade": "—",
+        "sources": []
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "eurostat_isoc_eb_ai",
+      "name": "Eurostat: Artificial intelligence in enterprises (isoc_eb_ai, isoc_eb_ain2)",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/isoc_eb_ai/",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "EU-27 and others",
+      "access": "download and API",
+      "licence": "Eurostat reuse policy (CC BY 4.0 compatible)",
+      "verified": true,
+      "caveats": "Enterprises with 10+ persons; sector coverage excludes some sections (confirm); 2025 questionnaire added image/video/audio generation; German definition break 2025; annual, next update planned Dec 2026"
+    },
+    {
+      "id": "eurostat_isoc_ai_iaiu",
+      "name": "Eurostat: individuals using generative AI tools",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/isoc_ai_iaiu/",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "EU-27",
+      "access": "download and API",
+      "licence": "Eurostat reuse policy",
+      "verified": true,
+      "caveats": "Ages 16-74; reach only"
+    },
+    {
+      "id": "statfin_icte_13vg",
+      "name": "Statistics Finland: Use of information technology in enterprises (table 13vg)",
+      "url": "https://pxdata.stat.fi/PxWeb/pxweb/en/StatFin/StatFin__icte/13vg.px/table/tableViewLayout1/",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Finland",
+      "access": "PxWeb API",
+      "licence": "Statistics Finland open data (CC BY 4.0)",
+      "verified": true,
+      "caveats": "Annual, spring reference; includes AI documents/instructions variable (governance proxy)"
+    },
+    {
+      "id": "cso_biiesa20",
+      "name": "CSO Ireland: Enterprise use of AI and cloud (BIIESA20)",
+      "url": "https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/BIIESA20/JSON-stat/2.0/en",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Ireland",
+      "access": "JSON-stat API",
+      "licence": "CC BY 4.0",
+      "verified": true,
+      "caveats": "Annual"
+    },
+    {
+      "id": "census_btos",
+      "name": "US Census Bureau Business Trends and Outlook Survey (AI questions and supplement)",
+      "url": "https://www.census.gov/data/experimental-data-products/business-trends-and-outlook-survey.html",
+      "tier": 1,
+      "grade": "A-M",
+      "pillars": [
+        "deployment",
+        "labour_reorganisation"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US national, state, sector, size",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": true,
+      "caveats": "Experimental product; wording broadened 17 Nov 2025 so pre/post not comparable; use break_flag"
+    },
+    {
+      "id": "microsoft_ai_user_share",
+      "name": "Microsoft AI Economy Institute: AI User Share / Global AI Diffusion report",
+      "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2025/09/AI-Diffusion_Technical-Report.pdf",
+      "tier": 4,
+      "grade": "B-Q",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "147 economies",
+      "access": "report tables; method on arXiv 2511.02781",
+      "licence": "check before bulk reuse",
+      "verified": true,
+      "caveats": "Vendor telemetry adjusted for device share and mobile scaling; individuals not firms; cross-check against Eurostat and not sole cell"
+    },
+    {
+      "id": "anthropic_economic_index",
+      "name": "Anthropic Economic Index",
+      "url": "https://huggingface.co/datasets/Anthropic/EconomicIndex",
+      "tier": 4,
+      "grade": "C-Q",
+      "pillars": [
+        "deployment",
+        "labour_reorganisation"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global, country and US state from Sept 2025 release",
+      "access": "Hugging Face download",
+      "licence": "CC BY",
+      "verified": true,
+      "caveats": "One vendor's conversations, not market-representative; use as task-mix and depth indicator; publisher is the vendor of the model writing this registry"
+    },
+    {
+      "id": "ted_open_data",
+      "name": "TED (Tenders Electronic Daily) Search API and Open Data",
+      "url": "https://ted.europa.eu",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "deployment",
+        "governance_burden",
+        "market_openness"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "EU/EEA above-threshold procurement",
+      "access": "open API, no key reported",
+      "licence": "confirm: notice metadata reported as CC0; Open Data service under CC BY 4.0",
+      "verified": true,
+      "caveats": "Only above-threshold tenders; AI classification of notice text must be built and sampled for accuracy"
+    },
+    {
+      "id": "hilma",
+      "name": "Hilma (Finnish public procurement notices)",
+      "url": "https://www.hankintailmoitukset.fi",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "deployment",
+        "market_openness"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Finland",
+      "access": "confirm API/open data terms",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Confirm below-threshold coverage and export"
+    },
+    {
+      "id": "ifr_world_robotics",
+      "name": "IFR World Robotics (industrial and service robots)",
+      "url": "https://ifr.org/worldrobotics/report-2025",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "deployment",
+        "capital_intensity"
+      ],
+      "channels": [
+        "physical"
+      ],
+      "geo": "Global, country, customer industry",
+      "access": "press summaries and executive summary free; full tables paid",
+      "licence": "restricted for tables; cite executive summary only",
+      "verified": true,
+      "caveats": "Counts industrial robots, not AI-driven robots; AI-specificity flag = proxy"
+    },
+    {
+      "id": "fda_ai_device_list",
+      "name": "FDA AI-Enabled Medical Device List",
+      "url": "https://www.fda.gov/medical-devices/artificial-intelligence-enabled-medical-devices/list-artificial-intelligence-enabled-medical-devices",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "physical",
+        "digital"
+      ],
+      "geo": "US market",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": true,
+      "caveats": "FDA says list is not comprehensive; authorisation is not use; annual counts revised between updates"
+    },
+    {
+      "id": "cpuc_av_data",
+      "name": "California Public Utilities Commission: autonomous vehicle passenger service quarterly data",
+      "url": "https://www.cpuc.ca.gov",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "physical"
+      ],
+      "geo": "California",
+      "access": "download (confirm file locations)",
+      "licence": "California public data",
+      "verified": false,
+      "caveats": "Verified only through secondary reports; open primary files before logging; single state"
+    },
+    {
+      "id": "nhtsa_sgo",
+      "name": "NHTSA Standing General Order crash reports (ADS/ADAS)",
+      "url": "https://www.nhtsa.gov/laws-regulations/standing-general-order-crash-reporting",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "deployment",
+        "governance_burden"
+      ],
+      "channels": [
+        "physical"
+      ],
+      "geo": "US",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": false,
+      "caveats": "Crash reports, not exposure; pair with miles from company or CPUC data"
+    },
+    {
+      "id": "waymo_safety_hub",
+      "name": "Waymo Safety Impact Data Hub and company disclosures",
+      "url": "https://waymo.com/safety/impact/",
+      "tier": 4,
+      "grade": "B-Q",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "physical"
+      ],
+      "geo": "Company service areas",
+      "access": "web",
+      "licence": "company terms",
+      "verified": false,
+      "caveats": "Company-reported; use only alongside CPUC primary data"
+    },
+    {
+      "id": "epoch_ai_data",
+      "name": "Epoch AI: Frontier Data Centers, AI Models, AI Chip Sales, GPU Clusters",
+      "url": "https://epoch.ai/data",
+      "tier": 3,
+      "grade": "B-Q",
+      "pillars": [
+        "capital_intensity",
+        "energy_capacity",
+        "ecological_balance",
+        "market_openness"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global, strongest for largest US sites",
+      "access": "ZIP/CSV download",
+      "licence": "CC BY 4.0 (measurements; satellite images licensed separately)",
+      "verified": true,
+      "caveats": "Frontier Data Centers covered about 15% of delivered AI compute in Nov 2025; China under-represented; owner/user fields carry confidence markers"
+    },
+    {
+      "id": "iea_energy_ai",
+      "name": "IEA Energy and AI Observatory and Energy and AI report",
+      "url": "https://www.iea.org/news/as-energy-and-ai-links-grow-new-iea-observatory-provides-latest-data-and-analysis",
+      "tier": 2,
+      "grade": "B-Y",
+      "pillars": [
+        "energy_capacity",
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global and regions",
+      "access": "web tools and datasets",
+      "licence": "confirm per dataset",
+      "verified": true,
+      "caveats": "Modelled estimates and projections; separate observed from projected values"
+    },
+    {
+      "id": "oecd_ai",
+      "name": "OECD.AI Policy Observatory (national policies, AI Incidents Monitor, live data)",
+      "url": "https://oecd.ai/en/methodology",
+      "tier": 2,
+      "grade": "B-M",
+      "pillars": [
+        "governance_burden",
+        "human_capital"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "60+ countries",
+      "access": "web and downloads (confirm)",
+      "licence": "confirm per dataset",
+      "verified": true,
+      "caveats": "Incident monitor is media-derived; live data uses partner sources with their own terms"
+    },
+    {
+      "id": "eur_lex",
+      "name": "EUR-Lex / CELLAR: Regulation (EU) 2024/1689 and implementing acts",
+      "url": "https://eur-lex.europa.eu",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "governance_burden"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "EU",
+      "access": "open, SPARQL via CELLAR",
+      "licence": "EU reuse (CC BY 4.0)",
+      "verified": true,
+      "caveats": "Verified via Implementing Decision (EU) 2026/2274 (EN 18286:2026) in brief 2026-10-14; check application dates before logging counts"
+    },
+    {
+      "id": "incident_db",
+      "name": "AI Incident Database (Responsible AI Collaborative)",
+      "url": "https://incidentdatabase.ai",
+      "tier": 3,
+      "grade": "C-M",
+      "pillars": [
+        "governance_burden"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Global",
+      "access": "download",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Reporting-biased; diagnostic only"
+    },
+    {
+      "id": "sec_edgar",
+      "name": "SEC EDGAR (XBRL frames API, Form S-1, 10-K, 13F, proxy)",
+      "url": "https://www.sec.gov/edgar/sec-api-documentation",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": [
+        "capital_intensity",
+        "ownership_distribution",
+        "market_openness"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "US-listed",
+      "access": "free API and filings",
+      "licence": "US public domain",
+      "verified": true,
+      "caveats": "Verified via Anthropic PBC Form S-1 (26 Oct 2026, brief 2026-10-28); hyperscaler capex not always split into AI vs other"
+    },
+    {
+      "id": "fed_dfa",
+      "name": "Federal Reserve Distributional Financial Accounts",
+      "url": "https://www.federalreserve.gov/releases/z1/dataviz/dfa/",
+      "tier": 1,
+      "grade": "A-Q",
+      "pillars": [
+        "ownership_distribution"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US",
+      "access": "download",
+      "licence": "US public domain",
+      "verified": false,
+      "caveats": "Equity ownership by wealth group, not AI-specific; use as the retail/household share backbone"
+    },
+    {
+      "id": "ecb_dwa",
+      "name": "ECB Distributional Wealth Accounts",
+      "url": "https://www.ecb.europa.eu",
+      "tier": 1,
+      "grade": "A-Q",
+      "pillars": [
+        "ownership_distribution"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Euro area",
+      "access": "download",
+      "licence": "ECB reuse policy",
+      "verified": false,
+      "caveats": "Not AI-specific"
+    },
+    {
+      "id": "eurostat_lfs_labour",
+      "name": "Eurostat labour force survey, job vacancies, labour cost index, ICT specialists",
+      "url": "https://ec.europa.eu/eurostat",
+      "tier": 1,
+      "grade": "A-Q",
+      "pillars": [
+        "labour_reorganisation",
+        "human_capital",
+        "cost_to_serve"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "EU-27",
+      "access": "download and API",
+      "licence": "Eurostat reuse policy",
+      "verified": false,
+      "caveats": "Dataset codes to be recorded per series"
+    },
+    {
+      "id": "indeed_hiring_lab",
+      "name": "Indeed Hiring Lab open data (job postings including AI mentions)",
+      "url": "https://github.com/hiring-lab",
+      "tier": 3,
+      "grade": "B-M",
+      "pillars": [
+        "labour_reorganisation",
+        "human_capital"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Several countries",
+      "access": "GitHub CSV",
+      "licence": "confirm (CC BY 4.0 reported)",
+      "verified": false,
+      "caveats": "Single platform; postings not employment"
+    },
+    {
+      "id": "cedefop_ovate",
+      "name": "Cedefop Skills-OVATE online job advertisements",
+      "url": "https://www.cedefop.europa.eu",
+      "tier": 2,
+      "grade": "B-Q",
+      "pillars": [
+        "human_capital",
+        "labour_reorganisation"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "EU",
+      "access": "dashboard; confirm export",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Online ads only"
+    },
+    {
+      "id": "fingrid_open_data",
+      "name": "Fingrid open data",
+      "url": "https://data.fingrid.fi",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "energy_capacity",
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Finland",
+      "access": "API (free key)",
+      "licence": "CC BY 4.0 (confirm)",
+      "verified": false,
+      "caveats": "Confirm connection-request and data-centre series"
+    },
+    {
+      "id": "entsoe_transparency",
+      "name": "ENTSO-E Transparency Platform",
+      "url": "https://transparency.entsoe.eu",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "energy_capacity",
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Europe",
+      "access": "API (free token)",
+      "licence": "ENTSO-E terms",
+      "verified": false,
+      "caveats": "Generation and load; carbon intensity must be derived"
+    },
+    {
+      "id": "ember",
+      "name": "Ember electricity data",
+      "url": "https://ember-energy.org/data/",
+      "tier": 3,
+      "grade": "B-M",
+      "pillars": [
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global",
+      "access": "download",
+      "licence": "CC BY 4.0",
+      "verified": false,
+      "caveats": "Grid carbon intensity at country level, not at the connection point"
+    },
+    {
+      "id": "lbnl_queued_up",
+      "name": "Lawrence Berkeley National Laboratory: Queued Up (interconnection queues)",
+      "url": "https://emp.lbl.gov/queues",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "energy_capacity"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US",
+      "access": "download",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Generation queues; large-load queues from ERCOT/PJM to be added"
+    },
+    {
+      "id": "wri_aqueduct",
+      "name": "WRI Aqueduct water risk",
+      "url": "https://www.wri.org/aqueduct",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global basins",
+      "access": "download",
+      "licence": "CC BY 4.0",
+      "verified": false,
+      "caveats": "Basin-level water stress to join to data-centre sites"
+    },
+    {
+      "id": "oecd_pmr",
+      "name": "OECD Product Market Regulation indicators",
+      "url": "https://www.oecd.org/economy/reform/indicators-of-product-market-regulation/",
+      "tier": 2,
+      "grade": "B-Y",
+      "pillars": [
+        "market_openness"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "OECD",
+      "access": "download",
+      "licence": "OECD terms",
+      "verified": false,
+      "caveats": "Economy-wide, not AI-specific; context for entry_conditions"
+    },
+    {
+      "id": "hf_hub",
+      "name": "Hugging Face Hub API (model licences, open-weights flag, downloads)",
+      "url": "https://huggingface.co/docs/hub/api",
+      "tier": 3,
+      "grade": "C-M",
+      "pillars": [
+        "market_openness"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global",
+      "access": "API",
+      "licence": "per model",
+      "verified": false,
+      "caveats": "Downloads are not use; open_interfaces proxy"
+    },
+    {
+      "id": "stanford_ai_index",
+      "name": "Stanford HAI AI Index 2026",
+      "url": "https://hai.stanford.edu/ai-index",
+      "tier": 5,
+      "grade": "C-Y",
+      "pillars": [],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Global",
+      "access": "report",
+      "licence": "CC BY-ND (confirm)",
+      "verified": true,
+      "caveats": "Compiles other sources (including non-probability surveys such as organisation-adoption figures); use to locate primaries, not as a source of cells"
+    },
+    {
+      "id": "gdpval",
+      "name": "OpenAI GDPval (task basket, rubrics and expert-graded quality; gold subset of 220 tasks)",
+      "url": "https://huggingface.co/datasets/openai/gdpval",
+      "tier": 4,
+      "grade": "C-Q",
+      "pillars": [
+        "cost_to_serve"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US occupations",
+      "access": "Hugging Face download (220 gold tasks, 2.29 GB); paper arXiv 2510.04374",
+      "licence": "not stated on dataset page; confirm before redistribution",
+      "verified": true,
+      "caveats": "Vendor-authored; one-shot knowledge-work tasks only; public tasks can be contaminated (canary string); automated grader experimental; headline 100x cost claim excludes oversight and integration, never log as a cell; use as task basket and quality anchor, not as a price series"
+    },
+    {
+      "id": "ramp_ai_index",
+      "name": "Ramp AI Index (card/invoice transactions; mirrored on FRED as RAMPAI* series)",
+      "url": "https://ramp.com/data/ai-index",
+      "tier": 4,
+      "grade": "B-M",
+      "pillars": [
+        "deployment",
+        "cost_to_serve"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US businesses on Ramp",
+      "access": "web page; FRED monthly series e.g. RAMPAIOPENAI",
+      "licence": "page states none; FRED asks for citation, copyright Ramp Business Corporation; confirm",
+      "verified": true,
+      "caveats": "Paid AI use only (understates free/personal use); platform-skewed sample; level not comparable to Eurostat/BTOS; use for momentum and as candidate bridge across the BTOS Nov 2025 break; provider shares logged for concentration only"
+    },
+    {
+      "id": "charlotin_hallucination_cases",
+      "name": "AI Hallucination Cases database (Damien Charlotin)",
+      "url": "https://www.damiencharlotin.com/hallucinations/",
+      "tier": 3,
+      "grade": "C-M",
+      "pillars": [
+        "governance_burden",
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global, US-heavy",
+      "access": "CSV download, updated daily",
+      "licence": "CC BY 4.0",
+      "verified": true,
+      "caveats": "Counts cases courts noticed and addressed; mostly self-represented litigants; inclusion is a judgement call; normalise by case volumes before using as penetration"
+    },
+    {
+      "id": "openrouter_rankings",
+      "name": "OpenRouter rankings and Data API",
+      "url": "https://openrouter.ai/rankings",
+      "tier": 4,
+      "grade": "C-M",
+      "pillars": [
+        "market_openness",
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global (routed API traffic)",
+      "access": "JSON Data API; web",
+      "licence": "CC BY 4.0 per page",
+      "verified": true,
+      "caveats": "Routed traffic only, not users or spend; developer-skewed; market share counts requests; verbosity and tokenisation differ across models"
+    },
+    {
+      "id": "cloudflare_radar_ai",
+      "name": "Cloudflare Radar AI Insights",
+      "url": "https://blog.cloudflare.com/expanded-ai-insights-on-cloudflare-radar",
+      "tier": 4,
+      "grade": "C-M",
+      "pillars": [
+        "deployment",
+        "market_openness",
+        "governance_burden"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global",
+      "access": "Radar API and Data Explorer",
+      "licence": "not found; confirm",
+      "verified": true,
+      "caveats": "Verified only from a Feb 2025 blog post; DNS popularity is not usage; robots.txt covers top 10,000 domains and declared directives only; check current datasets"
+    },
+    {
+      "id": "github_innovation_graph",
+      "name": "GitHub Innovation Graph and Octoverse",
+      "url": "https://innovationgraph.github.com",
+      "tier": 4,
+      "grade": "C-Y",
+      "pillars": [
+        "deployment",
+        "human_capital"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "By economy",
+      "access": "Innovation Graph downloads (confirm); Octoverse is a report",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Octoverse checked (4.3M+ AI repos; ~1.1M repos import an LLM SDK, +178% y/y) but is a report, not a dataset; public activity only; country from self-reported location; Innovation Graph not opened"
+    },
+    {
+      "id": "ercot_large_load_queue",
+      "name": "ERCOT / TCEQ data-centre interconnection and air-permit queue",
+      "url": "https://gov.texas.gov/uploads/files/press/TCEQ_Data_Center.pdf",
+      "tier": 2,
+      "grade": "A-Q",
+      "pillars": [
+        "energy_capacity"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Texas",
+      "access": "public ERCOT / TCEQ filings",
+      "licence": "Texas public records",
+      "verified": true,
+      "caveats": "Verified in brief 2026-10-25 (Governor Abbott 21 Sept directive, TCEQ 19 Oct reply, 8.7 GW across 6 campuses, 400+ data centres in ERCOT audit due 10 Dec 2026)"
+    },
+    {
+      "id": "taiwan_moea_export_orders",
+      "name": "Taiwan MOEA monthly export orders",
+      "url": "https://focustaiwan.tw/business/202609220025",
+      "tier": 2,
+      "grade": "A-M",
+      "pillars": [
+        "capital_intensity"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Taiwan",
+      "access": "MOEA statistics (confirm)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Seen via Focus Taiwan only; industry-based (electronics, ICT), not AI-specific: proxy flag"
+    },
+    {
+      "id": "china_nbs_robot_output",
+      "name": "China NBS monthly industrial robot output",
+      "url": "https://www.stats.gov.cn/english/",
+      "tier": 1,
+      "grade": "A-M",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "physical"
+      ],
+      "geo": "China",
+      "access": "NBS monthly release (confirm table)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Aug 2026 +34.6% y/y seen via CGTN only; industrial robots, not AI-specific: proxy flag; some months reported from an industry federation rather than NBS"
+    },
+    {
+      "id": "swaa",
+      "name": "Survey of Working Arrangements and Attitudes (SWAA)",
+      "url": "https://wfhresearch.com/data/",
+      "tier": 3,
+      "grade": "B-M",
+      "pillars": [
+        "deployment",
+        "labour_reorganisation"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US workers 20-64",
+      "access": "time series Excel/JSON; microdata on request",
+      "licence": "CC BY 4.0",
+      "verified": true,
+      "caveats": "Data page does not list AI items; Bick et al. report a Dec 2024 SWAA wave with generative-AI use; confirm AI series ids; online panel"
+    },
+    {
+      "id": "rps_bick_blandin_deming",
+      "name": "Real-Time Population Survey / The Rapid Adoption of Generative AI (NBER w32966)",
+      "url": "https://www.nber.org/system/files/working_papers/w32966/w32966.pdf",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "deployment"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US adults 18-64",
+      "access": "NBER data appendix",
+      "licence": "confirm",
+      "verified": true,
+      "caveats": "Aug and Nov 2024 waves only; not peer-reviewed; online panel; self-reported; use as diffusion-speed benchmark against PCs and internet"
+    },
+    {
+      "id": "firm_data_on_ai",
+      "name": "Firm Data on AI (NBER w34836; Atlanta Fed, Bank of England, Bundesbank, Macquarie)",
+      "url": "https://www.nber.org/digest/202605/global-evidence-business-use-ai",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "deployment",
+        "labour_reorganisation"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "US, UK, Germany, Australia",
+      "access": "working paper; microdata availability not stated",
+      "licence": "confirm",
+      "verified": true,
+      "caveats": "Single fielding Nov 2025-Jan 2026; executive-reported; useful convergent check against Eurostat and BTOS"
+    },
+    {
+      "id": "stackoverflow_survey_2026",
+      "name": "Stack Overflow Developer Survey 2026",
+      "url": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/",
+      "tier": 4,
+      "grade": "C-Y",
+      "pillars": [
+        "deployment",
+        "human_capital"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "Global developers",
+      "access": "dataset promised on GitHub 'in a few weeks'",
+      "licence": "not stated; confirm",
+      "verified": true,
+      "caveats": "Developer self-selected sample; software sector only"
+    },
+    {
+      "id": "src_planetary_boundaries",
+      "name": "Stockholm Resilience Centre: Planetary boundaries (nine boundaries, status, Planetary Health Check link)",
+      "url": "https://www.stockholmresilience.org/research/planetary-boundaries.html",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Global",
+      "access": "web page; papers; annual Planetary Health Check",
+      "licence": "graphics CC BY-NC-ND 3.0 (no alteration, non-commercial); cite values, redraw panel",
+      "verified": true,
+      "caveats": "Page says seven of nine transgressed but names neither the seven nor control variables; own figures inconsistent (six for 2023); build the panel from primary papers and the Planetary Health Check, print assessment year; reference frame, not an AI series"
+    },
+    {
+      "id": "richardson_2023_pb",
+      "name": "Richardson et al. 2023, Earth beyond six of nine planetary boundaries (control variables and values)",
+      "url": "https://www.science.org/doi/10.1126/sciadv.adh2458",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Global",
+      "access": "open access paper (not opened; fetch failed)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Values seen only via a French government statistics page presenting the 2023 revision; open the paper before logging; later updates supersede (2025 and 2026 Planetary Health Check)"
+    },
+    {
+      "id": "pik_planetary_health_check",
+      "name": "Planetary Health Check (PIK / Planetary Boundaries Science Lab), annual",
+      "url": "https://www.pik-potsdam.de",
+      "tier": 3,
+      "grade": "B-Y",
+      "pillars": [
+        "ecological_balance"
+      ],
+      "channels": [
+        "digital",
+        "physical"
+      ],
+      "geo": "Global",
+      "access": "annual report (not opened)",
+      "licence": "confirm",
+      "verified": false,
+      "caveats": "Linked from the SRC page and cited as the source of the 2025 count; find the 2025 and 2026 editions and record per-boundary status before use"
+    },
+    {
+      "id": "eurostat_nama_10_an6",
+      "name": "Eurostat: Gross fixed capital formation by main asset type (nama_10_an6)",
+      "url": "https://ec.europa.eu/eurostat/databrowser/view/nama_10_an6/",
+      "api_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nama_10_an6",
+      "tier": 1,
+      "grade": "A-Y",
+      "pillars": [
+        "capital_intensity"
+      ],
+      "channels": [
+        "digital"
+      ],
+      "geo": "EU-27, Finland and other member states",
+      "access": "download and API",
+      "licence": "Eurostat reuse policy (CC BY 4.0 compatible)",
+      "verified": true,
+      "verified_date": "2026-11-22",
+      "caveats": "K1 is N1132G (ICT equipment) + N117G (intellectual property products) as % of GDP. National-accounts proxy for capital that AI diffusion needs; not AI-specific. Retrieved 2026-11-22 (dataset updated 2026-11-05)."
+    }
+  ]
+}
