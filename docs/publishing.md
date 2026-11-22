@@ -25,7 +25,7 @@ The Firebase workflow is gated to `main`. It must deploy the **committed** publi
 - run `scripts/sync_briefs_to_index.py` or `scripts/fetch_open_series.py` in a way that rewrites `index/` on the runner and then publishes the dirty tree
 - publish from any branch other than `main`, including `workflow_dispatch`
 
-Until a Pages settings change is approved, Pages continues to serve the `main` tree at `/`. After this design lands on `main`, that tree and the Firebase public set (see `firebase.json` ignore rules) will share the same committed index files and the same `computed.v0.6.json`. Residual extras on Pages (for example `scripts/` and `tests/`) do not change scores; a later settings change can point Pages at the packed artifact if desired.
+Until a Pages settings change is approved, Pages continues to serve the `main` tree at `/`. After this design lands on `main`, that tree and the Firebase public set (see `firebase.json` ignore rules) will share the same committed index files and the same `computed.v1.0.json`. Residual extras on Pages (for example `scripts/` and `tests/`) do not change scores; a later settings change can point Pages at the packed artifact if desired.
 
 ## Local package
 
