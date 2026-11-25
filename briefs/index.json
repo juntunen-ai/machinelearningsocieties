@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-11-25",
+    "title": "Self-improvement gets a number, a filing duty, and no shared metric",
+    "title_fi": "Tekoälyn itseparannus saa luvun, lomakkeen ja kiistan mittarista",
+    "score": "4/10 · Stakes 8/10",
+    "summary_en": "Two members of the United States House introduced a bill on 24 November that would make the largest AI developers report each quarter on how much of their research AI performs. The same day OpenAI published the pretraining loss of thirteen models it trained since GPT-3.5, and METR found the loss fell about seven times faster after February 2026. The bill asks who must report, the curve asks what can be reported, and neither settles the unit.",
+    "summary_fi": "Kaksi edustajainhuoneen jäsentä esitteli 24. marraskuuta lakiesityksen, joka velvoittaisi suurimmat tekoälyn kehittäjät raportoimaan neljännesvuosittain siitä, kuinka suuren osan niiden tutkimuksesta tekoäly tekee. Samana päivänä OpenAI julkaisi kolmentoista GPT-3.5:n jälkeen kouluttamansa mallin esikoulutuksen häviön, ja METR havaitsi häviön pienentyneen noin seitsemän kertaa nopeammin helmikuun 2026 jälkeen. Lakiesitys kysyy, kenen on raportoitava. Käyrä kysyy, mitä voi raportoida. Kumpikaan ei ratkaise yksikköä."
+  },
+  {
     "date": "2026-11-24",
     "title": "The scarcest input in AI now has a government clearance",
     "title_fi": "Tekoälyn niukin resurssi tarvitsee nyt valtion luvan",
