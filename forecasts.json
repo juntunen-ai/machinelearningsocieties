@@ -417,6 +417,17 @@
    "signal": "6/10",
    "source": "briefs/2026-11-24.html",
    "status": "open"
+  },
+  {
+   "claim_en": "By 31 May 2027 at least one frontier developer other than OpenAI and Microsoft will publish a pretraining-loss curve for three or more of its own models, measured on one fixed held-out dataset (55 %).",
+   "claim_fi": "31.5.2027 mennessä ainakin yksi muu huippuluokan kehittäjä kuin OpenAI tai Microsoft julkaisee esikoulutuksen häviökäyrän vähintään kolmelle omalle mallilleen yhdestä kiinteästä testiaineistosta (55 %).",
+   "id": "2026-11-25-01",
+   "made": "2026-11-25",
+   "probability": 55,
+   "resolves": "2027-05-31",
+   "signal": "4/10",
+   "source": "briefs/2026-11-25.html",
+   "status": "open"
   }
  ]
 }
