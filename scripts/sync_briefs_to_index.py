@@ -263,8 +263,13 @@ def auto_classify(title: str, text_body: str):
 
 
 def parse_brief_html(html_path: Path):
-    content = html_path.read_text(encoding="utf-8")
-    sig_match = re.search(r"Signal\s+(\d+(?:\.\d+)?)/10\s*Â·\s*Stakes\s+(\d+(?:\.\d+)?)/10", content)
+    content = fix_mojibake(html_path.read_text(encoding="utf-8"))
+    sig_match = re.search(
+        r"Signal\s+(\d+(?:\.\d+)?)\s*/\s*10\s*(?:[·•]|Â·)?\s*Stakes\s+(\d+(?:\.\d+)?)\s*/\s*10",
+        content,
+    )
+    if not sig_match:
+        print(f"[warn] no Signal/Stakes line found in {html_path.name}")
     signal_score = float(sig_match.group(1)) if sig_match else 5.0
     stakes_score = float(sig_match.group(2)) if sig_match else 5.0
 
