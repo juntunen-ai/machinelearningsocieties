@@ -265,13 +265,17 @@ def auto_classify(title: str, text_body: str):
 def parse_brief_html(html_path: Path):
     content = fix_mojibake(html_path.read_text(encoding="utf-8"))
     sig_match = re.search(
-        r"Signal\s+(\d+(?:\.\d+)?)\s*/\s*10\s*(?:[·•]|Â·)?\s*Stakes\s+(\d+(?:\.\d+)?)\s*/\s*10",
+        r"Signal\s+(\d+(?:\.\d+)?)\s*/\s*(\d+)\s*(?:[·•]|&middot;|Â·|–|—|-|\|)?\s*"
+        r"Stakes\s+(\d+(?:\.\d+)?)\s*/\s*(\d+)",
         content,
     )
-    if not sig_match:
+    if sig_match:
+        # Older editions scored stakes on a 1-5 scale; normalise both to 0-10.
+        signal_score = round(float(sig_match.group(1)) * 10 / float(sig_match.group(2)), 1)
+        stakes_score = round(float(sig_match.group(3)) * 10 / float(sig_match.group(4)), 1)
+    else:
         print(f"[warn] no Signal/Stakes line found in {html_path.name}")
-    signal_score = float(sig_match.group(1)) if sig_match else 5.0
-    stakes_score = float(sig_match.group(2)) if sig_match else 5.0
+        signal_score, stakes_score = 5.0, 5.0
 
     p_match = re.search(r"(?:Primary source|P)\s*[=:]\s*(\d+)", content)
     n_match = re.search(r"(?:Independent confirmation|N)\s*[=:]\s*(\d+)", content)
