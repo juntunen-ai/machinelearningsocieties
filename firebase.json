@@ -32,6 +32,12 @@
           }
         ]
       }
+    ],
+    "rewrites": [
+      {
+        "source": "/index.json",
+        "destination": "/briefs/index.json"
+      }
     ]
   }
 }
