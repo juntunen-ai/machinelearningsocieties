@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-sync_briefs_to_index.py — Synchronises Machine Learning Societies daily briefs
+sync_briefs_to_index.py â Synchronises Machine Learning Societies daily briefs
 (`briefs/YYYY-MM-DD.html` and `briefs/index.json`) into the Diffusion Index v0.6
 qualitative/quantitative signal log (`index/brief_signals.csv`).
 
-Implements Methodology v0.6 §2.1 (Monthly Brief Pace-Layer Mix diagnostic) and
+Implements Methodology v0.6 Â§2.1 (Monthly Brief Pace-Layer Mix diagnostic) and
 links daily institutional signals to the 10 Pillars, 10 NACE Rev. 2.1 sectors,
 Blocks A/B/C, and Reach / Depth / Embeddedness layers in `registry.v0.6.json`.
 """
@@ -167,16 +167,55 @@ CURATED_MAP = {
 }
 
 
+MARKERS = ("Ã", "â€", "Â")
+
+
+def _to_latin1_bytes(text: str) -> bytes:
+    """Bytes the way a latin-1 reader would have produced them."""
+    out = bytearray()
+    for ch in text:
+        cp = ord(ch)
+        if cp <= 0xFF:
+            out.append(cp)
+        else:
+            out.extend(ch.encode("utf-8"))
+    return bytes(out)
+
+
+def _decode_mixed(data: bytes) -> str:
+    out = []
+    i, n = 0, len(data)
+    while i < n:
+        b = data[i]
+        if b < 0x80:
+            out.append(chr(b)); i += 1; continue
+        if 0xC2 <= b <= 0xDF and i + 1 < n and (data[i + 1] & 0xC0) == 0x80:
+            out.append(chr(((b & 0x1F) << 6) | (data[i + 1] & 0x3F))); i += 2; continue
+        if 0xE0 <= b <= 0xEF and i + 2 < n and (data[i + 1] & 0xC0) == 0x80 and (data[i + 2] & 0xC0) == 0x80:
+            out.append(chr(((b & 0x0F) << 12) | ((data[i + 1] & 0x3F) << 6) | (data[i + 2] & 0x3F))); i += 3; continue
+        if 0xF0 <= b <= 0xF4 and i + 3 < n and all((data[i + k] & 0xC0) == 0x80 for k in (1, 2, 3)):
+            out.append(chr(((b & 0x07) << 18) | ((data[i + 1] & 0x3F) << 12) | ((data[i + 2] & 0x3F) << 6) | (data[i + 3] & 0x3F))); i += 4; continue
+        out.append(chr(b)); i += 1
+    return "".join(out)
+
+
+def _mojibake_score(text: str) -> int:
+    return sum(text.count(marker) for marker in MARKERS)
+
+
 def fix_mojibake(text: str) -> str:
+    """Undo repeated latin-1/UTF-8 round trips until the text stops changing."""
     if not text:
         return text
-    if "Ã" in text or "â€" in text or "Â·" in text:
-        try:
-            return text.encode("latin-1").decode("utf-8")
-        except Exception:
-            pass
-    return text
-
+    current = text
+    for _ in range(15):
+        if not _mojibake_score(current):
+            break
+        candidate = _decode_mixed(_to_latin1_bytes(current))
+        if _mojibake_score(candidate) >= _mojibake_score(current):
+            break
+        current = candidate
+    return current
 
 def auto_classify(title: str, text_body: str):
     """Fallback keyword classifier for new daily briefs not yet in CURATED_MAP."""
@@ -225,7 +264,7 @@ def auto_classify(title: str, text_body: str):
 
 def parse_brief_html(html_path: Path):
     content = html_path.read_text(encoding="utf-8")
-    sig_match = re.search(r"Signal\s+(\d+(?:\.\d+)?)/10\s*·\s*Stakes\s+(\d+(?:\.\d+)?)/10", content)
+    sig_match = re.search(r"Signal\s+(\d+(?:\.\d+)?)/10\s*Â·\s*Stakes\s+(\d+(?:\.\d+)?)/10", content)
     signal_score = float(sig_match.group(1)) if sig_match else 5.0
     stakes_score = float(sig_match.group(2)) if sig_match else 5.0
 
