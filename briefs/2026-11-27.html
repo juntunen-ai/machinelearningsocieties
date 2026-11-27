@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The app store moved inside the assistant, and the reviewer is the seller - Machine Learning Societies</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Machine Learning Societies">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="The app store moved inside the assistant, and the reviewer is the seller">
+<meta property="og:description" content="On 24 November Anthropic put a one-click install of Claude artifacts into beta for Mac and Windows. An installed app runs on the user's Claude account and connectors, and Anthropic states that it does not review apps before a person installs them. The operating system sees one program, Claude, and asks Claude for permission, not the app.">
+<meta property="og:url" content="https://machine-learning-societies.web.app/briefs/2026-11-27.html">
+<meta property="og:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-27.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="621">
+<meta property="og:image:alt" content="The app store moved inside the assistant, and the reviewer is the seller">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The app store moved inside the assistant, and the reviewer is the seller">
+<meta name="twitter:description" content="On 24 November Anthropic put a one-click install of Claude artifacts into beta for Mac and Windows. An installed app runs on the user's Claude account and connectors, and Anthropic states that it does not review apps before a person installs them. The operating system sees one program, Claude, and asks Claude for permission, not the app.">
+<meta name="twitter:image" content="https://machine-learning-societies.web.app/assets/cards/2026-11-27.png">
+<link rel="canonical" href="https://machine-learning-societies.web.app/briefs/2026-11-27.html">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mast-left">
+      <a class="brand" href="../index.html">Machine Learning Societies</a>
+      <span class="kicker" style="margin:4px 0 0">Compiled by Harri Juntunen &amp; <a href="https://twin.so">Twin</a></span>
+      <span class="toplinks"><a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></span>
+    </div>
+    <div class="lang"><a href="2026-11-27.fi.html">Suomi</a><a href="#" aria-current="true">English</a></div>
+  </header>
+  <article class="brief">
+<p class="kicker">27 November 2026 - Machine Learning Societies</p>
+<h2>The app store moved inside the assistant, and the reviewer is the seller</h2>
+<p class="score">Signal 5/10 · Stakes 8/10</p>
+<p>On 24 November Anthropic put a one-click install of Claude artifacts into beta in Claude for Mac and Windows. A user asks Claude for a small tool, clicks "Install as app", and the tool opens in its own window. It uses the user's Claude account and connectors, and its requests spend the user's plan. Anthropic states on the same page that it does not review apps before a person installs them. The operating system sees one program, Claude, and asks Claude for permission, not the app.</p>
+<h3>Signal</h3>
+<p><strong>Observed.</strong> The feature has three permission levels: browser-level actions, app permissions such as notifications and global shortcuts, and full computer access that can run programs and change files. A grant covers one version, and Claude asks again after every edit. Full access is limited to apps the user made, or, on Team and Enterprise plans, apps made inside the same organisation. An administrator can switch app permissions and full access off.</p>
+<p><strong>Observed.</strong> A second path takes review seriously. Anthropic opened a directory submission portal this week. The portal validates each connector or plugin bundle, runs a safety scan, shows the review status, and lists the plugin only after approval. Submission is open to developers on paid plans. Anthropic says Claude carries more than 10,000 connectors.</p>
+<p><strong>Caveats.</strong> A teardown of an installed app, reported by a newsletter and not by Anthropic, finds that the app runs inside Claude's process. The per-app permission list of the operating system therefore shows Claude alone. The one-version grant limits drift. But Anthropic writes that where part of an app comes from another website, that part can change without a new prompt. Full access depends on who built the app, not on what the app does.</p>
+<p><strong>Assessment.</strong> Accountability for a program on a work machine runs through a vendor that says it does not review the program. Apple's notarisation stops at the outer binary, which is Claude. A firm that must show an audit trail for its laptops gets none from this channel, and an app store supervisor has no counterparty to designate. Stakes are 8 because every administrator of a Team or Enterprise account must now write a rule for a channel that did not exist a week ago.</p>
+<p><strong>Evidence 5/10.</strong></p>
+<ul>
+<li>P: Anthropic's product documentation for the feature and for the portal. One primary source. Three points.</li>
+<li>N: one newsletter, Linas's Newsletter on 26 November, which added facts from its own teardown. One point.</li>
+<li>L: Anthropic posted the feature on X on 24 November, two days before the newsletter. One point.</li>
+</ul>
+<p>The sum is 3 + 1 + 1 = 5.</p>
+<p><strong>Stakes 8/10.</strong> A purchasing and security rule changes across sectors, because every organisation that pays for Claude must decide whether staff may install apps and grant them full computer access.</p>
+<h3>Thesis</h3>
+<p>Distribution has moved inside the assistant. The channel that decides what software a person can run is a paid subscription, and the firm that reviews the software earns when the software calls its model. The operating system was where permissions could be counted; it cannot count them now, because every app arrives as one program. App store law assumes a store at the operating system level, with a gatekeeper to designate and a review to inspect. The assistant is neither.</p>
+<h3>Antithesis</h3>
+<p>This is a beta for tools that people build for themselves. There is no public market of strangers' apps, and full access stays with your own apps or organisation. Claude asks again after every edit, so drift is checked when it matters. A browser tab could already do most of this. The directory has a safety scan and a human review before a listing. On that reading, the alarm mistakes a personal workspace for a marketplace.</p>
+<h3>Forecast</h3>
+<p>By 30 June 2027 at least one of Apple, Microsoft, Google or the European Commission will publish a written rule, guidance or formal proceeding that names apps installed inside an AI assistant as a distribution channel it supervises or restricts. Probability 40 %. Resolves 30 June 2027. A general statement about AI assistants, or a security advisory about one app, is a miss.</p>
+<h3>Political consequences</h3>
+<p><strong>1-2 years.</strong> The instrument is Apple's notarisation requirement and the Developer Program licence. The actor is Apple's developer relations, with the digital markets unit of the Commission as second mover. The observable is a published revision of the notarisation rules that names apps inside another app, or a Commission market investigation into one assistant.</p>
+<p><strong>3-4 years.</strong> The instrument needed is a delegated act or guideline under the Digital Markets Act that treats in-assistant distribution as a distribution service, with a named reviewer and a liability rule. The actor is the digital directorate of the Commission with national market surveillance, in Finland Traficom as coordinator. The observable is a designation or delegated act that names the channel.</p>
+<p><strong>Market test: pro-business, and the channel owner dominates.</strong> The instrument is the one-click install inside a paid plan. The actor is Anthropic. A developer gains reach only through one firm, which sets the usage meter, sees the install count and can withdraw the channel.</p>
+<h3>What to watch</h3>
+<ul>
+<li>Whether Anthropic publishes a review standard for apps that can be installed, not only for plugins that are listed.</li>
+<li>Whether the directory publishes a count of rejected submissions.</li>
+<li>Whether Apple extends notarisation to code that runs inside another signed application.</li>
+<li>Whether any enterprise policy template names "Install as app" and full computer access.</li>
+<li>Forecast resolutions due within 90 days: 31 January 2027, 6 February 2027, 17 February 2027.</li>
+</ul>
+  </article>
+  <footer><a href="https://github.com/juntunen-ai/Twin">source</a> &middot; <a href="https://www.linkedin.com/in/hjuntunen">LinkedIn</a> &middot; <a href="https://x.com/hjuntunen">X</a></footer>
+</div>
+</body>
+</html>
