@@ -439,6 +439,17 @@
    "status": "open",
    "signal": "3/10",
    "source": "briefs/2026-11-26.html"
+  },
+  {
+   "id": "2026-11-27-01",
+   "made": "2026-11-27",
+   "claim_en": "By 30 June 2027 at least one of Apple, Microsoft, Google or the European Commission will publish a written rule, guidance or formal proceeding that names apps installed inside an AI assistant as a distribution channel it supervises or restricts (40 %).",
+   "claim_fi": "30.6.2027 mennessä ainakin yksi neljästä – Apple, Microsoft, Google tai Euroopan komissio – julkaisee kirjallisen säännön, ohjeen tai virallisen menettelyn, joka nimeää tekoälyavustajan sisään asennettavat sovellukset jakelukanavaksi, jota se valvoo tai rajoittaa (40 %).",
+   "resolves": "2027-06-30",
+   "probability": 40,
+   "status": "open",
+   "signal": "5/10",
+   "source": "briefs/2026-11-27.html"
   }
- ]
+]
 }
