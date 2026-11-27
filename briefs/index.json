@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-11-27",
+    "title": "The app store moved inside the assistant, and the reviewer is the seller",
+    "title_fi": "Sovelluskaupan valvoja on nyt sama yhtiö, joka myy mallin",
+    "score": "5/10 · Stakes 8/10",
+    "summary_en": "On 24 November Anthropic put a one-click install of Claude artifacts into beta for Mac and Windows. An installed app runs on the user's Claude account and connectors, and Anthropic states that it does not review apps before a person installs them. The operating system sees one program, Claude, and asks Claude for permission, not the app.",
+    "summary_fi": "Anthropic avasi 24.11. beta-version, jossa Claude-artefaktin voi asentaa työpöytäsovellukseksi Maciin ja Windowsiin. Sovellus käyttää käyttäjän Claude-tiliä ja liittimiä, ja Anthropic ilmoittaa, ettei se tarkista sovelluksia ennen asennusta. Käyttöjärjestelmä näkee vain Clauden."
+  },
+  {
     "date": "2026-11-26",
     "title": "The chip rule existed for eighteen months and controlled nothing",
     "title_fi": "Siruvalvonta oli 18 kuukautta paperia",
