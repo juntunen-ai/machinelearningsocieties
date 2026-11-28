@@ -450,6 +450,17 @@
    "status": "open",
    "signal": "5/10",
    "source": "briefs/2026-11-27.html"
+  },
+  {
+   "claim_en": "By 30 June 2027 Amazon will publish a public hourly price for Trainium3 capacity that an outside buyer can check against SemiAnalysis's estimate of $1.05 per chip-hour (60 %).",
+   "claim_fi": "30.6.2027 mennessä Amazon julkaisee Trainium3-kapasiteetille julkisen tuntihinnan, jonka ulkopuolinen ostaja voi tarkistaa SemiAnalysisin 1,05 dollarin piituntiarviota vastaan (60 %).",
+   "id": "2026-11-28-01",
+   "made": "2026-11-28",
+   "probability": 60,
+   "resolves": "2027-06-30",
+   "signal": "4/10",
+   "source": "briefs/2026-11-28.html",
+   "status": "open"
   }
 ]
 }
