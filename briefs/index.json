@@ -1,4 +1,12 @@
 [
+{
+    "date": "2026-11-28",
+    "title": "Inference has a common scoreboard, and the ranking is a cost estimate",
+    "title_fi": "Päättelylle tuli yhteinen mittari, jonka kärki on arvio",
+    "score": "4/10 · Stakes 6/10",
+    "summary_en": "On 26 November the research firm SemiAnalysis put Google's TPU and Amazon's Trainium on InferenceX and AgentX, the public benchmark it runs for inference. It said the chips deliver 1.2 to 2.5 times the performance per dollar of Nvidia's processors. Amazon reports 2.28 times at the peak, yet its measured throughput per chip was only 4 % higher; the rest comes from a cost estimate of $1.05 per chip-hour against $2.31. AWS publishes no list price, so a buyer cannot check it.",
+    "summary_fi": "Tutkimusyhtiö SemiAnalysis lisäsi 26.11. Googlen TPU-piirin ja Amazonin Trainiumin InferenceX- ja AgentX-vertailuihin, jotka ovat sen ylläpitämiä julkisia päättelylaskennan mittauksia. Yhtiön mukaan piirit tuottavat 1,2–2,5 kertaa enemmän suorituskykyä dollaria kohden kuin Nvidian prosessorit. Amazon kertoo 2,28-kertaisesta edusta, mutta piirin mitattu läpäisy oli vain 4 % korkeampi; loppu tulee kustannusarviosta. AWS ei julkaise listahintaa, joten ostaja ei voi tarkistaa lukua."
+  },
   {
     "date": "2026-11-27",
     "title": "The app store moved inside the assistant, and the reviewer is the seller",
